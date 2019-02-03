@@ -6,12 +6,20 @@ import Template from "../templates/Main"
 import Bio from "../components/Bio"
 import SEO from "../components/seo"
 import { rhythm, scale } from "../utils/typography"
+import {REPO_BASE_URL} from "../constants";
 
 class BlogPostTemplate extends React.Component {
+  buildEditUrl(slug) {
+    //FIXME: make me read the source folder of the article rather than semi-hardcode it
+    return `${REPO_BASE_URL}/edit/master/content/blog/${slug}/index.md`
+  }
+
   render() {
     const post = this.props.data.markdownRemark
     const siteTitle = this.props.data.site.siteMetadata.title
     const { tags } = this.props.pageContext
+
+    debugger
 
     return (
       <Template location={this.props.location} title={siteTitle}>
@@ -34,6 +42,7 @@ class BlogPostTemplate extends React.Component {
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
         <div>
           <a href={post.frontmatter.comment_link}>Comment on Twitter</a>
+          <a href={this.buildEditUrl(post.fields.slug)}>Edit</a>
         </div>
         <hr
           style={{
@@ -57,9 +66,11 @@ export const pageQuery = graphql`
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
-      id
       html
       tableOfContents
+      fields {
+        slug
+      }
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
