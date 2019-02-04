@@ -60,6 +60,7 @@
   "devDependencies": {
     "@commitlint/cli": "^7.5.0",
     "@commitlint/config-conventional": "^7.5.0",
+    "gatsby-plugin-root-import": "^2.0.5",
     "husky": "^1.3.1"
   }
 }

@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Starter Blog`,
@@ -74,5 +76,15 @@ module.exports = {
         pathToConfigModule: `src/utils/typography`,
       },
     },
+    {
+      resolve: 'gatsby-plugin-root-import',
+      options: {
+        '~pages': path.join(__dirname, 'src/pages'),
+        '~templates': path.join(__dirname, 'src/templates'),
+        '~components': path.join(__dirname, 'src/components'),
+        '~utils': path.join(__dirname, 'src/utils'),
+        '~': path.join(__dirname, 'src')
+      }
+    }
   ],
 }
