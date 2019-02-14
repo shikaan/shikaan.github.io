@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-import {rhythm, scale} from "~utils/typography"
+import {Heading} from "~components/Heading";
 
 class FrontMatter extends Component {
   render() {
@@ -9,17 +9,10 @@ class FrontMatter extends Component {
     return (
       <React.Fragment>
         <img alt={post.frontmatter.title} src={post.frontmatter.cover_image}/>
-        <h1>{post.frontmatter.title}</h1>
-        <h2>{post.frontmatter.description}</h2>
+        <Heading level={1}>{post.frontmatter.title}</Heading>
+        <Heading level={2}>{post.frontmatter.description}</Heading>
         {pageContext.tags.map(i => <p>#{i}</p>)}
-        <p
-          style={{
-            ...scale(-1 / 5),
-            display: `block`,
-            marginBottom: rhythm(1),
-            marginTop: rhythm(-1),
-          }}
-        >
+        <p>
           {post.frontmatter.date}
         </p>
       </React.Fragment>

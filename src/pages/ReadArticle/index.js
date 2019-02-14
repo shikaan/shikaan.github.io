@@ -6,8 +6,6 @@ import Template from "~templates/Main"
 import Bio from "~components/Bio"
 import SEO from "~components/seo"
 
-import {rhythm} from "~utils/typography"
-
 import CallToActions from "./CallToActions";
 import FrontMatter from "./FrontMatter";
 import TableOfContents from "./TableOfContents";
@@ -30,11 +28,7 @@ class BlogPostTemplate extends React.Component {
 
         <CallToActions post={post}/>
 
-        <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
-        />
+        <hr/>
         <Bio/>
       </Template>
     )
