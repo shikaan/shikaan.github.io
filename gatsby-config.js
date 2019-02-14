@@ -71,18 +71,12 @@ module.exports = {
     `gatsby-plugin-offline`,
     `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-plugin-typography`,
-      options: {
-        pathToConfigModule: `src/utils/typography`,
-      },
-    },
-    {
       resolve: 'gatsby-plugin-root-import',
       options: {
         '~pages': path.join(__dirname, 'src/pages'),
         '~templates': path.join(__dirname, 'src/templates'),
         '~components': path.join(__dirname, 'src/components'),
-        '~utils': path.join(__dirname, 'src/utils'),
+        '~style': path.join(__dirname, 'src/style'),
         '~': path.join(__dirname, 'src')
       }
     }
