@@ -1,5 +1,5 @@
-import {color} from "./colors";
-import {size} from "./variables";
+import { color } from './colors'
+import { Size } from './size'
 
 export const primaryFont = {
   fontFamily: 'Merriweather, Georgia, serif ',
@@ -13,8 +13,8 @@ export const secondaryFont = {
   hover: color.black
 }
 
-export const baseLineHeight = 1
-export const baseFontSize = size(2)
+export const baseLineHeight = 'normal'
+export const baseFontSize = new Size(2)
 
 export const paragraphs = {
   color: secondaryFont.color,

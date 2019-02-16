@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 
-import {Heading} from "~components/Heading";
+import Heading from "~components/Heading";
+import Icon from "~components/Icon";
 
 class FrontMatter extends Component {
   render() {
@@ -8,7 +9,8 @@ class FrontMatter extends Component {
 
     return (
       <React.Fragment>
-        <img alt={post.frontmatter.title} src={post.frontmatter.cover_image}/>
+        <Icon>close</Icon>
+        {/*<img alt={post.frontmatter.title} src={post.frontmatter.cover_image}/>*/}
         <Heading level={1}>{post.frontmatter.title}</Heading>
         <Heading level={2}>{post.frontmatter.description}</Heading>
         {pageContext.tags.map(i => <p>#{i}</p>)}
