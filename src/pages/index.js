@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import {Link, graphql} from "gatsby"
 
 import Template from "../templates/Main"
 
@@ -8,7 +8,7 @@ import SEO from "../components/seo"
 
 class BlogIndex extends React.Component {
   render() {
-    const { data } = this.props
+    const {data} = this.props
     const siteTitle = data.site.siteMetadata.title
     const posts = data.allMarkdownRemark.edges
 
@@ -18,18 +18,18 @@ class BlogIndex extends React.Component {
           title="All posts"
           keywords={[`blog`, `gatsby`, `javascript`, `react`]}
         />
-        <Bio />
-        {posts.map(({ node }) => {
+        <Bio/>
+        {posts.map(({node}) => {
           const title = node.frontmatter.title || node.fields.slug
           return (
             <div key={node.fields.slug}>
               <h3>
-                <Link style={{ boxShadow: `none` }} to={node.fields.slug}>
+                <Link style={{boxShadow: `none`}} to={node.fields.slug}>
                   {title}
                 </Link>
               </h3>
               <small>{node.frontmatter.date}</small>
-              <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+              <p dangerouslySetInnerHTML={{__html: node.excerpt}}/>
             </div>
           )
         })}

@@ -1,16 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import { baseLineHeight, baseFontSize, primaryFont, secondaryFont } from '~style/typography'
-
-const H1 = styled.h1(() => {
-  const fontSize = baseFontSize.multiply(1.5)
+const H1 = styled.h1(({ theme }) => {
+  const fontSize = theme.typography.baseFontSize.multiply(1.5)
   const letterSpacing = 0
   const fontWeight = 900
-  const lineHeight = baseLineHeight
+  const lineHeight = theme.typography.baseLineHeight
 
   return {
-    fontFamily: primaryFont.fontFamily,
+    fontFamily: theme.typography.primaryFont.fontFamily,
     fontSize,
     lineHeight,
     fontWeight,
@@ -18,14 +16,14 @@ const H1 = styled.h1(() => {
   }
 })
 
-const H2 = styled.h2(() => {
-  const fontSize = baseFontSize
-  const letterSpacing = baseFontSize.multiply(0.01)
+const H2 = styled.h2(({ theme }) => {
+  const fontSize = theme.typography.baseFontSize
+  const letterSpacing = theme.typography.baseFontSize.multiply(0.01)
   const fontWeight = 400
-  const lineHeight = baseLineHeight
+  const lineHeight = theme.typography.baseLineHeight
 
   return {
-    fontFamily: secondaryFont.fontFamily,
+    fontFamily: theme.typography.secondaryFont.fontFamily,
     fontSize,
     lineHeight,
     fontWeight,

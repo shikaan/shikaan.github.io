@@ -1,5 +1,5 @@
 import { color } from './colors'
-import { Size } from './size'
+import Size from './size'
 
 export const primaryFont = {
   fontFamily: 'Merriweather, Georgia, serif ',

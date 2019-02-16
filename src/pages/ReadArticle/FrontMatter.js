@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 
 import Heading from "~components/Heading";
 import Icon from "~components/Icon";
@@ -8,16 +8,15 @@ class FrontMatter extends Component {
     const {post, pageContext} = this.props
 
     return (
-      <React.Fragment>
-        <Icon>close</Icon>
-        {/*<img alt={post.frontmatter.title} src={post.frontmatter.cover_image}/>*/}
+      <Fragment>
+        <img alt={post.frontmatter.title} src={post.frontmatter.cover_image}/>
         <Heading level={1}>{post.frontmatter.title}</Heading>
         <Heading level={2}>{post.frontmatter.description}</Heading>
         {pageContext.tags.map(i => <p>#{i}</p>)}
         <p>
           {post.frontmatter.date}
         </p>
-      </React.Fragment>
+      </Fragment>
     )
   }
 }

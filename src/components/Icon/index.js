@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledI = styled.i({
-  fontStyle: "normal"
-});
+const StyledI = styled.i`
+  font-style: normal;
+`
 
 export default class Icon extends React.Component {
   render() {

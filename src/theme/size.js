@@ -1,4 +1,4 @@
-export class Size {
+export default class Size {
   static BASE_SIZE = 8
   static BASE_UNIT = 'px'
 
