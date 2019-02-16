@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react'
 import styled from 'styled-components'
 
-import {size} from "~style/variables";
-import {baseLineHeight, primaryFont, secondaryFont} from "~style/typography";
+import { size } from '~style/variables'
+import { baseLineHeight, primaryFont, secondaryFont } from '~style/typography'
 
 const H1 = styled.h1({
   fontFamily: primaryFont.fontFamily,
@@ -25,6 +25,6 @@ const headingMap = {
   2: H2
 }
 
-export const Heading = ({level = 1, children}) => {
-  return React.createElement(headingMap[level], {children})
+export default ({ level = 1, children }) => {
+  return React.createElement(headingMap[level], { children })
 }
