@@ -1,4 +1,4 @@
-import {primaryFont, baseFontSize, baseLineHeight} from "../typography";
+import { primaryFont, baseFontSize, baseLineHeight } from '../typography'
 
 const baseBoxSizing = 'border-box'
 
