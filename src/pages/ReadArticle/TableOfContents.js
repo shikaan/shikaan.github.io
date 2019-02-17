@@ -7,7 +7,7 @@ const Content = styled.nav`
 `
 
 const ContentHeader = styled.header`
-  ${({theme}) => theme.typography.styles.bodyTwo}
+  ${({theme}) => theme.typography.markdownGeneratedStyles.bodyTwo}
   font-weight: 700;
   padding: ${({theme}) => theme.templateVariables.verticalPadding} 0;
 `
@@ -25,7 +25,7 @@ const ContentSection = styled.section`
     }
     
     a {
-      ${({theme}) => theme.typography.styles.bodyTwo}
+      ${({theme}) => theme.typography.markdownGeneratedStyles.bodyTwo}
       text-decoration: none;
     }
     
