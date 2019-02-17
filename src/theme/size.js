@@ -15,10 +15,6 @@ export default class Size {
   }
 
   multiply(multiplier) {
-    return `${this._rank * Size.BASE_SIZE * multiplier}${Size.BASE_UNIT}`
-  }
-
-  add(addendInPixel) {
-    return `${this._rank * Size.BASE_SIZE + addendInPixel}${Size.BASE_UNIT}`
+    return new Size(this._rank * multiplier)
   }
 }
