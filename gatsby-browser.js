@@ -1,3 +1,3 @@
 // custom typefaces
-import "typeface-merriweather"
-import "typeface-lato"
+import 'typeface-merriweather'
+import 'typeface-lato'
