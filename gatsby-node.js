@@ -1,8 +1,8 @@
 const path = require(`path`)
-const {createFilePath} = require(`gatsby-source-filesystem`)
+const { createFilePath } = require(`gatsby-source-filesystem`)
 
-exports.createPages = ({graphql, actions}) => {
-  const {createPage} = actions
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions
 
   const readArticle = path.resolve(`./src/pages/ReadArticle/index.js`)
   return graphql(
@@ -16,6 +16,9 @@ exports.createPages = ({graphql, actions}) => {
             node {
               fields {
                 slug
+                readingTime {
+                  minutes
+                }
               }
               frontmatter {
                 title,
@@ -39,29 +42,30 @@ exports.createPages = ({graphql, actions}) => {
     const posts = result.data.allMarkdownRemark.edges
 
     posts.forEach((post, index) => {
-      if(post.node.frontmatter.published) {
+      if (post.node.frontmatter.published) {
         createPage({
           path: post.node.fields.slug,
           component: readArticle,
           context: {
             slug: post.node.fields.slug,
-            tags: post.node.frontmatter.tags
-          },
+            tags: post.node.frontmatter.tags,
+            readingTime: post.node.fields.readingTime
+          }
         })
       }
     })
   })
 }
 
-exports.onCreateNode = ({node, actions, getNode}) => {
-  const {createNodeField} = actions
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  const { createNodeField } = actions
 
   if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({node, getNode})
+    const value = createFilePath({ node, getNode })
     createNodeField({
       name: `slug`,
       node,
-      value,
+      value
     })
   }
 }
