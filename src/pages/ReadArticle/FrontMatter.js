@@ -1,21 +1,50 @@
 import React, {Component, Fragment} from "react";
+import styled from "styled-components";
 
 import Heading from "~components/Heading";
-import Icon from "~components/Icon";
+import Image from "~components/Image";
+import Overline from "~components/Overline";
+import Tag from "~components/Tag";
+
+import {Size} from "~theme";
+
+const horizontalPadding = new Size(3)
+const verticalPadding = new Size(2)
+
+const Header = styled.header`
+  padding: ${verticalPadding} ${horizontalPadding};
+`
+
+const FrontMatterImage = styled(Image)`
+  img {
+    max-height: ${new Size(32)};
+  }
+`
+
+const FrontMatterHeading = styled(Heading)`
+  padding-bottom: ${verticalPadding};
+`
 
 class FrontMatter extends Component {
   render() {
     const {post, pageContext} = this.props
 
+    const readingTime = Math.ceil(post.fields.readingTime.minutes)
+
     return (
       <Fragment>
-        <img alt={post.frontmatter.title} src={post.frontmatter.cover_image}/>
-        <Heading level={1}>{post.frontmatter.title}</Heading>
-        <Heading level={2}>{post.frontmatter.description}</Heading>
-        {pageContext.tags.map(i => <p>#{i}</p>)}
-        <p>
-          {post.frontmatter.date}
-        </p>
+        <FrontMatterImage alt={post.frontmatter.title} src={post.frontmatter.cover_image}/>
+        <Header>
+          <Overline>
+            {post.frontmatter.date} – {readingTime} min read
+          </Overline>
+
+          <FrontMatterHeading level={1}>{post.frontmatter.title}</FrontMatterHeading>
+
+          <FrontMatterHeading level={2}>{post.frontmatter.description}</FrontMatterHeading>
+
+          {pageContext.tags.map(i => <Tag to={`/search?query=${i}`}>{i}</Tag>)}
+        </Header>
       </Fragment>
     )
   }
