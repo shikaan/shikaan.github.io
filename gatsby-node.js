@@ -24,9 +24,23 @@ exports.createPages = ({ graphql, actions }) => {
                 title,
                 description,
                 tags,
-                cover_image,
-                published,
-                date
+                date,
+                cover_image {
+                  childImageSharp {
+                    resolutions {
+                      base64
+                      tracedSVG
+                      aspectRatio
+                      width
+                      height
+                      src
+                      srcSet
+                      srcWebp
+                      srcSetWebp
+                      originalName
+                    }
+                  }
+                }
               }
             }
           }
@@ -42,17 +56,15 @@ exports.createPages = ({ graphql, actions }) => {
     const posts = result.data.allMarkdownRemark.edges
 
     posts.forEach((post, index) => {
-      if (post.node.frontmatter.published) {
-        createPage({
-          path: post.node.fields.slug,
-          component: readArticle,
-          context: {
-            slug: post.node.fields.slug,
-            tags: post.node.frontmatter.tags,
-            readingTime: post.node.fields.readingTime
-          }
-        })
-      }
+      createPage({
+        path: post.node.fields.slug,
+        component: readArticle,
+        context: {
+          slug: post.node.fields.slug,
+          tags: post.node.frontmatter.tags,
+          readingTime: post.node.fields.readingTime
+        }
+      })
     })
   })
 }

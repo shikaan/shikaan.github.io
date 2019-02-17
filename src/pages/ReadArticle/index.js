@@ -58,10 +58,25 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
-        tags
-        cover_image
-        published
         comment_link
+        cover_image {
+          childImageSharp {
+            fluid {
+              base64
+              tracedSVG
+              aspectRatio
+              src
+              srcSet
+              srcWebp
+              srcSetWebp
+              sizes
+              originalImg
+              originalName
+              presentationWidth
+              presentationHeight
+            }
+          }
+        }
       }
     }
   }

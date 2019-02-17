@@ -15,12 +15,6 @@ const Header = styled.header`
   padding: ${verticalPadding} ${horizontalPadding};
 `
 
-const FrontMatterImage = styled(Image)`
-  img {
-    max-height: ${new Size(32)};
-  }
-`
-
 const FrontMatterHeading = styled(Heading)`
   padding-bottom: ${verticalPadding};
 `
@@ -33,7 +27,7 @@ class FrontMatter extends Component {
 
     return (
       <Fragment>
-        <FrontMatterImage alt={post.frontmatter.title} src={post.frontmatter.cover_image}/>
+        <Image fluid={post.frontmatter.cover_image.childImageSharp.fluid} alt={post.frontmatter.title}/>
         <Header>
           <Overline>
             {post.frontmatter.date} – {readingTime} min read
