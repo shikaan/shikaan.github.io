@@ -36,6 +36,8 @@ const headingMap = {
   2: H2
 }
 
-export default ({ level = 1, children }) => {
-  return React.createElement(headingMap[level], { children })
+export default (props) => {
+  const level = props.level || 1
+
+  return React.createElement(headingMap[level], props)
 }
