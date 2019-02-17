@@ -1,5 +1,5 @@
-import { primaryFont, baseFontSize, baseLineHeight } from '../typography'
-import {color} from "../colors";
+import { baseFontSize, baseLineHeight, secondaryFont } from '../typography'
+import { color } from '../colors'
 
 const baseBoxSizing = 'border-box'
 
@@ -21,7 +21,7 @@ export const document = `
     font-variant-ligatures: none;
     text-rendering: optimizeLegibility;
     font-feature-settings: "liga";
-    font-family: ${primaryFont.fontFamily};
+    font-family: ${secondaryFont.fontFamily};
     font-size: ${baseFontSize};
     line-height: ${baseLineHeight};
     -webkit-overflow-scrolling: auto;
