@@ -3,6 +3,7 @@ import {graphql} from "gatsby"
 
 import Template from "~templates/Main"
 
+import Divider from "~components/Divider"
 import Bio from "~components/Bio"
 import SEO from "~components/seo"
 
@@ -21,13 +22,13 @@ class BlogPostTemplate extends React.Component {
         <SEO title={post.frontmatter.title} description={post.frontmatter.description}/>
 
         <FrontMatter post={post} pageContext={this.props.pageContext}/>
-
+        <Divider/>
         <TableOfContents post={post}/>
-
+        <Divider/>
         <Article post={post}/>
-
+        <Divider/>
         <CallToActions post={post}/>
-
+        <Divider/>
         <hr/>
         <Bio/>
       </Template>
