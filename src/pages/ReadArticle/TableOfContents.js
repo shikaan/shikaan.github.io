@@ -1,13 +1,19 @@
 import React, {Component} from 'react';
 import styled from "styled-components";
 
+const bodyTwoStyle = (theme) => ({
+  fontFamily: theme.typography.secondaryFont.fontFamily,
+  fontWeight: 400,
+  fontSize: theme.typography.baseFontSize
+})
+
 const Content = styled.nav`
   font-family: ${({theme}) => theme.typography.secondaryFont.fontFamily};
   padding: 0 ${({theme}) => theme.templateVariables.horizontalPadding};
 `
 
 const ContentHeader = styled.header`
-  ${({theme}) => theme.typography.markdownGeneratedStyles.bodyTwo}
+  ${({theme}) => bodyTwoStyle(theme)}
   font-weight: 700;
   padding: ${({theme}) => theme.templateVariables.verticalPadding} 0;
 `
@@ -25,7 +31,7 @@ const ContentSection = styled.section`
     }
     
     a {
-      ${({theme}) => theme.typography.markdownGeneratedStyles.bodyTwo}
+      ${({theme}) => bodyTwoStyle(theme)}
       text-decoration: none;
     }
     
