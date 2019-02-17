@@ -4,5 +4,5 @@ import { Size } from '~theme'
 export default styled.hr`
   color: ${({ theme }) => theme.color.lightGrey};
   height: 1px;
-  margin: ${new Size(2)}
+  margin: 0 ${new Size(2)}
 `
