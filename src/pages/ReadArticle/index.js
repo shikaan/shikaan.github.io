@@ -50,6 +50,9 @@ export const pageQuery = graphql`
       tableOfContents
       fields {
         slug
+        readingTime {
+          minutes
+        }
       }
       frontmatter {
         title
