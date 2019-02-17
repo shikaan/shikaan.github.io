@@ -11,6 +11,7 @@ export default styled(Link)`
   text-transform: capitalize;
   white-space: nowrap;
   display: inline-block;
+  color: ${({ theme }) => theme.color.black};
 
   &:before {
     content: '#'

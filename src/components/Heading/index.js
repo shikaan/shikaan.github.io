@@ -6,13 +6,15 @@ const H1 = styled.h1(({ theme }) => {
   const letterSpacing = 0
   const fontWeight = 900
   const lineHeight = theme.typography.baseLineHeight
+  const color = theme.color.black
 
   return {
     fontFamily: theme.typography.primaryFont.fontFamily,
     fontSize,
     lineHeight,
     fontWeight,
-    letterSpacing
+    letterSpacing,
+    color
   }
 })
 
@@ -21,13 +23,15 @@ const H2 = styled.h2(({ theme }) => {
   const letterSpacing = theme.typography.baseFontSize.multiply(0.01)
   const fontWeight = 400
   const lineHeight = theme.typography.baseLineHeight
+  const color = theme.color.black
 
   return {
     fontFamily: theme.typography.secondaryFont.fontFamily,
     fontSize,
     lineHeight,
     fontWeight,
-    letterSpacing
+    letterSpacing,
+    color
   }
 })
 
