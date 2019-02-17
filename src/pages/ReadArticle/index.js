@@ -58,8 +58,8 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
-        comment_link
-        cover_image {
+        commentLink
+        coverImage {
           childImageSharp {
             fluid {
               base64

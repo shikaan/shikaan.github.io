@@ -21,26 +21,7 @@ exports.createPages = ({ graphql, actions }) => {
                 }
               }
               frontmatter {
-                title,
-                description,
-                tags,
-                date,
-                cover_image {
-                  childImageSharp {
-                    resolutions {
-                      base64
-                      tracedSVG
-                      aspectRatio
-                      width
-                      height
-                      src
-                      srcSet
-                      srcWebp
-                      srcSetWebp
-                      originalName
-                    }
-                  }
-                }
+                tags
               }
             }
           }

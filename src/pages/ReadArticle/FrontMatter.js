@@ -27,7 +27,7 @@ class FrontMatter extends Component {
 
     return (
       <Fragment>
-        <Image fluid={post.frontmatter.cover_image.childImageSharp.fluid} alt={post.frontmatter.title}/>
+        <Image fluid={post.frontmatter.coverImage.childImageSharp.fluid} alt={post.frontmatter.title}/>
         <Header>
           <Overline>
             {post.frontmatter.date} – {readingTime} min read

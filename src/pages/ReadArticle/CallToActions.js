@@ -26,7 +26,7 @@ class CallToActions extends Component {
 
     return (
       <div>
-        <a href={post.frontmatter.comment_link}>Comment on Twitter</a>
+        <a href={post.frontmatter.commentLink}>Comment on Twitter</a>
         &nbsp;
         <a href={this.buildEditUrl(post.fields.slug)}>Edit</a>
         &nbsp;

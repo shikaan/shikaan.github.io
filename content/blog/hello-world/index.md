@@ -2,9 +2,9 @@
 title: Design Patterns in Web Development
 description: Pilot episode of a series about design patterns and how to use them
 tags: ["javascript", "python", "architecture", "design-patterns"]
-cover_image: "big-image.jpeg"
+coverImage: "big-image.jpeg"
 date: "2019-02-03T18:08:04.207Z"
-comment_link: https://www.google.com
+commentLink: https://www.google.com
 ---
 
 
