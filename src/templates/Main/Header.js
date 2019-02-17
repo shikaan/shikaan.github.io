@@ -13,6 +13,7 @@ export const Header = styled.header`
   background: ${({ theme }) => theme.color.lightCoffee};
   position: fixed;
   box-shadow: 0 ${new Size(0.5)} ${new Size(0.5)} rgba(0, 0, 0, 0.24);
+  z-index: ${({ theme }) => theme.zIndexRank.top};
 `
 
 export const Row = styled.div`

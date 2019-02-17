@@ -1,9 +1,12 @@
 import { color } from './colors'
 import * as typography from './typography'
+import { breakpoint, zIndexRank } from './variables'
 
 export default {
   color,
-  typography
+  typography,
+  breakpoint,
+  zIndexRank
 }
 
 export { default as Size } from './size'
