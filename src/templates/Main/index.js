@@ -6,7 +6,7 @@ import theme, {GlobalStyle, Size} from "~theme";
 import Icon from "~components/Icon";
 import Link from "~components/Link";
 
-import {Column, Header, MiddleColumn, Row, TitleChunk} from "./Header";
+import {IconColumn, Header, TitleColumn, Row, TitleChunk} from "./Header";
 import {Main as MainSection} from './Main'
 
 class Main extends React.Component {
@@ -20,21 +20,18 @@ class Main extends React.Component {
           <GlobalStyle/>
           <Header>
             <Row>
-              <Column>
-                <Icon>search</Icon>
-              </Column>
-              <MiddleColumn>
+              <TitleColumn>
                 <Link to={`/`}>
                   <TitleChunk>coffee</TitleChunk>
                   <TitleChunk>driven</TitleChunk>
                   <TitleChunk>development</TitleChunk>
                 </Link>
-              </MiddleColumn>
-              <Column>
+              </TitleColumn>
+              <IconColumn>
                 <Link to={`/search`}>
                   <Icon>search</Icon>
                 </Link>
-              </Column>
+              </IconColumn>
             </Row>
           </Header>
           <MainSection>
