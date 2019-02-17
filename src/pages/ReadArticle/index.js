@@ -48,7 +48,9 @@ export const pageQuery = graphql`
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
-      tableOfContents
+      tableOfContents(
+        maxDepth: 2
+      )
       fields {
         slug
         readingTime {

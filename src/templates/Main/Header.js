@@ -34,6 +34,7 @@ export const TitleColumn = styled(Column)`
   
   ${Link} {
     font-size: ${new Size(2.5)}
+    font-family: ${({ theme }) => theme.typography.primaryFont.fontFamily};
     font-weight: 900;
     color: ${({ theme }) => theme.color.darkGrey};
   }

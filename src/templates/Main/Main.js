@@ -7,7 +7,7 @@ export const Main = styled.main`
   padding-top: ${headerHeight};
   background-image: url(${stain});
   background-repeat: no-repeat;
-  background-position: 5% 66%;
+  background-position: 0 52vh;
   
   max-width: ${({ theme }) => theme.breakpoint.sm};
   margin: auto;

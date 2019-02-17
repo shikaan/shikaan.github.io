@@ -8,15 +8,16 @@ import Tag from "~components/Tag";
 
 import {Size} from "~theme";
 
-const horizontalPadding = new Size(3)
-const verticalPadding = new Size(2)
+const Header = styled.header(({theme}) => {
+  const {verticalPadding, horizontalPadding} = theme.templateVariables
 
-const Header = styled.header`
-  padding: ${verticalPadding} ${horizontalPadding};
-`
+  return {
+    padding: `${verticalPadding} ${horizontalPadding}`
+  }
+})
 
 const FrontMatterHeading = styled(Heading)`
-  padding-bottom: ${verticalPadding};
+  padding-bottom: ${({theme}) => theme.templateVariables.verticalPadding};
 `
 
 class FrontMatter extends Component {

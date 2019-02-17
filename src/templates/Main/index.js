@@ -9,13 +9,18 @@ import Link from "~components/Link";
 import {IconColumn, Header, TitleColumn, Row, TitleChunk} from "./Header";
 import {Main as MainSection} from './Main'
 
+const templateVariables = {
+  horizontalPadding: new Size(3),
+  verticalPadding: new Size(2)
+}
+
 class Main extends React.Component {
   render() {
     const {location, title, children} = this.props;
     const rootPath = `${__PATH_PREFIX__}/`;
 
     return (
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={{...theme, templateVariables}}>
         <Fragment>
           <GlobalStyle/>
           <Header>
