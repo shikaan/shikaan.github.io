@@ -1,4 +1,5 @@
 import { primaryFont, baseFontSize, baseLineHeight } from '../typography'
+import {color} from "../colors";
 
 const baseBoxSizing = 'border-box'
 
@@ -28,6 +29,7 @@ export const document = `
 
   body {
     overflow-x: hidden;
+    background-color: ${color.lightCoffee};
   }
   
   img {

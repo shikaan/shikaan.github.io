@@ -5,8 +5,10 @@ import stain from '../../../static/stain.svg'
 
 export const Main = styled.main`
   padding-top: ${headerHeight};
-  background-color: ${({ theme }) => theme.color.lightCoffee};
   background-image: url(${stain});
   background-repeat: no-repeat;
   background-position: 5% 66%;
+  
+  max-width: ${({ theme }) => theme.breakpoint.sm};
+  margin: auto;
 `
