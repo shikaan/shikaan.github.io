@@ -16,20 +16,10 @@ export const secondaryFont = {
 export const baseLineHeight = 'normal'
 export const baseFontSize = new Size(2)
 
-export const paragraphs = {
-  color: secondaryFont.color,
-  fontFamily: secondaryFont.fontFamily,
-  lineHeight: baseLineHeight,
-  fontWeight: 400,
-  letterSpacing: 0,
-  fontSize: baseFontSize
-}
-
-export const links = {
-  fontFamily: primaryFont.fontFamily,
-  color: primaryFont.color,
-  decoration: 'none',
-  fontWeight: 600,
-  letterSpacing: 0,
-  textTransform: 'none'
+export const styles = {
+  bodyTwo: {
+    fontFamily: secondaryFont.fontFamily,
+    fontWeight: 400,
+    fontSize: baseFontSize.multiply(0.875)
+  }
 }
