@@ -1,39 +1,23 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const H1 = styled.h1(({ theme }) => {
-  const fontSize = theme.typography.baseFontSize.multiply(1.5)
-  const letterSpacing = 0
-  const fontWeight = 900
-  const lineHeight = theme.typography.baseLineHeight
-  const color = theme.color.black
+const H1 = styled.h1(({ theme }) => `
+  font-family: ${theme.typography.primaryFont.fontFamily};
+  font-size: ${theme.typography.baseFontSize.multiply(1.5)};
+  letter-spacing: 0;
+  font-weight: 900;
+  line-height: ${theme.typography.baseLineHeight};
+  color: ${theme.color.black}
+`)
 
-  return {
-    fontFamily: theme.typography.primaryFont.fontFamily,
-    fontSize,
-    lineHeight,
-    fontWeight,
-    letterSpacing,
-    color
-  }
-})
-
-const H2 = styled.h2(({ theme }) => {
-  const fontSize = theme.typography.baseFontSize
-  const letterSpacing = theme.typography.baseFontSize.multiply(0.01)
-  const fontWeight = 400
-  const lineHeight = theme.typography.baseLineHeight
-  const color = theme.color.black
-
-  return {
-    fontFamily: theme.typography.secondaryFont.fontFamily,
-    fontSize,
-    lineHeight,
-    fontWeight,
-    letterSpacing,
-    color
-  }
-})
+const H2 = styled.h2(({ theme }) => `
+  font-family: ${theme.typography.secondaryFont.fontFamily};
+  font-size: ${theme.typography.baseFontSize}
+  letter-spacing: ${theme.typography.baseFontSize.multiply(0.01)};
+  font-weight: 400;
+  line-height: ${theme.typography.baseLineHeight};
+  color: ${theme.color.black}
+`)
 
 const headingMap = {
   1: H1,

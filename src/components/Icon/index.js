@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledI = styled.i`
+const IconWrapper = styled.i`
   font-style: normal;
 `
 
@@ -14,6 +14,6 @@ export default class Icon extends React.Component {
       ? `${className} ${iconClassName}`
       : iconClassName
 
-    return <StyledI className={classes}/>;
+    return <IconWrapper className={classes}/>;
   }
 }

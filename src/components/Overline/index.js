@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-export default styled.span`
-  font-family: ${({ theme }) => theme.typography.secondaryFont.fontFamily};
-  font-size: ${({ theme }) => theme.typography.baseFontSize.multiply(0.75)}
-  font-weight: 500;
-  padding-bottom: ${({ theme }) => theme.typography.baseFontSize.multiply(0.5)};
+export default styled.span(({ theme }) => `
   display: block;
-  color: ${({ theme }) => theme.color.black};
-`
+  font-weight: 500;
+  font-family: ${theme.typography.secondaryFont.fontFamily};
+  font-size: ${theme.typography.baseFontSize.multiply(0.75)}
+  padding-bottom: ${theme.typography.baseFontSize.multiply(0.5)};
+  color: ${theme.color.black};
+`)
