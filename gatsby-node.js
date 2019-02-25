@@ -42,6 +42,7 @@ exports.createPages = ({ graphql, actions }) => {
         component: readArticle,
         context: {
           slug: post.node.fields.slug,
+          relativePath: post.node.fields.relativePath,
           tags: post.node.frontmatter.tags,
           readingTime: post.node.fields.readingTime
         }
@@ -54,11 +55,19 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
+    const slug = createFilePath({ node, getNode })
+    const relativeFilePath = path.relative(__dirname, node.fileAbsolutePath)
+
     createNodeField({
       name: `slug`,
       node,
-      value
+      value: slug
+    })
+
+    createNodeField({
+      name: `relativeFilePath`,
+      node,
+      value: relativeFilePath
     })
   }
 }
