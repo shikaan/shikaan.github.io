@@ -38,7 +38,7 @@ class FrontMatter extends Component {
 
           <FrontMatterHeading level={2}>{post.frontmatter.description}</FrontMatterHeading>
 
-          {pageContext.tags.map(i => <Tag to={`/search?query=${i}`}>{i}</Tag>)}
+          {pageContext.tags.map(i => <Tag key={i} to={`/search?query=${i}`}>{i}</Tag>)}
         </Header>
       </Fragment>
     )
