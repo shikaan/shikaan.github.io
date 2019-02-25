@@ -1,17 +1,43 @@
 import React, {Component} from "react";
-
-import {FacebookShareButton, TwitterShareButton} from "react-share";
+import styled from "styled-components";
 
 import {REPO_BASE_URL} from "~/constants";
 
+import Icon from "~components/Icon"
+import Link from "~components/Link"
+
+import FallbackShare from "./FallbackShare"
+
+const Section = styled.section(({theme}) => `
+  padding: ${theme.templateVariables.verticalPadding} ${theme.templateVariables.horizontalPadding};
+  display: flex;
+  justify-content: space-around;
+`)
+
+const CTALink = styled(Link)(({theme}) => `
+  color: ${theme.color.coffee};
+  font-size: ${theme.typography.baseFontSize.multiply(2)}
+`)
+
 class CallToActions extends Component {
-  buildEditUrl(slug) {
-    //FIXME: make me read the source folder of the article rather than semi-hardcode it
-    return `${REPO_BASE_URL}/edit/master/content/blog${slug}index.md`
+  state = {
+    isFallbackShareVisible: false
   }
 
-  share(post) {
-    if (navigator.share) {
+  static buildEditUrl(relativeFilePath) {
+    return `${REPO_BASE_URL}/edit/master/${relativeFilePath}`
+  }
+
+  static useFallbackShare() {
+    return !navigator.share
+  }
+
+  share() {
+    const {post} = this.props
+
+    if (CallToActions.useFallbackShare()) {
+      this.openFallbackShare()
+    } else {
       navigator.share({
         url: window.location.href,
         title: document.title,
@@ -20,19 +46,39 @@ class CallToActions extends Component {
     }
   }
 
+  openFallbackShare() {
+    this.setState({isFallbackShareVisible: true})
+  }
+
+  closeFallbackShare() {
+    this.setState({isFallbackShareVisible: false})
+  }
+
+  renderFallbackShare(shareVisible) {
+    return CallToActions.useFallbackShare()
+      ? <FallbackShare onClose={() => this.closeFallbackShare()} visible={shareVisible}/>
+      : null
+  }
 
   render() {
     const {post} = this.props
 
     return (
-      <div>
-        <a href={post.frontmatter.commentLink}>Comment on Twitter</a>
-        &nbsp;
-        <a href={this.buildEditUrl(post.fields.slug)}>Edit</a>
-        &nbsp;
-        <FacebookShareButton url={window.location.href}>Facebook</FacebookShareButton>
-        <TwitterShareButton url={window.location.href}>Twitter</TwitterShareButton>
-      </div>
+      <Section>
+        <CTALink href={post.frontmatter.commentLink}>
+          <Icon>comment</Icon>
+        </CTALink>
+
+        <CTALink href={CallToActions.buildEditUrl(post.fields.relativeFilePath)}>
+          <Icon>edit</Icon>
+        </CTALink>
+
+        <CTALink onClick={() => this.share()}>
+          <Icon>share</Icon>
+        </CTALink>
+
+        {this.renderFallbackShare(this.state.isFallbackShareVisible)}
+      </Section>
     )
   }
 }
