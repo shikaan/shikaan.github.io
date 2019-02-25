@@ -26,7 +26,6 @@ class BlogPostTemplate extends React.Component {
         <TableOfContents post={post}/>
         <Divider/>
         <Article post={post}/>
-        <Divider/>
         <CallToActions post={post}/>
         <Divider/>
         <hr/>
@@ -39,20 +38,21 @@ class BlogPostTemplate extends React.Component {
 export default BlogPostTemplate
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
+  query BlogPostBySlug($path: String!) {
     site {
       siteMetadata {
         title
         author
       }
     }
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    markdownRemark(fields: { slug: { eq: $path } }) {
       html
       tableOfContents(
         maxDepth: 2
       )
       fields {
         slug
+        relativeFilePath
         readingTime {
           minutes
         }
