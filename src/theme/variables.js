@@ -18,5 +18,5 @@ export const zIndexRank = {
   7: 700,
   8: 800,
   9: 900,
-  top: 100
+  top: 1000
 }
