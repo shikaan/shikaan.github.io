@@ -1,0 +1,46 @@
+{
+  "en": {
+    "frontMatter": {
+      "readingTime": "min read"
+    },
+    "tableOfContents": {
+      "title": "Content"
+    },
+    "callToActions": {
+      "comment": "Comment on Twitter",
+      "edit": "Edit on Github",
+      "share": "Share"
+    },
+    "newsLetter": {
+      "title": "Enjoying?",
+      "subTitle": "Get notified about new articles!",
+      "inputPlaceholder": "Your email here",
+      "ctaLabel": "Subscribe"
+    },
+    "relatedArticles": {
+      "title": "Related Articles"
+    }
+  },
+  "it": {
+    "frontMatter": {
+      "readingTime": "minuti"
+    },
+    "tableOfContents": {
+      "title": "Indice"
+    },
+    "callToActions": {
+      "comment": "Commenta su Twitter",
+      "edit": "Modifica su Github",
+      "share": "Condividi"
+    },
+    "newsLetter": {
+      "title": "Enjoying? (it)",
+      "subTitle": "Ricevi aggiornamenti sui prossimi articoli!",
+      "inputPlaceholder": "Inserisci email",
+      "ctaLabel": "Iscriviti"
+    },
+    "relatedArticles": {
+      "title": "Articoli Correlati"
+    }
+  }
+}

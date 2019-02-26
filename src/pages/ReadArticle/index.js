@@ -1,10 +1,11 @@
 import React from "react"
 import {graphql} from "gatsby"
 
+import {en as content} from '/static/content/ReadArticle'
+
 import Template from "~templates/Main"
 
 import Divider from "~components/Divider"
-import Bio from "~components/Bio"
 import SEO from "~components/seo"
 
 import CallToActions from "./CallToActions";
@@ -21,15 +22,13 @@ class BlogPostTemplate extends React.Component {
       <Template location={this.props.location} title={siteTitle}>
         <SEO title={post.frontmatter.title} description={post.frontmatter.description}/>
 
-        <FrontMatter post={post} pageContext={this.props.pageContext}/>
+        <FrontMatter post={post} pageContext={this.props.pageContext} content={content}/>
         <Divider/>
-        <TableOfContents post={post}/>
+        <TableOfContents post={post} content={content}/>
         <Divider/>
         <Article post={post}/>
-        <CallToActions post={post}/>
+        <CallToActions post={post} content={content}/>
         <Divider/>
-        <hr/>
-        <Bio/>
       </Template>
     )
   }

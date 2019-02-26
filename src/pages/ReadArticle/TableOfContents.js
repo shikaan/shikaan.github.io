@@ -51,12 +51,12 @@ const ContentSection = styled.section`
 
 class TableOfContents extends Component {
   render() {
-    const {post} = this.props
+    const {content, post} = this.props
 
     return (
       <Content>
         <ContentHeader>
-          Content
+          {content.tableOfContents.title}
         </ContentHeader>
         <ContentSection dangerouslySetInnerHTML={{__html: post.tableOfContents}}/>
       </Content>

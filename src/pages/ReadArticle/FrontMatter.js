@@ -22,8 +22,9 @@ const FrontMatterHeading = styled(Heading)`
 
 class FrontMatter extends Component {
   render() {
-    const {post, pageContext} = this.props
+    const {content, post, pageContext} = this.props
 
+    // TODO: move me to derived state from props
     const readingTime = Math.ceil(post.fields.readingTime.minutes)
 
     return (
@@ -31,7 +32,7 @@ class FrontMatter extends Component {
         <Image fluid={post.frontmatter.coverImage.childImageSharp.fluid} alt={post.frontmatter.title}/>
         <Header>
           <Overline>
-            {post.frontmatter.date} – {readingTime} min read
+            {post.frontmatter.date} – {readingTime} {content.frontMatter.readingTime}
           </Overline>
 
           <FrontMatterHeading level={1}>{post.frontmatter.title}</FrontMatterHeading>

@@ -61,19 +61,19 @@ class CallToActions extends Component {
   }
 
   render() {
-    const {post} = this.props
+    const {content, post} = this.props
 
     return (
       <Section>
-        <CTALink href={post.frontmatter.commentLink}>
+        <CTALink alt={content.callToActions.comment} href={post.frontmatter.commentLink}>
           <Icon>comment</Icon>
         </CTALink>
 
-        <CTALink href={CallToActions.buildEditUrl(post.fields.relativeFilePath)}>
+        <CTALink alt={content.callToActions.edit} href={CallToActions.buildEditUrl(post.fields.relativeFilePath)}>
           <Icon>edit</Icon>
         </CTALink>
 
-        <CTALink onClick={() => this.share()}>
+        <CTALink alt={content.callToActions.share} onClick={this.share}>
           <Icon>share</Icon>
         </CTALink>
 
