@@ -78,7 +78,8 @@ module.exports = {
         '~templates': path.join(__dirname, 'src/templates'),
         '~components': path.join(__dirname, 'src/components'),
         '~theme': path.join(__dirname, 'src/theme'),
-        '~': path.join(__dirname, 'src')
+        '~': path.join(__dirname, 'src'),
+        '/static': path.join(__dirname, 'static')
       }
     }
   ]
