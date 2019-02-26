@@ -12,6 +12,7 @@ import CallToActions from "./CallToActions";
 import FrontMatter from "./FrontMatter";
 import TableOfContents from "./TableOfContents";
 import Article from "./Article";
+import Newsletter from "./Newsletter";
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -29,6 +30,7 @@ class BlogPostTemplate extends React.Component {
         <Article post={post}/>
         <CallToActions post={post} content={content}/>
         <Divider/>
+        <Newsletter/>
       </Template>
     )
   }
