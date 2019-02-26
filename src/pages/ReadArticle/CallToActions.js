@@ -32,7 +32,7 @@ class CallToActions extends Component {
     return !navigator.share
   }
 
-  share() {
+  share = () => {
     const {post} = this.props
 
     if (CallToActions.useFallbackShare()) {
@@ -46,17 +46,17 @@ class CallToActions extends Component {
     }
   }
 
-  openFallbackShare() {
+  openFallbackShare = () => {
     this.setState({isFallbackShareVisible: true})
   }
 
-  closeFallbackShare() {
+  closeFallbackShare = () => {
     this.setState({isFallbackShareVisible: false})
   }
 
-  renderFallbackShare(shareVisible) {
+  renderFallbackShare = (shareVisible) => {
     return CallToActions.useFallbackShare()
-      ? <FallbackShare onClose={() => this.closeFallbackShare()} visible={shareVisible}/>
+      ? <FallbackShare onClose={this.closeFallbackShare} visible={shareVisible}/>
       : null
   }
 
