@@ -14,7 +14,7 @@ const H1 = styled.h1(({theme}) => `
   line-height: ${theme.typography.baseLineHeight};
   color: ${theme.color.black};
   
-  & > small {
+  & + small {
     font-family: ${theme.typography.secondaryFont.fontFamily};
     font-size: ${theme.typography.baseFontSize}
     letter-spacing: ${theme.typography.baseFontSize.multiply(0.01)};
@@ -32,7 +32,7 @@ const H2 = styled.h2(({theme}) => `
   line-height: ${theme.typography.baseLineHeight};
   color: ${theme.color.black};
   
-  & > small {
+  & + small {
     font-family: ${theme.typography.secondaryFont.fontFamily};
     font-size: ${theme.typography.baseFontSize.multiply(0.875)}
     letter-spacing: ${theme.typography.baseFontSize.multiply(0.00625)};
