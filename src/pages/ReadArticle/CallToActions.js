@@ -9,14 +9,15 @@ import Link from "~components/Link"
 import FallbackShare from "./FallbackShare"
 
 const Section = styled.section(({theme}) => `
-  padding: ${theme.templateVariables.verticalPadding} ${theme.templateVariables.horizontalPadding};
+  padding: 0 ${theme.templateVariables.horizontalPadding.multiply(2)};
+  padding-bottom: ${theme.templateVariables.verticalPadding.multiply(2)};
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 `)
 
 const CTALink = styled(Link)(({theme}) => `
   color: ${theme.color.coffee};
-  font-size: ${theme.typography.baseFontSize.multiply(2)}
+  font-size: ${theme.typography.baseFontSize.multiply(1.75)}
 `)
 
 class CallToActions extends Component {
