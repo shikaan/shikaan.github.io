@@ -26,9 +26,10 @@ const Wrapper = styled.div`
 
 class Input extends Component {
   render() {
+    const {inputRef: ref, ...rest} = this.props
     return (
       <Wrapper>
-        <StyledInput {...this.props} />
+        <StyledInput ref={ref} {...rest} />
       </Wrapper>
     )
   }
