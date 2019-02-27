@@ -50,7 +50,7 @@ class Newsletter extends Component {
         <NewsletterHeading level={2} sub={content.newsletter.subTitle}>
           {content.newsletter.title}
         </NewsletterHeading>
-        <form onSubmit={this.handleSubscribe}>
+        <Form onSubmit={this.handleSubscribe}>
           <Input
             inputRef={this.inputRef}
             type="email"
@@ -61,7 +61,7 @@ class Newsletter extends Component {
           <Button context="coffee" type="submit">
             {content.newsletter.ctaLabel}
           </Button>
-        </form>
+        </Form>
       </Section>
     );
   }
