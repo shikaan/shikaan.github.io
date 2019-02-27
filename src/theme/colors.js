@@ -6,5 +6,6 @@ export const color = {
   darkGrey: 'rgba(79, 79, 79, 1)',
   black: 'rgba(0, 0, 0, .82)',
   coffee: 'rgba(145, 107, 85, 1)',
-  lightCoffee: 'rgba(249, 245, 242, 1)'
+  lightCoffee: 'rgba(249, 245, 242, 1)',
+  white: 'rgba(255, 255, 255, 1)'
 }
