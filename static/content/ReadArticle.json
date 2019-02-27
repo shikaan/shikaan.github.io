@@ -1,6 +1,6 @@
 {
   "en": {
-    "frontMatter": {
+    "frontmatter": {
       "readingTime": "min read"
     },
     "tableOfContents": {
@@ -11,7 +11,7 @@
       "edit": "Edit on Github",
       "share": "Share"
     },
-    "newsLetter": {
+    "newsletter": {
       "title": "Enjoying?",
       "subTitle": "Get notified about new articles!",
       "inputPlaceholder": "Your email here",
@@ -22,7 +22,7 @@
     }
   },
   "it": {
-    "frontMatter": {
+    "frontmatter": {
       "readingTime": "minuti"
     },
     "tableOfContents": {
