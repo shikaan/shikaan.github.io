@@ -1,31 +1,64 @@
-import React from 'react'
+import React, {Component, Fragment} from 'react'
+import PropTypes from 'prop-types';
 import styled from 'styled-components'
 
-const H1 = styled.h1(({ theme }) => `
+const SubHeading = styled.small`
+  display: block;
+`
+
+const H1 = styled.h1(({theme}) => `
   font-family: ${theme.typography.primaryFont.fontFamily};
   font-size: ${theme.typography.baseFontSize.multiply(1.5)};
   letter-spacing: 0;
   font-weight: 900;
   line-height: ${theme.typography.baseLineHeight};
-  color: ${theme.color.black}
+  color: ${theme.color.black};
+  
+  & > small {
+    font-family: ${theme.typography.secondaryFont.fontFamily};
+    font-size: ${theme.typography.baseFontSize}
+    letter-spacing: ${theme.typography.baseFontSize.multiply(0.01)};
+    font-weight: 400;
+    line-height: ${theme.typography.baseLineHeight};
+    color: ${theme.color.black}  
+  }
 `)
 
-const H2 = styled.h2(({ theme }) => `
-  font-family: ${theme.typography.secondaryFont.fontFamily};
-  font-size: ${theme.typography.baseFontSize}
-  letter-spacing: ${theme.typography.baseFontSize.multiply(0.01)};
-  font-weight: 400;
-  line-height: ${theme.typography.baseLineHeight};
-  color: ${theme.color.black}
+const H2 = styled.h2(({theme}) => `
+
 `)
 
 const headingMap = {
   1: H1,
-  2: H2
+  2: H1,
 }
 
-export default (props) => {
-  const level = props.level || 1
 
-  return React.createElement(headingMap[level], props)
+class Heading extends Component {
+  render() {
+    const {
+      children,
+      className,
+      level = 1,
+      sub
+    } = this.props
+
+    const Heading = headingMap[level]
+
+    return (
+      <Fragment>
+        <Heading className={className}>
+          {children}
+        </Heading>
+        {sub && <SubHeading className={className}>{sub}</SubHeading>}
+      </Fragment>
+    )
+  }
 }
+
+Heading.propTypes = {
+  level: PropTypes.oneOf([1, 2]),
+  sub: PropTypes.string
+};
+
+export default Heading;

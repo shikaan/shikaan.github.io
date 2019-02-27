@@ -6,19 +6,15 @@ import Image from "~components/Image";
 import Overline from "~components/Overline";
 import Tag from "~components/Tag";
 
-import {Size} from "~theme";
+import {Size} from "~theme"
 
-const Header = styled.header(({theme}) => {
-  const {verticalPadding, horizontalPadding} = theme.templateVariables
+const Header = styled.header(({theme}) => `
+  padding: ${theme.templateVariables.verticalPadding} ${theme.templateVariables.horizontalPadding}
+`)
 
-  return {
-    padding: `${verticalPadding} ${horizontalPadding}`
-  }
-})
-
-const FrontMatterHeading = styled(Heading)`
-  padding-bottom: ${({theme}) => theme.templateVariables.verticalPadding};
-`
+const FrontMatterHeading = styled(Heading)(({theme}) => `
+  padding-bottom: ${theme.templateVariables.verticalPadding};
+`)
 
 class FrontMatter extends Component {
   render() {
@@ -32,12 +28,12 @@ class FrontMatter extends Component {
         <Image fluid={post.frontmatter.coverImage.childImageSharp.fluid} alt={post.frontmatter.title}/>
         <Header>
           <Overline>
-            {post.frontmatter.date} – {readingTime} {content.frontMatter.readingTime}
+            {post.frontmatter.date} – {readingTime} {content.frontmatter.readingTime}
           </Overline>
 
-          <FrontMatterHeading level={1}>{post.frontmatter.title}</FrontMatterHeading>
-
-          <FrontMatterHeading level={2}>{post.frontmatter.description}</FrontMatterHeading>
+          <FrontMatterHeading level={1} sub={post.frontmatter.description}>
+            {post.frontmatter.title}
+          </FrontMatterHeading>
 
           {pageContext.tags.map(i => <Tag key={i} to={`/search?query=${i}`}>{i}</Tag>)}
         </Header>

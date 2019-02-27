@@ -30,7 +30,7 @@ class BlogPostTemplate extends React.Component {
         <Article post={post}/>
         <CallToActions post={post} content={content}/>
         <Divider/>
-        <Newsletter/>
+        <Newsletter content={content}/>
       </Template>
     )
   }
