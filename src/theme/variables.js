@@ -8,6 +8,7 @@ export const breakpoint = {
 }
 
 export const zIndexRank = {
+  bottom: -100,
   0: 0,
   1: 100,
   2: 200,
