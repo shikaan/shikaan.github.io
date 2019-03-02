@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import styled from "styled-components";
 
+import {Size} from "~theme"
 import {NEWSLETTER_WEBHOOK_ADDRESS} from "~/constants";
 
 import Button from '~components/Button'
@@ -16,6 +17,12 @@ const Section = styled.section(({theme}) => `
 
 const NewsletterHeading = styled(Heading)(({theme}) => `
   padding-bottom: ${theme.templateVariables.verticalPadding};
+`)
+
+const NewsletterForm = styled(Form)(() => `
+  min-width: ${new Size(40)};
+  max-width: 62%;
+  margin: auto;
 `)
 
 class Newsletter extends Component {
@@ -85,7 +92,7 @@ class Newsletter extends Component {
         <NewsletterHeading level={2} sub={content.newsletter.subTitle}>
           {content.newsletter.title}
         </NewsletterHeading>
-        <Form
+        <NewsletterForm
           onSubmit={this.handleSubscribe}>
           <Input
             inputRef={this.inputRef}
@@ -98,7 +105,7 @@ class Newsletter extends Component {
           <Button context="coffee" type="submit">
             {content.newsletter.ctaLabel}
           </Button>
-        </Form>
+        </NewsletterForm>
       </Section>
     );
   }
