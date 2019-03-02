@@ -42,9 +42,28 @@ const H2 = styled.h2(({theme}) => `
   }
 `)
 
+const H3 = styled.h3(({theme}) => `
+  font-family: ${theme.typography.primaryFont.fontFamily};
+  font-size: ${theme.typography.baseFontSize.multiply(1.125)};
+  letter-spacing: 0;
+  font-weight: 900;
+  line-height: ${theme.typography.baseLineHeight};
+  color: ${theme.color.black};
+  
+  & + small {
+    font-family: ${theme.typography.secondaryFont.fontFamily};
+    font-size: ${theme.typography.baseFontSize.multiply(0.875)}
+    letter-spacing: ${theme.typography.baseFontSize.multiply(0.00625)};
+    font-weight: 400;
+    line-height: ${theme.typography.baseLineHeight};
+    color: ${theme.color.black}  
+  }
+`)
+
 const headingMap = {
   1: H1,
   2: H2,
+  3: H3
 }
 
 
@@ -71,7 +90,7 @@ class Heading extends Component {
 }
 
 Heading.propTypes = {
-  level: PropTypes.oneOf([1, 2]),
+  level: PropTypes.oneOf([1, 2, 3]),
   sub: PropTypes.string
 };
 
