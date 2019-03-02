@@ -1,6 +1,10 @@
 ---
-title: New Beginnings
-date: "2015-05-28T22:40:32.169Z"
+title: AAAAA
+description: Pilot episode of a series about design patterns and how to use them
+tags: ["javascript", "python", "architecture", "design-patterns"]
+coverImage: "big-image.jpeg"
+date: "2019-02-03T18:08:04.207Z"
+commentLink: https://www.google.com
 ---
 
 Far far away, behind the word mountains, far from the countries Vokalia and

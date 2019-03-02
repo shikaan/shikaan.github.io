@@ -1,5 +1,6 @@
 import React from "react"
 import {graphql} from "gatsby"
+import styled from "styled-components";
 
 import {en as content} from '/static/content/ReadArticle'
 
@@ -13,40 +14,51 @@ import FrontMatter from "./FrontMatter";
 import TableOfContents from "./TableOfContents";
 import Article from "./Article";
 import Newsletter from "./Newsletter";
+import RelatedArticles from "./RelatedArticles";
 
-class BlogPostTemplate extends React.Component {
+const ReadArticleDivider = styled(Divider)(({theme}) => `
+  margin: 0 ${theme.templateVariables.horizontalPadding};
+`)
+
+class ReadArticlePage extends React.Component {
   render() {
-    const post = this.props.data.markdownRemark
-    const siteTitle = this.props.data.site.siteMetadata.title
+    const {data,pageContext} = this.props
+
+    const article = data.article
+    const relatedArticles = data.relatedArticles.edges
+    const siteTitle = data.site.siteMetadata.title
+    const {tags} = pageContext
 
     return (
       <Template location={this.props.location} title={siteTitle}>
-        <SEO title={post.frontmatter.title} description={post.frontmatter.description}/>
+        <SEO title={article.frontmatter.title} description={article.frontmatter.description}/>
 
-        <FrontMatter post={post} pageContext={this.props.pageContext} content={content}/>
-        <Divider/>
-        <TableOfContents post={post} content={content}/>
-        <Divider/>
-        <Article post={post}/>
-        <CallToActions post={post} content={content}/>
-        <Divider/>
+        <FrontMatter post={article} tags={tags} content={content}/>
+        <ReadArticleDivider/>
+        <TableOfContents post={article} content={content}/>
+        <ReadArticleDivider/>
+        <Article post={article}/>
+        <CallToActions post={article} content={content}/>
+        <ReadArticleDivider/>
         <Newsletter content={content}/>
+        <ReadArticleDivider />
+        <RelatedArticles list={relatedArticles} content={content}/>
       </Template>
     )
   }
 }
 
-export default BlogPostTemplate
+export default ReadArticlePage
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($path: String!) {
+  query BlogPostBySlug($path: String!, $tags: [String!]) {
     site {
       siteMetadata {
         title
         author
       }
     }
-    markdownRemark(fields: { slug: { eq: $path } }) {
+    article: markdownRemark(fields: { slug: { eq: $path } }) {
       html
       tableOfContents(
         maxDepth: 2
@@ -78,6 +90,51 @@ export const pageQuery = graphql`
               originalName
               presentationWidth
               presentationHeight
+            }
+          }
+        }
+      }
+    }
+    relatedArticles: allMarkdownRemark(
+      limit: 3, 
+      sort: {
+        fields: [frontmatter___date], order: DESC
+      }, 
+      filter: {
+        fields: {
+          slug: {ne: $path}
+        }
+        frontmatter: {
+          tags: {in: $tags}
+        }
+      }) {
+      edges {
+        node {
+          fields {
+            slug
+            readingTime {
+              minutes
+            }
+          }
+          frontmatter {
+            title
+            date(formatString: "MMMM DD, YYYY")
+            tags
+            coverImage {
+              childImageSharp {
+                fixed(width:112, height:112) {
+                  width
+                  height
+                  base64
+                  tracedSVG
+                  aspectRatio
+                  src
+                  srcSet
+                  srcWebp
+                  srcSetWebp
+                  originalName
+                }
+              }
             }
           }
         }

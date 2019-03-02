@@ -19,6 +19,8 @@ const ContentHeader = styled.header`
 `
 
 const ContentSection = styled.section`
+  padding-bottom: ${({theme}) => theme.templateVariables.verticalPadding};
+  
   & > ul {
     padding: 0 ${({theme}) => theme.typography.baseFontSize.multiply(0.5)};
      

@@ -18,7 +18,7 @@ const FrontMatterHeading = styled(Heading)(({theme}) => `
 
 class FrontMatter extends Component {
   render() {
-    const {content, post, pageContext} = this.props
+    const {content, post, tags} = this.props
 
     // TODO: move me to derived state from props
     const readingTime = Math.ceil(post.fields.readingTime.minutes)
@@ -35,7 +35,7 @@ class FrontMatter extends Component {
             {post.frontmatter.title}
           </FrontMatterHeading>
 
-          {pageContext.tags.map(i => <Tag key={i} to={`/search?query=${i}`}>{i}</Tag>)}
+          {tags.map(i => <Tag key={i} to={`/search?query=${i}`}>{i}</Tag>)}
         </Header>
       </Fragment>
     )
