@@ -36,6 +36,10 @@ const CardHeading = styled(Heading)(() => `
   flex: 1
 `)
 
+const ImageWrapper = styled.div`
+  text-align: center;
+`
+
 const Card = ({post, content}) => {
   const readingTime = Math.ceil(post.fields.readingTime.minutes)
   const image = get(post, 'frontmatter.coverImage.childImageSharp.fixed')
@@ -43,7 +47,9 @@ const Card = ({post, content}) => {
   return (
     <Container>
       <Body to={post.fields.slug}>
-      <Image fixed={image}/>
+      <ImageWrapper>
+        <Image fixed={image}/>
+      </ImageWrapper>
       <Text>
         <Overline>
           {post.frontmatter.date} – {readingTime} {content.frontmatter.readingTime}

@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import styled from "styled-components";
 
+import {Size} from '~theme'
+
 import Card from '~components/Card'
 import Divider from "~components/Divider";
 import Heading from "~components/Heading";
@@ -11,6 +13,12 @@ const Section = styled.section(({theme}) => `
 
 const UnorderedList = styled.ul(({theme}) => `
   padding: ${theme.templateVariables.verticalPadding} 0;
+`)
+
+const ListItem = styled.li(() => `
+  min-width: ${new Size(40)};
+  max-width: 62%;
+  margin: auto;
 `)
 
 class RelatedArticles extends Component {
@@ -31,10 +39,10 @@ class RelatedArticles extends Component {
         <UnorderedList>
           {
             list.map(({node}, index) => (
-              <li>
+              <ListItem>
                 <Card key={index} post={node} content={content}/>
                 {this.renderDivider(index)}
-              </li>
+              </ListItem>
             ))
           }
         </UnorderedList>
