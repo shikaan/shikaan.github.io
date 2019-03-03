@@ -39,8 +39,8 @@ class RelatedArticles extends Component {
         <UnorderedList>
           {
             list.map(({node}, index) => (
-              <ListItem>
-                <Card key={index} post={node} content={content}/>
+              <ListItem key={index}>
+                <Card post={node} content={content}/>
                 {this.renderDivider(index)}
               </ListItem>
             ))

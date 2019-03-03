@@ -56,7 +56,7 @@ const ToasterPortal = ({children, visible}) => {
 
 
 ToasterPortal.propTypes = {
-  visible: PropTypes.boolean
+  visible: PropTypes.bool
 }
 
 export default ToasterPortal

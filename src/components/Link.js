@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link as GatsbyLink } from 'gatsby'
+import { Link as GatsbyLink, navigate as gastbyNavigate } from 'gatsby'
 import styled from 'styled-components'
 
 const UnstyledButton = styled.button`
@@ -7,6 +7,7 @@ const UnstyledButton = styled.button`
   border:none; 
   padding:0!important;
   cursor: pointer;
+  text-align: unset;
   
   &:focus {outline:0;}
 `
@@ -24,3 +25,4 @@ const Link = ({ href, onClick, children, ...rest }) => {
 export default styled(Link)`
   text-decoration: none;
 `
+export const navigate = gastbyNavigate

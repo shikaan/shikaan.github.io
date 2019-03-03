@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from "styled-components";
 import {get} from 'lodash'
 
-import Link from '~components/Link'
+import Link, {navigate} from '~components/Link'
 import Image from '~components/Image'
 import Heading from '~components/Heading'
 import Tag from '~components/Tag'
@@ -13,10 +13,14 @@ const Container = styled.div`
   padding: 16px 0;
 `
 
-const Body = styled(Link)(({theme}) => `
+const Body = styled.div(({theme}) => `
   display: grid;
   grid-gap: ${theme.typography.baseFontSize};
   grid-template-columns: 1fr 2fr;
+`)
+
+const ImageWrapper = styled(Link)(() => `
+  text-align: center;
 `)
 
 const Text = styled.div(() => `
@@ -25,20 +29,16 @@ const Text = styled.div(() => `
   overflow: hidden;
 `)
 
-const Tags = styled.div(({theme}) => `
+const Tags = styled.div(() => `
   min-width: 0px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 `)
 
-const CardHeading = styled(Heading)(() => `
+const ClickableArea = styled(Link)(() => `
   flex: 1
 `)
-
-const ImageWrapper = styled.div`
-  text-align: center;
-`
 
 const Card = ({post, content}) => {
   const readingTime = Math.ceil(post.fields.readingTime.minutes)
@@ -46,18 +46,20 @@ const Card = ({post, content}) => {
 
   return (
     <Container>
-      <Body to={post.fields.slug}>
-      <ImageWrapper>
+      <Body>
+      <ImageWrapper to={post.fields.slug}>
         <Image fixed={image}/>
       </ImageWrapper>
       <Text>
-        <Overline>
-          {post.frontmatter.date} – {readingTime} {content.frontmatter.readingTime}
-        </Overline>
+        <ClickableArea to={post.fields.slug}>
+          <Overline>
+            {post.frontmatter.date} – {readingTime} {content.frontmatter.readingTime}
+          </Overline>
 
-        <CardHeading level={3}>
-          {post.frontmatter.title}
-        </CardHeading>
+          <Heading level={3}>
+            {post.frontmatter.title}
+          </Heading>
+        </ClickableArea>
 
         <Tags>
           {post.frontmatter.tags.slice(0, 2).map(i => <Tag key={i} to={`/search?query=${i}`}>{i}</Tag>)}
