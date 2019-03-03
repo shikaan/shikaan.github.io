@@ -1,11 +1,14 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
-exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions
+const getPagePath = (page) => {
+  return path.resolve(`./src/pages/${page}/index.js`)
+}
 
-  const readArticle = path.resolve(`./src/pages/ReadArticle/index.js`)
-  return graphql(
+const createArticlesPages = async ({ graphql, actions }) => {
+  const readArticlePageComponent = getPagePath('ReadArticle')
+
+  const result = await graphql(
     `
       {
         allMarkdownRemark(
@@ -28,27 +31,43 @@ exports.createPages = ({ graphql, actions }) => {
         }
       }
     `
-  ).then(result => {
-    if (result.errors) {
-      throw result.errors
-    }
+  )
 
-    // Create blog posts pages.
-    const posts = result.data.allMarkdownRemark.edges
+  if (result.errors) {
+    throw result.errors
+  }
 
-    posts.forEach((post, index) => {
-      createPage({
-        path: post.node.fields.slug,
-        component: readArticle,
-        context: {
-          slug: post.node.fields.slug,
-          relativePath: post.node.fields.relativePath,
-          tags: post.node.frontmatter.tags,
-          readingTime: post.node.fields.readingTime
-        }
-      })
+  // Create articles pages
+  const posts = result.data.allMarkdownRemark.edges
+
+  posts.forEach((post) => {
+    actions.createPage({
+      path: post.node.fields.slug,
+      component: readArticlePageComponent,
+      context: {
+        slug: post.node.fields.slug,
+        relativePath: post.node.fields.relativePath,
+        tags: post.node.frontmatter.tags,
+        readingTime: post.node.fields.readingTime
+      }
     })
   })
+}
+
+const createSearchPage = async ({ actions }) => {
+  const searchPageComponent = getPagePath('Search')
+
+  actions.createPage({
+    path: '/search/',
+    component: searchPageComponent
+  })
+}
+
+exports.createPages = ({ graphql, actions }) => {
+  return Promise.all([
+    createArticlesPages({ graphql, actions }),
+    createSearchPage({ actions })
+  ])
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
