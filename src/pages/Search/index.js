@@ -5,7 +5,7 @@ import {debounce} from 'lodash'
 import {en as searchContent} from '/static/content/Search'
 import {en as sharedContent} from '/static/content/_shared'
 
-import MainTemplate from '~templates/Main'
+import SearchTemplate from '~templates/Search'
 
 import Input from "~components/Input";
 import Card from "~components/Card";
@@ -46,7 +46,7 @@ class SearchPage extends Component {
 
   render() {
     return (
-      <MainTemplate>
+      <SearchTemplate>
         <Input placeholder={content.placeholder} onChange={this.handleInputChange}/>
 
         <ul>
@@ -61,7 +61,7 @@ class SearchPage extends Component {
         <Heading level={3}>
           {content.subTitle}
         </Heading>
-      </MainTemplate>
+      </SearchTemplate>
     );
   }
 }
