@@ -27,7 +27,7 @@ const RelatedArticlesHeading = styled(Heading)(({theme}) => `
 
 class RelatedArticles extends Component {
   renderDivider = (index) => {
-    const isLastElement = index === this.props.searchResults.length - 1
+    const isLastElement = index === this.props.list.length - 1
 
     return isLastElement ? null : <Divider/>
   }
