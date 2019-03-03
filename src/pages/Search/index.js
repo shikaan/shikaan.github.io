@@ -9,14 +9,30 @@ import SearchTemplate from '~templates/Search'
 
 import Input from "~components/Input";
 import Card from "~components/Card";
-import Heading from "../../components/Heading";
+import Heading from "~components/Heading";
+import Tag from "~components/Tag";
 
 const content = {...searchContent, shared: sharedContent}
 
 class SearchPage extends Component {
   state = {
-    searchKey: '',
-    list: []
+    searchResults: null,
+    trendingTopics: []
+  }
+
+  static computeTrendingTopics = (articles, length = 5) => {
+    let topics = []
+
+    for (const {node: article} of articles) {
+      const topicsWithoutDuplicates = new Set([...topics, ...article.frontmatter.tags])
+      topics = Array.from(topicsWithoutDuplicates)
+
+      if (topics.length >= length) {
+        break;
+      }
+    }
+
+    return topics.slice(0, length)
   }
 
   performSearch = debounce((searchKey) => {
@@ -31,7 +47,7 @@ class SearchPage extends Component {
         return isInTitle || isInTags
       }).slice(0, 5)
 
-    this.setState({list: newList})
+    this.setState({searchResults: newList})
   }, 500)
 
   handleInputChange = (event) => {
@@ -41,7 +57,9 @@ class SearchPage extends Component {
   }
 
   componentDidMount() {
-    this.setState({list: this.props.data.posts.edges.slice(0, 5)})
+    this.setState({
+      trendingTopics: SearchPage.computeTrendingTopics(this.props.data.posts.edges, 5)
+    })
   }
 
   render() {
@@ -49,18 +67,29 @@ class SearchPage extends Component {
       <SearchTemplate>
         <Input placeholder={content.placeholder} onChange={this.handleInputChange}/>
 
-        <ul>
+        {this.state.searchResults && (<ul>
           {
-            this.state.list.map(({node}, index) => (
+            this.state.searchResults.map(({node}, index) => (
               <li key={index}>
                 <Card post={node} content={content}/>
               </li>
             ))
           }
-        </ul>
+        </ul>)}
         <Heading level={3}>
           {content.subTitle}
         </Heading>
+        <ul>
+          {
+            this.state.trendingTopics.map((topic, index) => (
+              <li key={index}>
+                <Tag>
+                  {topic}
+                </Tag>
+              </li>
+            ))
+          }
+        </ul>
       </SearchTemplate>
     );
   }

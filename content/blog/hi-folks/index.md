@@ -1,7 +1,7 @@
 ---
 title: AAAAA
 description: Pilot episode of a series about design patterns and how to use them
-tags: ["javascript", "python", "architecture", "design-patterns"]
+tags: ["food", "dogs", "motorbikes", "design-patterns"]
 coverImage: "big-image.jpeg"
 date: "2019-02-03T18:08:04.207Z"
 commentLink: https://www.google.com
