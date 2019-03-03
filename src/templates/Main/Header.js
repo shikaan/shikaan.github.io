@@ -7,38 +7,38 @@ import Link from '~components/Link'
 export const headerHeight = new Size(7)
 const padding = new Size(3)
 
-export const Header = styled.header`
+export const Header = styled.header(({ theme }) => `
   width: 100%;
   height: ${headerHeight};
-  background: ${({ theme }) => theme.color.lightCoffee};
+  background-color: ${theme.color.lightCoffee};
   position: fixed;
   box-shadow: 0 ${new Size(0.5)} ${new Size(0.5)} rgba(0, 0, 0, 0.24);
-  z-index: ${({ theme }) => theme.zIndexRank.top};
-`
+  z-index: ${theme.zIndexRank.top};
+`)
 
 export const Row = styled.div`
   display: flex;
 `
 
-export const Column = styled.div`
+export const Column = styled.div(({ theme }) => `
   & > * {
     line-height: ${headerHeight};
     vertical-align: "middle";
-    font-size: ${({ theme }) => theme.typography.baseFontSize.multiply(1.125)};
+    font-size: ${theme.typography.baseFontSize.multiply(1.125)};
   }
-`
+`)
 
-export const TitleColumn = styled(Column)`
+export const TitleColumn = styled(Column)(({ theme }) => `
   flex: 11;
   padding: 0 0 0 ${padding};
   
   ${Link} {
     font-size: ${new Size(2.5)}
-    font-family: ${({ theme }) => theme.typography.primaryFont.fontFamily};
+    font-family: ${theme.typography.primaryFont.fontFamily};
     font-weight: 900;
-    color: ${({ theme }) => theme.color.darkGrey};
+    color: ${theme.color.darkGrey};
   }
-`
+`)
 
 export const IconColumn = styled(Column)`
   flex: 1;
@@ -46,11 +46,11 @@ export const IconColumn = styled(Column)`
   padding: 0 ${padding} 0 0;
 `
 
-export const TitleChunk = styled.span`
+export const TitleChunk = styled.span(({ theme }) => `
   display: inline-block;
   margin: 0 ${new Size(0.25)};
 
   &::first-letter {
-    color: ${({ theme }) => theme.color.coffee};
+    color: ${theme.color.coffee};
   }
-`
+`)

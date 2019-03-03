@@ -7,18 +7,15 @@ import Icon from "~components/Icon";
 import Link from "~components/Link";
 
 import {IconColumn, Header, TitleColumn, Row, TitleChunk} from "./Header";
-import {Main as MainSection} from './Main'
+import {Main} from './Main'
 
 const templateVariables = {
   horizontalPadding: new Size(3),
   verticalPadding: new Size(2)
 }
 
-class Main extends React.Component {
+class MainTemplate extends React.Component {
   render() {
-    const {location, title, children} = this.props;
-    const rootPath = `${__PATH_PREFIX__}/`;
-
     return (
       <ThemeProvider theme={{...theme, templateVariables}}>
         <Fragment>
@@ -39,13 +36,13 @@ class Main extends React.Component {
               </IconColumn>
             </Row>
           </Header>
-          <MainSection>
-            {children}
-          </MainSection>
+          <Main>
+            {this.props.children}
+          </Main>
         </Fragment>
       </ThemeProvider>
     );
   }
 }
 
-export default Main;
+export default MainTemplate;
