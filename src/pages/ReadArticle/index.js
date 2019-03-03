@@ -2,7 +2,8 @@ import React from "react"
 import {graphql} from "gatsby"
 import styled from "styled-components";
 
-import {en as content} from '/static/content/ReadArticle'
+import {en as readArticleContent} from '/static/content/ReadArticle'
+import {en as sharedContent} from '/static/content/_shared'
 
 import Template from "~templates/Main"
 
@@ -16,13 +17,18 @@ import Article from "./Article";
 import Newsletter from "./Newsletter";
 import RelatedArticles from "./RelatedArticles";
 
+const content = {
+  ...readArticleContent,
+  shared: sharedContent
+}
+
 const ReadArticleDivider = styled(Divider)(({theme}) => `
   margin: 0 ${theme.templateVariables.horizontalPadding};
 `)
 
 class ReadArticlePage extends React.Component {
   render() {
-    const {data,pageContext} = this.props
+    const {data, pageContext} = this.props
 
     const article = data.article
     const relatedArticles = data.relatedArticles.edges
@@ -41,7 +47,7 @@ class ReadArticlePage extends React.Component {
         <CallToActions post={article} content={content}/>
         <ReadArticleDivider/>
         <Newsletter content={content}/>
-        <ReadArticleDivider />
+        <ReadArticleDivider/>
         <RelatedArticles list={relatedArticles} content={content}/>
       </Template>
     )

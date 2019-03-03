@@ -28,7 +28,7 @@ class FrontMatter extends Component {
         <Image fluid={post.frontmatter.coverImage.childImageSharp.fluid} alt={post.frontmatter.title}/>
         <Header>
           <Overline>
-            {post.frontmatter.date} – {readingTime} {content.frontmatter.readingTime}
+            {post.frontmatter.date} – {readingTime} {content.shared.readingTime}
           </Overline>
 
           <FrontMatterHeading level={1} sub={post.frontmatter.description}>

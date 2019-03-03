@@ -53,7 +53,7 @@ const Card = ({post, content}) => {
       <Text>
         <ClickableArea to={post.fields.slug}>
           <Overline>
-            {post.frontmatter.date} – {readingTime} {content.frontmatter.readingTime}
+            {post.frontmatter.date} – {readingTime} {content.shared.readingTime}
           </Overline>
 
           <Heading level={3}>

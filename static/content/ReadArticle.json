@@ -1,8 +1,5 @@
 {
   "en": {
-    "frontmatter": {
-      "readingTime": "min read"
-    },
     "tableOfContents": {
       "title": "Content"
     },
@@ -24,9 +21,6 @@
     }
   },
   "it": {
-    "frontmatter": {
-      "readingTime": "minuti"
-    },
     "tableOfContents": {
       "title": "Indice"
     },

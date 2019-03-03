@@ -1,13 +1,17 @@
 import React, {Component} from 'react';
-import Input from "~components/Input";
 import {graphql} from "gatsby";
-
 import {debounce} from 'lodash'
 
-import {en as content} from '/static/content/ReadArticle'
+import {en as searchContent} from '/static/content/Search'
+import {en as sharedContent} from '/static/content/_shared'
 
 import MainTemplate from '~templates/Main'
+
+import Input from "~components/Input";
 import Card from "~components/Card";
+import Heading from "../../components/Heading";
+
+const content = {...searchContent, shared: sharedContent}
 
 class SearchPage extends Component {
   state = {
@@ -43,8 +47,7 @@ class SearchPage extends Component {
   render() {
     return (
       <MainTemplate>
-        Search
-        <Input onChange={this.handleInputChange}/>
+        <Input placeholder={content.placeholder} onChange={this.handleInputChange}/>
 
         <ul>
           {
@@ -55,6 +58,9 @@ class SearchPage extends Component {
             ))
           }
         </ul>
+        <Heading level={3}>
+          {content.subTitle}
+        </Heading>
       </MainTemplate>
     );
   }
