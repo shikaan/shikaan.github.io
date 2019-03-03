@@ -21,6 +21,10 @@ const ListItem = styled.li(() => `
   margin: auto;
 `)
 
+const RelatedArticlesHeading = styled(Heading)(({theme}) => `
+  padding: 0 ${theme.typography.baseFontSize.multiply(.5)}
+`)
+
 class RelatedArticles extends Component {
   renderDivider = (index) => {
     const isLastElement = index === this.props.list.length - 1
@@ -33,9 +37,9 @@ class RelatedArticles extends Component {
 
     return (
       <Section>
-        <Heading level={2}>
+        <RelatedArticlesHeading level={2}>
           {content.relatedArticles.title}
-        </Heading>
+        </RelatedArticlesHeading>
         <UnorderedList>
           {
             list.map(({node}, index) => (
