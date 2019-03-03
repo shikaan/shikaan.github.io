@@ -16,11 +16,12 @@ const content = {...searchContent, shared: sharedContent}
 
 class SearchPage extends Component {
   state = {
+    searchQuery: '',
     searchResults: null,
     trendingTopics: []
   }
 
-  static computeTrendingTopics = (articles, length = 5) => {
+  static getTrendingTopics = (articles, length = 5) => {
     let topics = []
 
     for (const {node: article} of articles) {
@@ -35,14 +36,25 @@ class SearchPage extends Component {
     return topics.slice(0, length)
   }
 
-  performSearch = debounce((searchKey) => {
+  static getSearchQuery = (location) => {
+    const searchQueryString = location.search.slice(1)
+      .split('&')
+      .filter(i => i.includes('query'))[0]
+
+    return searchQueryString
+      ? searchQueryString.split('=')[1]
+      : ''
+  }
+
+  performSearch = debounce(() => {
     const completeList = this.props.data.posts.edges
+    const {searchQuery} = this.state
 
     const newList = completeList
       .filter(({node: article}) => {
 
-        const isInTitle = article.frontmatter.title.toLowerCase().includes(searchKey)
-        const isInTags = article.frontmatter.tags.some(tag => tag.includes(searchKey))
+        const isInTitle = article.frontmatter.title.toLowerCase().includes(searchQuery)
+        const isInTags = article.frontmatter.tags.some(tag => tag.includes(searchQuery))
 
         return isInTitle || isInTags
       }).slice(0, 5)
@@ -51,21 +63,25 @@ class SearchPage extends Component {
   }, 500)
 
   handleInputChange = (event) => {
-    const searchKey = event.target.value.trim().toLowerCase()
+    const searchQuery = event.target.value.trim().toLowerCase()
 
-    this.performSearch(searchKey)
+    this.setState({searchQuery}, this.performSearch)
   }
 
   componentDidMount() {
     this.setState({
-      trendingTopics: SearchPage.computeTrendingTopics(this.props.data.posts.edges, 5)
-    })
+      searchQuery: SearchPage.getSearchQuery(this.props.location),
+      trendingTopics: SearchPage.getTrendingTopics(this.props.data.posts.edges, 5)
+    }, this.performSearch)
   }
 
   render() {
     return (
       <SearchTemplate>
-        <Input placeholder={content.placeholder} onChange={this.handleInputChange}/>
+        <Input
+          value={this.state.searchQuery}
+          placeholder={content.placeholder}
+          onChange={this.handleInputChange}/>
 
         {this.state.searchResults && (<ul>
           {
@@ -83,7 +99,7 @@ class SearchPage extends Component {
           {
             this.state.trendingTopics.map((topic, index) => (
               <li key={index}>
-                <Tag>
+                <Tag href={`search?query=${topic}`}>
                   {topic}
                 </Tag>
               </li>
