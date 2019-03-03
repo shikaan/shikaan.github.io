@@ -29,7 +29,6 @@ export const document = `
 
   body {
     overflow-x: hidden;
-    background-color: ${color.lightCoffee};
     color: ${color.black};
   }
   
