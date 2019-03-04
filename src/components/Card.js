@@ -40,7 +40,7 @@ const ClickableArea = styled(Link)(() => `
   flex: 1
 `)
 
-const Card = ({post, content}) => {
+const Card = ({post, content, tagHistoryReplace = false}) => {
   const readingTime = Math.ceil(post.fields.readingTime.minutes)
   const image = get(post, 'frontmatter.coverImage.childImageSharp.fixed')
 
@@ -62,7 +62,14 @@ const Card = ({post, content}) => {
         </ClickableArea>
 
         <Tags>
-          {post.frontmatter.tags.slice(0, 2).map(i => <Tag key={i} to={`/search?query=${i}`}>{i}</Tag>)}
+          {
+            post.frontmatter.tags
+              .slice(0, 2).map(i => (
+              <Tag key={i} to={`/search?query=${i}`} replace={tagHistoryReplace}>
+                {i}
+              </Tag>
+            ))
+          }
         </Tags>
       </Text>
       </Body>
