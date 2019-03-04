@@ -8,7 +8,7 @@ function SearchResultsList({content, searchResults}) {
       {
         searchResults.map(({node}, index) => (
           <li key={index}>
-            <Card post={node} content={content}/>
+            <Card post={node} content={content} tagHistoryReplace/>
           </li>
         ))
       }

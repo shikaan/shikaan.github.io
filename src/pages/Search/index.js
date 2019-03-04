@@ -1,15 +1,12 @@
 import React, {Component} from 'react';
 import {graphql} from "gatsby";
-import {debounce} from 'lodash'
 
 import {en as searchContent} from '/static/content/Search'
 import {en as sharedContent} from '/static/content/_shared'
 
 import SearchTemplate from '~templates/Search'
 
-import Icon from "~components/Icon";
-import Button from "~components/Button";
-
+import Header from "./Header";
 import SearchResults from "./SearchResult";
 
 const content = {...searchContent, shared: sharedContent}
@@ -18,11 +15,7 @@ class SearchPage extends Component {
   render() {
     return (
       <SearchTemplate>
-        <Button onClick={() => window.history.back()}>
-          <Icon>
-            close
-          </Icon>
-        </Button>
+        <Header/>
 
         <SearchResults
           content={content}

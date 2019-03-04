@@ -16,7 +16,7 @@ class TrendingTopics extends Component {
           {
             trendingTopics.map((topic, index) => (
               <li key={index}>
-                <Tag to={`/search?query=${topic}`}>
+                <Tag to={`/search?query=${topic}`} replace>
                   {topic}
                 </Tag>
               </li>
