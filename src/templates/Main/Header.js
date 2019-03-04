@@ -5,7 +5,7 @@ import { Size } from '~theme'
 import Link from '~components/Link'
 
 export const headerHeight = new Size(7)
-const padding = new Size(3)
+const padding = new Size(2)
 
 export const Header = styled.header(({ theme }) => `
   width: 100%;
