@@ -8,7 +8,6 @@ const Section = styled.section(({theme}) => `
 `)
 
 const StyledInput = styled(Input)(({theme}) => `
-  margin-top: 8vh;
   font-size: 40px;
   height: 48px;
   border: none;

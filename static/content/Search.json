@@ -1,10 +1,22 @@
 {
   "en": {
     "placeholder": "Start Typing",
-    "subTitle": "Trending Topics"
+    "subTitle": "Trending Topics",
+    "emptyState": {
+      "title": "Aw snap!",
+      "subTitle": "There are no matches for your query \uD83D\uDE2D",
+      "parapgraph": "Grab a coffee and try another keyword, or check one of our coolest topics \uD83D\uDE0E",
+      "cta": "Trending Topics"
+    }
   },
   "it": {
     "placeholder": "Inizia a scrivere",
-    "subTitle": "I più cercati"
+    "subTitle": "I più cercati",
+    "emptyState": {
+      "title": "Aw snap!",
+      "subTitle": "There are no matches for your query \uD83D\uDE2D",
+      "parapgraph": "Grab a coffee and try another keyword, or check one of our coolest topics \uD83D\uDE0E",
+      "cta": "Trending Topics"
+    }
   }
 }

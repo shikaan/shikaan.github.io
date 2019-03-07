@@ -20,6 +20,10 @@ const ListItem = styled.li`
 
 const EmptyStateHeading = styled(Heading)`
   font-size: 32px;
+  
+  & + small {
+    padding: 16px 0;
+  }
 `
 
 const EmptyStateWrapper = styled.div`
@@ -48,20 +52,19 @@ class Results extends Component {
   }
 
   renderEmptyState = () => {
+    const {content} = this.props
+
     return (
       <EmptyStateWrapper>
-        <EmptyStateHeading level={3} context={CONTEXT.DISPLAY}>
-          Aw snap!
+        <EmptyStateHeading level={3} context={CONTEXT.DISPLAY} sub={content.emptyState.subTitle}>
+          {content.emptyState.title}
         </EmptyStateHeading>
-        <EmptyStateParagraph>
-          There are no matches for your query 😭
-        </EmptyStateParagraph>
         <EmptyStateImage src={emptyStateImage} />
         <EmptyStateParagraph>
-          Grab a coffee and try another keyword, or check one of our coolest topics 😎
+          {content.emptyState.parapgraph}
         </EmptyStateParagraph>
         <EmptyStateLink onClick={() => this.showTrendingTopics()}>
-          Trending Topics
+          {content.emptyState.cta}
         </EmptyStateLink>
       </EmptyStateWrapper>
     )
