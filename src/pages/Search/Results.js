@@ -1,26 +1,69 @@
 import React, {Component, Fragment} from 'react';
 import PropTypes from "prop-types";
+import styled from "styled-components";
+
+import emptyStateImage from "/static/empty-state.png"
 
 import Card from "~components/Card";
+import Link from "~components/Link";
 import Heading, {CONTEXT} from "~components/Heading";
 import Tag from "~components/Tag";
-import styled from "styled-components";
+import Image from "~components/Image";
+
+const Section = styled.section`
+  padding: 0 16px 40px 16px;
+`
 
 const ListItem = styled.li`
   padding: 8px 16px;
 `
 
-const Section = styled.section`
-  padding: 0 16px;
+const EmptyStateHeading = styled(Heading)`
+  font-size: 32px;
 `
+
+const EmptyStateWrapper = styled.div`
+  text-align: center;
+`
+
+const EmptyStateImage = styled(Image)`
+  height: 200px;
+  margin: auto;
+  padding: 24px;
+`
+const EmptyStateParagraph = styled.p`
+  padding: 24px 24px;
+`
+
+const EmptyStateLink = styled(Link)(({theme}) => `
+  text-decoration: underline;
+`)
 
 class Results extends Component {
 
+  showTrendingTopics = () => {
+    const {setSearchResults} = this.props
+
+    setSearchResults(null)
+  }
+
   renderEmptyState = () => {
     return (
-      <div>
-        Empty
-      </div>
+      <EmptyStateWrapper>
+        <EmptyStateHeading level={3} context={CONTEXT.DISPLAY}>
+          Aw snap!
+        </EmptyStateHeading>
+        <EmptyStateParagraph>
+          There are no matches for your query 😭
+        </EmptyStateParagraph>
+        <EmptyStateImage src={emptyStateImage} />
+        <EmptyStateParagraph>
+          Grab a coffee and try another keyword, or check one of our coolest topics 😎
+        </EmptyStateParagraph>
+        <EmptyStateLink onClick={() => this.showTrendingTopics()}>
+          Trending Topics
+        </EmptyStateLink>
+      </EmptyStateWrapper>
     )
   }
 

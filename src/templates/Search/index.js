@@ -8,7 +8,7 @@ const Main = styled.main(({theme}) => `
   background: ${theme.color.lightGrey};
   max-width: ${theme.breakpoint.sm};
   margin: auto;
-  height: 100vh;
+  min-height: 100vh;
 `)
 
 const templateVariables = {

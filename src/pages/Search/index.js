@@ -53,6 +53,10 @@ class SearchPage extends Component {
     this.setState({searchQuery}, callback)
   }
 
+  setSearchResults = (searchResults, callback = Function()) => {
+    this.setState({searchResults}, callback)
+  }
+
   handleQueryStringChange = () => {
     this.setState({
       searchQuery: this.getSearchQuery(),
@@ -109,6 +113,7 @@ class SearchPage extends Component {
 
         <Results
           content={content}
+          setSearchResults={this.setSearchResults}
           searchResults={searchResults}
           trendingTopics={trendingTopics}
         />

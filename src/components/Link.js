@@ -22,7 +22,10 @@ const Link = ({ href, onClick, children, ...rest }) => {
   return React.createElement(GatsbyLink, { children, ...rest })
 }
 
-export default styled(Link)`
+export default styled(Link)(({ theme }) => `
+  font-family: ${theme.typography.primaryFont.fontFamily};
+  font-weight: 700;
   text-decoration: none;
-`
+`)
+
 export const navigate = gastbyNavigate
