@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {Size} from '~theme'
 
 const borderWidth = new Size(.25)
+const padding = new Size(2)
 
 const StyledInput = styled.input(({theme}) => `
   display: block;
@@ -20,18 +21,11 @@ const StyledInput = styled.input(({theme}) => `
   }
 `)
 
-const Wrapper = styled.div`
-  padding: 16px;
-`
-
 class Input extends Component {
   render() {
     const {inputRef: ref, ...rest} = this.props
-    return (
-      <Wrapper>
-        <StyledInput ref={ref} {...rest} />
-      </Wrapper>
-    )
+
+    return <StyledInput ref={ref} {...rest} />
   }
 }
 

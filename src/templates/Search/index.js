@@ -12,7 +12,7 @@ const Main = styled.main(({theme}) => `
 `)
 
 const templateVariables = {
-  horizontalPadding: new Size(3),
+  horizontalPadding: new Size(2),
   verticalPadding: new Size(2)
 }
 

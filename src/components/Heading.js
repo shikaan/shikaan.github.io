@@ -2,17 +2,40 @@ import React, {Component, Fragment} from 'react'
 import PropTypes from 'prop-types';
 import styled from 'styled-components'
 
+export const CONTEXT = {
+  DISPLAY: 'display'
+}
+
 const SubHeading = styled.small`
   display: block;
 `
 
-const H1 = styled.h1(({theme}) => `
-  font-family: ${theme.typography.primaryFont.fontFamily};
+const getContextStyle = ({theme, context}) => {
+  const defaultContextStyles = `
+    font-family: ${theme.typography.primaryFont.fontFamily};
+    font-weight: 900;
+    line-height: ${theme.typography.baseLineHeight};
+    letter-spacing: 0;
+    color: ${theme.color.black};
+  `
+
+  const displayContextStyles = `
+    font-family: ${theme.typography.secondaryFont.fontFamily};
+    font-weight: 400;
+    line-height: ${theme.typography.baseLineHeight};
+    letter-spacing: 0;
+    color: ${theme.color.black};
+    text-transform: uppercase;
+  `
+
+  return context === CONTEXT.DISPLAY
+    ? displayContextStyles
+    : defaultContextStyles
+}
+
+const H1 = styled.h1(({theme, context}) => `
+  ${getContextStyle({theme, context})}
   font-size: ${theme.typography.baseFontSize.multiply(1.5)};
-  letter-spacing: 0;
-  font-weight: 900;
-  line-height: ${theme.typography.baseLineHeight};
-  color: ${theme.color.black};
   
   & + small {
     font-family: ${theme.typography.secondaryFont.fontFamily};
@@ -24,13 +47,9 @@ const H1 = styled.h1(({theme}) => `
   }
 `)
 
-const H2 = styled.h2(({theme}) => `
-  font-family: ${theme.typography.primaryFont.fontFamily};
+const H2 = styled.h2(({theme, context}) => `
+  ${getContextStyle({theme, context})}
   font-size: ${theme.typography.baseFontSize.multiply(1.25)};
-  letter-spacing: 0;
-  font-weight: 900;
-  line-height: ${theme.typography.baseLineHeight};
-  color: ${theme.color.black};
   
   & + small {
     font-family: ${theme.typography.secondaryFont.fontFamily};
@@ -42,13 +61,9 @@ const H2 = styled.h2(({theme}) => `
   }
 `)
 
-const H3 = styled.h3(({theme}) => `
-  font-family: ${theme.typography.primaryFont.fontFamily};
+const H3 = styled.h3(({theme, context}) => `
+  ${getContextStyle({theme, context})}
   font-size: ${theme.typography.baseFontSize.multiply(1.125)};
-  letter-spacing: 0;
-  font-weight: 900;
-  line-height: ${theme.typography.baseLineHeight};
-  color: ${theme.color.black};
   
   & + small {
     font-family: ${theme.typography.secondaryFont.fontFamily};
@@ -72,6 +87,7 @@ class Heading extends Component {
     const {
       children,
       className,
+      context,
       level = 1,
       sub
     } = this.props
@@ -80,7 +96,7 @@ class Heading extends Component {
 
     return (
       <Fragment>
-        <Heading className={className}>
+        <Heading className={className} context={context}>
           {children}
         </Heading>
         {sub && <SubHeading className={className}>{sub}</SubHeading>}
@@ -91,7 +107,8 @@ class Heading extends Component {
 
 Heading.propTypes = {
   level: PropTypes.oneOf([1, 2, 3]),
-  sub: PropTypes.string
+  sub: PropTypes.string,
+  context: PropTypes.oneOf(Object.values(CONTEXT))
 };
 
 export default Heading;

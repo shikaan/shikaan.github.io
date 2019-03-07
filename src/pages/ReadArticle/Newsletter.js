@@ -25,6 +25,10 @@ const NewsletterForm = styled(Form)(() => `
   margin: auto;
 `)
 
+const InputWrapper = styled.div(({theme}) => `
+  padding: ${theme.templateVariables.horizontalPadding};
+`)
+
 class Newsletter extends Component {
   static TOASTER_DURATION = 3000
   static INITIAL_STATE = {
@@ -92,15 +96,16 @@ class Newsletter extends Component {
         <NewsletterHeading level={2} sub={content.newsletter.subTitle}>
           {content.newsletter.title}
         </NewsletterHeading>
-        <NewsletterForm
-          onSubmit={this.handleSubscribe}>
-          <Input
-            inputRef={this.inputRef}
-            type="email"
-            required
-            placeholder={content.newsletter.inputPlaceholder}
-            value={email}
-            onChange={this.handleEmailChange}/>
+        <NewsletterForm onSubmit={this.handleSubscribe}>
+          <InputWrapper>
+            <Input
+              inputRef={this.inputRef}
+              type="email"
+              required
+              placeholder={content.newsletter.inputPlaceholder}
+              value={email}
+              onChange={this.handleEmailChange}/>
+          </InputWrapper>
 
           <Button context="coffee" type="submit">
             {content.newsletter.ctaLabel}

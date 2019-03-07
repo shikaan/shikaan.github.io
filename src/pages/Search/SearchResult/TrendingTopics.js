@@ -1,7 +1,12 @@
 import React, {Component, Fragment} from 'react';
+import styled from "styled-components";
 
-import Heading from "~components/Heading";
+import Heading, {CONTEXT} from "~components/Heading";
 import Tag from '~components/Tag';
+
+const ListItem = styled.li`
+  padding: 8px 16px;
+`
 
 class TrendingTopics extends Component {
   render() {
@@ -9,17 +14,17 @@ class TrendingTopics extends Component {
 
     return (
       <Fragment>
-        <Heading level={3}>
+        <Heading level={3} context={CONTEXT.DISPLAY}>
           {content.subTitle}
         </Heading>
         <ul>
           {
             trendingTopics.map((topic, index) => (
-              <li key={index}>
+              <ListItem key={index}>
                 <Tag to={`/search?query=${topic}`} replace>
                   {topic}
                 </Tag>
-              </li>
+              </ListItem>
             ))
           }
         </ul>

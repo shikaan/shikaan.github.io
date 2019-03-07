@@ -1,10 +1,33 @@
 import React, {Component, Fragment} from 'react';
+import styled from "styled-components";
+
 import {debounce} from "lodash";
 
 import Input from "~components/Input";
 
 import TrendingTopics from './TrendingTopics'
 import SearchResultsList from './SearchResultsList'
+import EmptyState from "./EmptyState";
+
+const Section = styled.section(({theme}) => `
+  padding: ${theme.templateVariables.horizontalPadding};
+`)
+
+const StyledInput = styled(Input)(({theme}) => `
+  margin-top: 64px;
+  font-size: 40px;
+  height: 48px;
+  border: none;
+  
+  &::placeholder {
+    font-size: 40px;
+    color: ${theme.color.mediumGrey}
+  }
+`)
+
+const InputWrapper = styled.div`
+  padding: 16px 0;
+`
 
 class SearchResults extends Component {
   state = {
@@ -44,7 +67,7 @@ class SearchResults extends Component {
     const {searchQuery} = this.state
     const {articles} = this.props
 
-    if (searchQuery !== '') {
+    if (searchQuery.length > 2) {
       const newList = articles
         .filter(({node: article}) => {
 
@@ -73,10 +96,10 @@ class SearchResults extends Component {
   componentDidMount() {
     this.setState({
       trendingTopics: this.getTrendingTopics(this.props.articles, 5)
-    }, this.handleQueryStringChange())
+    }, this.handleQueryStringChange)
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.queryString !== this.props.queryString) {
       this.handleQueryStringChange()
     }
@@ -87,25 +110,31 @@ class SearchResults extends Component {
     const {searchQuery, searchResults, trendingTopics} = this.state
 
     const isFirstSearch = !searchResults
-    const hasResults = searchResults && searchResults.length
+    const hasResults = searchResults && !!searchResults.length
 
     return (
-      <Fragment>
-        <Input
-          value={searchQuery}
-          placeholder={content.placeholder}
-          onChange={this.handleInputChange}/>
+      <Section>
+        <InputWrapper>
+          <StyledInput
+            value={searchQuery}
+            placeholder={content.placeholder}
+            onChange={this.handleInputChange}/>
+        </InputWrapper>
 
         {
           isFirstSearch &&
           <TrendingTopics content={content} trendingTopics={trendingTopics} />
         }
         {
-          hasResults
-            ? <SearchResultsList content={content} searchResults={searchResults}/>
-            : 'Pele'
+          hasResults &&
+            <SearchResultsList content={content} searchResults={searchResults}/>
         }
-      </Fragment>
+
+        {
+          !hasResults && !isFirstSearch &&
+            <EmptyState/>
+        }
+      </Section>
     )
   }
 }
