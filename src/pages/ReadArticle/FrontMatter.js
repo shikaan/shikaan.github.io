@@ -6,8 +6,6 @@ import Image from "~components/Image";
 import Overline from "~components/Overline";
 import Tag from "~components/Tag";
 
-import {Size} from "~theme"
-
 const Header = styled.header(({theme}) => `
   padding: ${theme.templateVariables.verticalPadding} ${theme.templateVariables.horizontalPadding}
 `)
