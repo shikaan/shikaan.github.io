@@ -5,11 +5,13 @@ import {sample} from 'lodash'
 
 import emptyStateImage from '/static/empty-state.png'
 
+import {isLastIndex} from "~utils";
 import Card from '~components/Card'
 import Link, {navigate} from '~components/Link'
 import Heading, {CONTEXT} from '~components/Heading'
 import Tag from '~components/Tag'
 import Image from '~components/Image'
+import Divider from "~components/Divider"
 
 const Section = styled.section(({theme}) => `
   padding: 0 ${theme.templateVariables.horizontalPadding};
@@ -108,6 +110,7 @@ class Results extends Component {
           searchResults.map(({node}, index) => (
             <li key={index}>
               <Card post={node} content={content} tagHistoryReplace/>
+              {!isLastIndex(searchResults, index) && <Divider/>}
             </li>
           ))
         }
