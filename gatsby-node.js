@@ -63,10 +63,20 @@ const createSearchPage = async ({ actions }) => {
   })
 }
 
+const createHomePage = async ({ actions }) => {
+  const homePageComponent = getPagePath('Home')
+
+  actions.createPage({
+    path: '/home',
+    component: homePageComponent
+  })
+}
+
 exports.createPages = ({ graphql, actions }) => {
   return Promise.all([
     createArticlesPages({ graphql, actions }),
-    createSearchPage({ actions })
+    createSearchPage({ actions }),
+    createHomePage({ actions })
   ])
 }
 
