@@ -1,10 +1,10 @@
-import React, {Component, Fragment} from 'react';
-import styled from "styled-components";
-import {ThemeProvider} from "styled-components";
+import React, { Component, Fragment } from 'react'
+import styled from 'styled-components'
+import { ThemeProvider } from 'styled-components'
 
-import theme, {GlobalStyle, Size} from "~theme";
+import theme, { GlobalStyle, Size } from '~theme'
 
-const Main = styled.main(({theme}) => `
+const Main = styled.main(({ theme }) => `
   background: ${theme.color.lightGrey};
   max-width: ${theme.breakpoint.sm};
   margin: auto;
@@ -17,9 +17,9 @@ const templateVariables = {
 }
 
 class SearchTemplate extends Component {
-  render() {
+  render () {
     return (
-      <ThemeProvider theme={{...theme, templateVariables}}>
+      <ThemeProvider theme={{ ...theme, templateVariables }}>
         <Fragment>
           <GlobalStyle/>
           <Main>
@@ -27,8 +27,8 @@ class SearchTemplate extends Component {
           </Main>
         </Fragment>
       </ThemeProvider>
-    );
+    )
   }
 }
 
-export default SearchTemplate;
+export default SearchTemplate

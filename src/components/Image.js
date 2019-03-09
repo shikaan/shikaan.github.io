@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 import Img from 'gatsby-image'
 
-export default ({src, ...rest}) => {
+export default ({ src, alt, ...rest }) => {
   return src
-    ? <img src={src} {...rest} />
+    ? <img src={src} alt={alt} {...rest} />
     : <Img {...rest} />
 }

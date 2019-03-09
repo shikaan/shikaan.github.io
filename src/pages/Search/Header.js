@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
-import styled from "styled-components";
+import React, { Component } from 'react'
+import styled from 'styled-components'
 
-import {Size} from '~theme'
+import { Size } from '~theme'
 
-import Link from "~components/Button";
-import Icon from "~components/Icon";
+import Link from '~components/Button'
+import Icon from '~components/Icon'
 
 const headerHeight = new Size(7)
 
@@ -13,7 +13,7 @@ const StyledHeader = styled.header`
   text-align: right;
 `
 
-const CloseButton = styled(Link)(({theme}) => `
+const CloseButton = styled(Link)(({ theme }) => `
   color: ${theme.color.darkGrey};
   font-size: ${theme.typography.baseFontSize.multiply(1.125)};
   line-height: ${headerHeight};
@@ -27,7 +27,7 @@ const CloseButton = styled(Link)(({theme}) => `
 `)
 
 class Header extends Component {
-  render() {
+  render () {
     return (
       <StyledHeader>
         <CloseButton onClick={() => window.history.back()}>
@@ -36,8 +36,8 @@ class Header extends Component {
           </Icon>
         </CloseButton>
       </StyledHeader>
-    );
+    )
   }
 }
 
-export default Header;
+export default Header

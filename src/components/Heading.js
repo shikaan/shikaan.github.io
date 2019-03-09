@@ -1,5 +1,5 @@
-import React, {Component, Fragment} from 'react'
-import PropTypes from 'prop-types';
+import React, { Component, Fragment } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 export const CONTEXT = {
@@ -10,7 +10,7 @@ const SubHeading = styled.small`
   display: block;
 `
 
-const getContextStyle = ({theme, context}) => {
+const getContextStyle = ({ theme, context }) => {
   const defaultContextStyles = `
     font-family: ${theme.typography.primaryFont.fontFamily};
     font-weight: 900;
@@ -33,8 +33,8 @@ const getContextStyle = ({theme, context}) => {
     : defaultContextStyles
 }
 
-const H1 = styled.h1(({theme, context}) => `
-  ${getContextStyle({theme, context})}
+const H1 = styled.h1(({ theme, context }) => `
+  ${getContextStyle({ theme, context })}
   font-size: ${theme.typography.baseFontSize.multiply(1.5)};
   
   & + small {
@@ -47,8 +47,8 @@ const H1 = styled.h1(({theme, context}) => `
   }
 `)
 
-const H2 = styled.h2(({theme, context}) => `
-  ${getContextStyle({theme, context})}
+const H2 = styled.h2(({ theme, context }) => `
+  ${getContextStyle({ theme, context })}
   font-size: ${theme.typography.baseFontSize.multiply(1.25)};
   
   & + small {
@@ -61,8 +61,8 @@ const H2 = styled.h2(({theme, context}) => `
   }
 `)
 
-const H3 = styled.h3(({theme, context}) => `
-  ${getContextStyle({theme, context})}
+const H3 = styled.h3(({ theme, context }) => `
+  ${getContextStyle({ theme, context })}
   font-size: ${theme.typography.baseFontSize.multiply(1.125)};
   
   & + small {
@@ -81,9 +81,8 @@ const headingMap = {
   3: H3
 }
 
-
 class Heading extends Component {
-  render() {
+  render () {
     const {
       children,
       className,
@@ -109,6 +108,6 @@ Heading.propTypes = {
   level: PropTypes.oneOf([1, 2, 3]),
   sub: PropTypes.string,
   context: PropTypes.oneOf(Object.values(CONTEXT))
-};
+}
 
-export default Heading;
+export default Heading

@@ -1,12 +1,11 @@
-import React, {Component} from 'react';
-import styled from "styled-components";
+import React, { Component } from 'react'
+import styled from 'styled-components'
 
-import {Size} from '~theme'
+import { Size } from '~theme'
 
-const borderWidth = new Size(.25)
-const padding = new Size(2)
+const borderWidth = new Size(0.25)
 
-const StyledInput = styled.input(({theme}) => `
+const StyledInput = styled.input(({ theme }) => `
   display: block;
   width: 100%;
   background: transparent;
@@ -22,11 +21,11 @@ const StyledInput = styled.input(({theme}) => `
 `)
 
 class Input extends Component {
-  render() {
-    const {inputRef: ref, ...rest} = this.props
+  render () {
+    const { inputRef: ref, ...rest } = this.props
 
     return <StyledInput ref={ref} {...rest} />
   }
 }
 
-export default Input;
+export default Input

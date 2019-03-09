@@ -1,39 +1,39 @@
-import React from "react"
-import {graphql} from "gatsby"
-import styled from "styled-components";
+import React from 'react'
+import { graphql } from 'gatsby'
+import styled from 'styled-components'
 
-import {en as readArticleContent} from '/static/content/ReadArticle'
-import {en as sharedContent} from '/static/content/_shared'
+import { en as readArticleContent } from '/static/content/ReadArticle'
+import { en as sharedContent } from '/static/content/_shared'
 
-import Template from "~templates/Main"
+import Template from '~templates/Main'
 
-import Divider from "~components/Divider"
-import SEO from "~components/seo"
+import Divider from '~components/Divider'
+import SEO from '~components/seo'
 
-import CallToActions from "./CallToActions";
-import FrontMatter from "./FrontMatter";
-import TableOfContents from "./TableOfContents";
-import Article from "./Article";
-import Newsletter from "./Newsletter";
-import RelatedArticles from "./RelatedArticles";
+import CallToActions from './CallToActions'
+import FrontMatter from './FrontMatter'
+import TableOfContents from './TableOfContents'
+import Article from './Article'
+import Newsletter from './Newsletter'
+import RelatedArticles from './RelatedArticles'
 
 const content = {
   ...readArticleContent,
   shared: sharedContent
 }
 
-const ReadArticleDivider = styled(Divider)(({theme}) => `
+const ReadArticleDivider = styled(Divider)(({ theme }) => `
   margin: 0 ${theme.templateVariables.horizontalPadding};
 `)
 
 class ReadArticlePage extends React.Component {
-  render() {
-    const {data, pageContext} = this.props
+  render () {
+    const { data, pageContext } = this.props
 
     const article = data.article
     const relatedArticles = data.relatedArticles.edges
     const siteTitle = data.site.siteMetadata.title
-    const {tags} = pageContext
+    const { tags } = pageContext
 
     return (
       <Template location={this.props.location} title={siteTitle}>

@@ -1,36 +1,36 @@
-import React, {Component} from 'react';
-import styled from "styled-components";
+import React, { Component } from 'react'
+import styled from 'styled-components'
 
-import Input from "~components/Input";
+import Input from '~components/Input'
 
-const Section = styled.section(({theme}) => `
+const Section = styled.section(({ theme }) => `
   padding: ${theme.templateVariables.horizontalPadding};
 `)
 
-const StyledInput = styled(Input)(({theme}) => `
-  font-size: 40px;
-  height: 48px;
+const StyledInput = styled(Input)(({ theme }) => `
+  font-size: ${theme.typography.baseFontSize.multiply(2.5)};
+  height: ${theme.typography.baseFontSize.multiply(3)};
   border: none;
   
   &::placeholder {
-    font-size: 40px;
-    color: ${theme.color.mediumGrey}
+    font-size: ${theme.typography.baseFontSize.multiply(2.5)};
+    color: ${theme.color.mediumGrey};
   }
 `)
 
-const InputWrapper = styled.div`
-  padding: 16px 0;
-`
+const InputWrapper = styled.div(({ theme }) => `
+  padding: ${theme.templateVariables.horizontalPadding} 0;
+`)
 
 class SearchResults extends Component {
   handleInputChange = (event) => {
     const searchQuery = event.target.value.trim().toLowerCase()
 
     this.props.setSearchQuery(searchQuery, this.props.performSearch)
-  }
+  };
 
-  render() {
-    const {content, searchQuery} = this.props
+  render () {
+    const { content, searchQuery } = this.props
 
     return (
       <Section>
@@ -45,4 +45,4 @@ class SearchResults extends Component {
   }
 }
 
-export default SearchResults;
+export default SearchResults

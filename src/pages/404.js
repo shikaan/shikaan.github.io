@@ -1,12 +1,12 @@
-import React from "react"
-import {graphql} from "gatsby"
+import React from 'react'
+import { graphql } from 'gatsby'
 
-import Layout from "../templates/Main"
-import SEO from "../components/seo"
+import Layout from '../templates/Main'
+import SEO from '../components/seo'
 
 class NotFoundPage extends React.Component {
-  render() {
-    const {data} = this.props
+  render () {
+    const { data } = this.props
     const siteTitle = data.site.siteMetadata.title
 
     return (

@@ -1,21 +1,21 @@
-import React, {Component} from 'react';
-import styled from "styled-components";
+import React, { Component } from 'react'
+import styled from 'styled-components'
 
-import {Size} from "~theme"
-import {NEWSLETTER_WEBHOOK_ADDRESS} from "~/constants";
+import { Size } from '~theme'
+import { NEWSLETTER_WEBHOOK_ADDRESS } from '~/constants'
 
 import Button from '~components/Button'
 import Heading from '~components/Heading'
 import Form from '~components/Form'
 import Input from '~components/Input'
-import Toaster from "~components/Toaster";
+import Toaster from '~components/Toaster'
 
-const Section = styled.section(({theme}) => `
+const Section = styled.section(({ theme }) => `
   text-align: center;
   padding: ${theme.templateVariables.horizontalPadding}
 `)
 
-const NewsletterHeading = styled(Heading)(({theme}) => `
+const NewsletterHeading = styled(Heading)(({ theme }) => `
   padding-bottom: ${theme.templateVariables.verticalPadding};
 `)
 
@@ -25,29 +25,29 @@ const NewsletterForm = styled(Form)(() => `
   margin: auto;
 `)
 
-const InputWrapper = styled.div(({theme}) => `
+const InputWrapper = styled.div(({ theme }) => `
   padding: ${theme.templateVariables.horizontalPadding};
 `)
 
 class Newsletter extends Component {
-  static TOASTER_DURATION = 3000
+  static TOASTER_DURATION = 3000;
   static INITIAL_STATE = {
     email: '',
     showSuccessToaster: false,
     showErrorToaster: false
-  }
+  };
 
-  inputRef = React.createRef()
+  inputRef = React.createRef();
 
-  state = {...Newsletter.INITIAL_STATE}
+  state = { ...Newsletter.INITIAL_STATE };
 
   saveEmailAddress = (address) => {
-    return fetch(NEWSLETTER_WEBHOOK_ADDRESS, {method: 'POST', body: JSON.stringify({email: address})})
-  }
+    return fetch(NEWSLETTER_WEBHOOK_ADDRESS, { method: 'POST', body: JSON.stringify({ email: address }) })
+  };
 
-  handleEmailChange = ({target}) => {
-    this.setState({email: target.value})
-  }
+  handleEmailChange = ({ target }) => {
+    this.setState({ email: target.value })
+  };
 
   handleSubscribe = async (e) => {
     e.preventDefault()
@@ -62,28 +62,28 @@ class Newsletter extends Component {
         this.handleSubscribeError()
       }
     }
-  }
+  };
 
   handleSubscribeSuccess = () => {
-    this.setState({showSuccessToaster: true}, () => {
+    this.setState({ showSuccessToaster: true }, () => {
       setTimeout(() => {
         this.setState(Newsletter.INITIAL_STATE)
       }, Newsletter.TOASTER_DURATION)
     })
-  }
+  };
 
   handleSubscribeError = () => {
-    this.setState({showErrorToaster: true}, (state) => {
+    this.setState({ showErrorToaster: true }, (state) => {
       setTimeout(() => {
         const email = state.email
-        this.setState({...Newsletter.INITIAL_STATE, email})
+        this.setState({ ...Newsletter.INITIAL_STATE, email })
       }, Newsletter.TOASTER_DURATION)
     })
-  }
+  };
 
-  render() {
-    const {content} = this.props
-    const {email, showSuccessToaster, showErrorToaster} = this.state
+  render () {
+    const { content } = this.props
+    const { email, showSuccessToaster, showErrorToaster } = this.state
 
     return (
       <Section>
@@ -112,8 +112,8 @@ class Newsletter extends Component {
           </Button>
         </NewsletterForm>
       </Section>
-    );
+    )
   }
 }
 
-export default Newsletter;
+export default Newsletter

@@ -1,18 +1,18 @@
-import React, {Component} from 'react';
-import {graphql} from "gatsby";
+import React, { Component } from 'react'
+import { graphql } from 'gatsby'
 
-import {debounce} from "lodash";
+import {debounce, noop} from 'lodash'
 
-import {en as searchContent} from '/static/content/Search'
-import {en as sharedContent} from '/static/content/_shared'
+import { en as searchContent } from '/static/content/Search'
+import { en as sharedContent } from '/static/content/_shared'
 
 import SearchTemplate from '~templates/Search'
 
-import Header from "./Header";
-import Results from "./Results";
-import Input from "./Input";
+import Header from './Header'
+import Results from './Results'
+import Input from './Input'
 
-const content = {...searchContent, shared: sharedContent}
+const content = { ...searchContent, shared: sharedContent }
 
 class SearchPage extends Component {
   state = {
@@ -20,7 +20,7 @@ class SearchPage extends Component {
     searchResults: null,
     trendingTopics: [],
     articles: this.props.data.posts.edges
-  }
+  };
 
   getSearchQuery = () => {
     const queryString = this.props.location.search
@@ -32,67 +32,66 @@ class SearchPage extends Component {
     return searchQueryString
       ? searchQueryString.split('=')[1]
       : ''
-  }
+  };
 
   getTrendingTopics = (articles, length = 5) => {
     let topics = []
 
-    for (const {node: article} of articles) {
+    for (const { node: article } of articles) {
       const topicsWithoutDuplicates = new Set([...topics, ...article.frontmatter.tags])
       topics = Array.from(topicsWithoutDuplicates)
 
       if (topics.length >= length) {
-        break;
+        break
       }
     }
 
     return topics.slice(0, length)
-  }
+  };
 
-  setSearchQuery = (searchQuery, callback = Function()) => {
-    this.setState({searchQuery}, callback)
-  }
+  setSearchQuery = (searchQuery, callback = noop) => {
+    this.setState({ searchQuery }, callback)
+  };
 
-  setSearchResults = (searchResults, callback = Function()) => {
-    this.setState({searchResults}, callback)
-  }
+  setSearchResults = (searchResults, callback = noop) => {
+    this.setState({ searchResults }, callback)
+  };
 
   handleQueryStringChange = () => {
     this.setState({
-      searchQuery: this.getSearchQuery(),
+      searchQuery: this.getSearchQuery()
     }, this.performSearch)
-  }
+  };
 
-  componentDidMount() {
+  componentDidMount () {
     this.setState({
       trendingTopics: this.getTrendingTopics(this.state.articles, 5)
     }, this.handleQueryStringChange)
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate (prevProps, prevState, snapshot) {
     if (prevProps.location.search !== this.props.location.search) {
       this.handleQueryStringChange()
     }
   }
 
   performSearch = debounce(() => {
-    const {searchQuery, articles} = this.state
+    const { searchQuery, articles } = this.state
 
     if (searchQuery.length > 2) {
       const newList = articles
-        .filter(({node: article}) => {
-
+        .filter(({ node: article }) => {
           const isInTitle = article.frontmatter.title.toLowerCase().includes(searchQuery)
           const isInTags = article.frontmatter.tags.some(tag => tag.includes(searchQuery))
 
           return isInTitle || isInTags
         }).slice(0, 5)
 
-      this.setState({searchResults: newList})
+      this.setState({ searchResults: newList })
     }
-  }, 300)
+  }, 300);
 
-  render() {
+  render () {
     const {
       articles,
       searchQuery,
@@ -118,11 +117,11 @@ class SearchPage extends Component {
           trendingTopics={trendingTopics}
         />
       </SearchTemplate>
-    );
+    )
   }
 }
 
-export default SearchPage;
+export default SearchPage
 
 export const pageQuery = graphql`
   query {
