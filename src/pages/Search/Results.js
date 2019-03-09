@@ -1,57 +1,64 @@
-import React, { Component, Fragment } from 'react'
+import React, {Component, Fragment} from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import {sample} from 'lodash'
 
 import emptyStateImage from '/static/empty-state.png'
 
 import Card from '~components/Card'
-import Link from '~components/Link'
-import Heading, { CONTEXT } from '~components/Heading'
+import Link, {navigate} from '~components/Link'
+import Heading, {CONTEXT} from '~components/Heading'
 import Tag from '~components/Tag'
 import Image from '~components/Image'
 
-const Section = styled.section`
-  padding: 0 16px 40px 16px;
-`
+const Section = styled.section(({theme}) => `
+  padding: 0 ${theme.templateVariables.horizontalPadding};
+`)
 
-const ListItem = styled.li`
-  padding: 8px 16px;
-`
+const ListItem = styled.li(({theme}) => `
+  padding: ${theme.templateVariables.horizontalPadding.multiply(.5)} ${theme.templateVariables.horizontalPadding};
+`)
 
-const EmptyStateHeading = styled(Heading)`
-  font-size: 32px;
+const EmptyStateHeading = styled(Heading)(({theme}) => `
+  font-size: ${theme.typography.baseFontSize.multiply(2)};
   
   & + small {
-    padding: 16px 0;
+    padding: ${theme.templateVariables.verticalPadding} 0;
   }
-`
+`)
 
 const EmptyStateWrapper = styled.div`
   text-align: center;
 `
 
-const EmptyStateImage = styled(Image)`
-  height: 200px;
+const EmptyStateImage = styled(Image)(({theme}) => `
+  height: ${theme.typography.baseFontSize.multiply(12.5)};
   margin: auto;
-  padding: 24px;
-`
-const EmptyStateParagraph = styled.p`
-  padding: 24px 24px;
-`
-
-const EmptyStateLink = styled(Link)(({ theme }) => `
-  text-decoration: underline;
+  padding: ${theme.typography.baseFontSize.multiply(1.5)};
 `)
 
-class Results extends Component {
-  showTrendingTopics = () => {
-    const { setSearchResults } = this.props
+const EmptyStateParagraph = styled.p(({theme}) => {
+  const verticalPadding = theme.templateVariables.verticalPadding.multiply(1.5)
+  const horizontalPadding = theme.templateVariables.horizontalPadding.multiply(1.5)
 
-    setSearchResults(null)
+  return `
+    padding: ${verticalPadding} ${horizontalPadding};
+  `
+})
+
+const EmptyStateLink = styled(Link)`
+  text-decoration: underline;
+`
+
+class Results extends Component {
+  pickTrendingTopic = () => {
+    const {trendingTopics} = this.props
+
+    navigate(`/search?query=${sample(trendingTopics)}`, {replace: true})
   };
 
   renderEmptyState = () => {
-    const { content } = this.props
+    const {content} = this.props
 
     return (
       <EmptyStateWrapper>
@@ -62,7 +69,7 @@ class Results extends Component {
         <EmptyStateParagraph>
           {content.emptyState.parapgraph}
         </EmptyStateParagraph>
-        <EmptyStateLink onClick={() => this.showTrendingTopics()}>
+        <EmptyStateLink onClick={() => this.pickTrendingTopic()}>
           {content.emptyState.cta}
         </EmptyStateLink>
       </EmptyStateWrapper>
@@ -70,7 +77,7 @@ class Results extends Component {
   };
 
   renderTrendingTopics = () => {
-    const { content, trendingTopics } = this.props
+    const {content, trendingTopics} = this.props
 
     return (
       <Fragment>
@@ -93,12 +100,12 @@ class Results extends Component {
   };
 
   renderResultList = () => {
-    const { content, searchResults } = this.props
+    const {content, searchResults} = this.props
 
     return (
       <ul>
         {
-          searchResults.map(({ node }, index) => (
+          searchResults.map(({node}, index) => (
             <li key={index}>
               <Card post={node} content={content} tagHistoryReplace/>
             </li>
@@ -108,8 +115,8 @@ class Results extends Component {
     )
   };
 
-  render () {
-    const { searchResults } = this.props
+  render() {
+    const {searchResults} = this.props
 
     const isFirstSearch = !searchResults
     const hasResults = searchResults && !!searchResults.length
