@@ -40,16 +40,40 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(
+      limit: 5, 
+      sort: {
+        fields: [frontmatter___date], order: DESC
+      }
+    ) {
       edges {
         node {
-          excerpt
           fields {
             slug
+            readingTime {
+              minutes
+            }
           }
           frontmatter {
-            date(formatString: "MMMM DD, YYYY")
             title
+            date(formatString: "MMMM DD, YYYY")
+            tags
+            coverImage {
+              childImageSharp {
+                fixed(width:112, height:112) {
+                  width
+                  height
+                  base64
+                  tracedSVG
+                  aspectRatio
+                  src
+                  srcSet
+                  srcWebp
+                  srcSetWebp
+                  originalName
+                }
+              }
+            }
           }
         }
       }
