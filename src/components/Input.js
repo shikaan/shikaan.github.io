@@ -1,11 +1,10 @@
-import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import { Size } from '~theme'
 
 const borderWidth = new Size(0.25)
 
-const StyledInput = styled.input(({ theme }) => `
+const Input = styled.input(({ theme }) => `
   display: block;
   width: 100%;
   background: transparent;
@@ -19,13 +18,5 @@ const StyledInput = styled.input(({ theme }) => `
     color: ${theme.color.darkGrey}
   }
 `)
-
-class Input extends Component {
-  render () {
-    const { inputRef: ref, ...rest } = this.props
-
-    return <StyledInput ref={ref} {...rest} />
-  }
-}
 
 export default Input

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link as GatsbyLink, navigate as gastbyNavigate } from 'gatsby'
+import {Link as GatsbyLink, navigate as gastbyNavigate} from 'gatsby'
 import styled from 'styled-components'
 
 const UnstyledButton = styled.button`
@@ -12,20 +12,22 @@ const UnstyledButton = styled.button`
   &:focus {outline:0;}
 `
 
-const Link = ({ href, onClick, children, ...rest }) => {
+const UnstyledLink = ({href, onClick, children, ...rest}) => {
   if (href) {
-    return React.createElement('a', { children, href, ...rest })
+    return React.createElement('a', {children, href, ...rest})
   } else if (onClick) {
-    return React.createElement(UnstyledButton, { children, onClick, ...rest })
+    return React.createElement(UnstyledButton, {children, onClick, ...rest})
   }
 
-  return React.createElement(GatsbyLink, { children, ...rest })
+  return React.createElement(GatsbyLink, {children, ...rest})
 }
 
-export default styled(Link)(({ theme }) => `
+export const navigate = gastbyNavigate
+
+const Link = styled(UnstyledLink)(({theme}) => `
   font-family: ${theme.typography.primaryFont.fontFamily};
   font-weight: 700;
   text-decoration: none;
 `)
 
-export const navigate = gastbyNavigate
+export default Link

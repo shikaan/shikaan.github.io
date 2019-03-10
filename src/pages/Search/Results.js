@@ -107,12 +107,26 @@ class Results extends Component {
     return (
       <ul>
         {
-          searchResults.map(({node}, index) => (
-            <li key={index}>
-              <Card post={node} content={content} tagHistoryReplace/>
-              {!isLastIndex(searchResults, index) && <Divider/>}
-            </li>
-          ))
+          searchResults.map(({node: article}, index) => {
+            const {fields, frontmatter} = article
+            const readingTime = Math.ceil(fields.readingTime.minutes)
+            const overline = `${frontmatter.date} – ${readingTime} ${content.shared.readingTime}`
+
+            return (
+              <li key={index}>
+                <Card
+                  description={frontmatter.description}
+                  image={frontmatter.coverImage.childImageSharp}
+                  overline={overline}
+                  slug={fields.slug}
+                  tags={frontmatter.tags.slice(0,2)}
+                  title={frontmatter.title}
+                  replaceOnTagNavigate
+                />
+                {!isLastIndex(searchResults, index) && <Divider/>}
+              </li>
+            )
+          })
         }
       </ul>
     )

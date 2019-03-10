@@ -1,11 +1,11 @@
 const path = require(`path`)
-const { createFilePath } = require(`gatsby-source-filesystem`)
+const {createFilePath} = require(`gatsby-source-filesystem`)
 
 const getPagePath = (page) => {
   return path.resolve(`./src/pages/${page}/index.js`)
 }
 
-const createArticlesPages = async ({ graphql, actions }) => {
+const createArticlesPages = async ({graphql, actions}) => {
   const readArticlePageComponent = getPagePath('ReadArticle')
 
   const result = await graphql(
@@ -17,6 +17,7 @@ const createArticlesPages = async ({ graphql, actions }) => {
         ) {
           edges {
             node {
+              id
               fields {
                 slug
                 readingTime {
@@ -52,9 +53,13 @@ const createArticlesPages = async ({ graphql, actions }) => {
       }
     })
   })
+
+  return {
+    featuredArticleId: posts[0].node.id
+  }
 }
 
-const createSearchPage = async ({ actions }) => {
+const createSearchPage = async ({actions}) => {
   const searchPageComponent = getPagePath('Search')
 
   actions.createPage({
@@ -63,18 +68,34 @@ const createSearchPage = async ({ actions }) => {
   })
 }
 
-exports.createPages = ({ graphql, actions }) => {
-  return Promise.all([
-    createArticlesPages({ graphql, actions }),
-    createSearchPage({ actions })
-  ])
+const createHomePage = async ({actions, featuredArticleId}) => {
+  const homePageComponent = getPagePath('Home')
+
+  actions.createPage({
+    path: '/home',
+    component: homePageComponent,
+    context: {
+      featuredArticleId
+    }
+  })
 }
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
+exports.createPages = ({graphql, actions}) => {
+  return Promise
+    .all([
+      createArticlesPages({graphql, actions}),
+      createSearchPage({actions})
+    ])
+    .then(([{featuredArticleId}]) => {
+      return createHomePage({actions, featuredArticleId})
+    })
+}
+
+exports.onCreateNode = ({node, actions, getNode}) => {
+  const {createNodeField} = actions
 
   if (node.internal.type === `MarkdownRemark`) {
-    const slug = createFilePath({ node, getNode })
+    const slug = createFilePath({node, getNode})
     const relativeFilePath = path.relative(__dirname, node.fileAbsolutePath)
 
     createNodeField({
