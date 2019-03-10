@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import styled from "styled-components";
 
 import Card, {CONTEXT} from "~components/Card";
+import Divider from "~components/Divider";
 
 const Section = styled.section(({theme}) => `
-  padding: 0 ${theme.templateVariables.verticalPadding} ${theme.templateVariables.horizontalPadding};
+  padding: 0 ${theme.templateVariables.verticalPadding};
 `)
 
 class FeaturedArticle extends Component {
@@ -27,6 +28,7 @@ class FeaturedArticle extends Component {
           tags={frontmatter.tags.slice(0,2)}
           title={frontmatter.title}
         />
+        <Divider/>
       </Section>
     );
   }

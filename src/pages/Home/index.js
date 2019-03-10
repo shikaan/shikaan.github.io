@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {graphql} from 'gatsby'
 
 import {en as shared} from '/static/content/_shared'
@@ -10,11 +10,11 @@ import OtherArticles from "./OtherArticles";
 
 const content = {shared}
 
-class HomePage extends React.Component {
+class HomePage extends Component {
   render() {
     const {data} = this.props
     const featuredArticle = data.featuredArticle
-    const otherArticles = data.otherArticles.edges
+    const otherArticles = data.otherArticles.edges.map(i => i.node)
 
     return (
       <Template>

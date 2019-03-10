@@ -52,7 +52,7 @@ class RelatedArticles extends Component {
                     tags={frontmatter.tags.slice(0,2)}
                     title={frontmatter.title}
                   />
-                  {isLastIndex(list, index) && <Divider/>}
+                  {!isLastIndex(list, index) && <Divider/>}
                 </ListItem>
               )
             })
