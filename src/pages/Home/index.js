@@ -1,31 +1,25 @@
 import React from 'react'
-import {graphql, Link} from 'gatsby'
+import {graphql} from 'gatsby'
+
+import {en as shared} from '/static/content/_shared'
 
 import Template from '~templates/Main'
+
+import FeaturedArticle from "./FeaturedArticle";
+import OtherArticles from "./OtherArticles";
+
+const content = {shared}
 
 class HomePage extends React.Component {
   render() {
     const {data} = this.props
-
-    const siteTitle = data.site.siteMetadata.title
-    const posts = data.allMarkdownRemark.edges
+    const featuredArticle = data.featuredArticle
+    const otherArticles = data.otherArticles.edges
 
     return (
-      <Template location={this.props.location} title={siteTitle}>
-        {posts.map(({node}) => {
-          const title = node.frontmatter.title || node.fields.slug
-          return (
-            <div key={node.fields.slug}>
-              <h3>
-                <Link style={{boxShadow: `none`}} to={node.fields.slug}>
-                  {title}
-                </Link>
-              </h3>
-              <small>{node.frontmatter.date}</small>
-              <p dangerouslySetInnerHTML={{__html: node.excerpt}}/>
-            </div>
-          )
-        })}
+      <Template>
+        <FeaturedArticle featuredArticle={featuredArticle} content={content}/>
+        <OtherArticles otherArticles={otherArticles} content={content}/>
       </Template>
     )
   }
@@ -34,16 +28,51 @@ class HomePage extends React.Component {
 export default HomePage
 
 export const pageQuery = graphql`
-  query {
+  query ($featuredArticleId: String!) {
     site {
       siteMetadata {
         title
       }
     }
-    allMarkdownRemark(
+    featuredArticle: markdownRemark(id: {eq: $featuredArticleId}) {
+      fields {
+        slug
+        readingTime {
+          minutes
+        }
+      }
+      frontmatter {
+        title
+        date(formatString: "MMMM DD, YYYY")
+        description
+        tags
+        coverImage {
+          childImageSharp {
+            fluid {
+              base64
+              tracedSVG
+              aspectRatio
+              src
+              srcSet
+              srcWebp
+              srcSetWebp
+              sizes
+              originalImg
+              originalName
+              presentationWidth
+              presentationHeight
+            }
+          }
+        }
+      }
+    }
+    otherArticles: allMarkdownRemark(
       limit: 5, 
       sort: {
         fields: [frontmatter___date], order: DESC
+      },
+      filter: {
+        id: {ne: $featuredArticleId}
       }
     ) {
       edges {
