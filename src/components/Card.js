@@ -2,14 +2,18 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
+import {Size} from "~theme";
+
 import Link from '~components/Link'
 import Image from '~components/Image'
 import Heading from '~components/Heading'
 import Tag from '~components/Tag'
 import Overline from '~components/Overline'
 
+const padding = new Size(2)
+
 const Container = styled.div`
-  padding: 16px 0;
+  padding: ${padding} 0;
 `
 
 const Body = styled.div(({theme, context}) => `
@@ -17,9 +21,6 @@ const Body = styled.div(({theme, context}) => `
   grid-gap: ${theme.typography.baseFontSize};
   grid-template-columns: ${
     context !== CONTEXT.FEATURED && `1fr 2fr`
-  };
-  grid-template-rows: ${
-    context === CONTEXT.FEATURED && `1fr 1fr`
   };
 `)
 
@@ -44,6 +45,10 @@ const ClickableArea = styled(Link)(() => `
   flex: 1
 `)
 
+const CardHeading = styled(Heading)(() => `
+  padding-bottom: ${padding};
+`)
+
 export const CONTEXT = {
   FEATURED: 'featured'
 }
@@ -53,8 +58,8 @@ export default class Card extends Component {
     const {context, description, title} = this.props
 
     return context === CONTEXT.FEATURED
-      ? <Heading level={1} sub={description} children={title}/>
-      : <Heading level={3} children={title}/>
+      ? <CardHeading level={1} sub={description} children={title}/>
+      : <CardHeading level={3} children={title}/>
   }
 
   renderTags = () => {
@@ -74,13 +79,13 @@ export default class Card extends Component {
   }
 
   render() {
-    const {slug, image, overline, context} = this.props;
+    const {slug, image, overline, context, title} = this.props;
 
     return (
       <Container>
         <Body context={context}>
           <ImageWrapper to={slug}>
-            <Image {...image}/>
+            <Image {...image} alt={title}/>
           </ImageWrapper>
           <Text>
             <ClickableArea to={slug}>

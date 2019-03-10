@@ -24,7 +24,7 @@ class FeaturedArticle extends Component {
           image={frontmatter.coverImage.childImageSharp}
           overline={overline}
           slug={fields.slug}
-          tags={frontmatter.tags}
+          tags={frontmatter.tags.slice(0,2)}
           title={frontmatter.title}
         />
       </Section>
