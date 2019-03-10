@@ -1,7 +1,6 @@
-import React from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import {get} from 'lodash'
 
 import Link from '~components/Link'
 import Image from '~components/Image'
@@ -13,10 +12,15 @@ const Container = styled.div`
   padding: 16px 0;
 `
 
-const Body = styled.div(({theme}) => `
+const Body = styled.div(({theme, context}) => `
   display: grid;
   grid-gap: ${theme.typography.baseFontSize};
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: ${
+    context !== CONTEXT.FEATURED && `1fr 2fr`
+  };
+  grid-template-rows: ${
+    context === CONTEXT.FEATURED && `1fr 1fr`
+  };
 `)
 
 const ImageWrapper = styled(Link)(() => `
@@ -40,45 +44,71 @@ const ClickableArea = styled(Link)(() => `
   flex: 1
 `)
 
-const Card = ({post, content, tagHistoryReplace = false}) => {
-  const readingTime = Math.ceil(post.fields.readingTime.minutes)
-  const image = get(post, 'frontmatter.coverImage.childImageSharp.fixed')
-
-  return (
-    <Container>
-      <Body>
-        <ImageWrapper to={post.fields.slug}>
-          <Image fixed={image}/>
-        </ImageWrapper>
-        <Text>
-          <ClickableArea to={post.fields.slug}>
-            <Overline>
-              {post.frontmatter.date} – {readingTime} {content.shared.readingTime}
-            </Overline>
-
-            <Heading level={3}>
-              {post.frontmatter.title}
-            </Heading>
-          </ClickableArea>
-
-          <Tags>
-            {
-              post.frontmatter.tags
-                .slice(0, 2).map(i => (
-                <Tag key={i} to={`/search?query=${i}`} replace={tagHistoryReplace}>
-                  {i}
-                </Tag>
-              ))
-            }
-          </Tags>
-        </Text>
-      </Body>
-    </Container>
-  )
+export const CONTEXT = {
+  FEATURED: 'featured'
 }
+
+export default class Card extends Component {
+  renderCardHeading = () => {
+    const {context, description, title} = this.props
+
+    return context === CONTEXT.FEATURED
+      ? <Heading level={1} sub={description} children={title}/>
+      : <Heading level={3} children={title}/>
+  }
+
+  renderTags = () => {
+    const {tags, replaceOnTagNavigate} = this.props
+
+    return (
+      <Tags>
+        {
+          tags.map(i => (
+            <Tag key={i} to={`/search?query=${i}`} replace={replaceOnTagNavigate}>
+              {i}
+            </Tag>
+          ))
+        }
+      </Tags>
+    )
+  }
+
+  render() {
+    const {slug, image, overline, context} = this.props;
+
+    return (
+      <Container>
+        <Body context={context}>
+          <ImageWrapper to={slug}>
+            <Image {...image}/>
+          </ImageWrapper>
+          <Text>
+            <ClickableArea to={slug}>
+              <Overline>
+                {overline}
+              </Overline>
+
+              {this.renderCardHeading()}
+            </ClickableArea>
+
+            {this.renderTags()}
+          </Text>
+        </Body>
+      </Container>
+    )
+  }
+}
+
+
+Card.defaultProps = {tags: [], replaceOnTagNavigate: false}
 
 Card.propTypes = {
-  post: PropTypes.shape({})
+  slug: PropTypes.string,
+  image: PropTypes.shape({}),
+  title: PropTypes.string,
+  description: PropTypes.string,
+  overline: PropTypes.string,
+  replaceOnTagNavigate: PropTypes.bool,
+  tags: PropTypes.arrayOf(PropTypes.string),
+  context: PropTypes.oneOf(Object.values(CONTEXT))
 }
-
-export default Card
