@@ -53,7 +53,7 @@ export const CONTEXT = {
   FEATURED: 'featured'
 }
 
-export default class Card extends PureComponent {
+class Card extends PureComponent {
   renderCardHeading = () => {
     const {context, description, title} = this.props
 
@@ -117,3 +117,5 @@ Card.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.string),
   context: PropTypes.oneOf(Object.values(CONTEXT))
 }
+
+export default Card;

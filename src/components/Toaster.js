@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import {createPortal} from 'react-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
@@ -46,7 +46,7 @@ const Toaster = styled.div(({ theme }) => `
 `)
 
 const ToasterPortal = ({ children, visible }) => {
-  return ReactDOM.createPortal(
+  return createPortal(
     <Wrapper visible={visible}>
       <Toaster>{children}</Toaster>
     </Wrapper>,

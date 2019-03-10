@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import Link from '~components/Link'
 
-export default styled(Link)(({ theme }) => `
+const Tag = styled(Link)(({ theme }) => `
   font-family: ${theme.typography.primaryFont.fontFamily};
   font-size: ${theme.typography.baseFontSize.multiply(0.75)};
   font-weight: 700;
@@ -17,3 +17,5 @@ export default styled(Link)(({ theme }) => `
     content: '#'
   }
 `)
+
+export default Tag;

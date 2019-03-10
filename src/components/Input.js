@@ -4,7 +4,7 @@ import { Size } from '~theme'
 
 const borderWidth = new Size(0.25)
 
-const StyledInput = styled.input(({ theme }) => `
+const Input = styled.input(({ theme }) => `
   display: block;
   width: 100%;
   background: transparent;
@@ -19,4 +19,4 @@ const StyledInput = styled.input(({ theme }) => `
   }
 `)
 
-export default StyledInput
+export default Input
