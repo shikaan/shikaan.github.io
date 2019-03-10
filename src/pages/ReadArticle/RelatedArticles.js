@@ -37,12 +37,25 @@ class RelatedArticles extends Component {
         </RelatedArticlesHeading>
         <UnorderedList>
           {
-            list.map(({node}, index) => (
-              <ListItem key={index}>
-                <Card post={node} content={content}/>
-                {isLastIndex(list, index) && <Divider/>}
-              </ListItem>
-            ))
+            list.map(({node: article}, index) => {
+              const {fields, frontmatter} = article
+              const readingTime = Math.ceil(fields.readingTime.minutes)
+              const overline = `${frontmatter.date} – ${readingTime} ${content.shared.readingTime}`
+
+              return (
+                <ListItem key={index}>
+                  <Card
+                    description={frontmatter.description}
+                    image={frontmatter.coverImage.childImageSharp}
+                    overline={overline}
+                    slug={fields.slug}
+                    tags={frontmatter.tags.slice(0,2)}
+                    title={frontmatter.title}
+                  />
+                  {isLastIndex(list, index) && <Divider/>}
+                </ListItem>
+              )
+            })
           }
         </UnorderedList>
       </Section>
