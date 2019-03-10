@@ -42,8 +42,6 @@ const createArticlesPages = async ({graphql, actions}) => {
   const posts = result.data.allMarkdownRemark.edges
 
   posts.forEach((post) => {
-    console.log(post)
-
     actions.createPage({
       path: post.node.fields.slug,
       component: readArticlePageComponent,
