@@ -99,7 +99,7 @@ class Newsletter extends Component {
         <NewsletterForm onSubmit={this.handleSubscribe}>
           <InputWrapper>
             <Input
-              inputRef={this.inputRef}
+              ref={this.inputRef}
               type="email"
               required
               placeholder={content.newsletter.inputPlaceholder}

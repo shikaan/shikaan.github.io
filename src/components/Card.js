@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
@@ -53,7 +53,7 @@ export const CONTEXT = {
   FEATURED: 'featured'
 }
 
-export default class Card extends Component {
+export default class Card extends PureComponent {
   renderCardHeading = () => {
     const {context, description, title} = this.props
 

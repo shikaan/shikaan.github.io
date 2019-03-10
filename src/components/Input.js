@@ -1,4 +1,3 @@
-import React, { Component } from 'react'
 import styled from 'styled-components'
 
 import { Size } from '~theme'
@@ -20,12 +19,4 @@ const StyledInput = styled.input(({ theme }) => `
   }
 `)
 
-class Input extends Component {
-  render () {
-    const { inputRef: ref, ...rest } = this.props
-
-    return <StyledInput ref={ref} {...rest} />
-  }
-}
-
-export default Input
+export default StyledInput
