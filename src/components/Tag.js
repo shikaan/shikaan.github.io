@@ -1,8 +1,11 @@
+import React from 'react';
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
+import {camelCase} from 'lodash'
 
 import Link from '~components/Link'
 
-const Tag = styled(Link)(({ theme }) => `
+const StyledLink = styled(Link)(({theme}) => `
   font-family: ${theme.typography.primaryFont.fontFamily};
   font-size: ${theme.typography.baseFontSize.multiply(0.75)};
   font-weight: 700;
@@ -17,5 +20,13 @@ const Tag = styled(Link)(({ theme }) => `
     content: '#'
   }
 `)
+
+const Tag = ({children, ...rest}) => {
+  return <StyledLink children={camelCase(children)} {...rest} />
+}
+
+Tag.propTypes = {
+  children: PropTypes.string
+}
 
 export default Tag;
