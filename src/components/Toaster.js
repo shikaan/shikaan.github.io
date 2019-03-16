@@ -3,11 +3,11 @@ import {createPortal} from 'react-dom'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { Size } from '~theme'
+import {Size} from '~theme'
 
 const toasterMaxWidth = new Size(38)
 
-const Wrapper = styled.div(({ theme, visible }) => `
+const Wrapper = styled.div(({theme, visible}) => `
   position: fixed;
   bottom: 6vh;
   width: 100%;
@@ -31,7 +31,7 @@ const handleVisibility = (theme, visible) => {
   return visible ? visibleStyle : invisibleStyle
 }
 
-const Toaster = styled.div(({ theme }) => `
+const Toaster = React.memo(styled.div(({theme}) => `
   background: ${theme.color.darkGrey};
   color: ${theme.color.white};
   border-radius: 2px;
@@ -43,12 +43,12 @@ const Toaster = styled.div(({ theme }) => `
   line-height: ${new Size(4)};
   max-width: ${toasterMaxWidth};
   margin: auto;
-`)
+`))
 
-const ToasterPortal = ({ children, visible }) => {
+const ToasterPortal = ({children, visible, theme}) => {
   return createPortal(
-    <Wrapper visible={visible}>
-      <Toaster>{children}</Toaster>
+    <Wrapper theme={theme} visible={visible}>
+      <Toaster theme={theme}>{children}</Toaster>
     </Wrapper>,
     document.body
   )
