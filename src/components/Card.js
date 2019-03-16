@@ -9,6 +9,7 @@ import Image from '~components/Image'
 import Heading from '~components/Heading'
 import Tag from '~components/Tag'
 import Overline from '~components/Overline'
+import GatsbyImage from "gatsby-image";
 
 const padding = new Size(2)
 
@@ -19,9 +20,7 @@ const Container = styled.div`
 const Body = styled.div(({theme, context}) => `
   display: grid;
   grid-gap: ${theme.typography.baseFontSize};
-  grid-template-columns: ${
-    context !== CONTEXT.FEATURED && `1fr 2fr`
-  };
+  grid-template-columns: ${context !== CONTEXT.FEATURED && `1fr 2fr`};
 `)
 
 const ImageWrapper = styled(Link)(() => `
@@ -69,7 +68,7 @@ class Card extends PureComponent {
       <Tags>
         {
           tags.map(i => (
-            <Tag key={i} to={`/search?query=${i}`} replace={replaceOnTagNavigate}>
+            <Tag key={i} to={`/search?query=${i}`} replace={replaceOnTagNavigate ? true : undefined}>
               {i}
             </Tag>
           ))
@@ -84,20 +83,20 @@ class Card extends PureComponent {
     return (
       <Container>
         <Body context={context}>
-          <ImageWrapper to={slug}>
-            <Image {...image} alt={title}/>
-          </ImageWrapper>
-          <Text>
-            <ClickableArea to={slug}>
-              <Overline>
-                {overline}
-              </Overline>
+        <ImageWrapper to={slug}>
+          <Image {...image} alt={title}/>
+        </ImageWrapper>
+        <Text>
+          <ClickableArea to={slug}>
+            <Overline>
+              {overline}
+            </Overline>
 
-              {this.renderCardHeading()}
-            </ClickableArea>
+            {this.renderCardHeading()}
+          </ClickableArea>
 
-            {this.renderTags()}
-          </Text>
+          {this.renderTags()}
+        </Text>
         </Body>
       </Container>
     )
@@ -109,7 +108,7 @@ Card.defaultProps = {tags: [], replaceOnTagNavigate: false}
 
 Card.propTypes = {
   slug: PropTypes.string,
-  image: PropTypes.shape({}),
+  image: PropTypes.shape(GatsbyImage.propTypes),
   title: PropTypes.string,
   description: PropTypes.string,
   overline: PropTypes.string,
