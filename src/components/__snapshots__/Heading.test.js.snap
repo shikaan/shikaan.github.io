@@ -6,6 +6,12 @@ exports[`Heading does not render sub if not provided 1`] = `
 </Fragment>
 `;
 
+exports[`Heading renders correctly with CONTEXT.DISPLAY 1`] = `
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
+`;
+
 exports[`Heading renders sub if provided 1`] = `
 <Fragment>
   <styled.h1 />

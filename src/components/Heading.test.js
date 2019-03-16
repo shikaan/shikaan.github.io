@@ -6,6 +6,7 @@ import themeMock from '~theme'
 
 import Heading from "./Heading.js";
 import {getTagNameByHTMLString, shallowWithTheme} from "../../test.utils";
+import {CONTEXT} from "./Heading";
 
 describe('Heading', () => {
   it('renders sub if provided', () => {
@@ -26,5 +27,11 @@ describe('Heading', () => {
 
       expect(getTagNameByHTMLString(wrapper.html())).toEqual(`h${i}`)
     }
+  })
+
+  it('renders correctly with CONTEXT.DISPLAY', () => {
+    const wrapper = shallowWithTheme(<Heading context={CONTEXT.DISPLAY} />, themeMock)
+
+    expect(wrapper).toMatchSnapshot()
   })
 })
