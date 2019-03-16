@@ -45,10 +45,10 @@ const Toaster = React.memo(styled.div(({theme}) => `
   margin: auto;
 `))
 
-const ToasterPortal = ({children, visible, theme}) => {
+const ToasterPortal = ({children, visible}) => {
   return createPortal(
-    <Wrapper theme={theme} visible={visible}>
-      <Toaster theme={theme}>{children}</Toaster>
+    <Wrapper visible={visible}>
+      <Toaster>{children}</Toaster>
     </Wrapper>,
     document.body
   )

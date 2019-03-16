@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Heading does not render sub if not provided 1`] = `
+<Fragment>
+  <styled.h1 />
+</Fragment>
+`;
+
+exports[`Heading renders sub if provided 1`] = `
+<Fragment>
+  <styled.h1 />
+  <styled.small>
+    sub
+  </styled.small>
+</Fragment>
+`;

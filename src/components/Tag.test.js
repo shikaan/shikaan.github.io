@@ -30,7 +30,7 @@ describe("Tag", () => {
         <Tag theme={themeMock}>text</Tag>
       )
 
-      expect(wrapper.text()).toEqual('#Text')
+      expect(wrapper).toMatchSnapshot()
     })
 
     it('more words with spaces', () => {
@@ -38,7 +38,7 @@ describe("Tag", () => {
         <Tag theme={themeMock}>text one</Tag>
       )
 
-      expect(wrapper.text()).toEqual('#TextOne')
+      expect(wrapper).toMatchSnapshot()
     })
 
     it('more words with dashes', () => {
@@ -46,7 +46,7 @@ describe("Tag", () => {
         <Tag theme={themeMock}>text-one</Tag>
       )
 
-      expect(wrapper.text()).toEqual('#TextOne')
+      expect(wrapper).toMatchSnapshot()
     })
 
     it('more words with underscores', () => {
@@ -54,7 +54,7 @@ describe("Tag", () => {
         <Tag theme={themeMock}>text_one</Tag>
       )
 
-      expect(wrapper.text()).toEqual('#TextOne')
+      expect(wrapper).toMatchSnapshot()
     })
   })
 })

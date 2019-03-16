@@ -32,6 +32,6 @@ describe('Link', () => {
     const children = 'text'
     const wrapper = mount(<Link theme={themeMock} to={"somewhere-else"} children={children} />)
 
-    expect(wrapper.text()).toEqual(children)
+    expect(wrapper).toMatchSnapshot()
   })
 })

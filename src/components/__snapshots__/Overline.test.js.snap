@@ -24,5 +24,7 @@ exports[`Overline renders correctly 1`] = `
     }
   }
   forwardedRef={null}
-/>
+>
+  text
+</StyledComponent>
 `;

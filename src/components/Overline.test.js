@@ -6,7 +6,7 @@ import Overline from "./Overline";
 
 describe('Overline', () => {
   it('renders correctly', () => {
-    const wrapper = shallow(<Overline/>)
+    const wrapper = shallow(<Overline>text</Overline>)
 
     expect(wrapper).toMatchSnapshot()
   })

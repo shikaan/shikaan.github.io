@@ -58,3 +58,239 @@ exports[`Tag renders correctly 1`] = `
   #Text
 </Styled(Styled(UnstyledLink))>
 `;
+
+exports[`Tag renders text in PascalCase prefixed by # more words with dashes 1`] = `
+<Styled(Styled(UnstyledLink))
+  theme={
+    Object {
+      "breakpoint": Object {
+        "lg": "1184px",
+        "md": "980px",
+        "mg": "1920px",
+        "sm": "768px",
+        "xl": "1366px",
+        "xs": "480px",
+      },
+      "color": Object {
+        "black": "rgba(0, 0, 0, .82)",
+        "coffee": "rgba(145, 107, 85, 1)",
+        "darkGrey": "rgba(79, 79, 79, 1)",
+        "grey": "rgba(0, 0, 0, .32)",
+        "lightCoffee": "rgba(249, 245, 242, 1)",
+        "lightGrey": "rgba(0, 0, 0, .05)",
+        "mediumGrey": "rgba(0, 0, 0, .38)",
+        "paleGrey": "rgba(242, 242, 242, 1)",
+        "white": "rgba(255, 255, 255, 1)",
+      },
+      "typography": Object {
+        "__esModule": true,
+        "baseFontSize": Size {
+          "_rank": 2,
+        },
+        "baseLineHeight": "normal",
+        "primaryFont": Object {
+          "fontFamily": "Merriweather, Georgia, serif",
+          "hover": "rgba(0, 0, 0, .82)",
+        },
+        "secondaryFont": Object {
+          "fontFamily": "Lato, Geneva, Tahoma, sans-serif",
+          "hover": "rgba(0, 0, 0, .82)",
+        },
+      },
+      "zIndexRank": Object {
+        "0": "0",
+        "1": "100",
+        "2": "200",
+        "3": "300",
+        "4": "400",
+        "5": "500",
+        "6": "600",
+        "7": "700",
+        "8": "800",
+        "9": "900",
+        "bottom": "-100",
+        "top": "1000",
+      },
+    }
+  }
+>
+  #TextOne
+</Styled(Styled(UnstyledLink))>
+`;
+
+exports[`Tag renders text in PascalCase prefixed by # more words with spaces 1`] = `
+<Styled(Styled(UnstyledLink))
+  theme={
+    Object {
+      "breakpoint": Object {
+        "lg": "1184px",
+        "md": "980px",
+        "mg": "1920px",
+        "sm": "768px",
+        "xl": "1366px",
+        "xs": "480px",
+      },
+      "color": Object {
+        "black": "rgba(0, 0, 0, .82)",
+        "coffee": "rgba(145, 107, 85, 1)",
+        "darkGrey": "rgba(79, 79, 79, 1)",
+        "grey": "rgba(0, 0, 0, .32)",
+        "lightCoffee": "rgba(249, 245, 242, 1)",
+        "lightGrey": "rgba(0, 0, 0, .05)",
+        "mediumGrey": "rgba(0, 0, 0, .38)",
+        "paleGrey": "rgba(242, 242, 242, 1)",
+        "white": "rgba(255, 255, 255, 1)",
+      },
+      "typography": Object {
+        "__esModule": true,
+        "baseFontSize": Size {
+          "_rank": 2,
+        },
+        "baseLineHeight": "normal",
+        "primaryFont": Object {
+          "fontFamily": "Merriweather, Georgia, serif",
+          "hover": "rgba(0, 0, 0, .82)",
+        },
+        "secondaryFont": Object {
+          "fontFamily": "Lato, Geneva, Tahoma, sans-serif",
+          "hover": "rgba(0, 0, 0, .82)",
+        },
+      },
+      "zIndexRank": Object {
+        "0": "0",
+        "1": "100",
+        "2": "200",
+        "3": "300",
+        "4": "400",
+        "5": "500",
+        "6": "600",
+        "7": "700",
+        "8": "800",
+        "9": "900",
+        "bottom": "-100",
+        "top": "1000",
+      },
+    }
+  }
+>
+  #TextOne
+</Styled(Styled(UnstyledLink))>
+`;
+
+exports[`Tag renders text in PascalCase prefixed by # more words with underscores 1`] = `
+<Styled(Styled(UnstyledLink))
+  theme={
+    Object {
+      "breakpoint": Object {
+        "lg": "1184px",
+        "md": "980px",
+        "mg": "1920px",
+        "sm": "768px",
+        "xl": "1366px",
+        "xs": "480px",
+      },
+      "color": Object {
+        "black": "rgba(0, 0, 0, .82)",
+        "coffee": "rgba(145, 107, 85, 1)",
+        "darkGrey": "rgba(79, 79, 79, 1)",
+        "grey": "rgba(0, 0, 0, .32)",
+        "lightCoffee": "rgba(249, 245, 242, 1)",
+        "lightGrey": "rgba(0, 0, 0, .05)",
+        "mediumGrey": "rgba(0, 0, 0, .38)",
+        "paleGrey": "rgba(242, 242, 242, 1)",
+        "white": "rgba(255, 255, 255, 1)",
+      },
+      "typography": Object {
+        "__esModule": true,
+        "baseFontSize": Size {
+          "_rank": 2,
+        },
+        "baseLineHeight": "normal",
+        "primaryFont": Object {
+          "fontFamily": "Merriweather, Georgia, serif",
+          "hover": "rgba(0, 0, 0, .82)",
+        },
+        "secondaryFont": Object {
+          "fontFamily": "Lato, Geneva, Tahoma, sans-serif",
+          "hover": "rgba(0, 0, 0, .82)",
+        },
+      },
+      "zIndexRank": Object {
+        "0": "0",
+        "1": "100",
+        "2": "200",
+        "3": "300",
+        "4": "400",
+        "5": "500",
+        "6": "600",
+        "7": "700",
+        "8": "800",
+        "9": "900",
+        "bottom": "-100",
+        "top": "1000",
+      },
+    }
+  }
+>
+  #TextOne
+</Styled(Styled(UnstyledLink))>
+`;
+
+exports[`Tag renders text in PascalCase prefixed by # one word 1`] = `
+<Styled(Styled(UnstyledLink))
+  theme={
+    Object {
+      "breakpoint": Object {
+        "lg": "1184px",
+        "md": "980px",
+        "mg": "1920px",
+        "sm": "768px",
+        "xl": "1366px",
+        "xs": "480px",
+      },
+      "color": Object {
+        "black": "rgba(0, 0, 0, .82)",
+        "coffee": "rgba(145, 107, 85, 1)",
+        "darkGrey": "rgba(79, 79, 79, 1)",
+        "grey": "rgba(0, 0, 0, .32)",
+        "lightCoffee": "rgba(249, 245, 242, 1)",
+        "lightGrey": "rgba(0, 0, 0, .05)",
+        "mediumGrey": "rgba(0, 0, 0, .38)",
+        "paleGrey": "rgba(242, 242, 242, 1)",
+        "white": "rgba(255, 255, 255, 1)",
+      },
+      "typography": Object {
+        "__esModule": true,
+        "baseFontSize": Size {
+          "_rank": 2,
+        },
+        "baseLineHeight": "normal",
+        "primaryFont": Object {
+          "fontFamily": "Merriweather, Georgia, serif",
+          "hover": "rgba(0, 0, 0, .82)",
+        },
+        "secondaryFont": Object {
+          "fontFamily": "Lato, Geneva, Tahoma, sans-serif",
+          "hover": "rgba(0, 0, 0, .82)",
+        },
+      },
+      "zIndexRank": Object {
+        "0": "0",
+        "1": "100",
+        "2": "200",
+        "3": "300",
+        "4": "400",
+        "5": "500",
+        "6": "600",
+        "7": "700",
+        "8": "800",
+        "9": "900",
+        "bottom": "-100",
+        "top": "1000",
+      },
+    }
+  }
+>
+  #Text
+</Styled(Styled(UnstyledLink))>
+`;
