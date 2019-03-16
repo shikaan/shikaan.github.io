@@ -1,10 +1,5 @@
-import React from "react";
-import {ThemeProvider} from "styled-components";
+import cheerio from "cheerio";
 
-import baseTheme from '~theme'
-
-export const renderWithTheme = (comopnent, theme = baseTheme) => {
-  return <ThemeProvider theme={theme} children={comopnent}/>
+export const getTagNameByHTMLString = (htmlString) => {
+  return cheerio.parseHTML(htmlString)[0].name
 }
-
-export const getFirstChild = ({root}) => root.children[0]

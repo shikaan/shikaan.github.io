@@ -12,14 +12,14 @@ const UnstyledButton = styled.button`
   &:focus {outline:0;}
 `
 
-const UnstyledLink = ({href, onClick, children, ...rest}) => {
+const UnstyledLink = ({href, onClick, ...rest}) => {
   if (href) {
-    return React.createElement('a', {children, href, ...rest})
+    return React.createElement('a', {href, ...rest})
   } else if (onClick) {
-    return React.createElement(UnstyledButton, {children, onClick, ...rest})
+    return React.createElement(UnstyledButton, {onClick, ...rest})
   }
 
-  return React.createElement(GatsbyLink, {children, ...rest})
+  return React.createElement(GatsbyLink, rest)
 }
 
 export const navigate = gastbyNavigate

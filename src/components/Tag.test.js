@@ -5,6 +5,7 @@ import {shallow} from "enzyme";
 import Tag from "./Tag"
 import themeMock from '~theme'
 import Link from "./Link"
+import {getTagNameByHTMLString} from "../../test.utils";
 
 describe("Tag", () => {
   it("renders correctly", () => {
@@ -20,7 +21,7 @@ describe("Tag", () => {
       <Tag theme={themeMock}>text</Tag>
     )
 
-    expect(wrapper.type().displayName).toContain(Link.displayName)
+    expect(getTagNameByHTMLString(wrapper.html())).toContain('a')
   })
 
   describe('renders text in PascalCase prefixed by #', () => {
