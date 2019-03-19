@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import { graphql } from 'gatsby'
+import React, {Component} from 'react'
+import {graphql} from 'gatsby'
 
-import {debounce, noop} from 'lodash'
+import {debounce, noop, get} from 'lodash'
 
-import { en as searchContent } from '/static/content/Search'
-import { en as sharedContent } from '/static/content/_shared'
+import {en as searchContent} from '/static/content/Search'
+import {en as sharedContent} from '/static/content/_shared'
 
 import SearchTemplate from '~templates/Search'
 
@@ -12,9 +12,11 @@ import Header from './Header'
 import Results from './Results'
 import Input from './Input'
 
-const content = { ...searchContent, shared: sharedContent }
+const content = {...searchContent, shared: sharedContent}
 
 class SearchPage extends Component {
+  static DEBOUNCE_INTERVAL = 300
+
   state = {
     searchQuery: '',
     searchResults: null,
@@ -23,7 +25,7 @@ class SearchPage extends Component {
   };
 
   getSearchQuery = () => {
-    const queryString = this.props.location.search
+    const queryString = get(this.props, 'location.search') || ''
 
     const searchQueryString = queryString.slice(1)
       .split('&')
@@ -37,7 +39,7 @@ class SearchPage extends Component {
   getTrendingTopics = (articles, length = 5) => {
     let topics = []
 
-    for (const { node: article } of articles) {
+    for (const {node: article} of articles) {
       const topicsWithoutDuplicates = new Set([...topics, ...article.frontmatter.tags])
       topics = Array.from(topicsWithoutDuplicates)
 
@@ -49,8 +51,24 @@ class SearchPage extends Component {
     return topics.slice(0, length)
   };
 
+  performSearch = debounce(() => {
+    const {searchQuery, articles} = this.state
+
+    if (searchQuery.length > 2) {
+      const newList = articles
+        .filter(({node: article}) => {
+          const isInTitle = get(article, 'frontmatter.title', '').toLowerCase().includes(searchQuery)
+          const isInTags = get(article, 'frontmatter.tags', []).some(tag => tag.includes(searchQuery))
+
+          return isInTitle || isInTags
+        }).slice(0, 5)
+
+      this.setState({searchResults: newList})
+    }
+  }, SearchPage.DEBOUNCE_INTERVAL);
+
   setSearchQuery = (searchQuery, callback = noop) => {
-    this.setState({ searchQuery }, callback)
+    this.setState({searchQuery}, callback)
   };
 
   handleQueryStringChange = () => {
@@ -59,35 +77,19 @@ class SearchPage extends Component {
     }, this.performSearch)
   };
 
-  componentDidMount () {
+  componentDidMount() {
     this.setState({
       trendingTopics: this.getTrendingTopics(this.state.articles, 5)
     }, this.handleQueryStringChange)
   }
 
-  componentDidUpdate (prevProps, prevState, snapshot) {
+  componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.location.search !== this.props.location.search) {
       this.handleQueryStringChange()
     }
   }
 
-  performSearch = debounce(() => {
-    const { searchQuery, articles } = this.state
-
-    if (searchQuery.length > 2) {
-      const newList = articles
-        .filter(({ node: article }) => {
-          const isInTitle = article.frontmatter.title.toLowerCase().includes(searchQuery)
-          const isInTags = article.frontmatter.tags.some(tag => tag.includes(searchQuery))
-
-          return isInTitle || isInTags
-        }).slice(0, 5)
-
-      this.setState({ searchResults: newList })
-    }
-  }, 300);
-
-  render () {
+  render() {
     const {
       articles,
       searchQuery,
