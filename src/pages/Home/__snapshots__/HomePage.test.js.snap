@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomePage renders correctly 1`] = `
+<MainTemplate>
+  <FeaturedArticle
+    content={
+      Object {
+        "shared": Object {
+          "readingTime": "min read",
+        },
+      }
+    }
+  />
+  <OtherArticles
+    content={
+      Object {
+        "shared": Object {
+          "readingTime": "min read",
+        },
+      }
+    }
+    otherArticles={Array []}
+  />
+</MainTemplate>
+`;

@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {get} from 'lodash'
 import {graphql} from 'gatsby'
 
 import {en as shared} from '/static/content/_shared'
@@ -12,9 +13,10 @@ const content = {shared}
 
 class HomePage extends Component {
   render() {
-    const {data} = this.props
-    const featuredArticle = data.featuredArticle
-    const otherArticles = data.otherArticles.edges.map(i => i.node)
+    const {data = {}} = this.props
+    const {featuredArticle} = data
+    const _otherArticles = get(data, 'otherArticles.edges', [])
+    const otherArticles = _otherArticles.map(i => i.node) // FIXME: when we flatten queries
 
     return (
       <Template>

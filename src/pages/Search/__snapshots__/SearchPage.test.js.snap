@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchPage renders correctly 1`] = `
+<SearchTemplate>
+  <Header />
+  <SearchResults
+    articles={Array []}
+    content={
+      Object {
+        "emptyState": Object {
+          "cta": "Pick a trending topic",
+          "parapgraph": "Grab a coffee and try another keyword, or check one of our coolest topics 😎",
+          "subTitle": "There are no matches for your query 😭",
+          "title": "Aw snap!",
+        },
+        "placeholder": "Start Typing",
+        "shared": Object {
+          "readingTime": "min read",
+        },
+        "subTitle": "Trending Topics",
+      }
+    }
+    performSearch={[Function]}
+    searchQuery="foo"
+    setSearchQuery={[Function]}
+  />
+  <Results
+    content={
+      Object {
+        "emptyState": Object {
+          "cta": "Pick a trending topic",
+          "parapgraph": "Grab a coffee and try another keyword, or check one of our coolest topics 😎",
+          "subTitle": "There are no matches for your query 😭",
+          "title": "Aw snap!",
+        },
+        "placeholder": "Start Typing",
+        "shared": Object {
+          "readingTime": "min read",
+        },
+        "subTitle": "Trending Topics",
+      }
+    }
+    searchResults={null}
+    trendingTopics={Array []}
+  />
+</SearchTemplate>
+`;

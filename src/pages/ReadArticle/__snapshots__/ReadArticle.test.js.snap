@@ -1,0 +1,161 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReadArticle renders correctly 1`] = `
+<MainTemplate
+  title=""
+>
+  <SEO
+    description=""
+    keywords={Array []}
+    lang="en"
+    meta={Array []}
+    title=""
+  />
+  <FrontMatter
+    content={
+      Object {
+        "callToActions": Object {
+          "comment": "Comment on Twitter",
+          "edit": "Edit on Github",
+          "share": "Share",
+        },
+        "newsletter": Object {
+          "ctaLabel": "Subscribe",
+          "failMessage": "Error! Try again in a few moments",
+          "inputPlaceholder": "Your email here",
+          "subTitle": "Get notified about new articles!",
+          "successMessage": "All good!",
+          "title": "Enjoying?",
+        },
+        "relatedArticles": Object {
+          "title": "Related Articles",
+        },
+        "shared": Object {
+          "readingTime": "min read",
+        },
+        "tableOfContents": Object {
+          "title": "Content",
+        },
+      }
+    }
+  />
+  <Styled(styled.hr) />
+  <TableOfContents
+    content={
+      Object {
+        "callToActions": Object {
+          "comment": "Comment on Twitter",
+          "edit": "Edit on Github",
+          "share": "Share",
+        },
+        "newsletter": Object {
+          "ctaLabel": "Subscribe",
+          "failMessage": "Error! Try again in a few moments",
+          "inputPlaceholder": "Your email here",
+          "subTitle": "Get notified about new articles!",
+          "successMessage": "All good!",
+          "title": "Enjoying?",
+        },
+        "relatedArticles": Object {
+          "title": "Related Articles",
+        },
+        "shared": Object {
+          "readingTime": "min read",
+        },
+        "tableOfContents": Object {
+          "title": "Content",
+        },
+      }
+    }
+  />
+  <Styled(styled.hr) />
+  <Article />
+  <CallToActions
+    content={
+      Object {
+        "callToActions": Object {
+          "comment": "Comment on Twitter",
+          "edit": "Edit on Github",
+          "share": "Share",
+        },
+        "newsletter": Object {
+          "ctaLabel": "Subscribe",
+          "failMessage": "Error! Try again in a few moments",
+          "inputPlaceholder": "Your email here",
+          "subTitle": "Get notified about new articles!",
+          "successMessage": "All good!",
+          "title": "Enjoying?",
+        },
+        "relatedArticles": Object {
+          "title": "Related Articles",
+        },
+        "shared": Object {
+          "readingTime": "min read",
+        },
+        "tableOfContents": Object {
+          "title": "Content",
+        },
+      }
+    }
+  />
+  <Styled(styled.hr) />
+  <Newsletter
+    content={
+      Object {
+        "callToActions": Object {
+          "comment": "Comment on Twitter",
+          "edit": "Edit on Github",
+          "share": "Share",
+        },
+        "newsletter": Object {
+          "ctaLabel": "Subscribe",
+          "failMessage": "Error! Try again in a few moments",
+          "inputPlaceholder": "Your email here",
+          "subTitle": "Get notified about new articles!",
+          "successMessage": "All good!",
+          "title": "Enjoying?",
+        },
+        "relatedArticles": Object {
+          "title": "Related Articles",
+        },
+        "shared": Object {
+          "readingTime": "min read",
+        },
+        "tableOfContents": Object {
+          "title": "Content",
+        },
+      }
+    }
+  />
+  <Styled(styled.hr) />
+  <RelatedArticles
+    content={
+      Object {
+        "callToActions": Object {
+          "comment": "Comment on Twitter",
+          "edit": "Edit on Github",
+          "share": "Share",
+        },
+        "newsletter": Object {
+          "ctaLabel": "Subscribe",
+          "failMessage": "Error! Try again in a few moments",
+          "inputPlaceholder": "Your email here",
+          "subTitle": "Get notified about new articles!",
+          "successMessage": "All good!",
+          "title": "Enjoying?",
+        },
+        "relatedArticles": Object {
+          "title": "Related Articles",
+        },
+        "shared": Object {
+          "readingTime": "min read",
+        },
+        "tableOfContents": Object {
+          "title": "Content",
+        },
+      }
+    }
+    list={Array []}
+  />
+</MainTemplate>
+`;
