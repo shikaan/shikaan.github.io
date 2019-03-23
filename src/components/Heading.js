@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
 const SubHeading = styled.small`
   display: block;
-`
+`;
 
 const getContextStyle = ({ theme, context }) => {
   const defaultContextStyles = `
@@ -13,7 +13,7 @@ const getContextStyle = ({ theme, context }) => {
     line-height: ${theme.typography.baseLineHeight};
     letter-spacing: 0;
     color: ${theme.color.black};
-  `
+  `;
 
   const displayContextStyles = `
     font-family: ${theme.typography.secondaryFont.fontFamily};
@@ -22,12 +22,12 @@ const getContextStyle = ({ theme, context }) => {
     letter-spacing: 0;
     color: ${theme.color.black};
     text-transform: uppercase;
-  `
+  `;
 
   return context === CONTEXT.DISPLAY
     ? displayContextStyles
-    : defaultContextStyles
-}
+    : defaultContextStyles;
+};
 
 const H1 = styled.h1(({ theme, context }) => `
   ${getContextStyle({ theme, context })}
@@ -41,7 +41,7 @@ const H1 = styled.h1(({ theme, context }) => `
     line-height: ${theme.typography.baseLineHeight};
     color: ${theme.color.black}  
   }
-`)
+`);
 
 const H2 = styled.h2(({ theme, context }) => `
   ${getContextStyle({ theme, context })}
@@ -55,7 +55,7 @@ const H2 = styled.h2(({ theme, context }) => `
     line-height: ${theme.typography.baseLineHeight};
     color: ${theme.color.black}  
   }
-`)
+`);
 
 const H3 = styled.h3(({ theme, context }) => `
   ${getContextStyle({ theme, context })}
@@ -69,17 +69,17 @@ const H3 = styled.h3(({ theme, context }) => `
     line-height: ${theme.typography.baseLineHeight};
     color: ${theme.color.black}  
   }
-`)
+`);
 
 const headingMap = {
   1: H1,
   2: H2,
   3: H3
-}
+};
 
 export const CONTEXT = {
-  DISPLAY: 'display'
-}
+  DISPLAY: "display"
+};
 
 class Heading extends Component {
   render () {
@@ -89,9 +89,9 @@ class Heading extends Component {
       context,
       level = 1,
       sub
-    } = this.props
+    } = this.props;
 
-    const Heading = headingMap[level]
+    const Heading = headingMap[level];
 
     return (
       <Fragment>
@@ -100,7 +100,7 @@ class Heading extends Component {
         </Heading>
         {sub && <SubHeading className={className}>{sub}</SubHeading>}
       </Fragment>
-    )
+    );
   }
 }
 
@@ -108,6 +108,6 @@ Heading.propTypes = {
   level: PropTypes.oneOf([1, 2, 3]),
   sub: PropTypes.string,
   context: PropTypes.oneOf(Object.values(CONTEXT))
-}
+};
 
-export default Heading
+export default Heading;

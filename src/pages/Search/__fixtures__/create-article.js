@@ -1,4 +1,4 @@
-export const createArticle = (topics, title = 'title') => {
+export const createArticle = (topics, title = "title") => {
   return {
     node: {
       fields: {
@@ -28,5 +28,5 @@ export const createArticle = (topics, title = 'title') => {
         }
       }
     }
-  }
-}
+  };
+};

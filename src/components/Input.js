@@ -1,8 +1,8 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
-import { Size } from '~theme'
+import { Size } from "~theme";
 
-const borderWidth = new Size(0.25)
+const borderWidth = new Size(0.25);
 
 const Input = styled.input(({ theme }) => `
   display: block;
@@ -17,6 +17,6 @@ const Input = styled.input(({ theme }) => `
     font-family: ${theme.typography.secondaryFont.fontFamily};
     color: ${theme.color.darkGrey}
   }
-`)
+`);
 
-export default Input
+export default Input;

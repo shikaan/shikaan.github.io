@@ -1,7 +1,7 @@
-import { baseFontSize, baseLineHeight, secondaryFont } from '../typography'
-import { color } from '../colors'
+import { baseFontSize, baseLineHeight, secondaryFont } from "../typography";
+import { color } from "../colors";
 
-const baseBoxSizing = 'border-box'
+const baseBoxSizing = "border-box";
 
 export const document = `
   *,
@@ -40,4 +40,4 @@ export const document = `
   a {
     color: inherit;
   }
-`
+`;

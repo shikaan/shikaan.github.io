@@ -1,33 +1,33 @@
-import React, {Component} from 'react'
-import {get} from 'lodash'
-import {graphql} from 'gatsby'
+import React, {Component} from "react";
+import {get} from "lodash";
+import {graphql} from "gatsby";
 
-import {en as shared} from '/static/content/_shared'
+import {en as shared} from "/static/content/_shared";
 
-import Template from '~templates/Main'
+import Template from "~templates/Main";
 
 import FeaturedArticle from "./FeaturedArticle";
 import OtherArticles from "./OtherArticles";
 
-const content = {shared}
+const content = {shared};
 
 class HomePage extends Component {
   render() {
-    const {data = {}} = this.props
-    const {featuredArticle} = data
-    const _otherArticles = get(data, 'otherArticles.edges', [])
-    const otherArticles = _otherArticles.map(i => i.node) // FIXME: when we flatten queries
+    const {data = {}} = this.props;
+    const {featuredArticle} = data;
+    const _otherArticles = get(data, "otherArticles.edges", []);
+    const otherArticles = _otherArticles.map(i => i.node); // FIXME: when we flatten queries
 
     return (
       <Template>
         <FeaturedArticle featuredArticle={featuredArticle} content={content}/>
         <OtherArticles otherArticles={otherArticles} content={content}/>
       </Template>
-    )
+    );
   }
 }
 
-export default HomePage
+export default HomePage;
 
 export const pageQuery = graphql`
   query ($featuredArticleId: String!) {
@@ -110,4 +110,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

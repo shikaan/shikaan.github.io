@@ -1,18 +1,18 @@
-import React, { Fragment } from 'react'
-import { ThemeProvider } from 'styled-components'
+import React, { Fragment } from "react";
+import { ThemeProvider } from "styled-components";
 
-import theme, { GlobalStyle, Size } from '~theme'
+import theme, { GlobalStyle, Size } from "~theme";
 
-import Icon from '~components/Icon'
-import Link from '~components/Link'
+import Icon from "~components/Icon";
+import Link from "~components/Link";
 
-import { IconColumn, Header, TitleColumn, Row, TitleChunk } from './Header'
-import { Main } from './Main'
+import { IconColumn, Header, TitleColumn, Row, TitleChunk } from "./Header";
+import { Main } from "./Main";
 
 const templateVariables = {
   horizontalPadding: new Size(3),
   verticalPadding: new Size(2)
-}
+};
 
 class MainTemplate extends React.Component {
   render () {
@@ -23,14 +23,14 @@ class MainTemplate extends React.Component {
           <Header>
             <Row>
               <TitleColumn>
-                <Link to={`/`}>
+                <Link to={"/"}>
                   <TitleChunk>coffee</TitleChunk>
                   <TitleChunk>driven</TitleChunk>
                   <TitleChunk>development</TitleChunk>
                 </Link>
               </TitleColumn>
               <IconColumn>
-                <Link to={`/search`}>
+                <Link to={"/search"}>
                   <Icon>search</Icon>
                 </Link>
               </IconColumn>
@@ -41,8 +41,8 @@ class MainTemplate extends React.Component {
           </Main>
         </Fragment>
       </ThemeProvider>
-    )
+    );
   }
 }
 
-export default MainTemplate
+export default MainTemplate;

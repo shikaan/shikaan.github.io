@@ -1,3 +1,3 @@
-import Img from 'gatsby-image'
+import Img from "gatsby-image";
 
-export default Img
+export default Img;

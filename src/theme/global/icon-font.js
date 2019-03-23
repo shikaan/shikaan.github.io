@@ -1,4 +1,4 @@
-import cdd from '../../../static/fonts/cdd.woff'
+import cdd from "../../../static/fonts/cdd.woff";
 
 // TODO: consider if adding woff2 is worth
 

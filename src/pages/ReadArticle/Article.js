@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
-import 'prismjs/themes/prism-dark.css'
+import React, { Component } from "react";
+import styled from "styled-components";
+import "prismjs/themes/prism-dark.css";
 
-const paragraphFontSize = (theme) => theme.typography.baseFontSize.multiply(1.125)
-const h1FontSize = (theme) => theme.typography.baseFontSize.multiply(2)
-const h2FontSize = (theme) => theme.typography.baseFontSize.multiply(1.75)
-const h3FontSize = (theme) => theme.typography.baseFontSize.multiply(1.5)
+const paragraphFontSize = (theme) => theme.typography.baseFontSize.multiply(1.125);
+const h1FontSize = (theme) => theme.typography.baseFontSize.multiply(2);
+const h2FontSize = (theme) => theme.typography.baseFontSize.multiply(1.75);
+const h3FontSize = (theme) => theme.typography.baseFontSize.multiply(1.5);
 
 const ArticleBody = styled.article`
   padding: ${({ theme }) => theme.templateVariables.horizontalPadding}
@@ -43,16 +43,16 @@ const ArticleBody = styled.article`
     font-weight: 400;
     color: ${({ theme }) => theme.color.black} 
   }
-`
+`;
 
 class Article extends Component {
   render () {
-    const { post } = this.props
+    const { post } = this.props;
 
     return (
       <ArticleBody dangerouslySetInnerHTML={{ __html: post.html }}/>
-    )
+    );
   }
 }
 
-export default Article
+export default Article;

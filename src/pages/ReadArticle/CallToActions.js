@@ -1,24 +1,24 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
+import React, { Component } from "react";
+import styled from "styled-components";
 
-import { REPO_BASE_URL } from '~/constants'
+import { REPO_BASE_URL } from "~/constants";
 
-import Icon from '~components/Icon'
-import Link from '~components/Link'
+import Icon from "~components/Icon";
+import Link from "~components/Link";
 
-import FallbackShare from './FallbackShare'
+import FallbackShare from "./FallbackShare";
 
 const Section = styled.section(({ theme }) => `
   padding: 0 ${theme.templateVariables.horizontalPadding.multiply(2)};
   padding-bottom: ${theme.templateVariables.verticalPadding.multiply(2)};
   display: flex;
   justify-content: space-between;
-`)
+`);
 
 const CTALink = styled(Link)(({ theme }) => `
   color: ${theme.color.coffee};
   font-size: ${theme.typography.baseFontSize.multiply(1.75)}
-`)
+`);
 
 class CallToActions extends Component {
   state = {
@@ -26,43 +26,43 @@ class CallToActions extends Component {
   };
 
   static buildEditUrl (relativeFilePath) {
-    return `${REPO_BASE_URL}/edit/master/${relativeFilePath}`
+    return `${REPO_BASE_URL}/edit/master/${relativeFilePath}`;
   }
 
   static useFallbackShare () {
-    return !navigator.share
+    return !navigator.share;
   }
 
   share = () => {
-    const { post } = this.props
+    const { post } = this.props;
 
     if (CallToActions.useFallbackShare()) {
-      this.openFallbackShare()
+      this.openFallbackShare();
     } else {
       navigator.share({
         url: window.location.href,
         title: document.title,
         text: post.frontmatter.title
-      })
+      });
     }
   };
 
   openFallbackShare = () => {
-    this.setState({ isFallbackShareVisible: true })
+    this.setState({ isFallbackShareVisible: true });
   };
 
   closeFallbackShare = () => {
-    this.setState({ isFallbackShareVisible: false })
+    this.setState({ isFallbackShareVisible: false });
   };
 
   renderFallbackShare = (shareVisible) => {
     return CallToActions.useFallbackShare()
       ? <FallbackShare onClose={this.closeFallbackShare} visible={shareVisible}/>
-      : null
+      : null;
   };
 
   render () {
-    const { content, post } = this.props
+    const { content, post } = this.props;
 
     return (
       <Section>
@@ -80,8 +80,8 @@ class CallToActions extends Component {
 
         {this.renderFallbackShare(this.state.isFallbackShareVisible)}
       </Section>
-    )
+    );
   }
 }
 
-export default CallToActions
+export default CallToActions;

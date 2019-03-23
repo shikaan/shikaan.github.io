@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Overline = styled.span(({ theme }) => `
   display: block;
@@ -7,6 +7,6 @@ const Overline = styled.span(({ theme }) => `
   font-size: ${theme.typography.baseFontSize.multiply(0.75)}
   padding-bottom: ${theme.typography.baseFontSize.multiply(0.5)};
   color: ${theme.color.black};
-`)
+`);
 
-export default Overline
+export default Overline;

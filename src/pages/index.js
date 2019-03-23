@@ -1,9 +1,9 @@
-import {navigate} from '~components/Link'
+import {navigate} from "~components/Link";
 
 const Index = () => {
-  navigate('/home', {replace: true})
+  navigate("/home", {replace: true});
 
-  return null
-}
+  return null;
+};
 
-export default Index
+export default Index;

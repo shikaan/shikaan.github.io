@@ -1,17 +1,17 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
+import React, { Component } from "react";
+import styled from "styled-components";
 
-import { Size } from '~theme'
+import { Size } from "~theme";
 
-import Link from '~components/Button'
-import Icon from '~components/Icon'
+import Link from "~components/Button";
+import Icon from "~components/Icon";
 
-const headerHeight = new Size(7)
+const headerHeight = new Size(7);
 
 const StyledHeader = styled.header`
   height: ${headerHeight};
   text-align: right;
-`
+`;
 
 const CloseButton = styled(Link)(({ theme }) => `
   color: ${theme.color.darkGrey};
@@ -24,7 +24,7 @@ const CloseButton = styled(Link)(({ theme }) => `
   &:hover {
     background: unset;
   }
-`)
+`);
 
 class Header extends Component {
   render () {
@@ -36,8 +36,8 @@ class Header extends Component {
           </Icon>
         </CloseButton>
       </StyledHeader>
-    )
+    );
   }
 }
 
-export default Header
+export default Header;

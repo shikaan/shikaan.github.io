@@ -1,47 +1,47 @@
-import React from 'react'
-import {graphql} from 'gatsby'
-import styled from 'styled-components'
-import {get} from 'lodash'
+import React from "react";
+import {graphql} from "gatsby";
+import styled from "styled-components";
+import {get} from "lodash";
 
-import {en as readArticleContent} from '/static/content/ReadArticle'
-import {en as sharedContent} from '/static/content/_shared'
+import {en as readArticleContent} from "/static/content/ReadArticle";
+import {en as sharedContent} from "/static/content/_shared";
 
-import Template from '~templates/Main'
+import Template from "~templates/Main";
 
-import Divider from '~components/Divider'
-import SEO from '~components/seo'
+import Divider from "~components/Divider";
+import SEO from "~components/seo";
 
-import CallToActions from './CallToActions'
-import FrontMatter from './FrontMatter'
-import TableOfContents from './TableOfContents'
-import Article from './Article'
-import Newsletter from './Newsletter'
-import RelatedArticles from './RelatedArticles'
+import CallToActions from "./CallToActions";
+import FrontMatter from "./FrontMatter";
+import TableOfContents from "./TableOfContents";
+import Article from "./Article";
+import Newsletter from "./Newsletter";
+import RelatedArticles from "./RelatedArticles";
 
 const content = {
   ...readArticleContent,
   shared: sharedContent
-}
+};
 
 const ReadArticleDivider = styled(Divider)(({theme}) => `
   margin: 0 ${theme.templateVariables.horizontalPadding};
-`)
+`);
 
 class ReadArticlePage extends React.Component {
   render() {
     const {
       data = {},
       pageContext = {}
-    } = this.props
+    } = this.props;
 
-    const {article} = data
+    const {article} = data;
 
-    const relatedArticles = get(data, 'relatedArticles.edges', []) // FIXME: when we flatten queries
-    const siteTitle = get(data, 'site.siteMetadata.title', '')
-    const {tags} = pageContext
+    const relatedArticles = get(data, "relatedArticles.edges", []); // FIXME: when we flatten queries
+    const siteTitle = get(data, "site.siteMetadata.title", "");
+    const {tags} = pageContext;
 
-    const articleTitle = get(article, 'frontmatter.title', '')
-    const articleDescription = get(article, 'frontmatter.description', '')
+    const articleTitle = get(article, "frontmatter.title", "");
+    const articleDescription = get(article, "frontmatter.description", "");
 
     return (
       <Template location={this.props.location} title={siteTitle}>
@@ -58,11 +58,11 @@ class ReadArticlePage extends React.Component {
         <ReadArticleDivider/>
         <RelatedArticles list={relatedArticles} content={content}/>
       </Template>
-    )
+    );
   }
 }
 
-export default ReadArticlePage
+export default ReadArticlePage;
 
 export const pageQuery = graphql`
   query BlogPostBySlug($path: String!, $tags: [String!]) {
@@ -155,4 +155,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

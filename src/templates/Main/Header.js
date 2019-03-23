@@ -1,11 +1,11 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
-import { Size } from '~theme'
+import { Size } from "~theme";
 
-import Link from '~components/Link'
+import Link from "~components/Link";
 
-export const headerHeight = new Size(7)
-const padding = new Size(2)
+export const headerHeight = new Size(7);
+const padding = new Size(2);
 
 export const Header = styled.header(({ theme }) => `
   width: 100%;
@@ -14,11 +14,11 @@ export const Header = styled.header(({ theme }) => `
   position: fixed;
   box-shadow: 0 ${new Size(0.5)} ${new Size(0.5)} rgba(0, 0, 0, 0.24);
   z-index: ${theme.zIndexRank.top};
-`)
+`);
 
 export const Row = styled.div`
   display: flex;
-`
+`;
 
 export const Column = styled.div(({ theme }) => `
   & > * {
@@ -26,7 +26,7 @@ export const Column = styled.div(({ theme }) => `
     vertical-align: "middle";
     font-size: ${theme.typography.baseFontSize.multiply(1.125)};
   }
-`)
+`);
 
 export const TitleColumn = styled(Column)(({ theme }) => `
   flex: 11;
@@ -38,13 +38,13 @@ export const TitleColumn = styled(Column)(({ theme }) => `
     font-weight: 900;
     color: ${theme.color.darkGrey};
   }
-`)
+`);
 
 export const IconColumn = styled(Column)`
   flex: 1;
   text-align: right;
   padding: 0 ${padding} 0 0;
-`
+`;
 
 export const TitleChunk = styled.span(({ theme }) => `
   display: inline-block;
@@ -53,4 +53,4 @@ export const TitleChunk = styled.span(({ theme }) => `
   &::first-letter {
     color: ${theme.color.coffee};
   }
-`)
+`);

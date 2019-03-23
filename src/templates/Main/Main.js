@@ -1,7 +1,7 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
-import stain from '/static/stain.svg'
-import { headerHeight } from './Header'
+import stain from "/static/stain.svg";
+import { headerHeight } from "./Header";
 
 export const Main = styled.main(({ theme }) => `
   padding-top: ${headerHeight};
@@ -12,4 +12,4 @@ export const Main = styled.main(({ theme }) => `
   
   max-width: ${theme.breakpoint.sm};
   margin: auto;
-`)
+`);

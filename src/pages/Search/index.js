@@ -1,91 +1,91 @@
-import React, {Component} from 'react'
-import {graphql} from 'gatsby'
+import React, {Component} from "react";
+import {graphql} from "gatsby";
 
-import {debounce, noop, get} from 'lodash'
+import {debounce, noop, get} from "lodash";
 
-import {en as searchContent} from '/static/content/Search'
-import {en as sharedContent} from '/static/content/_shared'
+import {en as searchContent} from "/static/content/Search";
+import {en as sharedContent} from "/static/content/_shared";
 
-import SearchTemplate from '~templates/Search'
+import SearchTemplate from "~templates/Search";
 
-import Header from './Header'
-import Results from './Results'
-import Input from './Input'
+import Header from "./Header";
+import Results from "./Results";
+import Input from "./Input";
 
-const content = {...searchContent, shared: sharedContent}
+const content = {...searchContent, shared: sharedContent};
 
 class SearchPage extends Component {
   static DEBOUNCE_INTERVAL = 300
 
   state = {
-    searchQuery: '',
+    searchQuery: "",
     searchResults: null,
     trendingTopics: [],
     articles: this.props.data.posts.edges
   };
 
   getSearchQuery = () => {
-    const queryString = get(this.props, 'location.search') || ''
+    const queryString = get(this.props, "location.search") || "";
 
     const searchQueryString = queryString.slice(1)
-      .split('&')
-      .filter(i => i.includes('query'))[0]
+      .split("&")
+      .filter(i => i.includes("query"))[0];
 
     return searchQueryString
-      ? searchQueryString.split('=')[1]
-      : ''
+      ? searchQueryString.split("=")[1]
+      : "";
   };
 
   getTrendingTopics = (articles, length = 5) => {
-    let topics = []
+    let topics = [];
 
     for (const {node: article} of articles) {
-      const topicsWithoutDuplicates = new Set([...topics, ...article.frontmatter.tags])
-      topics = Array.from(topicsWithoutDuplicates)
+      const topicsWithoutDuplicates = new Set([...topics, ...article.frontmatter.tags]);
+      topics = Array.from(topicsWithoutDuplicates);
 
       if (topics.length >= length) {
-        break
+        break;
       }
     }
 
-    return topics.slice(0, length)
+    return topics.slice(0, length);
   };
 
   performSearch = debounce(() => {
-    const {searchQuery, articles} = this.state
+    const {searchQuery, articles} = this.state;
 
     if (searchQuery.length > 2) {
       const newList = articles
         .filter(({node: article}) => {
-          const isInTitle = get(article, 'frontmatter.title', '').toLowerCase().includes(searchQuery)
-          const isInTags = get(article, 'frontmatter.tags', []).some(tag => tag.includes(searchQuery))
+          const isInTitle = get(article, "frontmatter.title", "").toLowerCase().includes(searchQuery);
+          const isInTags = get(article, "frontmatter.tags", []).some(tag => tag.includes(searchQuery));
 
-          return isInTitle || isInTags
-        }).slice(0, 5)
+          return isInTitle || isInTags;
+        }).slice(0, 5);
 
-      this.setState({searchResults: newList})
+      this.setState({searchResults: newList});
     }
   }, SearchPage.DEBOUNCE_INTERVAL);
 
   setSearchQuery = (searchQuery, callback = noop) => {
-    this.setState({searchQuery}, callback)
+    this.setState({searchQuery}, callback);
   };
 
   handleQueryStringChange = () => {
     this.setState({
       searchQuery: this.getSearchQuery()
-    }, this.performSearch)
+    }, this.performSearch);
   };
 
   componentDidMount() {
     this.setState({
       trendingTopics: this.getTrendingTopics(this.state.articles, 5)
-    }, this.handleQueryStringChange)
+    }, this.handleQueryStringChange);
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.location.search !== this.props.location.search) {
-      this.handleQueryStringChange()
+      this.handleQueryStringChange();
     }
   }
 
@@ -95,7 +95,7 @@ class SearchPage extends Component {
       searchQuery,
       searchResults,
       trendingTopics
-    } = this.state
+    } = this.state;
 
     return (
       <SearchTemplate>
@@ -114,11 +114,11 @@ class SearchPage extends Component {
           trendingTopics={trendingTopics}
         />
       </SearchTemplate>
-    )
+    );
   }
 }
 
-export default SearchPage
+export default SearchPage;
 
 export const pageQuery = graphql`
   query {
@@ -165,4 +165,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

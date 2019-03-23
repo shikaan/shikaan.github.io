@@ -1,25 +1,25 @@
-import React, {Component, Fragment} from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
-import {sample} from 'lodash'
+import React, {Component, Fragment} from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import {sample} from "lodash";
 
-import emptyStateImage from '/static/empty-state.png'
+import emptyStateImage from "/static/empty-state.png";
 
 import {isLastIndex} from "~utils";
-import Card from '~components/Card'
-import Link, {navigate} from '~components/Link'
-import Heading, {CONTEXT} from '~components/Heading'
-import Tag from '~components/Tag'
-import Image from '~components/Image'
-import Divider from "~components/Divider"
+import Card from "~components/Card";
+import Link, {navigate} from "~components/Link";
+import Heading, {CONTEXT} from "~components/Heading";
+import Tag from "~components/Tag";
+import Image from "~components/Image";
+import Divider from "~components/Divider";
 
 const Section = styled.section(({theme}) => `
   padding: 0 ${theme.templateVariables.horizontalPadding};
-`)
+`);
 
 const ListItem = styled.li(({theme}) => `
   padding: ${theme.templateVariables.horizontalPadding.multiply(.5)} ${theme.templateVariables.horizontalPadding};
-`)
+`);
 
 const EmptyStateHeading = styled(Heading)(({theme}) => `
   font-size: ${theme.typography.baseFontSize.multiply(2)};
@@ -27,40 +27,40 @@ const EmptyStateHeading = styled(Heading)(({theme}) => `
   & + small {
     padding: ${theme.templateVariables.verticalPadding} 0;
   }
-`)
+`);
 
 const EmptyStateWrapper = styled.div`
   text-align: center;
-`
+`;
 
 const EmptyStateImage = styled(Image)(({theme}) => `
   height: ${theme.typography.baseFontSize.multiply(12.5)};
   margin: auto;
   padding: ${theme.typography.baseFontSize.multiply(1.5)};
-`)
+`);
 
 const EmptyStateParagraph = styled.p(({theme}) => {
-  const verticalPadding = theme.templateVariables.verticalPadding.multiply(1.5)
-  const horizontalPadding = theme.templateVariables.horizontalPadding.multiply(1.5)
+  const verticalPadding = theme.templateVariables.verticalPadding.multiply(1.5);
+  const horizontalPadding = theme.templateVariables.horizontalPadding.multiply(1.5);
 
   return `
     padding: ${verticalPadding} ${horizontalPadding};
-  `
-})
+  `;
+});
 
 const EmptyStateLink = styled(Link)`
   text-decoration: underline;
-`
+`;
 
 class Results extends Component {
   pickTrendingTopic = () => {
-    const {trendingTopics} = this.props
+    const {trendingTopics} = this.props;
 
-    navigate(`/search?query=${sample(trendingTopics)}`, {replace: true})
+    navigate(`/search?query=${sample(trendingTopics)}`, {replace: true});
   };
 
   renderEmptyState = () => {
-    const {content} = this.props
+    const {content} = this.props;
 
     return (
       <EmptyStateWrapper>
@@ -75,11 +75,11 @@ class Results extends Component {
           {content.emptyState.cta}
         </EmptyStateLink>
       </EmptyStateWrapper>
-    )
+    );
   };
 
   renderTrendingTopics = () => {
-    const {content, trendingTopics} = this.props
+    const {content, trendingTopics} = this.props;
 
     return (
       <Fragment>
@@ -98,19 +98,19 @@ class Results extends Component {
           }
         </ul>
       </Fragment>
-    )
+    );
   };
 
   renderResultList = () => {
-    const {content, searchResults} = this.props
+    const {content, searchResults} = this.props;
 
     return (
       <ul>
         {
           searchResults.map(({node: article}, index) => {
-            const {fields, frontmatter} = article
-            const readingTime = Math.ceil(fields.readingTime.minutes)
-            const overline = `${frontmatter.date} – ${readingTime} ${content.shared.readingTime}`
+            const {fields, frontmatter} = article;
+            const readingTime = Math.ceil(fields.readingTime.minutes);
+            const overline = `${frontmatter.date} – ${readingTime} ${content.shared.readingTime}`;
 
             return (
               <li key={index}>
@@ -125,18 +125,18 @@ class Results extends Component {
                 />
                 {!isLastIndex(searchResults, index) && <Divider/>}
               </li>
-            )
+            );
           })
         }
       </ul>
-    )
+    );
   };
 
   render() {
-    const {searchResults} = this.props
+    const {searchResults} = this.props;
 
-    const isFirstSearch = !searchResults
-    const hasResults = searchResults && !!searchResults.length
+    const isFirstSearch = !searchResults;
+    const hasResults = searchResults && !!searchResults.length;
 
     return (
       <Section>
@@ -152,13 +152,13 @@ class Results extends Component {
           !isFirstSearch && !hasResults && this.renderEmptyState()
         }
       </Section>
-    )
+    );
   }
 }
 
 Results.propTypes = {
   content: PropTypes.any,
   searchResults: PropTypes.any
-}
+};
 
-export default Results
+export default Results;

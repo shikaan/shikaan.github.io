@@ -1,25 +1,25 @@
-import React, { Component, Fragment } from 'react'
-import styled from 'styled-components'
+import React, { Component, Fragment } from "react";
+import styled from "styled-components";
 
-import Heading from '~components/Heading'
-import Image from '~components/Image'
-import Overline from '~components/Overline'
-import Tag from '~components/Tag'
+import Heading from "~components/Heading";
+import Image from "~components/Image";
+import Overline from "~components/Overline";
+import Tag from "~components/Tag";
 
 const Header = styled.header(({ theme }) => `
   padding: ${theme.templateVariables.verticalPadding} ${theme.templateVariables.horizontalPadding}
-`)
+`);
 
 const FrontMatterHeading = styled(Heading)(({ theme }) => `
   padding-bottom: ${theme.templateVariables.verticalPadding};
-`)
+`);
 
 class FrontMatter extends Component {
   render () {
-    const { content, post, tags } = this.props
+    const { content, post, tags } = this.props;
 
     // TODO: move me to derived state from props
-    const readingTime = Math.ceil(post.fields.readingTime.minutes)
+    const readingTime = Math.ceil(post.fields.readingTime.minutes);
 
     return (
       <Fragment>
@@ -36,8 +36,8 @@ class FrontMatter extends Component {
           {tags.map(i => <Tag key={i} to={`/search?query=${i}`}>{i}</Tag>)}
         </Header>
       </Fragment>
-    )
+    );
   }
 }
 
-export default FrontMatter
+export default FrontMatter;

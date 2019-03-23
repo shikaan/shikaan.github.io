@@ -1,15 +1,15 @@
-import React from 'react'
-import {shallow, mount} from 'enzyme';
-import 'jest-styled-components';
+import React from "react";
+import {shallow, mount} from "enzyme";
+import "jest-styled-components";
 
-import themeMock from '~theme'
+import themeMock from "~theme";
 
 import Form from "./Form.js";
 
-describe('Form', () => {
-  it('renders correctly', () => {
-    const wrapper = shallow(<Form/>)
+describe("Form", () => {
+  it("renders correctly", () => {
+    const wrapper = shallow(<Form/>);
 
-    expect(wrapper).toMatchSnapshot()
-  })
-})
+    expect(wrapper).toMatchSnapshot();
+  });
+});
