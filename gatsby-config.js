@@ -1,87 +1,82 @@
-const path = require('path')
+const path = require("path");
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
-    author: `Kyle Mathews`,
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    title: "Coffee Driven Developer",
+    author: "Manuel Spagnolo",
+    description: "Blogging about tech, coffee and other good things.",
+    siteUrl: "https://shikaan.github.io/cdd",
     social: {
-      twitter: `kylemathews`
+      twitter: "spagmanuel",
+      instagram: "spagmanuel"
     }
   },
   plugins: [
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: "gatsby-source-filesystem",
       options: {
         path: `${__dirname}/content/blog`,
-        name: `blog`
+        name: "blog"
       }
     },
     {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/content/assets`,
-        name: `assets`
-      }
-    },
-    {
-      resolve: `gatsby-transformer-remark`,
+      resolve: "gatsby-transformer-remark",
       options: {
         plugins: [
           {
-            resolve: `gatsby-remark-images`,
+            resolve: "gatsby-remark-images",
             options: {
               maxWidth: 590
             }
           },
           {
-            resolve: `gatsby-remark-responsive-iframe`,
+            resolve: "gatsby-remark-responsive-iframe",
             options: {
-              wrapperStyle: `margin-bottom: 1.0725rem`
+              wrapperStyle: "margin-bottom: 1.0725rem"
             }
           },
-          `gatsby-remark-prismjs`,
-          `gatsby-remark-copy-linked-files`,
-          `gatsby-remark-smartypants`,
-          `gatsby-remark-reading-time`
+          "gatsby-remark-prismjs",
+          "gatsby-remark-copy-linked-files",
+          "gatsby-remark-smartypants",
+          "gatsby-remark-reading-time"
         ]
       }
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-sharp",
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: "gatsby-plugin-google-analytics",
       options: {
         // trackingId: `ADD YOUR TRACKING ID HERE`,
       }
     },
-    `gatsby-plugin-feed`,
+    "gatsby-plugin-feed",
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: "gatsby-plugin-manifest",
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
-        start_url: `/`,
-        background_color: `#ffffff`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`
+        name: "Coffee Driven Developer",
+        short_name: "CDD",
+        start_url: "/",
+        background_color: "#f9f5f2", // light coffee
+        theme_color: "#916b55", // coffee
+        display: "standalone",
+        icon: "static/icon.png",
+        include_favicon: true
       }
     },
-    `gatsby-plugin-offline`,
-    `gatsby-plugin-react-helmet`,
+    "gatsby-plugin-offline",
+    "gatsby-plugin-react-helmet",
     {
-      resolve: 'gatsby-plugin-root-import',
+      resolve: "gatsby-plugin-root-import",
       options: {
-        '~pages': path.join(__dirname, 'src/pages'),
-        '~templates': path.join(__dirname, 'src/templates'),
-        '~components': path.join(__dirname, 'src/components'),
-        '~theme': path.join(__dirname, 'src/theme'),
-        '~utils': path.join(__dirname, 'src/utils'),
-        '~': path.join(__dirname, 'src'),
-        '/static': path.join(__dirname, 'static')
+        "~pages": path.join(__dirname, "src/pages"),
+        "~templates": path.join(__dirname, "src/templates"),
+        "~components": path.join(__dirname, "src/components"),
+        "~theme": path.join(__dirname, "src/theme"),
+        "~utils": path.join(__dirname, "src/utils"),
+        "~": path.join(__dirname, "src"),
+        "/static": path.join(__dirname, "static")
       }
     }
   ]
-}
+};
