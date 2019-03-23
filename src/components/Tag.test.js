@@ -4,8 +4,7 @@ import {shallow} from "enzyme";
 
 import Tag from "./Tag"
 import themeMock from '~theme'
-import Link from "./Link"
-import {getTagNameByHTMLString} from "../../test.utils";
+import {getTagNameByHTMLString} from "/test/utils";
 
 describe("Tag", () => {
   it("renders correctly", () => {

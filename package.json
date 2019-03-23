@@ -60,7 +60,7 @@
     "develop": "gatsby develop -H 0.0.0.0 --https",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "test": "jest"
+    "test": "jest --config ./test/config.js"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.5.0",

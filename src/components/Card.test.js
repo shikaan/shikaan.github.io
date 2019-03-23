@@ -1,11 +1,10 @@
 import React from 'react'
-import {shallow, mount} from 'enzyme';
 import 'jest-styled-components';
 
+import {mountWithTheme} from "/test/utils";
 import themeMock from '~theme'
 
 import Card, {CONTEXT} from "./Card.js";
-import {mountWithTheme} from "../../test.utils";
 
 const fixtures = {
   mockCardContet: {

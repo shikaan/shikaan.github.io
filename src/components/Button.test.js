@@ -1,8 +1,8 @@
 import React from 'react'
 import 'jest-styled-components';
 
+import {shallowWithTheme} from "/test/utils";
 import themeMock from '~theme'
-import {shallowWithTheme} from "../../test.utils";
 
 import Button, {CONTEXT} from "./Button";
 

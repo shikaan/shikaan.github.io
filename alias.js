@@ -10,7 +10,8 @@ System.config({
     '~pages/*': './src/pages/*',
     '~templates/*': './src/templates/*',
     '~theme/*': './src/theme/*',
-    '/static/*': './static/*'
+    '/static/*': './static/*',
+    '/test/*': './test/*'
   }
 })
 

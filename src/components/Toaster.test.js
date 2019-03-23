@@ -4,7 +4,7 @@ import Toaster from "./Toaster";
 import 'jest-styled-components';
 
 import themeMock from '~theme'
-import {mountWithTheme} from "../../test.utils";
+import {mountWithTheme} from "/test/utils";
 
 
 describe('Toaster', () => {

@@ -3,7 +3,7 @@ import {shallow, mount} from 'enzyme';
 import 'jest-styled-components';
 import {noop} from 'lodash'
 
-import {getTagNameByHTMLString} from "../../test.utils";
+import {getTagNameByHTMLString} from "/test/utils";
 import themeMock from '~theme'
 
 import Link from "./Link";
@@ -30,7 +30,7 @@ describe('Link', () => {
 
   it('renders children', () => {
     const children = 'text'
-    const wrapper = mount(<Link theme={themeMock} to={"somewhere-else"} children={children} />)
+    const wrapper = mount(<Link theme={themeMock} to={"somewhere-else"} children={children}/>)
 
     expect(wrapper).toMatchSnapshot()
   })

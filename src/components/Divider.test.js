@@ -1,8 +1,6 @@
 import React from 'react'
-import {shallow, mount} from 'enzyme';
+import {shallow} from 'enzyme';
 import 'jest-styled-components';
-
-import themeMock from '~theme'
 
 import Divider from "./Divider.js";
 
