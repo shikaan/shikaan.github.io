@@ -1,12 +1,12 @@
-const path = require(`path`)
-const {createFilePath} = require(`gatsby-source-filesystem`)
+const path = require("path");
+const {createFilePath} = require("gatsby-source-filesystem");
 
 const getPagePath = (page) => {
-  return path.resolve(`./src/pages/${page}/index.js`)
-}
+  return path.resolve(`./src/pages/${page}/index.js`);
+};
 
 const createArticlesPages = async ({graphql, actions}) => {
-  const readArticlePageComponent = getPagePath('ReadArticle')
+  const readArticlePageComponent = getPagePath("ReadArticle");
 
   const result = await graphql(
     `
@@ -32,14 +32,14 @@ const createArticlesPages = async ({graphql, actions}) => {
         }
       }
     `
-  )
+  );
 
   if (result.errors) {
-    throw result.errors
+    throw result.errors;
   }
 
   // Create articles pages
-  const posts = result.data.allMarkdownRemark.edges
+  const posts = result.data.allMarkdownRemark.edges;
 
   posts.forEach((post) => {
     actions.createPage({
@@ -51,34 +51,34 @@ const createArticlesPages = async ({graphql, actions}) => {
         tags: post.node.frontmatter.tags,
         readingTime: post.node.fields.readingTime
       }
-    })
-  })
+    });
+  });
 
   return {
     featuredArticleId: posts[0].node.id
-  }
-}
+  };
+};
 
 const createSearchPage = async ({actions}) => {
-  const searchPageComponent = getPagePath('Search')
+  const searchPageComponent = getPagePath("Search");
 
   actions.createPage({
-    path: '/search/',
+    path: "/search/",
     component: searchPageComponent
-  })
-}
+  });
+};
 
 const createHomePage = async ({actions, featuredArticleId}) => {
-  const homePageComponent = getPagePath('Home')
+  const homePageComponent = getPagePath("Home");
 
   actions.createPage({
-    path: '/home',
+    path: "/home",
     component: homePageComponent,
     context: {
       featuredArticleId
     }
-  })
-}
+  });
+};
 
 exports.createPages = ({graphql, actions}) => {
   return Promise
@@ -87,27 +87,27 @@ exports.createPages = ({graphql, actions}) => {
       createSearchPage({actions})
     ])
     .then(([{featuredArticleId}]) => {
-      return createHomePage({actions, featuredArticleId})
-    })
-}
+      return createHomePage({actions, featuredArticleId});
+    });
+};
 
 exports.onCreateNode = ({node, actions, getNode}) => {
-  const {createNodeField} = actions
+  const {createNodeField} = actions;
 
-  if (node.internal.type === `MarkdownRemark`) {
-    const slug = createFilePath({node, getNode})
-    const relativeFilePath = path.relative(__dirname, node.fileAbsolutePath)
+  if (node.internal.type === "MarkdownRemark") {
+    const slug = createFilePath({node, getNode});
+    const relativeFilePath = path.relative(__dirname, node.fileAbsolutePath);
 
     createNodeField({
-      name: `slug`,
+      name: "slug",
       node,
       value: slug
-    })
+    });
 
     createNodeField({
-      name: `relativeFilePath`,
+      name: "relativeFilePath",
       node,
       value: relativeFilePath
-    })
+    });
   }
-}
+};

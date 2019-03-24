@@ -4,8 +4,8 @@ import {ThemeProvider} from "styled-components";
 import {mount, shallow} from "enzyme";
 
 export const getTagNameByHTMLString = (htmlString) => {
-  return cheerio.parseHTML(htmlString)[0].name
-}
+  return cheerio.parseHTML(htmlString)[0].name;
+};
 
 /**
  * @param tree
@@ -16,8 +16,8 @@ export const shallowWithTheme = (tree, theme) => {
   return shallow(
     <ThemeProvider theme={theme}>
       {tree}
-    </ThemeProvider>)
-}
+    </ThemeProvider>);
+};
 
 /**
  * @param tree
@@ -28,5 +28,5 @@ export const mountWithTheme = (tree, theme) => {
   return mount(
     <ThemeProvider theme={theme}>
       {tree}
-    </ThemeProvider>)
-}
+    </ThemeProvider>);
+};
