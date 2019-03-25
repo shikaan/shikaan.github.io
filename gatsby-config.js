@@ -77,6 +77,7 @@ module.exports = {
         "~": path.join(__dirname, "src"),
         "/static": path.join(__dirname, "static")
       }
-    }
+    },
+    "gatsby-plugin-portal"
   ]
 };

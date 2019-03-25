@@ -1,21 +1,21 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import styled from "styled-components";
 
-import { REPO_BASE_URL } from "~/constants";
+import {REPO_BASE_URL} from "~/constants";
 
 import Icon from "~components/Icon";
 import Link from "~components/Link";
 
 import FallbackShare from "./FallbackShare";
 
-const Section = styled.section(({ theme }) => `
+const Section = styled.section(({theme}) => `
   padding: 0 ${theme.templateVariables.horizontalPadding.multiply(2)};
   padding-bottom: ${theme.templateVariables.verticalPadding.multiply(2)};
   display: flex;
   justify-content: space-between;
 `);
 
-const CTALink = styled(Link)(({ theme }) => `
+const CTALink = styled(Link)(({theme}) => `
   color: ${theme.color.coffee};
   font-size: ${theme.typography.baseFontSize.multiply(1.75)}
 `);
@@ -25,16 +25,17 @@ class CallToActions extends Component {
     isFallbackShareVisible: false
   };
 
-  static buildEditUrl (relativeFilePath) {
+  static buildEditUrl(relativeFilePath) {
     return `${REPO_BASE_URL}/edit/master/${relativeFilePath}`;
   }
 
-  static useFallbackShare () {
-    return !navigator.share;
+  static useFallbackShare() {
+    const global = typeof window !== "undefined" ? window : {navigator: {}};
+    return !global.navigator.share;
   }
 
   share = () => {
-    const { post } = this.props;
+    const {post} = this.props;
 
     if (CallToActions.useFallbackShare()) {
       this.openFallbackShare();
@@ -48,11 +49,11 @@ class CallToActions extends Component {
   };
 
   openFallbackShare = () => {
-    this.setState({ isFallbackShareVisible: true });
+    this.setState({isFallbackShareVisible: true});
   };
 
   closeFallbackShare = () => {
-    this.setState({ isFallbackShareVisible: false });
+    this.setState({isFallbackShareVisible: false});
   };
 
   renderFallbackShare = (shareVisible) => {
@@ -61,8 +62,8 @@ class CallToActions extends Component {
       : null;
   };
 
-  render () {
-    const { content, post } = this.props;
+  render() {
+    const {content, post} = this.props;
 
     return (
       <Section>

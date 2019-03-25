@@ -20,7 +20,7 @@ class FrontMatter extends Component {
     const {content, post, tags} = this.props;
 
     const minutes = get(post, "fields.readingTime.minutes", 0);
-    const readingTime = React.memo(Math.ceil(minutes));
+    const readingTime = Math.ceil(minutes);
 
     return (
       <Fragment>

@@ -46,12 +46,16 @@ const Toaster = React.memo(styled.div(({theme}) => `
 `));
 
 const ToasterPortal = ({children, visible}) => {
-  return createPortal(
-    <Wrapper visible={visible}>
-      <Toaster>{children}</Toaster>
-    </Wrapper>,
-    document.body
-  );
+  const portalRoot = typeof document !== "undefined" ? document.getElementById("portal") : null;
+
+  return typeof document !== "undefined"
+    ? createPortal(
+      <Wrapper visible={visible}>
+        <Toaster>{children}</Toaster>
+      </Wrapper>,
+      portalRoot
+    )
+    : null;
 };
 
 ToasterPortal.propTypes = {

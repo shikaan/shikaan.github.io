@@ -2,8 +2,10 @@ const path = require("path");
 const {createFilePath} = require("gatsby-source-filesystem");
 
 const getPagePath = (page) => {
-  return path.resolve(`./src/pages/${page}/index.js`);
+  return path.resolve(`./src/routes/${page}/index.js`);
 };
+
+const replacePath = path => (path === "/" ? path : path.replace(/\/$/, ""));
 
 const createArticlesPages = async ({graphql, actions}) => {
   const readArticlePageComponent = getPagePath("ReadArticle");

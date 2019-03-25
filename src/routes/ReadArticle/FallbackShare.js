@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-import { FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon } from "react-share";
+import {FacebookShareButton, FacebookIcon, TwitterShareButton, TwitterIcon} from "react-share";
 
 import Divider from "~components/Divider";
 import Icon from "~components/Icon";
 
-const Overlay = styled.div(({ theme, visible }) => `
+const Overlay = styled.div(({theme, visible}) => `
   top: 0;
   left: 0;
   bottom: 0;
@@ -20,7 +20,7 @@ const Overlay = styled.div(({ theme, visible }) => `
   cursor: pointer;
 `);
 
-const Menu = styled.nav(({ theme }) => `
+const Menu = styled.nav(({theme}) => `
   align-self: flex-end;
   background: ${theme.color.paleGrey};
   display: flex;
@@ -28,7 +28,7 @@ const Menu = styled.nav(({ theme }) => `
   width: 100vw;
 `);
 
-const MenuTitle = styled.span(({ theme }) => `
+const MenuTitle = styled.span(({theme}) => `
   flex: 1;
   font-size: ${theme.typography.baseFontSize.multiply(1)};
   color: ${theme.color.black};
@@ -39,7 +39,7 @@ const MenuItems = styled.ul`
   flex: 1
 `;
 
-const MenuItem = styled.li(({ theme }) => `
+const MenuItem = styled.li(({theme}) => `
   list-style:none
   padding: ${theme.typography.baseFontSize};
   
@@ -48,7 +48,7 @@ const MenuItem = styled.li(({ theme }) => `
   }
 `);
 
-const MenuItemLabel = styled.span(({ theme, size }) => `
+const MenuItemLabel = styled.span(({theme, size}) => `
   line-height: ${size}px;
   padding: 0 ${theme.typography.baseFontSize};
   flex: 1;
@@ -56,14 +56,16 @@ const MenuItemLabel = styled.span(({ theme, size }) => `
 
 const CloseShareButton = styled.div``;
 
-const CloseShareIcon = styled(Icon)(({ size }) => `
+const CloseShareIcon = styled(Icon)(({size}) => `
   line-height: ${size}px;
   text-align: center;
   width: ${size}px;
 `);
 
 const FallbackShare = (props) => {
-  const { onClose, visible } = props;
+  const {onClose, visible} = props;
+
+  const href = typeof window !== "undefined" ? window.location.href : "";
 
   return (
     <Overlay onClick={onClose} visible={visible}>
@@ -72,13 +74,13 @@ const FallbackShare = (props) => {
         <Divider/>
         <MenuItems>
           <MenuItem>
-            <FacebookShareButton url={window.location.href}>
+            <FacebookShareButton url={href}>
               <FacebookIcon round size={32}/>
               <MenuItemLabel size={32}>Facebook</MenuItemLabel>
             </FacebookShareButton>
           </MenuItem>
           <MenuItem>
-            <TwitterShareButton url={window.location.href}>
+            <TwitterShareButton url={href}>
               <TwitterIcon round size={32}/>
               <MenuItemLabel size={32}>Twitter</MenuItemLabel>
             </TwitterShareButton>
