@@ -2,7 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 
 import Layout from "../templates/Main";
-import SEO from "../components/seo";
+import SEO from "../components/SEO";
 
 class NotFoundPage extends React.Component {
   render () {

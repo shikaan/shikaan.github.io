@@ -9,7 +9,7 @@ import {en as sharedContent} from "/static/content/_shared";
 import Template from "~templates/Main";
 
 import Divider from "~components/Divider";
-import SEO from "~components/seo";
+import SEO from "~components/SEO";
 
 import CallToActions from "./CallToActions";
 import FrontMatter from "./FrontMatter";
@@ -45,7 +45,7 @@ class ReadArticlePage extends React.Component {
 
     return (
       <Template location={this.props.location} title={siteTitle}>
-        <SEO title={articleTitle} description={articleDescription}/>
+        <SEO lang={"en"} title={articleTitle} description={articleDescription} keywords={tags}/>
 
         <FrontMatter post={article} tags={tags} content={content}/>
         <ReadArticleDivider/>

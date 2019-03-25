@@ -5,6 +5,7 @@ import {graphql} from "gatsby";
 import {en as shared} from "/static/content/_shared";
 
 import Template from "~templates/Main";
+import SEO from "~components/SEO";
 
 import FeaturedArticle from "./FeaturedArticle";
 import OtherArticles from "./OtherArticles";
@@ -14,12 +15,18 @@ const content = {shared};
 class HomePage extends Component {
   render() {
     const {data = {}} = this.props;
-    const {featuredArticle} = data;
+    const {featuredArticle, site} = data;
+
     const _otherArticles = get(data, "otherArticles.edges", []);
     const otherArticles = _otherArticles.map(i => i.node); // FIXME: when we flatten queries
 
+    const title = get(site, "siteMetadata.title");
+    const description = get(site, "siteMetadata.description");
+
     return (
       <Template>
+        <SEO lang={"en"} title={title} description={description}/>
+
         <FeaturedArticle featuredArticle={featuredArticle} content={content}/>
         <OtherArticles otherArticles={otherArticles} content={content}/>
       </Template>
@@ -33,7 +40,8 @@ export const pageQuery = graphql`
   query ($featuredArticleId: String!) {
     site {
       siteMetadata {
-        title
+        title,
+        description
       }
     }
     featuredArticle: markdownRemark(id: {eq: $featuredArticleId}) {

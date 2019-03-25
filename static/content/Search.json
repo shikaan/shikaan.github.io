@@ -1,5 +1,9 @@
 {
   "en": {
+    "seo": {
+      "title": "Search",
+      "description": "Find articles by topic or title"
+    },
     "placeholder": "Start Typing",
     "subTitle": "Trending Topics",
     "emptyState": {
@@ -10,6 +14,10 @@
     }
   },
   "it": {
+    "seo": {
+      "title": "Cerca",
+      "description": "Cerca tra gli articoli"
+    },
     "placeholder": "Inizia a scrivere",
     "subTitle": "I più cercati",
     "emptyState": {

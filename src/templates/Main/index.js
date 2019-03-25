@@ -26,7 +26,7 @@ class MainTemplate extends React.Component {
                 <Link to={"/"}>
                   <TitleChunk>coffee</TitleChunk>
                   <TitleChunk>driven</TitleChunk>
-                  <TitleChunk>development</TitleChunk>
+                  <TitleChunk>developer</TitleChunk>
                 </Link>
               </TitleColumn>
               <IconColumn>

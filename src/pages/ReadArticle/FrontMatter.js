@@ -1,25 +1,26 @@
-import React, { Component, Fragment } from "react";
+import React, {Component, Fragment} from "react";
 import styled from "styled-components";
+import {get} from "lodash";
 
 import Heading from "~components/Heading";
 import Image from "~components/Image";
 import Overline from "~components/Overline";
 import Tag from "~components/Tag";
 
-const Header = styled.header(({ theme }) => `
+const Header = styled.header(({theme}) => `
   padding: ${theme.templateVariables.verticalPadding} ${theme.templateVariables.horizontalPadding}
 `);
 
-const FrontMatterHeading = styled(Heading)(({ theme }) => `
+const FrontMatterHeading = styled(Heading)(({theme}) => `
   padding-bottom: ${theme.templateVariables.verticalPadding};
 `);
 
 class FrontMatter extends Component {
-  render () {
-    const { content, post, tags } = this.props;
+  render() {
+    const {content, post, tags} = this.props;
 
-    // TODO: move me to derived state from props
-    const readingTime = Math.ceil(post.fields.readingTime.minutes);
+    const minutes = get(post, "fields.readingTime.minutes", 0);
+    const readingTime = React.memo(Math.ceil(minutes));
 
     return (
       <Fragment>

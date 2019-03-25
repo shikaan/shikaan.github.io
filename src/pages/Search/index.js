@@ -7,6 +7,7 @@ import {en as searchContent} from "/static/content/Search";
 import {en as sharedContent} from "/static/content/_shared";
 
 import SearchTemplate from "~templates/Search";
+import SEO from "~components/SEO";
 
 import Header from "./Header";
 import Results from "./Results";
@@ -99,6 +100,8 @@ class SearchPage extends Component {
 
     return (
       <SearchTemplate>
+        <SEO lang={"en"} title={content.seo.title} description={content.seo.description}/>
+
         <Header/>
 
         <Input
