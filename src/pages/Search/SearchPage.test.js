@@ -2,9 +2,9 @@ import React from "react";
 import {shallow, mount} from "enzyme";
 import "jest-styled-components";
 
-import {createArticle} from "./__fixtures__/create-article";
-import {emptyData} from "./__fixtures__/empty-data";
-import {createLocationWithQueryString} from "./__fixtures__/create-location-with-query";
+import {createArticle} from "./__fixtures__/_create-article";
+import {emptyData} from "./__fixtures__/_empty-data";
+import {createLocationWithQueryString} from "./__fixtures__/_create-location-with-query";
 
 import SearchPage from ".";
 
