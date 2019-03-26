@@ -5,7 +5,7 @@ import Card from "~components/Card";
 import Divider from "~components/Divider";
 
 import {Size} from "~theme";
-import {isLastIndex} from "../../utils";
+import {isLastIndex} from "~utils";
 
 const Section = styled.section(({theme}) => `
   padding: 0 ${theme.templateVariables.horizontalPadding};

@@ -29,8 +29,6 @@ describe("SearchPage", () => {
           location={createLocationWithQueryString()}
         />);
 
-      console.log(wrapper.html());
-
       expect(wrapper.instance().getSearchQuery()).toHaveLength(0);
     });
 

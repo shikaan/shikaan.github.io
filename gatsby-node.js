@@ -2,10 +2,8 @@ const path = require("path");
 const {createFilePath} = require("gatsby-source-filesystem");
 
 const getPagePath = (page) => {
-  return path.resolve(`./src/routes/${page}/index.js`);
+  return path.resolve(`./src/pages/${page}/index.js`);
 };
-
-const replacePath = path => (path === "/" ? path : path.replace(/\/$/, ""));
 
 const createArticlesPages = async ({graphql, actions}) => {
   const readArticlePageComponent = getPagePath("ReadArticle");
@@ -80,6 +78,8 @@ const createHomePage = async ({actions, featuredArticleId}) => {
       featuredArticleId
     }
   });
+
+  actions.createRedirect({fromPath: "/", toPath: "/home", isPermanent: true});
 };
 
 exports.createPages = ({graphql, actions}) => {
@@ -111,5 +111,11 @@ exports.onCreateNode = ({node, actions, getNode}) => {
       node,
       value: relativeFilePath
     });
+  }
+};
+
+exports.onCreatePage = ({page, actions}) => {
+  if (!page.path.includes("404")) {
+    actions.deletePage(page);
   }
 };

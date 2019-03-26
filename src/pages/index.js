@@ -1,11 +1,3 @@
-import {navigate} from "~components/Link";
+import {default as Home} from "./Home";
 
-const Index = () => {
-  if (typeof window !== "undefined") {
-    navigate("/home", {replace: true});
-  }
-
-  return null;
-};
-
-export default Index;
+export default Home;

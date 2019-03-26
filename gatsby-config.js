@@ -79,6 +79,7 @@ module.exports = {
         "/static": path.join(__dirname, "static")
       }
     },
-    "gatsby-plugin-portal"
+    "gatsby-plugin-portal",
+    "gatsby-plugin-netlify"
   ]
 };
