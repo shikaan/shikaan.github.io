@@ -8,6 +8,16 @@ import {mountWithTheme} from "/test/utils";
 
 
 describe("Toaster", () => {
+  beforeAll(() => {
+    const portalRoot = document.createElement("div");
+    portalRoot.setAttribute("id", "portal");
+    global.document.body.appendChild(portalRoot);
+  });
+
+  afterAll(() => {
+    global.document.getElementById("portal").remove();
+  });
+
   it("renders correctly", () => {
     const wrapper = shallow(<Toaster/>);
 

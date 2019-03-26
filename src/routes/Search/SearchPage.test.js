@@ -21,13 +21,15 @@ describe("SearchPage", () => {
   });
 
   describe("getSearchQuery", () => {
-    it("returns an empty string if no query string", () => {
+    it.only("returns an empty string if no query string", () => {
       const wrapper = mount(
         <SearchPage
           content={{}}
           data={emptyData}
           location={createLocationWithQueryString()}
         />);
+
+      console.log(wrapper.html());
 
       expect(wrapper.instance().getSearchQuery()).toHaveLength(0);
     });

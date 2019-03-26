@@ -2,7 +2,11 @@
 
 exports[`Toaster renders correctly 1`] = `
 <Portal
-  containerInfo={<body />}
+  containerInfo={
+    <div
+      id="portal"
+    />
+  }
 >
   <styled.div>
     <Component />

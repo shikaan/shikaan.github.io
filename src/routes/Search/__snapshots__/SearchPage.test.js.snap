@@ -2,6 +2,13 @@
 
 exports[`SearchPage renders correctly 1`] = `
 <SearchTemplate>
+  <SEO
+    description="Find articles by topic or title"
+    keywords={Array []}
+    lang="en"
+    meta={Array []}
+    title="Search"
+  />
   <Header />
   <SearchResults
     articles={Array []}
@@ -14,6 +21,10 @@ exports[`SearchPage renders correctly 1`] = `
           "title": "Aw snap!",
         },
         "placeholder": "Start Typing",
+        "seo": Object {
+          "description": "Find articles by topic or title",
+          "title": "Search",
+        },
         "shared": Object {
           "readingTime": "min read",
         },
@@ -34,6 +45,10 @@ exports[`SearchPage renders correctly 1`] = `
           "title": "Aw snap!",
         },
         "placeholder": "Start Typing",
+        "seo": Object {
+          "description": "Find articles by topic or title",
+          "title": "Search",
+        },
         "shared": Object {
           "readingTime": "min read",
         },

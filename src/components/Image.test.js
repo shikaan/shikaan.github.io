@@ -1,10 +1,9 @@
 import React from "react";
-import {shallow, mount} from "enzyme";
+import {shallow} from "enzyme";
 import "jest-styled-components";
 
-import themeMock from "~theme";
-
 import Image from "./Image.js";
+import GatsbyImage from "gatsby-image";
 
 const fixtures = {
   src: "src.png",
@@ -26,9 +25,6 @@ describe("Image", () => {
   it("renders a Gatsby Image if Gatsby Image content is passed", () => {
     const wrapper = shallow(<Image fixed={fixtures.fixed}/>);
 
-    console.log(wrapper.html())
-
-
-    expect(wrapper.find("picture")).toHaveLength(1);
+    expect(wrapper.find(GatsbyImage)).toHaveLength(1);
   });
 });

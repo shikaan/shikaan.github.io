@@ -2,6 +2,11 @@
 
 exports[`HomePage renders correctly 1`] = `
 <MainTemplate>
+  <SEO
+    keywords={Array []}
+    lang="en"
+    meta={Array []}
+  />
   <FeaturedArticle
     content={
       Object {
