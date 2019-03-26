@@ -9,7 +9,7 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "prepush": "eslint ./src"
+      "prepush": "eslint ./src --fix && npm test"
     }
   },
   "dependencies": {
