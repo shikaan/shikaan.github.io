@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import styled from "styled-components";
 import "prismjs/themes/prism-dark.css";
 
@@ -7,50 +7,50 @@ const h1FontSize = (theme) => theme.typography.baseFontSize.multiply(2);
 const h2FontSize = (theme) => theme.typography.baseFontSize.multiply(1.75);
 const h3FontSize = (theme) => theme.typography.baseFontSize.multiply(1.5);
 
-const ArticleBody = styled.article`
-  padding: ${({ theme }) => theme.templateVariables.horizontalPadding}
+const ArticleBody = styled.article(({theme}) => `
+  padding: ${theme.templateVariables.horizontalPadding}
   
   p {
-    font-family: ${({ theme }) => theme.typography.secondaryFont.fontFamily};
-    line-height: ${({ theme }) => paragraphFontSize(theme).multiply(1.625)};
+    font-family: ${theme.typography.secondaryFont.fontFamily};
+    line-height: ${paragraphFontSize(theme).multiply(1.625)};
     font-weight: 400;
-    letter-spacing: ${({ theme }) => paragraphFontSize(theme).multiply(0.01)};
-    font-size: ${({ theme }) => paragraphFontSize(theme)};
-    padding: ${({ theme }) => paragraphFontSize(theme).multiply(0.75)} 0;
-    color: ${({ theme }) => theme.color.black}
+    letter-spacing: ${paragraphFontSize(theme).multiply(0.01)};
+    font-size: ${paragraphFontSize(theme)};
+    padding: ${paragraphFontSize(theme).multiply(0.75)} 0;
+    color: ${theme.color.black}
   }
   
   h1 {
-    font-family: ${({ theme }) => theme.typography.primaryFont.fontFamily};
-    line-height: ${({ theme }) => h1FontSize(theme).multiply(1.5)};
+    font-family: ${theme.typography.primaryFont.fontFamily};
+    line-height: ${h1FontSize(theme).multiply(1.5)};
     font-weight: 700;
-    font-size: ${({ theme }) => h1FontSize(theme)};
-    color: ${({ theme }) => theme.color.black}
+    font-size: ${h1FontSize(theme)};
+    color: ${theme.color.black}
   }
   
   h2 {
-    font-family: ${({ theme }) => theme.typography.primaryFont.fontFamily};
-    line-height: ${({ theme }) => h2FontSize(theme).multiply(1.5)};
+    font-family: ${theme.typography.primaryFont.fontFamily};
+    line-height: ${h2FontSize(theme).multiply(1.5)};
     font-weight: 700;
-    font-size: ${({ theme }) => h2FontSize(theme)};
-    color: ${({ theme }) => theme.color.black} 
+    font-size: ${h2FontSize(theme)};
+    color: ${theme.color.black} 
   }
   
   h3, h4, h5 {
-    font-family: ${({ theme }) => theme.typography.primaryFont.fontFamily};
-    line-height: ${({ theme }) => h3FontSize(theme).multiply(1.5)};
-    font-size: ${({ theme }) => h3FontSize(theme)};
+    font-family: ${theme.typography.primaryFont.fontFamily};
+    line-height: ${h3FontSize(theme).multiply(1.5)};
+    font-size: ${h3FontSize(theme)};
     font-weight: 400;
-    color: ${({ theme }) => theme.color.black} 
+    color: ${theme.color.black} 
   }
-`;
+`);
 
 class Article extends Component {
-  render () {
-    const { post } = this.props;
+  render() {
+    const {post} = this.props;
 
     return (
-      <ArticleBody dangerouslySetInnerHTML={{ __html: post.html }}/>
+      <ArticleBody dangerouslySetInnerHTML={{__html: post.html}}/>
     );
   }
 }
