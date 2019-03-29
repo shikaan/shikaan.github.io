@@ -23,7 +23,7 @@ class MainTemplate extends React.Component {
           <Header>
             <Row>
               <TitleColumn>
-                <Link to={"/"}>
+                <Link to={"/home"}>
                   <TitleChunk>coffee</TitleChunk>
                   <TitleChunk>driven</TitleChunk>
                   <TitleChunk>developer</TitleChunk>
