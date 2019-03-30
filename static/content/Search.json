@@ -2,7 +2,8 @@
   "en": {
     "seo": {
       "title": "Search",
-      "description": "Find articles by topic or title"
+      "description": "Find articles by topic or title",
+      "keywords": ["search"]
     },
     "placeholder": "Start Typing",
     "subTitle": "Trending Topics",
@@ -16,7 +17,8 @@
   "it": {
     "seo": {
       "title": "Cerca",
-      "description": "Cerca tra gli articoli"
+      "description": "Cerca tra gli articoli",
+      "keywords": ["cerca"]
     },
     "placeholder": "Inizia a scrivere",
     "subTitle": "I più cercati",
