@@ -2,7 +2,8 @@ import React, {Component} from "react";
 import {get} from "lodash";
 import {graphql} from "gatsby";
 
-import {en as shared} from "/static/content/_shared";
+import {en as sharedContent} from "/static/content/_shared";
+import {en as homeContent} from "/static/content/Home";
 
 import Template from "~templates/Main";
 import SEO from "~components/SEO";
@@ -10,7 +11,10 @@ import SEO from "~components/SEO";
 import FeaturedArticle from "./FeaturedArticle";
 import OtherArticles from "./OtherArticles";
 
-const content = {shared};
+const content = {
+  ...homeContent,
+  shared: sharedContent
+};
 
 class HomePage extends Component {
   render() {
@@ -20,12 +24,15 @@ class HomePage extends Component {
     const _otherArticles = get(data, "otherArticles.edges", []);
     const otherArticles = _otherArticles.map(i => i.node); // FIXME: when we flatten queries
 
-    const title = get(site, "siteMetadata.title");
-    const description = get(site, "siteMetadata.description");
+    const description = get(site, "siteMetadata.description")
 
     return (
       <Template>
-        <SEO lang={"en"} title={title} description={description}/>
+        <SEO lang={"en"}
+             title={content.title}
+             description={description}
+             keywords={content.keywords}
+             slug={"/home"}/>
 
         <FeaturedArticle featuredArticle={featuredArticle} content={content}/>
         <OtherArticles otherArticles={otherArticles} content={content}/>
