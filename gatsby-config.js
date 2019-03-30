@@ -5,7 +5,7 @@ module.exports = {
     title: "Coffee Driven Developer",
     author: "Manuel Spagnolo",
     description: "Blogging about tech, coffee and other good things.",
-    siteUrl: "https://shikaan.github.io/cdd",
+    siteUrl: "https://coffeedrivendeveloper.netlify.com",
     social: {
       twitter: "spagmanuel",
       instagram: "spagmanuel"
