@@ -31,7 +31,8 @@ class ReadArticlePage extends React.Component {
   render() {
     const {
       data = {},
-      pageContext = {}
+      pageContext = {},
+      location = {}
     } = this.props;
 
     const {article} = data;
@@ -45,7 +46,13 @@ class ReadArticlePage extends React.Component {
 
     return (
       <Template location={this.props.location} title={siteTitle}>
-        <SEO lang={"en"} title={articleTitle} description={articleDescription} keywords={tags}/>
+        <SEO
+          lang={"en"}
+          title={articleTitle}
+          description={articleDescription}
+          keywords={tags}
+          slug={location.pathname}
+        />
 
         <FrontMatter post={article} tags={tags} content={content}/>
         <ReadArticleDivider/>

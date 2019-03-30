@@ -100,7 +100,13 @@ class SearchPage extends Component {
 
     return (
       <SearchTemplate>
-        <SEO lang={"en"} title={content.seo.title} description={content.seo.description}/>
+        <SEO
+          lang={"en"}
+          title={content.seo.title}
+          description={content.seo.description}
+          keywords={content.seo.keywords}
+          slug={"/search"}
+        />
 
         <Header/>
 
