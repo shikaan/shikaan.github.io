@@ -17,7 +17,7 @@ const ArticleBody = styled.article(({theme}) => `
     letter-spacing: ${paragraphFontSize(theme).multiply(0.01)};
     font-size: ${paragraphFontSize(theme)};
     padding: ${paragraphFontSize(theme).multiply(0.75)} 0;
-    color: ${theme.color.black}
+    color: ${theme.color.dark600}
   }
   
   h1 {
@@ -25,7 +25,7 @@ const ArticleBody = styled.article(({theme}) => `
     line-height: ${h1FontSize(theme).multiply(1.5)};
     font-weight: 700;
     font-size: ${h1FontSize(theme)};
-    color: ${theme.color.black}
+    color: ${theme.color.dark600}
   }
   
   h2 {
@@ -33,7 +33,7 @@ const ArticleBody = styled.article(({theme}) => `
     line-height: ${h2FontSize(theme).multiply(1.5)};
     font-weight: 700;
     font-size: ${h2FontSize(theme)};
-    color: ${theme.color.black} 
+    color: ${theme.color.dark600} 
   }
   
   h3, h4, h5 {
@@ -41,7 +41,7 @@ const ArticleBody = styled.article(({theme}) => `
     line-height: ${h3FontSize(theme).multiply(1.5)};
     font-size: ${h3FontSize(theme)};
     font-weight: 400;
-    color: ${theme.color.black} 
+    color: ${theme.color.dark600} 
   }
 `);
 

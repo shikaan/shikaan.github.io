@@ -3,12 +3,12 @@ import Size from "./size";
 
 export const primaryFont = {
   fontFamily: "Merriweather, Georgia, serif",
-  hover: color.black
+  hover: color.dark600
 };
 
 export const secondaryFont = {
   fontFamily: "Lato, Geneva, Tahoma, sans-serif",
-  hover: color.black
+  hover: color.dark600
 };
 
 export const baseLineHeight = "normal";

@@ -12,7 +12,7 @@ const getContextStyle = ({ theme, context }) => {
     font-weight: 900;
     line-height: ${theme.typography.baseLineHeight};
     letter-spacing: 0;
-    color: ${theme.color.black};
+    color: ${theme.color.dark600};
   `;
 
   const displayContextStyles = `
@@ -20,7 +20,7 @@ const getContextStyle = ({ theme, context }) => {
     font-weight: 400;
     line-height: ${theme.typography.baseLineHeight};
     letter-spacing: 0;
-    color: ${theme.color.black};
+    color: ${theme.color.dark600};
     text-transform: uppercase;
   `;
 
@@ -39,7 +39,7 @@ const H1 = styled.h1(({ theme, context }) => `
     letter-spacing: ${theme.typography.baseFontSize.multiply(0.01)};
     font-weight: 400;
     line-height: ${theme.typography.baseLineHeight};
-    color: ${theme.color.black}  
+    color: ${theme.color.dark600}  
   }
 `);
 
@@ -53,7 +53,7 @@ const H2 = styled.h2(({ theme, context }) => `
     letter-spacing: ${theme.typography.baseFontSize.multiply(0.00625)};
     font-weight: 400;
     line-height: ${theme.typography.baseLineHeight};
-    color: ${theme.color.black}  
+    color: ${theme.color.dark600}  
   }
 `);
 
@@ -67,7 +67,7 @@ const H3 = styled.h3(({ theme, context }) => `
     letter-spacing: ${theme.typography.baseFontSize.multiply(0.00625)};
     font-weight: 400;
     line-height: ${theme.typography.baseLineHeight};
-    color: ${theme.color.black}  
+    color: ${theme.color.dark600}  
   }
 `);
 

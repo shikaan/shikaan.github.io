@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import {sample} from "lodash";
 
-import emptyStateImage from "/static/empty-state.png";
+import emptyStateImage from "/static/assets/empty-state.png";
 
 import {isLastIndex} from "~utils";
 import Card from "~components/Card";

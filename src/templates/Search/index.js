@@ -5,7 +5,7 @@ import { ThemeProvider } from "styled-components";
 import theme, { GlobalStyle, Size } from "~theme";
 
 const Main = styled.main(({ theme }) => `
-  background: ${theme.color.lightGrey};
+  background: ${theme.color.dark100};
   max-width: ${theme.breakpoint.sm};
   margin: auto;
   min-height: 100vh;

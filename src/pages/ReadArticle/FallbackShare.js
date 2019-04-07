@@ -15,14 +15,14 @@ const Overlay = styled.div(({theme, visible}) => `
   display: ${visible ? "flex" : "none"};
   height: 100%;
   width: 100%;
-  background-color: ${theme.color.grey};
+  background-color: ${theme.color.dark300};
   z-index: ${theme.zIndexRank.top};
   cursor: pointer;
 `);
 
 const Menu = styled.nav(({theme}) => `
   align-self: flex-end;
-  background: ${theme.color.paleGrey};
+  background: ${theme.color.dark100};
   display: flex;
   flex-direction: column;
   width: 100vw;
@@ -31,7 +31,7 @@ const Menu = styled.nav(({theme}) => `
 const MenuTitle = styled.span(({theme}) => `
   flex: 1;
   font-size: ${theme.typography.baseFontSize.multiply(1)};
-  color: ${theme.color.black};
+  color: ${theme.color.dark600};
   padding: ${theme.typography.baseFontSize};
 `);
 

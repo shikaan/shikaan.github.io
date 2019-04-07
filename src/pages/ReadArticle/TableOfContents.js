@@ -29,7 +29,7 @@ const ContentSection = styled.section`
     }
     
     ul {
-      color: ${({ theme }) => theme.color.darkGrey}
+      color: ${({ theme }) => theme.color.dark500}
     }
     
     a {

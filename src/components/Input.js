@@ -10,12 +10,12 @@ const Input = styled.input(({ theme }) => `
   background: transparent;
   height: ${theme.typography.baseFontSize.multiply(2)};
   border: ${borderWidth} solid transparent;
-  border-bottom: ${borderWidth} solid ${theme.color.mediumGrey};
+  border-bottom: ${borderWidth} solid ${theme.color.dark400};
 
   &::placeholder {
     font-size: ${theme.typography.baseFontSize};
     font-family: ${theme.typography.secondaryFont.fontFamily};
-    color: ${theme.color.darkGrey}
+    color: ${theme.color.dark500}
   }
 `);
 

@@ -57,11 +57,11 @@ module.exports = {
       options: {
         name: "Coffee Driven Developer",
         short_name: "CDD",
-        start_url: "/",
-        background_color: "#f9f5f2", // light coffee
-        theme_color: "#916b55", // coffee
+        start_url: "/home",
+        background_color: "#f9f5f2", // light accent
+        theme_color: "#916b55", // accent
         display: "standalone",
-        icon: "static/icon.png",
+        icon: "static/assets/icon.png",
         include_favicon: true
       }
     },
@@ -80,6 +80,14 @@ module.exports = {
       }
     },
     "gatsby-plugin-portal",
-    "gatsby-plugin-netlify"
+    "gatsby-plugin-netlify",
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /svg/
+        }
+      }
+    }
   ]
 };

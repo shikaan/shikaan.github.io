@@ -32,8 +32,8 @@ const handleVisibility = (theme, visible) => {
 };
 
 const Toaster = React.memo(styled.div(({theme}) => `
-  background: ${theme.color.darkGrey};
-  color: ${theme.color.white};
+  background: ${theme.color.dark500};
+  color: ${theme.color.light};
   border-radius: 2px;
   text-align: center;
   font-family: ${theme.typography.secondaryFont.fontFamily};

@@ -14,7 +14,7 @@ const StyledHeader = styled.header`
 `;
 
 const CloseButton = styled(Link)(({ theme }) => `
-  color: ${theme.color.darkGrey};
+  color: ${theme.color.dark500};
   font-size: ${theme.typography.baseFontSize.multiply(1.125)};
   line-height: ${headerHeight};
   padding: 0 ${theme.templateVariables.horizontalPadding} 0 0;

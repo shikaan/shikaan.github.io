@@ -29,7 +29,7 @@ export const document = `
 
   body {
     overflow-x: hidden;
-    color: ${color.black};
+    color: ${color.dark600};
   }
   
   img {

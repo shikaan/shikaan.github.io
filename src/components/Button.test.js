@@ -14,7 +14,7 @@ describe("Button", () => {
   });
 
   it("renders correctly with context", () => {
-    const wrapper = shallowWithTheme(<Button context={CONTEXT.COFFEE}/>, themeMock);
+    const wrapper = shallowWithTheme(<Button context={CONTEXT.ACCENT}/>, themeMock);
 
     expect(wrapper).toMatchSnapshot();
   });

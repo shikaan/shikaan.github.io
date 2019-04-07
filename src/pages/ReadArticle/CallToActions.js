@@ -16,7 +16,7 @@ const Section = styled.section(({theme}) => `
 `);
 
 const CTALink = styled(Link)(({theme}) => `
-  color: ${theme.color.coffee};
+  color: ${theme.color.dark600};
   font-size: ${theme.typography.baseFontSize.multiply(1.75)}
 `);
 

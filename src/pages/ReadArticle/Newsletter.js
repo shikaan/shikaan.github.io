@@ -107,7 +107,7 @@ class Newsletter extends Component {
               onChange={this.handleEmailChange}/>
           </InputWrapper>
 
-          <Button context="coffee" type="submit">
+          <Button context="accent" type="submit">
             {content.newsletter.ctaLabel}
           </Button>
         </NewsletterForm>

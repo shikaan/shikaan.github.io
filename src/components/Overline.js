@@ -6,7 +6,7 @@ const Overline = styled.span(({ theme }) => `
   font-family: ${theme.typography.secondaryFont.fontFamily};
   font-size: ${theme.typography.baseFontSize.multiply(0.75)}
   padding-bottom: ${theme.typography.baseFontSize.multiply(0.5)};
-  color: ${theme.color.black};
+  color: ${theme.color.dark600};
 `);
 
 export default Overline;

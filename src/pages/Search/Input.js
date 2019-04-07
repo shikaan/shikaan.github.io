@@ -14,7 +14,7 @@ const StyledInput = styled(Input)(({ theme }) => `
   
   &::placeholder {
     font-size: ${theme.typography.baseFontSize.multiply(2.5)};
-    color: ${theme.color.mediumGrey};
+    color: ${theme.color.dark400};
   }
 `);
 

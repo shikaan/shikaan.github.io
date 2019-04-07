@@ -13,7 +13,7 @@ const StyledLink = styled(Link)(({theme}) => `
   padding: 0 ${theme.typography.baseFontSize.multiply(0.5)} 0 0;
   white-space: nowrap;
   display: inline-block;
-  color: ${theme.color.black};
+  color: ${theme.color.dark600};
 `);
 
 const Tag = React.memo(({children, ...rest}) => {
