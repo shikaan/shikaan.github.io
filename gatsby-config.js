@@ -5,7 +5,7 @@ module.exports = {
     title: "Coffee Driven Developer",
     author: "Manuel Spagnolo",
     description: "Blogging about tech, coffee and other good things.",
-    siteUrl: "https://coffeedrivendeveloper.netlify.com",
+    siteUrl: "https://fullstackwithbenefits.netlify.com",
     social: {
       twitter: "spagmanuel",
       instagram: "spagmanuel"
@@ -55,11 +55,11 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        name: "Coffee Driven Developer",
-        short_name: "CDD",
+        name: "Full-Stack with Benefits",
+        short_name: "Full-Stack with Benefits",
         start_url: "/home",
-        background_color: "#f9f5f2", // light accent
-        theme_color: "#916b55", // accent
+        background_color: "#fff",
+        theme_color: "#f56a14",
         display: "standalone",
         icon: "static/assets/icon.png",
         include_favicon: true
