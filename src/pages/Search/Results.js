@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import {sample} from "lodash";
+import {get, sample} from "lodash";
 
 import {isLastIndex} from "~utils";
 
@@ -66,7 +66,7 @@ class Results extends Component {
               <li key={index}>
                 <Card
                   description={frontmatter.description}
-                  image={frontmatter.coverImage.childImageSharp}
+                  image={get(frontmatter, "coverImage.childImageSharp")}
                   overline={overline}
                   slug={fields.slug}
                   tags={frontmatter.tags.slice(0, 2)}
