@@ -21,6 +21,7 @@ module.exports = {
     },
     {
       resolve: "gatsby-transformer-remark",
+      footnotes: true,
       options: {
         plugins: [
           {
@@ -38,7 +39,8 @@ module.exports = {
           "gatsby-remark-prismjs",
           "gatsby-remark-copy-linked-files",
           "gatsby-remark-smartypants",
-          "gatsby-remark-reading-time"
+          "gatsby-remark-reading-time",
+          "gatsby-remark-autolink-headers"
         ]
       }
     },
