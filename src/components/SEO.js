@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
-import { StaticQuery, graphql } from "gatsby";
+import {StaticQuery, graphql} from "gatsby";
 
-function SEO ({ description, lang, meta, keywords, title, slug}) {
+function SEO({description, lang, meta, keywords, title, slug, image, type}) {
   return (
     <StaticQuery
       query={detailsQuery}
@@ -23,6 +23,10 @@ function SEO ({ description, lang, meta, keywords, title, slug}) {
                 content: metaDescription
               },
               {
+                property: "og:site_name",
+                content: data.site.siteMetadata.title
+              },
+              {
                 property: "og:title",
                 content: title
               },
@@ -32,7 +36,7 @@ function SEO ({ description, lang, meta, keywords, title, slug}) {
               },
               {
                 property: "og:type",
-                content: "website"
+                content: type ? type : "website"
               },
               {
                 property: "og:url",
@@ -63,7 +67,15 @@ function SEO ({ description, lang, meta, keywords, title, slug}) {
                   }
                   : []
               )
-              .concat(meta)}
+              .concat(meta)
+              .concat(
+                image
+                  ? {
+                    name: "og:image",
+                    content: image
+                  }
+                  : []
+              )}
           />
         );
       }}

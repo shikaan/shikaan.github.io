@@ -43,13 +43,16 @@ class ReadArticlePage extends React.Component {
 
     const articleTitle = get(article, "frontmatter.title", "");
     const articleDescription = get(article, "frontmatter.description", "");
+    const articleImage = get(article, "frontmatter.coverImage", "");
 
     return (
       <Template location={this.props.location} title={siteTitle}>
         <SEO
+          image={articleImage}
+          type={"article"}
           lang={"en"}
           title={articleTitle}
-          description={articleDescription}
+          description={articleDescription} // TODO: maybe an excerpt is better for SEO?
           keywords={tags}
           slug={location.pathname}
         />
