@@ -1,11 +1,14 @@
-import React, { Component, Fragment } from "react";
-import styled from "styled-components";
-import { ThemeProvider } from "styled-components";
+import React, {Component, Fragment} from "react";
+import styled, {createGlobalStyle} from "styled-components";
+import {ThemeProvider} from "styled-components";
 
-import theme, { GlobalStyle, Size } from "~theme";
+import theme, {GlobalStyle, Size} from "~theme";
 
-const Main = styled.main(({ theme }) => `
+const GlobalBackground = createGlobalStyle`
   background: ${theme.color.dark100};
+`;
+
+const Main = styled.main(({theme}) => `
   max-width: ${theme.breakpoint.sm};
   margin: auto;
   min-height: 100vh;
@@ -17,11 +20,12 @@ const templateVariables = {
 };
 
 class SearchTemplate extends Component {
-  render () {
+  render() {
     return (
-      <ThemeProvider theme={{ ...theme, templateVariables }}>
+      <ThemeProvider theme={{...theme, templateVariables}}>
         <Fragment>
           <GlobalStyle/>
+          <GlobalBackground/>
           <Main>
             {this.props.children}
           </Main>
