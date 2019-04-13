@@ -1,12 +1,16 @@
 import React, {Fragment} from "react";
 import {ThemeProvider} from "styled-components";
+import isMobile from "is-mobile";
 
 import theme, {GlobalStyle, Size} from "~theme";
 
 import Icon from "~components/Icon";
 import Link from "~components/Link";
 
-import {IconColumn, Header, TitleColumn, Row, Logo} from "./Header";
+import {en as content} from "/static/content/_shared";
+import {repository} from "../../../package";
+
+import {IconColumn, Header, MainBanner, TitleColumn, Row, Logo} from "./Header";
 import {Main} from "./Main";
 
 const templateVariables = {
@@ -15,6 +19,11 @@ const templateVariables = {
 };
 
 class MainTemplate extends React.Component {
+  contributeCta = () => {
+    const global = typeof window !== "undefined" ? window : {location: {}};
+    global.location.href = repository.url;
+  }
+
   render() {
     return (
       <ThemeProvider theme={{...theme, templateVariables}}>
@@ -24,7 +33,7 @@ class MainTemplate extends React.Component {
             <Row>
               <TitleColumn>
                 <Link to={"/home"}>
-                  <Logo />
+                  <Logo/>
                 </Link>
               </TitleColumn>
               <IconColumn>
@@ -34,6 +43,12 @@ class MainTemplate extends React.Component {
               </IconColumn>
             </Row>
           </Header>
+          {
+            !isMobile() &&
+            <MainBanner ctaLabel={content.disclaimer.ctaLabel} ctaAction={() => this.contributeCta()}>
+              {content.disclaimer.text}
+            </MainBanner>
+          }
           <Main>
             {this.props.children}
           </Main>

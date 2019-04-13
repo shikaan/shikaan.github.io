@@ -5,6 +5,7 @@ import LogoSVG from "/static/assets/logo.svg";
 import {Size} from "~theme";
 
 import Icon from "~components/Icon";
+import Banner from "~components/Banner";
 
 export const headerHeight = new Size(8);
 const padding = new Size(2);
@@ -45,3 +46,9 @@ export const Logo = styled(LogoSVG)`
   width: ${new Size(25)};
   padding: ${new Size(.5)} ${new Size(2)};
 `;
+
+export const MainBanner = styled(Banner)`
+  top: ${headerHeight};
+  position: fixed;
+  z-index: 100;
+ `;

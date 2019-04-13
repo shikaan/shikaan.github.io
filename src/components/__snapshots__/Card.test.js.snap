@@ -300,7 +300,10 @@ exports[`Card renders correctly 1`] = `
                           href="slug"
                         >
                           <Image
+                            Tag="div"
                             alt="title"
+                            critical={false}
+                            fadeIn={true}
                             fixed={
                               Object {
                                 "base64": "base64",
@@ -314,103 +317,99 @@ exports[`Card renders correctly 1`] = `
                               }
                             }
                           >
-                            <Image
-                              Tag="div"
-                              alt="title"
-                              critical={false}
-                              fadeIn={true}
-                              fixed={
+                            <div
+                              className=" gatsby-image-wrapper"
+                              key="fixed-\\"srcSet\\""
+                              style={
                                 Object {
-                                  "base64": "base64",
+                                  "display": "inline-block",
                                   "height": 1,
-                                  "src": "src",
-                                  "srcSet": "srcSet",
-                                  "srcSetWebp": "srcSetWebp",
-                                  "srcWebp": "srcWebp",
-                                  "tracedSVG": "tracedSVG",
+                                  "overflow": "hidden",
+                                  "position": "relative",
                                   "width": 1,
                                 }
                               }
                             >
-                              <div
-                                className=" gatsby-image-wrapper"
-                                key="fixed-\\"srcSet\\""
+                              <ForwardRef
+                                alt=""
+                                src="base64"
                                 style={
                                   Object {
-                                    "display": "inline-block",
-                                    "height": 1,
-                                    "overflow": "hidden",
-                                    "position": "relative",
-                                    "width": 1,
+                                    "opacity": 1,
+                                    "transition": "opacity 0.5s",
+                                    "transitionDelay": "0.25s",
                                   }
                                 }
                               >
-                                <ForwardRef
+                                <img
                                   alt=""
                                   src="base64"
                                   style={
                                     Object {
+                                      "height": "100%",
+                                      "left": 0,
+                                      "objectFit": "cover",
+                                      "objectPosition": "center",
                                       "opacity": 1,
+                                      "position": "absolute",
+                                      "top": 0,
                                       "transition": "opacity 0.5s",
                                       "transitionDelay": "0.25s",
+                                      "width": "100%",
                                     }
                                   }
-                                >
-                                  <img
-                                    alt=""
-                                    src="base64"
-                                    style={
-                                      Object {
-                                        "height": "100%",
-                                        "left": 0,
-                                        "objectFit": "cover",
-                                        "objectPosition": "center",
-                                        "opacity": 1,
-                                        "position": "absolute",
-                                        "top": 0,
-                                        "transition": "opacity 0.5s",
-                                        "transitionDelay": "0.25s",
-                                        "width": "100%",
-                                      }
-                                    }
-                                  />
-                                </ForwardRef>
-                                <ForwardRef
+                                />
+                              </ForwardRef>
+                              <ForwardRef
+                                alt=""
+                                src="tracedSVG"
+                                style={
+                                  Object {
+                                    "opacity": 1,
+                                    "transition": "opacity 0.5s",
+                                    "transitionDelay": "0.25s",
+                                  }
+                                }
+                              >
+                                <img
                                   alt=""
                                   src="tracedSVG"
                                   style={
                                     Object {
+                                      "height": "100%",
+                                      "left": 0,
+                                      "objectFit": "cover",
+                                      "objectPosition": "center",
                                       "opacity": 1,
+                                      "position": "absolute",
+                                      "top": 0,
                                       "transition": "opacity 0.5s",
                                       "transitionDelay": "0.25s",
+                                      "width": "100%",
                                     }
                                   }
+                                />
+                              </ForwardRef>
+                              <picture>
+                                <source
+                                  srcSet="srcSetWebp"
+                                  type="image/webp"
+                                />
+                                <ForwardRef
+                                  alt="title"
+                                  height={1}
+                                  onLoad={[Function]}
+                                  src="src"
+                                  srcSet="srcSet"
+                                  style={
+                                    Object {
+                                      "opacity": 0,
+                                      "transition": "opacity 0.5s",
+                                    }
+                                  }
+                                  width={1}
                                 >
                                   <img
-                                    alt=""
-                                    src="tracedSVG"
-                                    style={
-                                      Object {
-                                        "height": "100%",
-                                        "left": 0,
-                                        "objectFit": "cover",
-                                        "objectPosition": "center",
-                                        "opacity": 1,
-                                        "position": "absolute",
-                                        "top": 0,
-                                        "transition": "opacity 0.5s",
-                                        "transitionDelay": "0.25s",
-                                        "width": "100%",
-                                      }
-                                    }
-                                  />
-                                </ForwardRef>
-                                <picture>
-                                  <source
-                                    srcSet="srcSetWebp"
-                                    type="image/webp"
-                                  />
-                                  <ForwardRef
                                     alt="title"
                                     height={1}
                                     onLoad={[Function]}
@@ -418,44 +417,29 @@ exports[`Card renders correctly 1`] = `
                                     srcSet="srcSet"
                                     style={
                                       Object {
+                                        "height": "100%",
+                                        "left": 0,
+                                        "objectFit": "cover",
+                                        "objectPosition": "center",
                                         "opacity": 0,
+                                        "position": "absolute",
+                                        "top": 0,
                                         "transition": "opacity 0.5s",
+                                        "width": "100%",
                                       }
                                     }
                                     width={1}
-                                  >
-                                    <img
-                                      alt="title"
-                                      height={1}
-                                      onLoad={[Function]}
-                                      src="src"
-                                      srcSet="srcSet"
-                                      style={
-                                        Object {
-                                          "height": "100%",
-                                          "left": 0,
-                                          "objectFit": "cover",
-                                          "objectPosition": "center",
-                                          "opacity": 0,
-                                          "position": "absolute",
-                                          "top": 0,
-                                          "transition": "opacity 0.5s",
-                                          "width": "100%",
-                                        }
-                                      }
-                                      width={1}
-                                    />
-                                  </ForwardRef>
-                                </picture>
-                                <noscript
-                                  dangerouslySetInnerHTML={
-                                    Object {
-                                      "__html": "<picture><source type='image/webp' srcset=\\"srcSetWebp\\" /><img width=\\"1\\" height=\\"1\\" srcset=\\"srcSet\\" src=\\"src\\" alt=\\"title\\" style=\\"position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center\\"/></picture>",
-                                    }
+                                  />
+                                </ForwardRef>
+                              </picture>
+                              <noscript
+                                dangerouslySetInnerHTML={
+                                  Object {
+                                    "__html": "<picture><source type='image/webp' srcset=\\"srcSetWebp\\" /><img width=\\"1\\" height=\\"1\\" srcset=\\"srcSet\\" src=\\"src\\" alt=\\"title\\" style=\\"position:absolute;top:0;left:0;transition:opacity 0.5s;transition-delay:0.5s;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center\\"/></picture>",
                                   }
-                                />
-                              </div>
-                            </Image>
+                                }
+                              />
+                            </div>
                           </Image>
                         </a>
                       </mockConstructor>
