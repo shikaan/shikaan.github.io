@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
   siteMetadata: {
-    title: "Coffee Driven Developer",
+    title: "Full-Stack with Benefits",
     author: "Manuel Spagnolo",
     description: "Blogging about tech, coffee and other good things.",
     siteUrl: "https://fullstackwithbenefits.netlify.com",

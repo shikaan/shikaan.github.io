@@ -13,7 +13,7 @@ exports[`Card renders correctly 1`] = `
   -moz-letter-spacing: 0;
   -ms-letter-spacing: 0;
   letter-spacing: 0;
-  color: rgba(0,0,0,.82);
+  color: hsl(44,8%,18%);
   font-size: 24px;
 }
 
@@ -26,7 +26,7 @@ exports[`Card renders correctly 1`] = `
   letter-spacing: 0.16px;
   font-weight: 400;
   line-height: normal;
-  color: rgba(0,0,0,.82);
+  color: hsl(44,8%,18%);
 }
 
 .c10 {
@@ -42,7 +42,7 @@ exports[`Card renders correctly 1`] = `
   padding: 0 8px 0 0;
   white-space: nowrap;
   display: inline-block;
-  color: rgba(0,0,0,.82);
+  color: hsl(44,8%,18%);
 }
 
 .c5 {
@@ -51,7 +51,7 @@ exports[`Card renders correctly 1`] = `
   font-family: Lato,Geneva,Tahoma,sans-serif;
   font-size: 12px;
   padding-bottom: 8px;
-  color: rgba(0,0,0,.82);
+  color: hsl(44,8%,18%);
 }
 
 .c0 {
@@ -116,15 +116,19 @@ exports[`Card renders correctly 1`] = `
         "xs": "480px",
       },
       "color": Object {
-        "black": "rgba(0, 0, 0, .82)",
-        "coffee": "rgba(145, 107, 85, 1)",
-        "darkGrey": "rgba(79, 79, 79, 1)",
-        "grey": "rgba(0, 0, 0, .32)",
-        "lightCoffee": "rgba(249, 245, 242, 1)",
-        "lightGrey": "rgba(0, 0, 0, .05)",
-        "mediumGrey": "rgba(0, 0, 0, .38)",
-        "paleGrey": "rgba(242, 242, 242, 1)",
-        "white": "rgba(255, 255, 255, 1)",
+        "brand100": "hsl(23,92%,95%)",
+        "brand200": "hsl(23,92%,82%)",
+        "brand300": "hsl(23,92%,67%)",
+        "brand400": "hsl(23,92%,52%)",
+        "brand500": "hsl(23,92%,35%)",
+        "brand600": "hsl(23,92%,18%)",
+        "dark100": "hsl(44,8%,95%)",
+        "dark200": "hsl(44,8%,82%)",
+        "dark300": "hsl(44,8%,67%)",
+        "dark400": "hsl(44,8%,52%)",
+        "dark500": "hsl(44,8%,35%)",
+        "dark600": "hsl(44,8%,18%)",
+        "light": "#fff",
       },
       "typography": Object {
         "__esModule": true,
@@ -134,11 +138,11 @@ exports[`Card renders correctly 1`] = `
         "baseLineHeight": "normal",
         "primaryFont": Object {
           "fontFamily": "Merriweather, Georgia, serif",
-          "hover": "rgba(0, 0, 0, .82)",
+          "hover": "hsl(44,8%,18%)",
         },
         "secondaryFont": Object {
           "fontFamily": "Lato, Geneva, Tahoma, sans-serif",
-          "hover": "rgba(0, 0, 0, .82)",
+          "hover": "hsl(44,8%,18%)",
         },
       },
       "zIndexRank": Object {

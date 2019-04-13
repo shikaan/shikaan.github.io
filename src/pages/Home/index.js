@@ -66,18 +66,7 @@ export const pageQuery = graphql`
         coverImage {
           childImageSharp {
             fluid {
-              base64
-              tracedSVG
-              aspectRatio
-              src
-              srcSet
-              srcWebp
-              srcSetWebp
-              sizes
-              originalImg
-              originalName
-              presentationWidth
-              presentationHeight
+              ...GatsbyImageSharpFluid
             }
           }
         }
@@ -107,16 +96,7 @@ export const pageQuery = graphql`
             coverImage {
               childImageSharp {
                 fixed(width:112, height:112) {
-                  width
-                  height
-                  base64
-                  tracedSVG
-                  aspectRatio
-                  src
-                  srcSet
-                  srcWebp
-                  srcSetWebp
-                  originalName
+                  ...GatsbyImageSharpFixed
                 }
               }
             }

@@ -1,6 +1,10 @@
 const path = require("path");
 const {createFilePath} = require("gatsby-source-filesystem");
 
+// FIXME: this is a temporary hack, as it looks like there is no way to
+//  pass parameters to 404
+let featuredArticleId;
+
 const getPagePath = (page) => {
   return path.resolve(`./src/pages/${page}/index.js`);
 };
@@ -88,7 +92,9 @@ exports.createPages = ({graphql, actions}) => {
       createArticlesPages({graphql, actions}),
       createSearchPage({actions})
     ])
-    .then(([{featuredArticleId}]) => {
+    .then(([{featuredArticleId: faid}]) => {
+      featuredArticleId = faid;
+
       return createHomePage({actions, featuredArticleId});
     });
 };
@@ -117,5 +123,9 @@ exports.onCreateNode = ({node, actions, getNode}) => {
 exports.onCreatePage = ({page, actions}) => {
   if (!page.path.includes("404")) {
     actions.deletePage(page);
+  } else {
+    if (!page.context.featuredArticleId) {
+      page.context.featuredArticleId = featuredArticleId;
+    }
   }
 };

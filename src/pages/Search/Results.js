@@ -3,16 +3,15 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import {sample} from "lodash";
 
-import EmptyStateSVG from "/static/assets/empty-state.svg";
-
 import {isLastIndex} from "~utils";
+
 import Card from "~components/Card";
-import Link, {navigate} from "~components/Link";
+import {navigate} from "~components/Link";
 import Heading, {CONTEXT} from "~components/Heading";
 import Tag from "~components/Tag";
-import Image from "~components/Image";
 import Divider from "~components/Divider";
-import Button from "~components/Button";
+
+import EmptyState from "./EmptyState";
 
 const Section = styled.section(({theme}) => `
   padding: 0 ${theme.templateVariables.horizontalPadding};
@@ -22,61 +21,11 @@ const ListItem = styled.li(({theme}) => `
   padding: ${theme.templateVariables.horizontalPadding.multiply(.5)} ${theme.templateVariables.horizontalPadding};
 `);
 
-const EmptyStateHeading = styled(Heading)(({theme}) => `
-  font-size: ${theme.typography.baseFontSize.multiply(2)};
-  
-  & + small {
-    font-size: ${theme.typography.baseFontSize};
-    padding: ${theme.templateVariables.verticalPadding} 0;
-  }
-`);
-
-const EmptyStateWrapper = styled.div`
-  text-align: center;
-`;
-
-const EmptyStateParagraph = styled.p(({theme}) => {
-  const verticalPadding = theme.templateVariables.verticalPadding.multiply(1.5);
-  const horizontalPadding = theme.templateVariables.horizontalPadding.multiply(1.5);
-
-  return `
-    padding: ${verticalPadding} ${horizontalPadding};
-  `;
-});
-
-const EmptyStateImage = styled(EmptyStateSVG)`
-  height: 35vh;
-  width: 80vw;
-`;
-
-const EmptyStateButton = styled(Button)`
-  margin-bottom: 10vh;
-`;
-
 class Results extends Component {
   pickTrendingTopic = () => {
     const {trendingTopics} = this.props;
 
     navigate(`/search?query=${sample(trendingTopics)}`, {replace: true});
-  };
-
-  renderEmptyState = () => {
-    const {content} = this.props;
-
-    return (
-      <EmptyStateWrapper>
-        <EmptyStateHeading level={3} context={CONTEXT.DISPLAY} sub={content.emptyState.paragraph[0]}>
-          {content.emptyState.title}
-        </EmptyStateHeading>
-        <EmptyStateImage/>
-        <EmptyStateParagraph>
-          {content.emptyState.paragraph[1]}
-        </EmptyStateParagraph>
-        <EmptyStateButton context="accent" onClick={() => this.pickTrendingTopic()}>
-          {content.emptyState.cta}
-        </EmptyStateButton>
-      </EmptyStateWrapper>
-    );
   };
 
   renderTrendingTopics = () => {
@@ -134,7 +83,7 @@ class Results extends Component {
   };
 
   render() {
-    const {searchResults} = this.props;
+    const {searchResults, content} = this.props;
 
     const isFirstSearch = !searchResults;
     const hasResults = searchResults && !!searchResults.length;
@@ -150,7 +99,7 @@ class Results extends Component {
         }
 
         {
-          !isFirstSearch && !hasResults && this.renderEmptyState()
+          !isFirstSearch && !hasResults && <EmptyState content={content} pickTrendingTopic={this.pickTrendingTopic}/>
         }
       </Section>
     );
