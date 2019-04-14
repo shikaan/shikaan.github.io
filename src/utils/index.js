@@ -1,1 +1,2 @@
 export {isLastIndex} from "./is-last-index";
+export {getGlobalWithKey} from "./get-global-with-key";

@@ -3,26 +3,34 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const getColorFromContext = (context, theme) => {
-  if (context === CONTEXT.ACCENT) {
-    return `
-      border: none;
-      background-color: ${theme.color.brand400};
-      color: ${theme.color.light}
-    `;
-  } else if (context === CONTEXT.OUTLINE_LIGHT) {
-    return `
-      border: 1px solid ${theme.color.light};
-      background-color: transparent;
-      color: ${theme.color.light};
-    `;
-  } else {
-    return null;
+  switch (context) {
+    case CONTEXT.ACCENT:
+      return `
+        border: 1px solid transparent;
+        background-color: ${theme.color.brand400};
+        color: ${theme.color.light}
+      `;
+    case CONTEXT.OUTLINE_LIGHT:
+      return `
+        border: 1px solid ${theme.color.light};
+        background-color: transparent;
+        color: ${theme.color.light};
+      `;
+    case CONTEXT.LIGHT:
+      return `
+        border: 1px solid transparent;
+        background-color: ${theme.color.light};
+        color: ${theme.color.brand400};
+      `;
+    default:
+      return null;
   }
 };
 
 export const CONTEXT = {
   ACCENT: "accent",
   OUTLINE_LIGHT: "outline-light",
+  LIGHT: "light",
 };
 
 const StyledButton = styled.button(({theme, context}) => `

@@ -47,7 +47,7 @@ export const Logo = styled(LogoSVG)`
   padding: ${new Size(.5)} ${new Size(2)};
 `;
 
-export const MainBanner = styled(Banner)`
+export const Disclaimer = styled(Banner)`
   top: ${headerHeight};
   position: fixed;
   z-index: 100;

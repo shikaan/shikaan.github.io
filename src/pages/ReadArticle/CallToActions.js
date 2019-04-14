@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import styled from "styled-components";
 
 import {REPO_BASE_URL} from "~/constants";
+import {getGlobalWithKey} from "~/utils";
 
 import Icon from "~components/Icon";
 import Link from "~components/Link";
@@ -30,7 +31,7 @@ class CallToActions extends Component {
   }
 
   static useFallbackShare() {
-    const global = typeof window !== "undefined" ? window : {navigator: {}};
+    const global = getGlobalWithKey("navigator");
     return !global.navigator.share;
   }
 
