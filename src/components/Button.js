@@ -23,7 +23,9 @@ const getColorFromContext = (context, theme) => {
         color: ${theme.color.brand400};
       `;
     default:
-      return null;
+      return `
+        border: 1px solid transparent;
+      `;
   }
 };
 
