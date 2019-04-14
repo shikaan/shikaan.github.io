@@ -19,12 +19,30 @@ const templateVariables = {
 };
 
 class MainTemplate extends React.Component {
+  static BANNER_STATUS = {
+    OPEN: "open",
+    CLOSED: "closed",
+    DISMISSED: "dimsissed"
+  }
+
+  state = {
+    bannerStatus: MainTemplate.BANNER_STATUS.CLOSED
+  }
+
   contributeCta = () => {
     const global = typeof window !== "undefined" ? window : {location: {}};
     global.location.href = repository.url;
   }
 
+  componentDidMount() {
+    if (!isMobile() && this.state.bannerStatus !== MainTemplate.BANNER_STATUS.DISMISSED) {
+      this.setState({bannerStatus: MainTemplate.BANNER_STATUS.OPEN});
+    }
+  }
+
   render() {
+    const {bannerStatus} = this.state;
+
     return (
       <ThemeProvider theme={{...theme, templateVariables}}>
         <Fragment>
@@ -44,7 +62,7 @@ class MainTemplate extends React.Component {
             </Row>
           </Header>
           {
-            !isMobile() &&
+            bannerStatus === MainTemplate.BANNER_STATUS.OPEN &&
             <MainBanner ctaLabel={content.disclaimer.ctaLabel} ctaAction={() => this.contributeCta()}>
               {content.disclaimer.text}
             </MainBanner>
