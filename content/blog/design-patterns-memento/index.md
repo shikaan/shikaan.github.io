@@ -79,15 +79,15 @@ First things first: why this pattern is called Memento? _Memento_ is a Latin wor
 
 So, to wrap it up, these are the participants in Memento with their responsibilities:
 
-* **Originator**: 
-    * creates a Memento to store the internal state;
-    * uses Mementos to restore its state; 
-* **Memento**: 
-    * stores an immutable snapshot of the internal state of Originator;
-    * can be accessed _only_ by the Originator;
-* **Caretaker**: 
-    * stores Mementos;
-    * never operates on or read Mementos;
+- **Originator**: 
+    - creates a Memento to store the internal state;
+    - uses Mementos to restore its state; 
+- **Memento**: 
+    - stores an immutable snapshot of the internal state of Originator;
+    - can be accessed _only_ by the Originator;
+- **Caretaker**: 
+    - stores Mementos;
+    - never operates on or read Mementos;
 
 In practice these will become something like:
 

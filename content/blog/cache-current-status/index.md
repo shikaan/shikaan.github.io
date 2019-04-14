@@ -19,14 +19,15 @@ What we are about to cover is something you typically decide once in a while or 
 
 Serving the correct version of a web app started to become something you should be concerned about only "recently". 
 
-Back in the days, we had server-side technologies like Java, JSP and PHP which used to serve thin client applications with small or no logic at all. Over time clients got thicker and we started splitting responsibilities between frontend and backend to the point where frontend and backend are usually two completely different applications<a href="#note1" id="note1ref"><sup>1</sup></a> which are just meant to communicate, rather than being "the same thing".
+Back in the days, we had server-side technologies like Java, JSP and PHP which used to serve thin client applications with small or no logic at all. Over time clients got thicker and we started splitting responsibilities between frontend and backend to the point where frontend and backend are usually two completely different applications[^1] which are just meant to communicate, rather than being "the same thing".
 
-When the application is run by the server, serving the correct version isn't a concern, because the browser is usually just asking "that page" and the ball it's in the server's court with regards with deciding which version of that page to serve<a href="#note2" id="note2ref"><sup>2</sup></a>.
+When the application is run by the server, serving the correct version isn't a concern, because the browser is usually just asking "that page" and the ball it's in the server's court with regards with deciding which version of that page to serve[^2].
 
 When the application lives on the client side, unfortunately, the page requested by the browser is usually an `index.html` with a `<script>` which includes the client application via an `src` attribute.
 
 So if the `index.html` is something like
-```
+
+```html
 <!DOCTYPE html>
 <html>
   <head>
@@ -41,11 +42,11 @@ So if the `index.html` is something like
 ```
 we could theoretically just bundle a different `app.js` every time keeping the `index.html` the same.
 
-Unfortunately, that is not true any more. Browsers nowadays understand whether something changes<a href="#note3" id="note3ref"><sup>3</sup></a>, so rather than asking again `app.js`, they will just assume it never changed and serve the old one unless we communicate them to not do so.
+Unfortunately, that is not true any more. Browsers nowadays understand whether something changes[^3], so rather than asking again `app.js`, they will just assume it never changed and serve the old one unless we communicate them to not do so.
 
 One way of doing this is appending the version of the application as a query string parameter in the `src`.
 
-```
+```html
 <!DOCTYPE html>
 <html>
   <head>
@@ -63,7 +64,7 @@ Thus every time we bump a new version of the bundle, the browser is forced to pe
 
 Another similar (and by far more common nowadays) approach is naming the bundle with a hash which is different on every deploy. The hash can be based on the actual version, on the code, on the latest revision number or even the timestamp of the moment when the build happened.
 
-```
+```html
 <!DOCTYPE html>
 <html>
   <head>
@@ -90,7 +91,7 @@ You can implement it yourself using a build tool which rewrites the `index.html`
 
 Among the things going hand in hand with `manifest.json` (especially with regards to Progressive Web Apps), we have Service Workers.
 
-Without going too much in details about the awesome things you can do with service workers<a href="#note4" id="note4ref"><sup>4</sup></a>, you can imagine them as a JavaScript thread running in parallel in the browser whose life cycle is not bound to the client application's one.
+Without going too much in details about the awesome things you can do with service workers[^4], you can imagine them as a JavaScript thread running in parallel in the browser whose life cycle is not bound to the client application's one.
 
 The reason why we are so interested in them here is that in Service Worker API we have access to the Cache Interface.
 
@@ -219,11 +220,10 @@ As always, if you have any feedback (e.g., why did you stop with memes? why are 
 
 Until next time!
 
----
-<a id="note1" href="#note1ref">1</a>. We still have Server Side Rendered applications, but _usually_ the backend layer responsible of rendering the client is still not taking care of other parts of business logic, making the whole thing still split to a certain extent.
+[^1]: We still have Server Side Rendered applications, but _usually_ the backend layer responsible of rendering the client is still not taking care of other parts of business logic, making the whole thing still split to a certain extent.
 
-<a id="note2" href="#note2ref">2</a>. This is not entirely true: there are ways to get stale content even with server rendered applications. We are going to treat how to get fresh content in this (and other cases) in the [HTTP Headers section](#http-headers).
+[^2]: This is not entirely true: there are ways to get stale content even with server rendered applications. We are going to treat how to get fresh content in this (and other cases) in the [HTTP Headers section](#http-headers).
 
-<a id="note3" href="#note3ref">3</a>. We'll dig a bit deeper on how browsers actually understand when to request fresh data or not in the [HTTP Headers section](#http-headers)
+[^3]: We'll dig a bit deeper on how browsers actually understand when to request fresh data or not in the [HTTP Headers section](#http-headers)
 
-<a id="note4" href="#note4ref">4</a>. I am not letting you down ❤ [Here](https://developers.google.com/web/fundamentals/primers/service-workers/)'s a very good introduction by Google on the matter. 
+[^4]: I am not letting you down ❤ [Here](https://developers.google.com/web/fundamentals/primers/service-workers/)'s a very good introduction by Google on the matter. 
