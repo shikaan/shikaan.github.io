@@ -43,12 +43,12 @@ class ReadArticlePage extends React.Component {
 
     const articleTitle = get(article, "frontmatter.title", "");
     const articleDescription = get(article, "frontmatter.description", "");
-    const articleImage = get(article, "frontmatter.coverImage", "");
+    const articleImage = get(article, "frontmatter.coverImage.childImageSharp.fluid.originalImg", "");
 
     return (
       <Template location={this.props.location} title={siteTitle}>
         <SEO
-          image={articleImage}
+          image={`${this.props.location.origin}/${articleImage}`}
           type={"article"}
           lang={"en"}
           title={articleTitle}

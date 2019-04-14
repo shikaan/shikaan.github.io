@@ -9,18 +9,6 @@ commentLink: ""
 
 # Introduction
 
-## Foreword
-
-Before diving down in this series you might want to know why I am writing this.
-
-My name is Manuel and I am a more-or-less Italian more-or-less lifelong geek.  Although I am doing web development since the dark ages of `<tables>`, I decided to make software development a full time job only three years ago.
-
-As you can imagine, I didn't have my Computer Science education, so I am continuously striving to fill this gap studying "academic" topics as much as I can.
-
-Moreover, I recently moved away from my home country, thus I also need a good excuse to practice my English.
-
-This is exactly where this series of articles comes from.
-
 ## What is this about?
 
 What I'd like to do is writing articles about Design Patterns based on what I learned mainly from [the Gang of Four](https://en.wikipedia.org/wiki/Design_Patterns).
@@ -41,12 +29,11 @@ As much as everyone of you claims to be the best cook in the world because of th
 
 ![Dog - I have no idea what I'm doing](https://www.ecolutionhome.com/wp-content/uploads/2018/02/C-Cooking-Memes27.png)
 
-The reason is pretty straightforward: all those recipes have been created by someone who - eventually making a huge amount of mistakes along the way - fixed, corrected and amended those procedures over time. Using those well packaged bits of knowledge makes you avoid lots of common pitfalls and wrong decisions. This is extremely useful in circumstances in which the choice you make looks unharmful, but it doesn't look so when you serve your dish to someone which might not be as polite as you expect (food in Italy is really something serious).
+The reason is pretty straightforward: all those recipes have been created by someone who - eventually making a huge amount of mistakes along the way - fixed, corrected and amended those procedures over time. Using those well packaged bits of knowledge makes you avoid lots of common pitfalls and wrong decisions. This is extremely useful in circumstances when the choice you make looks unharmful, but in reality it is not. Something along the lines of serving a poorly prepared dish to someone which might not be as polite as you expect...
 
 At the same time recipes can be used as a template to build upon rather than as a set of rules carved in stone. There are plenty of extremely good chefs which revisit their family cookbook to make a business out of it or, in general, to serve their purposes which might be different from their grandma's ones.
 
-In software development the whole thing works pretty much the same way. The main difference though is that software development projects usually last more than a bunch of minutes and you cannot get away with brushing your teeth 
-at the end. Apart from this though, the main ideas are the same: having a very strong starting point to solve common problems which you might want to customize when you get to an expertise level which allows you to do so.
+In software development the whole thing works pretty much the same way. The main difference though is that software development projects usually last more than a bunch of minutes and you cannot get away with brushing your teeth at the end. The main ideas are the same, though: having a very strong starting point to solve common problems which you might want to customize when you get to an expertise level which allows you to do so.
 
 ## Criticism
 
@@ -54,7 +41,7 @@ As for all the things which are too good to be true, this has to be either not s
 
 The good news is that this is true 😀 The bad news is, though, that your decision-making process cannot **completely** be replaced by _The Wisdom of the Ancients_.
 
-![](https://i.pinimg.com/originals/72/5d/29/725d29ab0d189c2220a8c398af687871.jpg)
+![Francis Bacon](https://i.pinimg.com/originals/72/5d/29/725d29ab0d189c2220a8c398af687871.jpg)
 
 This is by far the most common argument raised against the pattern approach in software development: solutions provided via patterns tend to be not as efficient as they could be for very specific problems.
 
@@ -72,7 +59,7 @@ I guess this is something we cannot help and it's a fairly common problem with a
 
 As you might have understood by now, the Gang of Four was really the s***t when it came out (which is, by the way, 1995). 
 
-![](https://www.coengoedegebure.com/content/images/2017/08/onedoesnotsimplygof-1.jpg)
+![Boromir Gang of Four](https://www.coengoedegebure.com/content/images/2017/08/onedoesnotsimplygof-1.jpg)
 
 So nowadays, we're still somewhat classifying design patterns based on their classification.
 
@@ -103,7 +90,7 @@ So nowadays, we're still somewhat classifying design patterns based on their cla
 * Interpreter
 * Iterator
 * Mediator
-* [Memento](https://dev.to/shikaan/design-patterns-in-web-development---2-memento-253j)
+* [Memento](/design-patterns-memento)
 * Observer
 * State
 * Strategy

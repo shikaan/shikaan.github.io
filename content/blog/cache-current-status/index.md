@@ -3,7 +3,7 @@ title: Current Status - Caching Techniques
 tags: ["webdev", "python", "javascript", "cache"]
 description: Caching standards and how to deal with them
 coverImage: "cover.jpg"
-date: "2010-01-06T00:00:00.000Z"
+date: "2019-01-06T00:00:00.000Z"
 commentLink: ""
 ---
 
