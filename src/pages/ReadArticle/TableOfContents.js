@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-const bodyTwoStyle = (theme) => ({
-  fontFamily: theme.typography.secondaryFont.fontFamily,
-  fontWeight: 400,
-  fontSize: theme.typography.baseFontSize
-});
+const bodyTwoStyle = (theme) => (`
+  font-family: ${theme.typography.secondaryFont.fontFamily},
+  font-weight: 400,
+  font-size: ${theme.typography.baseFontSize}
+`);
 
 const Content = styled.nav`
   font-family: ${({ theme }) => theme.typography.secondaryFont.fontFamily};
@@ -18,38 +18,41 @@ const ContentHeader = styled.header`
   padding: ${({ theme }) => theme.templateVariables.verticalPadding} 0;
 `;
 
-const ContentSection = styled.section`
-  padding-bottom: ${({ theme }) => theme.templateVariables.verticalPadding};
+const ContentSection = styled.section(({theme}) =>`
+  padding-bottom: ${theme.templateVariables.verticalPadding.multiply(2)};
   
   & > ul {
-    padding: 0 ${({ theme }) => theme.typography.baseFontSize.multiply(0.5)};
+    padding: 0 ${theme.typography.baseFontSize.multiply(0.5)};
+    list-style-position: inside;
      
     p {
         display: inline;
     }
     
     ul {
-      color: ${({ theme }) => theme.color.dark500}
+      color: ${theme.color.dark500};
     }
     
     a {
-      ${({ theme }) => bodyTwoStyle(theme)}
+      ${bodyTwoStyle(theme)};
       text-decoration: none;
+      padding: ${theme.templateVariables.verticalPadding} 0;
+      display: inline-block;
+      width: calc(100% - ${theme.templateVariables.horizontalPadding});
     }
     
-    li {
-      font-size: ${({ theme }) => theme.typography.baseFontSize.multiply(0.75)};
+    li {      
+      font-size: ${theme.typography.baseFontSize};
       list-style-type: disc;
       list-style-position: inside;
       
       li {
-        padding: ${({ theme }) => theme.templateVariables.verticalPadding} 0;
         list-style-type: circle;
-        padding-left: ${({ theme }) => theme.typography.baseFontSize} 
+        padding-left: ${theme.typography.baseFontSize};
       }
      }
   }
-`;
+`);
 
 class TableOfContents extends Component {
   render () {
