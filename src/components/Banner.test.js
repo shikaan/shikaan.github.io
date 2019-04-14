@@ -10,23 +10,40 @@ import Banner from "./Banner.js";
 
 describe("Banner", () => {
   it("renders correctly", () => {
-    const wrapper = shallow(<Banner/>);
+    const wrapper = shallow(<Banner visible={true} />);
 
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("calls ctaAction when button is clicked", () => {
-    const ctaActionStub = jest.fn();
-    const wrapper = mountWithTheme(<Banner ctaLabel={"label"} ctaAction={ctaActionStub}/>, themeMock);
+  it("calls onAction when button is clicked", () => {
+    const onActionStub = jest.fn();
+    const wrapper = mountWithTheme(<Banner visible={true} actionLabel={"label"} onAction={onActionStub}/>, themeMock);
 
     wrapper.find(Button).simulate("click");
 
-    expect(ctaActionStub).toHaveBeenCalled();
+    expect(onActionStub).toHaveBeenCalled();
   });
 
-  it("renders cta only if label is provided", () => {
-    const wrapperWithoutCTA = mountWithTheme(<Banner />, themeMock);
-    const wrapperWithCTA = mountWithTheme(<Banner ctaLabel={"label"} />, themeMock);
+  it("renders cta only if actionLabel is provided", () => {
+    const wrapperWithoutCTA = mountWithTheme(<Banner visible={true} />, themeMock);
+    const wrapperWithCTA = mountWithTheme(<Banner visible={true} actionLabel={"label"} />, themeMock);
+
+    expect(wrapperWithoutCTA.find(Button)).toHaveLength(0);
+    expect(wrapperWithCTA.find(Button)).not.toHaveLength(0);
+  });
+
+  it("calls onDismiss when button is clicked", () => {
+    const onDismissedStub = jest.fn();
+    const wrapper = mountWithTheme(<Banner visible={true} dismissLabel={"label"} onDismissed={onDismissedStub}/>, themeMock);
+
+    wrapper.find(Button).simulate("click");
+
+    expect(onDismissedStub).toHaveBeenCalled();
+  });
+
+  it("renders dismiss only if label is provided", () => {
+    const wrapperWithoutCTA = mountWithTheme(<Banner visible={true} />, themeMock);
+    const wrapperWithCTA = mountWithTheme(<Banner visible={true} dismissLabel={"label"} />, themeMock);
 
     expect(wrapperWithoutCTA.find(Button)).toHaveLength(0);
     expect(wrapperWithCTA.find(Button)).not.toHaveLength(0);

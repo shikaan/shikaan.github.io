@@ -15,7 +15,7 @@ const Overlay = styled.div(({theme, visible}) => `
   display: ${visible ? "flex" : "none"};
   height: 100%;
   width: 100%;
-  background-color: ${theme.color.dark300};
+  background-color: ${theme.color.withTransparency.dark600};
   z-index: ${theme.zIndexRank.top};
   cursor: pointer;
 `);

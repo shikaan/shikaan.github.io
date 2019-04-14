@@ -108,7 +108,7 @@ class Newsletter extends Component {
           </InputWrapper>
 
           <Button context="accent" type="submit">
-            {content.newsletter.ctaLabel}
+            {content.newsletter.actionLabel}
           </Button>
         </NewsletterForm>
       </Section>
