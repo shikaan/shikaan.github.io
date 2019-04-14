@@ -3,6 +3,8 @@ title: Reading - Caching Techniques
 tags: ["webdev", "javascript", "node", "cache"]
 description: Caching introduction and reading techniques
 coverImage: "cover.jpg"
+date: "2018-12-21T00:00:00.000Z"
+commentLink: ""
 ---
 
 # Introduction

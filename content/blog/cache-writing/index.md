@@ -3,6 +3,8 @@ title: Writing - Cache Techniques
 tags: ["python", "javascript", "node", "cache"]
 description: Cache writing techniques
 coverImage: "cover.jpg"
+date: "2018-12-25T00:00:00.000Z"
+commentLink: ""
 ---
 
 # Introduction

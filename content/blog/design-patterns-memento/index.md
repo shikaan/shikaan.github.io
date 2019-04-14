@@ -3,6 +3,8 @@ title: Memento - Design Patterns in Web Development
 description: Second episode about Behavioral Pattern Memento 
 tags: ["javascript", "typescript", "react", "design-patterns"]
 coverImage: "cover.jpg"
+date: "2018-11-25T00:00:00.000Z"
+commentLink: ""
 ---
 # Introduction
 
