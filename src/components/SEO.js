@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
-import {StaticQuery, graphql} from "gatsby";
+import { StaticQuery, graphql } from "gatsby";
 
-function SEO({description, lang, meta, keywords, title, slug, image, type}) {
+function SEO({ description, lang, meta, keywords, title, slug, image, type }) {
   return (
     <StaticQuery
       query={detailsQuery}
@@ -44,7 +44,7 @@ function SEO({description, lang, meta, keywords, title, slug, image, type}) {
               },
               {
                 name: "twitter:card",
-                content: "summary"
+                content: "summary_large_image"
               },
               {
                 name: "twitter:creator",
@@ -57,6 +57,10 @@ function SEO({description, lang, meta, keywords, title, slug, image, type}) {
               {
                 name: "twitter:description",
                 content: metaDescription
+              },
+              {
+                name: "twitter:widgets:new-embed-design",
+                content: "on"
               }
             ]
               .concat(
@@ -70,10 +74,16 @@ function SEO({description, lang, meta, keywords, title, slug, image, type}) {
               .concat(meta)
               .concat(
                 image
-                  ? {
-                    name: "og:image",
-                    content: image
-                  }
+                  ? [
+                    {
+                      name: "og:image",
+                      content: image
+                    },
+                    {
+                      name: "twitter:image:src",
+                      content: image
+                    }
+                  ]
                   : []
               )}
           />
