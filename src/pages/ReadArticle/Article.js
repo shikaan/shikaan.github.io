@@ -67,12 +67,37 @@ const ArticleBody = styled.article(({theme}) => `
   }
   
   ul {
+    font-size: ${paragraphFontSize(theme)};
+    line-height: ${paragraphFontSize(theme).multiply(1.625)};
+    
     list-style-type: disc;
     list-style-position: inside;
     padding: ${paragraphFontSize(theme)};
     
     ul {
       list-style-type: circle;
+      list-style-position: inside;
+      padding: 0 ${paragraphFontSize(theme)};
+    }
+    
+    li {
+      padding: ${paragraphFontSize(theme).multiply(.25)} 0;
+      > p {
+        display: inline;
+      }
+    }
+  }
+  
+  ol {
+    font-size: ${paragraphFontSize(theme)};
+    line-height: ${paragraphFontSize(theme).multiply(1.625)};
+    
+    list-style-type: decimal;
+    list-style-position: inside;
+    padding: ${paragraphFontSize(theme)};
+    
+    ul {
+      list-style-type: lower-alpha;
       list-style-position: inside;
       padding: 0 ${paragraphFontSize(theme)};
     }
