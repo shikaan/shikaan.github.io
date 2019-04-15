@@ -1,4 +1,7 @@
 {
+  "settings": {
+    "footnotes": true
+  },
   "plugins": [
     "frontmatter",
     "remark-preset-lint-recommended"

@@ -8,13 +8,11 @@ commentLink: ""
 ---
 # Introduction
 
-As some of you may remember, in the [pilot episode](https://dev.to/shikaan/design-patterns-in-web-development-2gbp) I said I was about to explain _Command_ with three examples: a UI kit, a CQRS application and an undo/redo implementation in Electron. In the [Command episode](https://dev.to/shikaan/design-patterns-in-web-development---1-command-2jf) though I didn't provide the latter and the reason is extremely simple: I am a jerk.
+As some of you may remember, in the [pilot episode](/design-patterns-in-web-development-intro) I said I was about to explain _Command_ with three examples: a UI kit, a CQRS application and an undo/redo implementation in Electron. In the [Command episode](/design-patterns-command) though I didn't provide the latter and the reason is extremely simple: I am a jerk.
 
-Furthermore, it made much more sense to me using that example to explain another Behavioral Pattern<a href="#note1" id="note1ref"><sup>1</sup></a> belonging to the classic patterns in the [Gang of Four](https://en.wikipedia.org/wiki/Design_Patterns): **Memento**.
+Furthermore, it made much more sense to me using that example to explain another Behavioral Pattern[^1] belonging to the classic patterns in the [Gang of Four](https://en.wikipedia.org/wiki/Design_Patterns): **Memento**.
 
 # Memento
-
-**<a href="#code-examples">Bla, bla, bla. Code please</a>**
 
 ## Example: Calculator
 
@@ -54,8 +52,8 @@ At this point saving the previous state in a snapshot when you `calculate` and, 
 ## What is this about?
 
 > **Intent**
-> Without violating encapsulation, capture and externalize an object's internal
-state so that the object can be restored to this state later.
+>
+> Without violating encapsulation, capture and externalize an object's internal state so that the object can be restored to this state later.
 
 Yes, you have just won this "Guess the quote" round: it comes from the _Gang of Four_.
 
@@ -63,7 +61,7 @@ The idea here is pretty straightforward: we want to have a systematic way to sto
 
 ![Good Will Hunting](https://i.pinimg.com/originals/99/40/8c/99408c1fba73591cf6fb4509cab8b87c.jpg)
 
-If you are wondering why you shouldn't expose the state, maybe you are still not fearing coupling as you should. This is definitely bad. However, you are still in time to get this fixed by [reading this article](https://dev.to/shikaan/design-patterns-in-web-development---1-command-2jf). I will wait for you here.
+If you are wondering why you shouldn't expose the state, maybe you are still not fearing coupling as you should. This is definitely bad. However, you are still in time to get this fixed by [reading this article](/design-patterns-command). I will wait for you here.
 
 ...
 
@@ -73,21 +71,21 @@ Done? We can get started with **Memento** in practice.
 
 ![99 problems](https://i.imgflip.com/2msosq.jpg)
 
-First things first: why this pattern is called Memento? _Memento_ is a Latin word which can be safely translated into _reminder_<a href="#note2" id="note2ref"><sup>2</sup></a>. This is the object in which we store the part of the state of the `Calculator` we are interested in. 
+First things first: why this pattern is called Memento? _Memento_ is a Latin word which can be safely translated into _reminder_[^2]. This is the object in which we store the part of the state of the `Calculator` we are interested in. 
 
 `Calculator`, which is where the state originates from, is called **Originator** and the third character of this story is going to be the one which takes care of making the whole thing work, which is called the **CareTaker**.
 
 So, to wrap it up, these are the participants in Memento with their responsibilities:
 
-- **Originator**: 
-    - creates a Memento to store the internal state;
-    - uses Mementos to restore its state; 
-- **Memento**: 
-    - stores an immutable snapshot of the internal state of Originator;
-    - can be accessed _only_ by the Originator;
-- **Caretaker**: 
-    - stores Mementos;
-    - never operates on or read Mementos;
+-   **Originator**: 
+    -   creates a Memento to store the internal state;
+    -   uses Mementos to restore its state; 
+-   **Memento**: 
+    -   stores an immutable snapshot of the internal state of Originator;
+    -   can be accessed _only_ by the Originator;
+-   **Caretaker**: 
+    -   stores Mementos;
+    -   never operates on or read Mementos;
 
 In practice these will become something like:
 
@@ -170,16 +168,16 @@ We click up to 100, we earn a badge, we undo, we re-click and we earn a second b
 
 Why did that happen? Because we forgot to keep track of the badges in the snapshot, thus on undo we just reverted the score, without cleaning the badge list.
 
-# <span id="code-examples">A little less conversation, a little more action, please</span>
+# A little less conversation, a little more action, please
 
-> You can find a more detailed version of these examples here
-> {% github shikaan/design-patterns %}
+> You can find a more detailed version of these examples [here](https://github.com/shikaan/design-patterns)
 
 Finally code time! 
 
 As I promised in the introduction, I am about to show how the same undo problem can be solved both via Command and via Memento.
 
 > **Disclaimer**
+> 
 > I decided to not use Electron for this example for the simple reason that it makes the whole thing more complicated for people not familiar with it and it's not bringing any value to Electron experts. If you're really upset about this, drop a comment and I will add also that example.
 
 The example is a very simple React application which is supposed to be a game: sort the tiles to win.
@@ -206,7 +204,6 @@ If you have any sort of feedback ("Don't tell me how to code. You're not my real
 
 Until next time!
 
----
-<a id="note1" href="#note1ref">1</a>. If you're unsure about what a behavioral pattern is, take a look [here](https://dev.to/shikaan/design-patterns-in-web-development---1-command-2jf)
+[^1]: If you're unsure about what a behavioral pattern is, take a look [here](/design-patterns-command)
 
-<a id="note2" href="#note2ref">2</a>. To void to forget this, you should keep in mind that **mem**ento and **mem**ory share the same origin. A memory trick to memorize something related to memory. Boom!
+[^2]: To avoid to forget this, you should keep in mind that **mem**ento and **mem**ory share the same origin. A memory trick to memorize something related to memory. Boom!
