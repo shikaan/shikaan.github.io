@@ -1,6 +1,6 @@
 ---
 title: Design Patterns in Web Development
-description: Pilot episode of a series about design patterns and how to use them
+description: Why and how to use Design Patterns in Web Development
 tags: ["javascript", "python", "architecture", "design-patterns"]
 coverImage: "cover.jpg"
 date: "2018-11-04T00:00:00.000Z"
@@ -9,15 +9,15 @@ commentLink: ""
 
 # Introduction
 
-## What is this about?
+Design Patterns are quite an hot topic in software development. For many people they are considered to be _the way_ to identify a well prepared developer. Luckily, I am not one of them, although I think that they definitely contribute to make developers better allowing them to tackle everyday's challenges in a quicker and, often times, cleaner way.
 
-What I'd like to do is writing articles about Design Patterns based on what I learned mainly from [the Gang of Four](https://en.wikipedia.org/wiki/Design_Patterns).
+This is exactly the reason why I want to write articles about Design Patterns based on what I learned mainly from [the Gang of Four](https://en.wikipedia.org/wiki/Design_Patterns).
 
 The difference between this and the overflowing amount of other articles doing the same, is that I will be trying to stick with full stack web development with extremely practical examples. Most of them are going to be in JavaScript or Python, as other languages have plenty of resources about this topic.
 
 Something along the lines of: How to use Command Pattern in a React component, in a CQRS Node application and to implement an Undo/Redo history in an Electron application.
 
-However this first article is going to be the Pilot Episode of the series. So still no patterns in here :(
+However, this first article is going to be the Pilot Episode of the series. So still no patterns in here :(
 
 # Let's get started!
 
@@ -29,7 +29,7 @@ As much as everyone of you claims to be the best cook in the world because of th
 
 ![Dog - I have no idea what I'm doing](https://www.ecolutionhome.com/wp-content/uploads/2018/02/C-Cooking-Memes27.png)
 
-The reason is pretty straightforward: all those recipes have been created by someone who - eventually making a huge amount of mistakes along the way - fixed, corrected and amended those procedures over time. Using those well packaged bits of knowledge makes you avoid lots of common pitfalls and wrong decisions. This is extremely useful in circumstances when the choice you make looks unharmful, but in reality it is not. Something along the lines of serving a poorly prepared dish to someone which might not be as polite as you expect...
+The reason is pretty straightforward: all those recipes have been created by someone who - eventually making a huge amount of mistakes along the way - fixed, corrected and amended those procedures over time. Using those well packaged bits of knowledge makes you avoid lots of common pitfalls and wrong decisions. This is extremely useful in circumstances when the choice you make looks unharmful, but in reality it is not. Something like of serving a poorly prepared dish to your grumpy uncle for the Thanksgiving Dinner...
 
 At the same time recipes can be used as a template to build upon rather than as a set of rules carved in stone. There are plenty of extremely good chefs which revisit their family cookbook to make a business out of it or, in general, to serve their purposes which might be different from their grandma's ones.
 
@@ -57,7 +57,7 @@ I guess this is something we cannot help and it's a fairly common problem with a
 
 ## Classification
 
-As you might have understood by now, the Gang of Four was really the s***t when it came out (which is, by the way, 1995). 
+As you might have understood by now, the Gang of Four was really the s\*\*\*t when it came out (which is, by the way, 1995). 
 
 ![Boromir Gang of Four](https://www.coengoedegebure.com/content/images/2017/08/onedoesnotsimplygof-1.jpg)
 
@@ -67,35 +67,35 @@ So nowadays, we're still somewhat classifying design patterns based on their cla
 
 **Creational Patterns**
 
-* Abstract Factory
-* Builder
-* Factory
-* Prototype
-* Singleton
+-   Abstract Factory
+-   Builder
+-   Factory
+-   Prototype
+-   Singleton
 
 **Structural Patterns**
 
-* Adapter
-* Bridge
-* Composite
-* Decorator
-* Facade
-* Flyweight
-* Proxy
+-   Adapter
+-   Bridge
+-   Composite
+-   Decorator
+-   Facade
+-   Flyweight
+-   Proxy
 
 **Behavioral Patterns**
 
-* Chain of responsibility
-* [Command](/design-patterns-command)
-* Interpreter
-* Iterator
-* Mediator
-* [Memento](/design-patterns-memento)
-* Observer
-* State
-* Strategy
-* Template method
-* Visitor
+-   Chain of responsibility
+-   [Command](/design-patterns-command)
+-   Interpreter
+-   Iterator
+-   Mediator
+-   [Memento](/design-patterns-memento)
+-   Observer
+-   State
+-   Strategy
+-   Template method
+-   Visitor
 
 # Final words
 
