@@ -33,22 +33,21 @@ Let's suppose, for the sake of the argument, to have a mailbox attached to the k
 
 This simple trick magically solved our issues. We are not forced to know who is cooking our food. We don't even know whether anyone is actually cooking our food or if they buy-resell, for example. This means a huge gain in flexibility (and maybe a bit of loss of trust in restaurants which work this way). Furthermore, this improved the whole process in the kitchen, as they can prioritize, prepare concurrently, throw in the bin, log or do whatever they want with the orders.
 
-Everyone (panda included) lived happily ever after<a href="#note1" id="note1ref"><sup>1</sup></a>!
+Everyone (panda included) lived happily ever after[^1]!
 
 Oh, by the way, this was the Command Pattern.
 
 # Command Pattern
-
-**<a href="#code-examples">SHOW ME THE CODE</a>**
 
 ## What is this about?
 
 Lets start with a quote from the one and only GoF.
 
 > **Intent**
+>
 > Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations.
 
-In substance, Command is all about encapsulating a routine in an object. In the example above, we encapsulated the request for food in an object, which was the piece of paper used to place the order. The encapsulating object is what we call `Command`, hence the name of the pattern<a href="#note2" id="note2ref"><sup>2</sup></a>.
+In substance, Command is all about encapsulating a routine in an object. In the example above, we encapsulated the request for food in an object, which was the piece of paper used to place the order. The encapsulating object is what we call `Command`, hence the name of the pattern[^2].
 
 ## Effects
 
@@ -102,24 +101,24 @@ Before diving into code examples we need to build a bit of jargon, so we can und
 
 The participants in this pattern are:
 
-* **Receiver**: 
-    * knows how to execute the command;
-* **Command**: 
-    * declares the interface for executing an operation; 
-* **Concrete Command**: 
-    * defines the binding between the Receiver and the action to execute;
-    * invokes methods on the Receiver to fulfill the request;  
-* **Client**
-    * creates the Concrete Command and sets its Receiver;
-* **Invoker**
-    * issues the request to execute the command;
+-   **Receiver**: 
+    -   knows how to execute the command;
+-   **Command**: 
+    -   declares the interface for executing an operation; 
+-   **Concrete Command**: 
+    -   defines the binding between the Receiver and the action to execute;
+    -   invokes methods on the Receiver to fulfill the request;  
+-   **Client**
+    -   creates the Concrete Command and sets its Receiver;
+-   **Invoker**
+    -   issues the request to execute the command;
 
 In the example restaurant example we would have:
 
-* `Cook` as _Receiver_
-* `Order` as _Concrete Command_
-* `Restaurant` as _Client_
-* `Customer` as _Invoker_
+-   `Cook` as _Receiver_
+-   `Order` as _Concrete Command_
+-   `Restaurant` as _Client_
+-   `Customer` as _Invoker_
 
 Some pseudocode to look a bit more serious:
 
@@ -166,10 +165,9 @@ class Restaurant {
 
 ```
 
-# <span id="code-examples">Code examples</span>
+# Code examples
 
-> You can find a more detailed version of these examples here
-> {% github shikaan/design-patterns %}
+> You can find a more detailed version of these examples [here](https://github.com/shikaan/design-patterns)
 
 ## Frontend: UI kits
 
@@ -177,7 +175,7 @@ Following the first example above, here you are a simple example of how you can 
 
 In this example we will just create and render a `Button` component (Invoker) which will execute an `OpenAlertCommand` (Concrete Command). The Window (Receiver) is actually responsible for doing the job, whilst Application (Client) is wrapping everything up.
 
-{% gist https://gist.github.com/shikaan/77367e98e41351549bec891fbf626b43 %}
+`gist:shikaan/77367e98e41351549bec891fbf626b43`
 
 You may argue that doing the same thing without the pattern would have taken less then 10 LOC. You are actually right, but, for the reasons we discussed earlier, this scales better and will be more flexible when you will get new requirements.
 
@@ -210,8 +208,6 @@ Well, this has been massive. Hopefully you got to read at least half of what I h
 
 Until next time!
 
----
+[^1]: This kind of patterns actually modified the _behavior_ (in common English sense) of customers and cooks. Hopefully this will be enough to fix forever in your mind what a _behavioral_ pattern is.
 
-<a id="note1" href="#note1ref">1</a>. This kind of patterns actually modified the _behavior_ (in common English sense) of customers and cooks. Hopefully this will be enough to fix forever in your mind what a _behavioral_ pattern is.
-
-<a id="note2" href="#note2ref">2</a>. You language geeks may want to know that "order" in the restaurant context in Italian it's actually called "comanda". Just one word to remember both the pattern and the example. Lovely.
+[^2]: You language geeks may want to know that "order" in the restaurant context in Italian it's actually called "comanda". Just one word to remember both the pattern and the example. Lovely.
