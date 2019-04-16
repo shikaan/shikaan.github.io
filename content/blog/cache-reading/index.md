@@ -27,7 +27,7 @@ Do you still wonder what has food to do with caching? You'd better do, else I ne
 
 ## Example: Christmas Dinner
 
-Let's start with a simple out-of-IT problem. It's Christmas eve and you're planning to arrange a mouthwatering dinner for you friends and family. For the sake of the argument we're going to use one traditional Italian Christmas recipe: "il capitone"<a href="#note1" id="note1ref"><sup>1</sup></a>.
+Let's start with a simple out-of-IT problem. It's Christmas eve and you're planning to arrange a mouthwatering dinner for you friends and family. For the sake of the argument we're going to use one traditional Italian Christmas recipe: "il capitone"[^1].
 
 Let's start cooking. First thing in the list of the ingredients is the eel. You call your favourite fish shop, you get your fish delivered. Second item, extra-virgin olive oil. You call your favourite farm, order a bottle of oil and you get that delivered. Third, lemon... 
 
@@ -35,50 +35,54 @@ You can see by yourself how inconvenient this is, don't you? What you start doin
 
 Once you realize you can store things at home, you might be tempted to call the delivery person just once to collect all the ingredients not only for Christmas but also for New Year's Eve's dinner. So when you are at the fish shop, you buy the eel and the king prawns which you are actually planning to prepare a week later.
 
-{% youtube l4-Ya_Xa3f8 %}
-
 After a couple of days, the funky smell killing any living being in the area makes you realize that probably prawns are now expired and you should have prepared them fresh.
 
 Well, caching has exactly the same kind of problems and perks: we usually cache items to save some computations, time or to avoid calling uselessly an external data source, but we should be extremely careful about expiration of entries because they can eventually get to an inconsistent (and very smelly) state down the line.
 
 ## Caching patterns
 
-**<a href="#code-examples">I am late buying Christmas presents. SHOW ME THE CODE.</a>**
-
-As usual, let me introduce some jargon<a href="#note2" id="note2ref"><sup>2</sup></a> which will help us in communication before diving into the patterns (maybe _strategies_ is a better suited word here).
+As usual, let me introduce some jargon[^2] which will help us in communication before diving into the patterns (maybe _strategies_ is a better suited word here).
 
 These are the participants:
-* **Client** needs data (either fresh or from the cache);
-* **Data Access Component** is called to get non-cached entries (e.g., HTTP Client, ORM...);
-* **Cache Layer** stores cached entries (e.g., Memory, Local Storage...);
-* **Resource Manager** communicates with the Cache Layer.
+
+-   **Client**:
+    -   needs data (either fresh or from the cache);
+-   **Data Access Component**:
+    -   is called to get non-cached entries (e.g., HTTP Client, ORM...);
+-   **Cache Layer**:
+    -   stores cached entries (e.g., Memory, Local Storage...);
+-   **Resource Manager**:
+    communicates with the Cache Layer.
 
 In our previous example, these roles are mapped this way:
-* **Client** is you;
-* **Data Access Component** is the delivery person;
-* **Cache Layer** your cupboard;
-* **Resource Manager** someone so kind to administer resources in your cupboard.
+
+-   **Client** is you;
+-   **Data Access Component** is the delivery person;
+-   **Cache Layer** your cupboard;
+-   **Resource Manager** someone so kind to administer resources in your cupboard.
 
 Caching involves both _reading_ (using the ingredients) and _writing_ (storing the ingredients), so categorization follows accordingly. In this article we'll speak about reading techniques.
 
 Reading strategies:
-* Cache Inline
-* Cache Aside
+-   Cache Inline
+-   Cache Aside
 
 Writing strategies:
-* Write Through
-* Write Behind
-* Write Around
+-   Write Through
+-   Write Behind
+-   Write Around
 
 > **Warning**
+>
 > Unfortunately naming convention for these patterns is not that consolidated, so you can find them under different names.
 
 To get an understanding of how does work and why we should use them, we will analyse the following scenarios for all the aforementioned patterns:
 
-* cached entry is present and valid (**Cache Hit**);
-* cached entry is missing or invalid (**Cache Miss**).
+-   cached entry is present and valid (**Cache Hit**);
+-   cached entry is missing or invalid (**Cache Miss**).
 
 > **Disclaimer**
+>
 > As usual, we are tackling these strategies in isolation for sake of simplicity. In real world, those techniques are combined to get the best out of them.
 
 ### Cache Inline (aka Read Through)
@@ -115,7 +119,7 @@ One way of dealing with this is doing a _cache primer_: when the system starts w
 
 The second drawback is that, since data is cached only once (on _Cache Miss_) data can become quickly stale.
 
-Again, this is not the end of the world: as for food, you can set **expiration** for entries. It is usually called **TTL** (namely _Time To Live_). When entries are expired, Resource Manager can call again the Data Access Component and refresh the cache<a href="#note3" id="note3ref"><sup>3</sup></a>. 
+Again, this is not the end of the world: as for food, you can set **expiration** for entries. It is usually called **TTL** (namely _Time To Live_). When entries are expired, Resource Manager can call again the Data Access Component and refresh the cache[^3]. 
 
 ### Cache Aside
 
@@ -170,8 +174,7 @@ From this point on, if the call is towards `getAllTransactions`, you return the 
 
 # <span id="code-examples">Code or it never happened</span>
 
-> You can find a more detailed version of these examples here
-> {% github shikaan/design-patterns %}
+> You can find a more detailed version of these examples [here](https://github.com/shikaan/design-patterns)
 
 The [example](https://github.com/shikaan/design-patterns/tree/master/chistmas-caching) I am showing here is written in Node. It's a simple application meant to communicate with [XKCD](https://xkcd.com/) to fetch latest comics.
 
@@ -201,9 +204,8 @@ As always, if you have any feedback (the thing is too simplified, you miss my me
 
 Until next time!
 
----
-<a id="note1" href="#note1ref">1</a>. Pretty much anywhere else in Italy people eat meat for Christmas. I am from a messed up place where eating a giant eel should symbolize victory of Good against the Evil in the shape of a snake...
+[^1]: Pretty much anywhere else in Italy people eat meat for Christmas. I am from a messed up place where eating a giant eel should symbolize victory of Good against the Evil in the shape of a snake...
 
-<a id="note2" href="#note2ref">2</a>. Unfortunately there no standard jargon here, so I had to make up these names. If you have any suggestions to improve them, please tell me (:
+[^2]: Unfortunately there no standard jargon here, so I had to make up these names. If you have any suggestions to improve them, please tell me (:
 
-<a id="note3" href="#note3ref">3</a>. Knowing what is the right expiration date for every entry is something between wisdom and black magic. Most likely a lot of errors and trials (or experience, if you wish) will guide in choosing the best TTL for your case
+[^3]: Knowing what is the right expiration date for every entry is something between wisdom and black magic. Most likely a lot of errors and trials (or experience, if you wish) will guide in choosing the best TTL for your case
