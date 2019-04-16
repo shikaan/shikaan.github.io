@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Button, {CONTEXT} from "~components/Button";
-import Icon from "~components/Icon";
-import Link from "~components/Link";
 
 const BannerWrapper = styled.div(({theme}) => `
   width: 100%;
@@ -19,7 +17,7 @@ const BannerText = styled.span(({theme}) => `
   vertical-align: middle;
 `);
 
-const BannerButtonWrapper = styled.div(({theme}) => `
+const BannerButtonWrapper = styled.div(() => `
   flex: 1;
   display: flex;
   align-items: center;

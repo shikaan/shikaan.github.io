@@ -24,7 +24,7 @@ class HomePage extends Component {
     const _otherArticles = get(data, "otherArticles.edges", []);
     const otherArticles = _otherArticles.map(i => i.node); // FIXME: when we flatten queries
 
-    const description = get(site, "siteMetadata.description")
+    const description = get(site, "siteMetadata.description");
 
     return (
       <Template>

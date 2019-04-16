@@ -1,5 +1,3 @@
-const {resolve} = require("path");
-
 module.exports = {
   rootDir: "../",
   testMatch: ["<rootDir>/src/**/*.test.js"],
@@ -15,8 +13,8 @@ module.exports = {
     "~theme(.*)$": "<rootDir>/src/theme/$1",
     "~utils(.*)$": "<rootDir>/src/utils/$1",
     "~(.*)$": "<rootDir>/src/$1",
-    "^\/static(.*)$": "<rootDir>/static/$1",
-    "^\/test(.*)$": "<rootDir>/test/$1",
+    "^/static(.*)$": "<rootDir>/static/$1",
+    "^/test(.*)$": "<rootDir>/test/$1",
   },
   testPathIgnorePatterns: ["node_modules", ".cache"],
   transformIgnorePatterns: ["node_modules/(?!(gatsby)/)"],

@@ -1,5 +1,5 @@
 import React from "react";
-import {mount, shallow} from "enzyme";
+import {mount} from "enzyme";
 import "jest-styled-components";
 
 import FourOhFour from ".";
@@ -23,7 +23,7 @@ describe("FourOhFour", () => {
       const navigateStub = jest.fn();
       const props = createFourOhFourProps(navigateStub);
 
-      const wrapper = mount(<FourOhFour {...props}></FourOhFour>);
+      const wrapper = mount(<FourOhFour {...props}/>);
 
       wrapper.instance().openTrendingArticle();
 
