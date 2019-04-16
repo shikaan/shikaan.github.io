@@ -48,7 +48,7 @@ class ReadArticlePage extends React.Component {
     return (
       <Template location={this.props.location} title={siteTitle}>
         <SEO
-          image={`${this.props.location.origin}/${articleImage}`}
+          image={`${this.props.location.origin}${articleImage}`}
           type={"article"}
           lang={"en"}
           title={articleTitle}
