@@ -105,7 +105,7 @@ Well, to be fair there's another very good resource about this topic which is [M
 
 In this pattern we do a cache write on the `install` hook of the Service Worker. It looks particularly useful when you want to store the application shell to be able to provide an offline experience.
 
-In the Google's cookbook, this comes in two different fashions called "as a dependency" and "not as a dependency", which are basically "Write Through" and "Write Behind" of [this article](/cache-writing).
+In the Google's cookbook, this comes in two different fashions called "as a dependency" and "not as a dependency", which are basically "Write Through" and "Write Behind" of [this article](/what-is-cache-part-ii).
 
 ## On User Interaction
 

@@ -174,7 +174,7 @@ Suppose you are serving a list of bank transactions you get from this `AwesomeBa
 
 From this point on, if the call is towards `getAllTransactions`, you return the list as is. If the call is towards `getPayments` you will take the whole list from cache (rather than calling `AwesomeBankAPI` again) and you just need to do the filtering on your end.
 
-# <span id="code-examples">Code or it never happened</span>
+# Code or it never happened
 
 > You can find a more detailed version of these examples [here](https://github.com/shikaan/design-patterns)
 
@@ -196,7 +196,7 @@ The main difference here is then that we are using the cache to get a resource w
 
 Again, those two strategies can (and usually do) live together. If you want to play a bit with these examples, you might try to make the `ResourceManager` from the first example a bit smarter so that it can either use the entries as they are (hence, what's already in the [repo](https://github.com/shikaan/design-patterns/tree/master/chistmas-caching)) or it can try to extract the required info from `CacheLayer` and decide whether calling the API or not.
 
-## Final words
+# Final words
 
 This closes the first episode of this Christmas special (yes, as TV shows). 
 

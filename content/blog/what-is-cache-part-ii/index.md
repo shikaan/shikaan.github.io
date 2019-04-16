@@ -11,7 +11,7 @@ Caching upon fetching a resource can be achieved also without being aware of cac
 
 > **Please Note**
 >
-> If you're looking for an introduction about caching in general and reading techniques, you can go [here](/cache-reading)
+> If you're looking for an introduction about caching in general and reading techniques, you can go [here](/what-is-cache)
 
 # What?! Writing techniques?!
 
@@ -21,7 +21,7 @@ We are calling _reading techniques_ those which are actually concerned with read
 
 So, _writing techniques_ are basically strategies used during write actions to populate or update Cache. The biggest part of the benefits you get out of them is, again, when you are going to read data afterwards. Examples of writing actions are: **create** a new transaction, **edit** user info and so forth.
 
-As mentioned [in the other article](/cache-reading), we are going to speak about these patterns:
+As mentioned [in the other article](/what-is-cache), we are going to speak about these patterns:
 -   Write Through
 -   Write Behind
 -   Write Around

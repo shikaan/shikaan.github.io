@@ -38,7 +38,7 @@ class ReadArticlePage extends React.Component {
     const {article} = data;
 
     const relatedArticles = get(data, "relatedArticles.edges", []); // FIXME: when we flatten queries
-    const siteTitle = get(data, "site.siteMetadata.title", "");
+    const siteUrl = get(data, "site.siteMetadata.siteUrl", "");
     const {tags} = pageContext;
 
     const articleTitle = get(article, "frontmatter.title", "");
@@ -46,9 +46,9 @@ class ReadArticlePage extends React.Component {
     const articleImage = get(article, "frontmatter.coverImage.childImageSharp.fluid.originalImg", "");
 
     return (
-      <Template location={this.props.location} title={siteTitle}>
+      <Template>
         <SEO
-          image={`${this.props.location.origin}${articleImage}`}
+          image={`${siteUrl}${articleImage}`}
           type={"article"}
           lang={"en"}
           title={articleTitle}
@@ -80,6 +80,7 @@ export const pageQuery = graphql`
       siteMetadata {
         title
         author
+        siteUrl
       }
     }
     article: markdownRemark(fields: { slug: { eq: $path } }) {
