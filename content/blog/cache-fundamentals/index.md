@@ -1,21 +1,15 @@
 ---
-title: Current Status - Caching Techniques
-tags: ["webdev", "python", "javascript", "cache"]
-description: Caching standards and how to deal with them
+title: HTTP Caching fundamentals
+tags: ["cache", "frontend", "backend", "webdev"]
+description: A walk-through of cache standards for browsers and servers
 coverImage: "cover.jpg"
 date: "2019-01-06T00:00:00.000Z"
 commentLink: ""
 ---
 
-# Introduction
+Clients and servers need to agree on certain rules in order to provide the performance benefits of caching techinques. These standards are usually already embedded in system we are working with (browsers, frameworks...), hence understanding what they are and how they work allows to pick the approach which better fits our needs case by case. The idea here is to have a go-to place where you can get an understanding or just dust off those concepts every time you have to deal with caching again.
 
-You might have noticed that this sub-series has just changed the name: it wasn't about Design Patterns, there was no point in keeping those two as part of the same thing.
-
-As said [in the first episode](https://dev.to/shikaan/-design-patterns-in-web-development----active-caching-1-23e2), this article is going to be more about what's already there in the wild in terms of caching and how we as developers should deal with it.
-
-What we are about to cover is something you typically decide once in a while or you don't decide at all because some frameworks and libraries make these decisions for you. Thus, the idea here is to have a go-to place where you can get an understanding or just dust off those concepts every time you have to deal with caching again.
-
-## Serving the correct application version
+# Serving the correct application version
 
 Serving the correct version of a web app started to become something you should be concerned about only "recently". 
 
@@ -82,12 +76,12 @@ This technique is rather popular and most of the time is "for free" in CLIs for 
 
 You can implement it yourself using a build tool which rewrites the `index.html` including the version number/hash or, eventually, using `manifest.json` to get more fine-grained control. Some references to help you with implementation:
 
-* [Webpack - Caching](https://webpack.js.org/guides/caching/) my preferred way;
-* [Medium - Solving Browser Cache Hell With Gulp-Rev](https://medium.com/@felipebernardes/solving-browser-cache-hell-with-gulp-rev-6349a293abb9) a gentle introduction to `manifest.json`;
-* [DZone - Use Gulp to bundle, minify and cache-bust](https://dzone.com/articles/use-gulp-to-bundle-minify-and-cache-bust) old, but still relevant;
-* [Jessie Wong - Cache busting with Makefile](http://thisisjessie.com/cache-busting-via-per-file-query-strings-with-make/) a bit hardcore to me, but still an option.
+-   [Webpack - Caching](https://webpack.js.org/guides/caching/) my preferred way;
+-   [Medium - Solving Browser Cache Hell With Gulp-Rev](https://medium.com/@felipebernardes/solving-browser-cache-hell-with-gulp-rev-6349a293abb9) a gentle introduction to `manifest.json`;
+-   [DZone - Use Gulp to bundle, minify and cache-bust](https://dzone.com/articles/use-gulp-to-bundle-minify-and-cache-bust) old, but still relevant;
+-   [Jessie Wong - Cache busting with Makefile](http://thisisjessie.com/cache-busting-via-per-file-query-strings-with-make/) a bit hardcore to me, but still an option.
 
-## Optimize content delivery with Service Workers
+# Optimize content delivery with Service Workers
 
 Among the things going hand in hand with `manifest.json` (especially with regards to Progressive Web Apps), we have Service Workers.
 
@@ -97,9 +91,9 @@ The reason why we are so interested in them here is that in Service Worker API w
 
 There are some caching recipes you can follow, but the most common are:
 
-* on install
-* on user interaction
-* on network response
+-   on install
+-   on user interaction
+-   on network response
 
 The naming convention is borrowed from one of the greatest resource on the matter you can find online, namely [Google's Offline Cookbook](https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/). 
 
@@ -107,41 +101,42 @@ If you followed what happened in previous episodes, you will certainly notice th
 
 Well, to be fair there's another very good resource about this topic which is [Mozilla's Service Workers Cookbook - Caching Strategies](https://serviceworke.rs/caching-strategies.html), but I find Google's perspective easier to follow. I strongly encourage you to read both anyway to have a wider spectrum overview.
 
-### On Install
+## On Install
 
 In this pattern we do a cache write on the `install` hook of the Service Worker. It looks particularly useful when you want to store the application shell to be able to provide an offline experience.
 
-In the Google's cookbook, this comes in two different fashions called "as a dependency" and "not as a dependency", which are basically "Write Through" and "Write Behind" of [this article](https://dev.to/shikaan/-design-patterns-in-web-development----active-caching-2-37jc).
+In the Google's cookbook, this comes in two different fashions called "as a dependency" and "not as a dependency", which are basically "Write Through" and "Write Behind" of [this article](/cache-writing).
 
-### On User Interaction
+## On User Interaction
 
 From a caching strategy perspective, this pattern is not that different from `On Install`.
 
 Suppose you want to implement a "Read Later" button on a blog. What you need to do is fetch the article and store it. Deciding if you want to save is synchronously (as in "Write Through") or asynchronously (as in "Write Behind") depends on your use case, but both the approach are feasible.
 
-### On Network Response
+## On Network Response
 
 Of the three examples we are providing, this is by far the most common since you can apply this strategy every time you need to fetch data over network. 
 
 The implementation proposed in the offline cookbook is "Read Through" - no more, no less!
 
-## <span id="http-headers">W3C standards: HTTP Headers</a>
+# W3C standards: HTTP Headers
 
 In the wonderful world of web development, finding a new fancy way of being screwed is never a problem. This is precisely why you may want to understand how the browser communicates with the server with regards to cached content. 
 
 > **Disclaimer**
+> 
 > Even though I will always refer to the browser in the following paragraph, this also applies to server to server communication, so backenders could find this interesting as well.
 
 Again, I am treating only the most interesting cases, but here you can find a list of resources covering more cases:
 
-- [MDN - HTTP Caching](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching)
-- [DigitalOcean - Web Caching Basics](https://www.digitalocean.com/community/tutorials/web-caching-basics-terminology-http-headers-and-caching-strategies)
-- [KeyCDN - HTTP Cache Headers Explained](https://www.keycdn.com/blog/http-cache-headers)
-- [W3C - Cache-Control Specification](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9)
-- [W3C - ETag Specification](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19)
-- [Google - HTTP Caching](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching)
+-   [MDN - HTTP Caching](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching)
+-   [DigitalOcean - Web Caching Basics](https://www.digitalocean.com/community/tutorials/web-caching-basics-terminology-http-headers-and-caching-strategies)
+-   [KeyCDN - HTTP Cache Headers Explained](https://www.keycdn.com/blog/http-cache-headers)
+-   [W3C - Cache-Control Specification](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9)
+-   [W3C - ETag Specification](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.19)
+-   [Google - HTTP Caching](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/http-caching)
 
-### ETag
+## ETag
 
 Even though the name is not exactly explicit, the ETag HTTP Header is one of the headers we can use to have control over cached content. ETag stands for "Entity Tag" and it is a way of tagging with a hash a specific version of a content we are exchanging.
 
@@ -176,13 +171,13 @@ Cache-Control: max-age=60
 ETag: a23g1t4
 ```
 
-### Cache-Control
+## Cache-Control
 
 The Cache-Control HTTP header is used to define a cache policy, both from a client side (for example, "don't give me cached content") and from a server side (for example, "this content will expire in two minutes").
 
 Cache-Control has _tons_ of directives which can be combined in a lot of fancy ways which is impossible to cover in a couple of paragraphs. Maybe it makes sense to write a separate article on that (and if you're interested, please let me know!). We'll be covering here only the most common directives.
 
-#### `no-cache` & `no-store`
+### `no-cache` & `no-store`
 
 These two bad boys are probably the most mixed up. 
 
@@ -192,7 +187,7 @@ When used as _response headers_, `no-cache` means that the content served won't 
 
 When used as *request header*, `no-cache` means that we don't care about what's cached and we want a fresh request. However, this does not define whether the server can cache the response to speed up following requests (as opposed as `no-store`) and usually server will cache that response.
 
-#### `public` & `private`
+### `public` & `private`
 
 These look pretty obvious, but they actually hide a small quirk.
 
@@ -206,7 +201,7 @@ Suppose you have a micro-service built application with an API gateway in front 
 
 Hence, in the example above, a browser could actually cache that information (as the user owns it) and the micro-service originating the information can, but the API gateway can't and any eventually CDN in between can't as well.
 
-#### `max-age`
+### `max-age`
 
 When used in requests, `max-age=n` means that the client is willing to accept content which is not older than `n` seconds.
 

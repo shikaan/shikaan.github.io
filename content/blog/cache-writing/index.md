@@ -1,22 +1,19 @@
 ---
-title: Writing - Cache Techniques
-tags: ["python", "javascript", "node", "cache"]
-description: Cache writing techniques
+title: What is Cache? (Part II)
+tags: ["cache", "frontend", "backend", "python"]
+description: 
 coverImage: "cover.jpg"
 date: "2018-12-25T00:00:00.000Z"
 commentLink: ""
 ---
 
-# Introduction
-
-This second episode follows what we started [here](https://dev.to/shikaan/-design-patterns-in-web-development----active-caching-1-23e2) and will be about cache writing techniques.
+Caching upon fetching a resource can be achieved also without being aware of cache reading techninques: those scenarios are, in fact, the natural fit for cache and just a few things can go wrong. When modifying resources has to be taken in account, the situation can get tricky. Luckily though, there are some patterns to help us out with those situations which we are just about to discuss.
 
 > **Please Note**
-> If you're looking for an introduction about caching in general and reading techniques, you can go [here](https://dev.to/shikaan/-design-patterns-in-web-development----active-caching-1-23e2)
+>
+> If you're looking for an introduction about caching in general and reading techniques, you can go [here](/cache-reading)
 
 # What?! Writing techniques?!
-
-**<a href="#code-examples">I am still food drunk. GIMME THE CODE</a>**
 
 I totally see your surprise here. In the reading techniques we already mentioned how and when to write to Cache Layer, so why in the hell do we have a set of different strategies here?
 
@@ -24,16 +21,16 @@ We are calling _reading techniques_ those which are actually concerned with read
 
 So, _writing techniques_ are basically strategies used during write actions to populate or update Cache. The biggest part of the benefits you get out of them is, again, when you are going to read data afterwards. Examples of writing actions are: **create** a new transaction, **edit** user info and so forth.
 
-As mentioned [in the other article](https://dev.to/shikaan/-design-patterns-in-web-development----active-caching-1-23e2), we are going to speak about these patterns:
-- Write Through
-- Write Behind
-- Write Around
+As mentioned [in the other article](/cache-reading), we are going to speak about these patterns:
+-   Write Through
+-   Write Behind
+-   Write Around
 
 As last time, these are the participants:
-- **Client**: who needs data;
-- **Cache**: where you store data;
-- **Resource Manager**: delivers resources to the Client;
-- **Data Accessor**: fetches data from outside the application.
+-   **Client**: who needs data;
+-   **Cache**: where you store data;
+-   **Resource Manager**: delivers resources to the Client;
+-   **Data Accessor**: fetches data from outside the application.
 
 ## Write Through (aka Write Inline)
 
@@ -45,10 +42,10 @@ This diagram illustrates the lifecycle of a writing action using Write Through
 
 These are the steps:
 
-- Client starts a write action calling the Resource Manager;
-- Resource Manager writes on Cache;
-- Resource Manager writes calling Data Accessor;
-- Response is served to the Client.
+-   Client starts a write action calling the Resource Manager;
+-   Resource Manager writes on Cache;
+-   Resource Manager writes calling Data Accessor;
+-   Response is served to the Client.
 
 ### Rationale
 
@@ -58,7 +55,7 @@ As we have said multiple times, one of the biggest problems with cached data is 
 
 In the other article we have seen that one way to deal with stale entries is using **TTL**s and that still holds true, but in that case expiration was the best way to solve the issue since we were not producing the data we were fetching. Now we are in control of data we want to read, then updating the Cache every time we write data will ensure that cached entries **never** gets stale.
 
-Of course there is no light without shadows and besides the write latency<a href="#note1" id="note1ref"><sup>1</sup></a>, this technique can turn detrimental when the Client doesn't need to read data that often. In this case in fact, you end up wasting the resources needed to keep alive and synchronizing the Cache without gaining the reading benefits. 
+Of course there is no light without shadows and besides the write latency[^1], this technique can turn detrimental when the Client doesn't need to read data that often. In this case in fact, you end up wasting the resources needed to keep alive and synchronizing the Cache without gaining the reading benefits. 
 
 ## Write Behind (aka Write Back)
 
@@ -67,10 +64,10 @@ This other technique still has the Resource Manager inline, but writing through 
 ![Write Behind.](https://thepracticaldev.s3.amazonaws.com/i/mvdo6l794dxudbo8sws1.png)
 
 These are the steps involved in action life cycle:
-- Client starts a write action calling the Resource Manager;
-- Resource Manager writes on Cache;
-- Response is served to the Client;
-- Eventually Resource Manager writes calling Data Accessor.
+-   Client starts a write action calling the Resource Manager;
+-   Resource Manager writes on Cache;
+-   Response is served to the Client;
+-   Eventually Resource Manager writes calling Data Accessor.
 
 ### Rationale
 
@@ -82,7 +79,7 @@ We decide to use Write Behind. This means that every time we perform a `Payment`
 
 We are then gaining on performance and stability, since we don't need to wait for external data sources. This makes the architecture on the whole more fault tolerant towards external services and thus opens new resilience possibilities: we could, for example, implement simple retry strategy or even a circuit breaker without affecting the client at all...
 
-The price we are paying though is consistency: before worker completes the synchronization process real data (as in data living in _Truly Awesome Bank_) and data we serve (as in data living in the Cache) are different and the thing can get a lot more complicated if we start thinking about how to deal with error cases<a href="#note2" id="note2ref"><sup>2</sup></a>.
+The price we are paying though is consistency: before worker completes the synchronization process real data (as in data living in _Truly Awesome Bank_) and data we serve (as in data living in the Cache) are different and the thing can get a lot more complicated if we start thinking about how to deal with error cases[^2].
 
 ## Write Around
 
@@ -98,10 +95,9 @@ The reason why you would use this non-pattern is just because none of the writin
 
 In those cases not applying a writing technique (or using _Write Around_, if you wish) works just fine.
 
-# <span id="code-examples">Did you _write_ some code?</span>
+# Did you _write_ some code?
 
-> You can find a more detailed version of these examples here
-> {% github shikaan/design-patterns %}
+> You can find a more detailed version of these examples [here](https://github.com/shikaan/design-patterns)
 
 Yes, I did. Python this time around.
 
@@ -170,7 +166,6 @@ Please continue with feedbacks ❤
 
 Until next time!
 
----
-<a id="note1" href="#note1ref">1</a>. It's worth mentioning that users usually tolerate writing latency way better than reading latency. Unfortunately I can't remember where I got this data from, so I cannot show real metrics of this. Take this with a grain of salt.
+[^1]: It's worth mentioning that users usually tolerate writing latency way better than reading latency. Unfortunately I can't remember where I got this data from, so I cannot show real metrics of this. Take this with a grain of salt.
 
-<a id="note2" href="#note2ref">2</a>. These issues are all related to what is generally named "Eventual Consistency" and this is the reason why I used the word "eventually" in the last step of the action life cycle. The topic is big enough to deserve an article on its own, but you really want to get a grasp of what's going on [check this out](https://www.youtube.com/watch?v=6R1WhWkh6pg).
+[^2]: These issues are all related to what is generally named "Eventual Consistency" and this is the reason why I used the word "eventually" in the last step of the action life cycle. The topic is big enough to deserve an article on its own, but you really want to get a grasp of what's going on [check this out](https://www.youtube.com/watch?v=6R1WhWkh6pg).
