@@ -4,7 +4,7 @@ tags: ["cache", "frontend", "backend", "python"]
 description: 
 coverImage: "cover.jpg"
 date: "2018-12-25T00:00:00.000Z"
-commentLink: ""
+commentLink: "https://twitter.com/spagmanuel/status/1118949358127525889"
 ---
 
 Caching upon fetching a resource can be achieved also without being aware of cache reading techninques: those scenarios are, in fact, the natural fit for cache and just a few things can go wrong. When modifying resources has to be taken in account, the situation can get tricky. Luckily though, there are some patterns to help us out with those situations which we are just about to discuss.

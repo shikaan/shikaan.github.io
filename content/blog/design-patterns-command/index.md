@@ -4,7 +4,7 @@ description: First episode about Behavioral Patterns and Command
 tags: ["javascript", "python", "architecture", "design-patterns"]
 coverImage: "cover.jpg"
 date: "2018-11-10T00:00:00.000Z"
-commentLink: ""
+commentLink: "https://twitter.com/spagmanuel/status/1118952202243117062"
 ---
  
 # Introduction

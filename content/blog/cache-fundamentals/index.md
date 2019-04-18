@@ -4,7 +4,7 @@ tags: ["cache", "frontend", "backend", "webdev"]
 description: A walk-through of cache standards for browsers and servers
 coverImage: "cover.jpg"
 date: "2019-01-06T00:00:00.000Z"
-commentLink: ""
+commentLink: "https://twitter.com/spagmanuel/status/1118948844925063169"
 ---
 
 Clients and servers need to agree on certain rules in order to provide the performance benefits of caching techinques. These standards are usually already embedded in system we are working with (browsers, frameworks...), hence understanding what they are and how they work allows to pick the approach which better fits our needs case by case. The idea here is to have a go-to place where you can get an understanding or just dust off those concepts every time you have to deal with caching again.
