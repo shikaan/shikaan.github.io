@@ -5,7 +5,7 @@ module.exports = {
     title: "Full-Stack with Benefits",
     author: "Manuel Spagnolo",
     description: "Blogging about tech, coffee and other good things.",
-    siteUrl: "https://fullstackwithbenefits.netlify.com",
+    siteUrl: "https://withbenefits.dev",
     social: {
       twitter: "spagmanuel",
       instagram: "spagmanuel"
@@ -91,6 +91,7 @@ module.exports = {
           include: /svg/
         }
       }
-    }
+    },
+    "gatsby-plugin-sitemap"
   ]
 };
