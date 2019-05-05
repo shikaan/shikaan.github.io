@@ -1,6 +1,6 @@
 ---
 title: "Digital music and selfies: the legacy of Jean-Baptiste Joseph Fourier"
-description: Second episode about Behavioral Pattern Memento 
+description: How Harmonic Analysis powers social networks, streaming channels and our every day life
 tags: ["tech", "music", "mathematics"]
 coverImage: "cover.jpg"
 date: "2019-05-05T00:00:00.000Z"
