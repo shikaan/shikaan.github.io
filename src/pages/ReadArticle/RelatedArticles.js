@@ -28,7 +28,9 @@ const RelatedArticlesHeading = styled(Heading)(({theme}) => `
 
 class RelatedArticles extends Component {
   render() {
-    const {content, list} = this.props;
+    const {content, list, fallbackList} = this.props;
+
+    const articles = list.length ? list : fallbackList;
 
     return (
       <Section>
@@ -37,7 +39,7 @@ class RelatedArticles extends Component {
         </RelatedArticlesHeading>
         <UnorderedList>
           {
-            list.map(({node: article}, index) => {
+            articles.map(({node: article}, index) => {
               const {fields, frontmatter} = article;
               const readingTime = Math.ceil(fields.readingTime.minutes);
               const overline = `${frontmatter.date} – ${readingTime} ${content.shared.readingTime}`;

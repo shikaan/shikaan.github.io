@@ -38,6 +38,7 @@ class ReadArticlePage extends React.Component {
     const {article} = data;
 
     const relatedArticles = get(data, "relatedArticles.edges", []); // FIXME: when we flatten queries
+    const fallbackRelatedArticles = get(data, "fallbackRelatedArticles.edges", []); // FIXME: when we flatten queries
     const siteUrl = get(data, "site.siteMetadata.siteUrl", "");
     const {tags} = pageContext;
 
@@ -66,7 +67,7 @@ class ReadArticlePage extends React.Component {
         <ReadArticleDivider/>
         <Newsletter content={content}/>
         <ReadArticleDivider/>
-        <RelatedArticles list={relatedArticles} content={content}/>
+        <RelatedArticles list={relatedArticles} fallbackList={fallbackRelatedArticles} content={content}/>
       </Template>
     );
   }
@@ -131,6 +132,48 @@ export const pageQuery = graphql`
         }
         frontmatter: {
           tags: {in: $tags}
+        }
+      }) {
+      edges {
+        node {
+          fields {
+            slug
+            readingTime {
+              minutes
+            }
+          }
+          frontmatter {
+            title
+            date(formatString: "MMMM DD, YYYY")
+            tags
+            coverImage {
+              childImageSharp {
+                fixed(width:112, height:112) {
+                  width
+                  height
+                  base64
+                  tracedSVG
+                  aspectRatio
+                  src
+                  srcSet
+                  srcWebp
+                  srcSetWebp
+                  originalName
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    fallbackRelatedArticles: allMarkdownRemark(
+      limit: 3, 
+      sort: {
+        fields: [frontmatter___date], order: DESC
+      }, 
+      filter: {
+        fields: {
+          slug: {ne: $path}
         }
       }) {
       edges {
