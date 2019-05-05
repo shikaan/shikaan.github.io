@@ -63,7 +63,10 @@
     "develop": "gatsby develop -H 0.0.0.0 --https",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "test": "jest --config ./test/config.js"
+    "test": "jest --config ./test/config.js",
+    "lint:md": "remark ./content",
+    "lint:js": "eslint ./src",
+    "lint": "npm run lint:md && npm run lint:js"
   },
   "devDependencies": {
     "@commitlint/cli": "^7.5.2",
