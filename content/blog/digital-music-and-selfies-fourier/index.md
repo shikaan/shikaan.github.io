@@ -4,7 +4,7 @@ description: How Harmonic Analysis powers social networks, streaming channels an
 tags: ["tech", "music", "mathematics"]
 coverImage: "cover.jpg"
 date: "2019-05-05T00:00:00.000Z"
-commentLink: "https://twitter.com/spagmanuel/status/1118952047460716544"
+commentLink: "https://twitter.com/spagmanuel/status/1125065612668080133"
 ---
 
 Jean-Baptiste Joseph Fourier is one of the most known mathematical personalities in history and with a good reason: he’s the father of Harmonic Analysis also known as Fourier Analysis. We are about to learn how this is the reason why we can stream music, share images and even have echo-cancelling headphones or perform sound searches.
