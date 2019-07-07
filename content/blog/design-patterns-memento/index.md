@@ -164,7 +164,7 @@ Let's suppose you have the dumbest game ever: every time you click a button you 
 
 We click up to 100, we earn a badge, we undo, we re-click and we earn a second badge.
 
-![Bug feature](http://www.callcentermemes.com/wp-content/uploads/2015/12/1449610204609.jpg)
+![Bug feature](./bug-feature-meme.jpg)
 
 Why did that happen? Because we forgot to keep track of the badges in the snapshot, thus on undo we just reverted the score, without cleaning the badge list.
 

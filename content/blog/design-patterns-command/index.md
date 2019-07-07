@@ -15,7 +15,7 @@ As spoiled in the introduction, the first article will be about the _Command Pat
 
 As the name suggest, behavioral patterns are concerned about behavior of objects. 
 
-![Zoidberg](http://www.quickmeme.com/img/b1/b1ee54106b29a0ee085bd3918f98e95d559e9ad70e4d23587cc97c66a51d5bf4.jpg)
+![Zoidberg](./behaviour-meme.jpg)
 
 Unlike other kind of patterns, behavioral patterns are not only patterns of objects and classes, but also pattern of communication between them. Their main purpose is to outline and distribute responsibilities across components in the application using abstractions meant to simplify complex control flow.
 
@@ -55,7 +55,7 @@ Applying command has mainly two effects: reducing coupling between the invoker a
 
 The ex scenario in the example above should be enough to convince you that coupling can be dangerous even outside Computer Science.
 
-![Overly attached girlfriend](http://www.quickmeme.com/img/01/019c87c5b8b608e863093dbcaa88101564d0fab0b9cdbd2a780cbb940e94a782.jpg)
+![Overly attached girlfriend](./attached-meme.jpg)
 
 If you're not in the mood for thinking about your paranoid acquaintances you can also consider that the procedure you had to fulfill to get your meal is essentially unchanged if your meal needs to be cooked by two teams one specialized in steaks and one in sides.  
 
