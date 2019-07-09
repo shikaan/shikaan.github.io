@@ -1,7 +1,4 @@
-Full-Stack with Benefits
----
-
-# What is this about?
+# Full-Stack with Benefits
 
 _Full-Stack with Benefits_ is a community driven blog about (not exclusively) Software Development, Technology and Science. 
 Feel free to widen the spectrum of topics, if you feel like (:
@@ -28,12 +25,3 @@ So far this platform has been a one man show. This means that a lot of ideas and
 Thankfully, none of that mental work is wasted. All the things that need to be done are collected in the board you can see [here]().
 
 More details [here]().
-
-# Who are you?
-
-# Launching it locally
-
-# Contributing
-
-# Contributors
-
