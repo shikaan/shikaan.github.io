@@ -28,7 +28,7 @@ If you find something off with the application, feel free to contribute by filin
 
 [Issue templates]() will help you compile a detailed description of what is the problem and what is the desired outcome. This will help the community to organize and prioritize the issues, giving a good overview of the problem to whomever wants to contribute.
 
-If you wish to contribute also with code, feel free to [read the documentation]() and [submit a pull request]().
+If you wish to contribute also with code, feel free to [read the documentation]() and [submit a pull request](https://github.com/shikaan/full-stack-with-benefits/pull/new/master).
 
 ## I have found an error in an article!
 
@@ -60,9 +60,9 @@ npm i
 
 ### Conventional commit
 
-In this repository we decided to stick with [conventional commit guidelines]() for commit messages. 
+In this repository we decided to stick with [conventional commit guidelines](https://www.conventionalcommits.org) for commit messages. 
 
-As soon as you install the dependencies, a [git hook]() is setup in order to prevent you to push non-compliant commits.
+As soon as you install the dependencies, a [git hook](https://githooks.com/) is setup in order to prevent you to push non-compliant commits.
 
 You can test your commit message manually running
 
@@ -72,7 +72,7 @@ npx commitlint "fix: commit message"
 
 ### Testing
 
-You can run the same tests as the CI does on your local machine to save time. Tests are run through [Jest]()
+You can run the same tests as the CI does on your local machine to save time. Tests are run through [Jest](https://jestjs.io/)
 
 ```bash
 # run the tests
@@ -81,7 +81,7 @@ npm test
 
 ### Linting
 
-Again, you can run the same linting checks as the CI does. Code linting is done via [ESLint]() and Markdown linting via [remark]()
+Again, you can run the same linting checks as the CI does. Code linting is done via [ESLint](https://eslint.org/) and Markdown linting via [remark](https://remark.js.org/)
 
 ```bash
 # run linting
