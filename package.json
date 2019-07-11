@@ -9,14 +9,13 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "prepush": "eslint ./src --fix && npm test"
+      "prepush": "npm run lint && npm test"
     }
   },
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.6",
     "gatsby": "^2.13.6",
     "gatsby-image": "^2.2.4",
-    "gatsby-plugin-feed": "^2.3.2",
     "gatsby-plugin-google-analytics": "^2.1.1",
     "gatsby-plugin-manifest": "^2.2.1",
     "gatsby-plugin-netlify": "^2.1.0",
@@ -51,7 +50,7 @@
     "typeface-lato": "0.0.54",
     "typeface-merriweather": "0.0.72"
   },
-  "homepage": "https://fullstackwithbenefits.netlify.com",
+  "homepage": "https://withbenefits.dev",
   "license": "MIT",
   "main": "n/a",
   "repository": {
