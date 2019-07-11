@@ -34,7 +34,7 @@ If you wish to contribute also with code, feel free to [read the documentation](
 
 You can help with that too! File an issue with the `content` tag, but not before checking whether it has already been reported in [the list](https://github.com/shikaan/full-stack-with-benefits/issues).
 
-Ideally issues regarding content should be opened only if the reason for change is to be discussed. For small changes (e.g. like typos, formatting issues...) you can [submit a pull request]() right away, without creating an issue.
+Ideally issues regarding content should be opened only if the reason for change is to be discussed. For small changes (e.g. like typos, formatting issues...) you can [submit a pull request](https://github.com/shikaan/full-stack-with-benefits/pull/new/master) right away, without creating an issue.
 
 ## Submit a pull request
 
