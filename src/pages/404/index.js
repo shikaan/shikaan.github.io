@@ -75,10 +75,8 @@ export const pageQuery = graphql`
         title
       }
     }
-    featuredArticle: markdownRemark(id: {eq: $featuredArticleId}) {
-      fields {
+    featuredArticle: contentfulArticle(id: {eq: $featuredArticleId}) {
         slug
-      }
     }
   }
 `;

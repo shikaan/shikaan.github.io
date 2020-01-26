@@ -15,21 +15,16 @@ const createArticlesPages = async ({graphql, actions}) => {
   const result = await graphql(
     `
       {
-        allMarkdownRemark(
-          sort: { fields: [frontmatter___date], order: DESC }
-          limit: 1000
-        ) {
+        allContentfulArticle(sort: {fields: publishDate, order: DESC}, limit: 1000) {
           edges {
             node {
               id
-              fields {
-                slug
-                readingTime {
-                  minutes
+              tags
+              slug
+              body {
+                childMarkdownRemark {
+                  timeToRead
                 }
-              }
-              frontmatter {
-                tags
               }
             }
           }
@@ -43,17 +38,16 @@ const createArticlesPages = async ({graphql, actions}) => {
   }
 
   // Create articles pages
-  const posts = result.data.allMarkdownRemark.edges;
+  const posts = result.data.allContentfulArticle.edges;
 
   posts.forEach((post) => {
     actions.createPage({
-      path: post.node.fields.slug,
+      path: post.node.slug,
       component: readArticlePageComponent,
       context: {
-        slug: post.node.fields.slug,
-        relativePath: post.node.fields.relativePath,
-        tags: post.node.frontmatter.tags,
-        readingTime: post.node.fields.readingTime
+        slug: post.node.slug,
+        tags: post.node.tags,
+        readingTime: post.node.body.childMarkdownRemark.timeToRead
       }
     });
   });
@@ -102,21 +96,25 @@ exports.createPages = ({graphql, actions}) => {
 exports.onCreateNode = ({node, actions, getNode}) => {
   const {createNodeField} = actions;
 
-  if (node.internal.type === "MarkdownRemark") {
-    const slug = createFilePath({node, getNode});
-    const relativeFilePath = path.relative(__dirname, node.fileAbsolutePath);
+  if (node.internal.type === "MarkdownRemark" && node.relativePath) {
+    try {
+      const slug = createFilePath({node, getNode});
+      const relativeFilePath = path.relative(__dirname, node.fileAbsolutePath);
 
-    createNodeField({
-      name: "slug",
-      node,
-      value: slug
-    });
+      createNodeField({
+        name: "slug",
+        node,
+        value: slug
+      });
 
-    createNodeField({
-      name: "relativeFilePath",
-      node,
-      value: relativeFilePath
-    });
+      createNodeField({
+        name: "relativeFilePath",
+        node,
+        value: relativeFilePath
+      });
+    } catch (e) {
+      console.log(e);
+    }
   }
 };
 

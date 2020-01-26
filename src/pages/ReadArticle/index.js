@@ -76,137 +76,88 @@ class ReadArticlePage extends React.Component {
 export default ReadArticlePage;
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($path: String!, $tags: [String!]) {
-    site {
-      siteMetadata {
-        title
-        author
-        siteUrl
-      }
-    }
-    article: markdownRemark(fields: { slug: { eq: $path } }) {
-      html
-      tableOfContents(
-        maxDepth: 2
-      )
-      fields {
-        slug
-        relativeFilePath
-        readingTime {
-          minutes
-        }
-      }
-      frontmatter {
-        title
-        date(formatString: "MMMM DD, YYYY")
-        description
-        commentLink
-        coverImage {
-          childImageSharp {
-            fluid {
-              base64
-              tracedSVG
-              aspectRatio
-              src
-              srcSet
-              srcWebp
-              srcSetWebp
-              sizes
-              originalImg
-              originalName
-              presentationWidth
-              presentationHeight
+    query BlogPostBySlug($path: String!, $tags: [String!]) {
+        site {
+            siteMetadata {
+                title
+                author
+                siteUrl
             }
-          }
         }
-      }
-    }
-    relatedArticles: allMarkdownRemark(
-      limit: 3, 
-      sort: {
-        fields: [frontmatter___date], order: DESC
-      }, 
-      filter: {
-        fields: {
-          slug: {ne: $path}
-        }
-        frontmatter: {
-          tags: {in: $tags}
-        }
-      }) {
-      edges {
-        node {
-          fields {
+        article: contentfulArticle(slug: {eq: $path }) {
             slug
-            readingTime {
-              minutes
-            }
-          }
-          frontmatter {
             title
-            date(formatString: "MMMM DD, YYYY")
-            tags
+            description
+            updatedAt
+            commentLink
             coverImage {
-              childImageSharp {
-                fixed(width:112, height:112) {
-                  width
-                  height
-                  base64
-                  tracedSVG
-                  aspectRatio
-                  src
-                  srcSet
-                  srcWebp
-                  srcSetWebp
-                  originalName
+                fluid {
+                    ...GatsbyContentfulFluid
                 }
-              }
             }
-          }
-        }
-      }
-    },
-    fallbackRelatedArticles: allMarkdownRemark(
-      limit: 3, 
-      sort: {
-        fields: [frontmatter___date], order: DESC
-      }, 
-      filter: {
-        fields: {
-          slug: {ne: $path}
-        }
-      }) {
-      edges {
-        node {
-          fields {
-            slug
-            readingTime {
-              minutes
-            }
-          }
-          frontmatter {
-            title
-            date(formatString: "MMMM DD, YYYY")
-            tags
-            coverImage {
-              childImageSharp {
-                fixed(width:112, height:112) {
-                  width
-                  height
-                  base64
-                  tracedSVG
-                  aspectRatio
-                  src
-                  srcSet
-                  srcWebp
-                  srcSetWebp
-                  originalName
+            body {
+                childMarkdownRemark {
+                    html
+                    timeToRead
                 }
-              }
             }
-          }
+        },
+        relatedArticles: allContentfulArticle (
+            limit: 3,
+            sort: {
+                fields: [createdAt], order: DESC
+            },
+            filter: {
+                slug: {ne: $path}
+                tags: {in: $tags}
+            }
+        ) {
+            edges {
+                node {
+                    slug,
+                    title,
+                    updatedAt,
+                    tags,
+                    body {
+                        childMarkdownRemark {
+                            timeToRead
+                        }
+                    }
+                    coverImage {
+                        fixed(width: 112, height: 112) {
+                            ...GatsbyContentfulFixed
+                        }
+                    }
+                }
+            }
+        },
+        fallbackRelatedArticles: allContentfulArticle (
+            limit: 3,
+            sort: {
+                fields: [createdAt], order: DESC
+            },
+            filter: {
+                slug: {ne: $path}
+            }
+        ) {
+            edges {
+                node {
+                    slug,
+                    title,
+                    updatedAt,
+                    tags,
+                    body {
+                        childMarkdownRemark {
+                            timeToRead
+                        }
+                    }
+                    coverImage {
+                        fixed(width: 112, height: 112) {
+                            ...GatsbyContentfulFixed
+                        }
+                    }
+                }
+            }
         }
-      }
     }
-  }
 `;
