@@ -56,18 +56,15 @@ export const pageQuery = graphql`
         slug
         title
         description
-        updatedAt
+        createdAt(formatString: "MMMM DD, YYYY")
         commentLink
+        tags
         coverImage {
             fluid {
                 ...GatsbyContentfulFluid
             }
         }
-        body {
-            childMarkdownRemark {
-                timeToRead
-            }
-        }
+        timeToRead
     }
     otherArticles: allContentfulArticle (
       limit: 3,
@@ -80,15 +77,11 @@ export const pageQuery = graphql`
     ) {
         edges {
             node {
-                slug,
-                title,
-                updatedAt,
-                tags,
-                body {
-                    childMarkdownRemark {
-                        timeToRead
-                    }
-                }
+                slug
+                title
+                createdAt(formatString: "MMMM DD, YYYY")
+                tags
+                timeToRead
                 coverImage {
                     fixed(width: 112, height: 112) {
                         ...GatsbyContentfulFixed

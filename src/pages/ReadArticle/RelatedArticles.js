@@ -40,19 +40,18 @@ class RelatedArticles extends Component {
         <UnorderedList>
           {
             articles.map(({node: article}, index) => {
-              const {fields, frontmatter} = article;
-              const readingTime = Math.ceil(fields.readingTime.minutes);
-              const overline = `${frontmatter.date} – ${readingTime} ${content.shared.readingTime}`;
+              const {slug, coverImage, description, title, tags, readingTime, createdAt} = article;
+              const overline = `${createdAt} – ${readingTime} ${content.shared.readingTime}`;
 
               return (
                 <ListItem key={index}>
                   <Card
-                    description={frontmatter.description}
-                    image={frontmatter.coverImage.childImageSharp}
+                    description={description}
+                    image={coverImage}
                     overline={overline}
-                    slug={fields.slug}
-                    tags={frontmatter.tags.slice(0,2)}
-                    title={frontmatter.title}
+                    slug={slug}
+                    tags={tags.slice(0,2)}
+                    title={title}
                   />
                   {!isLastIndex(list, index) && <Divider/>}
                 </ListItem>

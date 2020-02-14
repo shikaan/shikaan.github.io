@@ -44,7 +44,7 @@ class CallToActions extends Component {
       navigator.share({
         url: window.location.href,
         title: document.title,
-        text: post.frontmatter.title
+        text: post.title
       });
     }
   };
@@ -68,12 +68,8 @@ class CallToActions extends Component {
 
     return (
       <Section>
-        <CTALink alt={content.callToActions.comment} href={post.frontmatter.commentLink}>
+        <CTALink alt={content.callToActions.comment} href={post.commentLink}>
           <Icon>comment</Icon>
-        </CTALink>
-
-        <CTALink alt={content.callToActions.edit} href={CallToActions.buildEditUrl(post.fields.relativeFilePath)}>
-          <Icon>edit</Icon>
         </CTALink>
 
         <CTALink alt={content.callToActions.share} onClick={this.share}>

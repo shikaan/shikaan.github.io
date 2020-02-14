@@ -1,5 +1,4 @@
 const path = require("path");
-const {createFilePath} = require("gatsby-source-filesystem");
 
 // FIXME: this is a temporary hack, as it looks like there is no way to
 //  pass parameters to 404
@@ -21,11 +20,7 @@ const createArticlesPages = async ({graphql, actions}) => {
               id
               tags
               slug
-              body {
-                childMarkdownRemark {
-                  timeToRead
-                }
-              }
+              timeToRead
             }
           }
         }
@@ -47,7 +42,7 @@ const createArticlesPages = async ({graphql, actions}) => {
       context: {
         slug: post.node.slug,
         tags: post.node.tags,
-        readingTime: post.node.body.childMarkdownRemark.timeToRead
+        readingTime: post.node.timeToRead
       }
     });
   });
@@ -96,25 +91,13 @@ exports.createPages = ({graphql, actions}) => {
 exports.onCreateNode = ({node, actions, getNode}) => {
   const {createNodeField} = actions;
 
-  if (node.internal.type === "MarkdownRemark" && node.relativePath) {
-    try {
-      const slug = createFilePath({node, getNode});
-      const relativeFilePath = path.relative(__dirname, node.fileAbsolutePath);
+  if (node.internal.type === "MarkdownRemark") {
 
-      createNodeField({
-        name: "slug",
-        node,
-        value: slug
-      });
-
-      createNodeField({
-        name: "relativeFilePath",
-        node,
-        value: relativeFilePath
-      });
-    } catch (e) {
-      console.log(e);
-    }
+    createNodeField({
+      name: "slug",
+      node,
+      value: getNode(getNode(node.parent).parent).slug
+    });
   }
 };
 
@@ -126,4 +109,21 @@ exports.onCreatePage = ({page, actions}) => {
       page.context.featuredArticleId = featuredArticleId;
     }
   }
+};
+
+exports.createResolvers = ({createResolvers}) => {
+  const resolvers = {
+    ContentfulArticle: {
+      timeToRead: {
+        type: "String",
+        resolve(source, args, context, info) {
+          const body = context.nodeModel.getNodeById({id: source.body___NODE});
+          const markdown = context.nodeModel.getNodeById({id: body.children[0]});
+
+          return Math.ceil(markdown.fields.readingTime.minutes);
+        },
+      },
+    },
+  };
+  createResolvers(resolvers);
 };

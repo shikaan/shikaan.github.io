@@ -42,18 +42,16 @@ class ReadArticlePage extends React.Component {
     const siteUrl = get(data, "site.siteMetadata.siteUrl", "");
     const {tags} = pageContext;
 
-    const articleTitle = get(article, "frontmatter.title", "");
-    const articleDescription = get(article, "frontmatter.description", "");
-    const articleImage = get(article, "frontmatter.coverImage.childImageSharp.fluid.originalImg", "");
+    const articleImageUrl = get(article, "coverImage.fluid.originalImg", "");
 
     return (
       <Template>
         <SEO
-          image={`${siteUrl}${articleImage}`}
+          image={`${siteUrl}${articleImageUrl}`}
           type={"article"}
           lang={"en"}
-          title={articleTitle}
-          description={articleDescription} // TODO: maybe an excerpt is better for SEO?
+          title={article.title}
+          description={article.description} // TODO: maybe an excerpt is better for SEO?
           keywords={tags}
           slug={location.pathname}
         />
@@ -76,7 +74,7 @@ class ReadArticlePage extends React.Component {
 export default ReadArticlePage;
 
 export const pageQuery = graphql`
-    query BlogPostBySlug($path: String!, $tags: [String!]) {
+    query BlogPostBySlug($slug: String!, $tags: [String!]) {
         site {
             siteMetadata {
                 title
@@ -84,21 +82,22 @@ export const pageQuery = graphql`
                 siteUrl
             }
         }
-        article: contentfulArticle(slug: {eq: $path }) {
+        article: contentfulArticle(slug: { eq: $slug }) {
             slug
             title
             description
-            updatedAt
+            createdAt(formatString: "MMMM, DD YYYY")
             commentLink
             coverImage {
                 fluid {
                     ...GatsbyContentfulFluid
                 }
             }
+            timeToRead
             body {
                 childMarkdownRemark {
                     html
-                    timeToRead
+                    tableOfContents
                 }
             }
         },
@@ -108,7 +107,7 @@ export const pageQuery = graphql`
                 fields: [createdAt], order: DESC
             },
             filter: {
-                slug: {ne: $path}
+                slug: {ne: $slug}
                 tags: {in: $tags}
             }
         ) {
@@ -137,7 +136,7 @@ export const pageQuery = graphql`
                 fields: [createdAt], order: DESC
             },
             filter: {
-                slug: {ne: $path}
+                slug: {ne: $slug}
             }
         ) {
             edges {

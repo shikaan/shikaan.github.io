@@ -41,7 +41,7 @@ class SearchPage extends Component {
     let topics = [];
 
     for (const {node: article} of articles) {
-      const topicsWithoutDuplicates = new Set([...topics, ...article.frontmatter.tags]);
+      const topicsWithoutDuplicates = new Set([...topics, ...article.tags]);
       topics = Array.from(topicsWithoutDuplicates);
 
       if (topics.length >= length) {
@@ -58,8 +58,8 @@ class SearchPage extends Component {
     if (searchQuery.length > 2) {
       const newList = articles
         .filter(({node: article}) => {
-          const isInTitle = get(article, "frontmatter.title", "").toLowerCase().includes(searchQuery);
-          const isInTags = get(article, "frontmatter.tags", []).some(tag => tag.includes(searchQuery));
+          const isInTitle = (article.title || "").toLowerCase().includes(searchQuery);
+          const isInTags = (article.tags || []).some(tag => tag.includes(searchQuery));
 
           return isInTitle || isInTags;
         }).slice(0, 5);
@@ -144,15 +144,11 @@ export const pageQuery = graphql`
     ) {
         edges {
             node {
-                slug,
-                title,
-                updatedAt,
-                tags,
-                body {
-                    childMarkdownRemark {
-                        timeToRead
-                    }
-                }
+                slug
+                title
+                createdAt(formatString: "MMMM DD, YYYY")
+                tags
+                timeToRead
                 coverImage {
                     fixed(width: 112, height: 112) {
                         ...GatsbyContentfulFixed

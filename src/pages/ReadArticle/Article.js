@@ -139,7 +139,7 @@ class Article extends Component {
     const {post} = this.props;
 
     return (
-      <ArticleBody dangerouslySetInnerHTML={{__html: post.html}}/>
+      <ArticleBody dangerouslySetInnerHTML={{__html: post.body.childMarkdownRemark.html}}/>
     );
   }
 }

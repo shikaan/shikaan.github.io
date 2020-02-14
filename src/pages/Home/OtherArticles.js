@@ -25,19 +25,18 @@ class OtherArticles extends PureComponent {
         <ul>
           {
             otherArticles.map((article, index) => {
-              const {fields, frontmatter} = article;
-              const readingTime = Math.ceil(fields.readingTime.minutes);
-              const overline = `${frontmatter.date} – ${readingTime} ${content.shared.readingTime}`;
+              const {description, coverImage, slug, tags, title, timeToRead, createdAt} = article;
+              const overline = `${createdAt} – ${timeToRead} ${content.shared.readingTime}`;
 
               return (
                 <ListItem key={index}>
                   <Card
-                    description={frontmatter.description}
-                    image={frontmatter.coverImage.childImageSharp}
+                    description={description}
+                    image={coverImage.childImageSharp}
                     overline={overline}
-                    slug={fields.slug}
-                    tags={frontmatter.tags.slice(0, 2)}
-                    title={frontmatter.title}
+                    slug={slug}
+                    tags={tags.slice(0, 2)}
+                    title={title}
                   />
                   {!isLastIndex(otherArticles, index) && <Divider/>}
                 </ListItem>

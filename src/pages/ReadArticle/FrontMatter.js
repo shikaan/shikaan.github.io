@@ -19,19 +19,16 @@ class FrontMatter extends Component {
   render() {
     const {content, post, tags} = this.props;
 
-    const minutes = get(post, "fields.readingTime.minutes", 0);
-    const readingTime = Math.ceil(minutes);
-
     return (
       <Fragment>
-        <Image fluid={post.frontmatter.coverImage.childImageSharp.fluid} alt={post.frontmatter.title}/>
+        <Image fluid={post.coverImage.fluid} alt={post.title}/>
         <Header>
           <Overline>
-            {post.frontmatter.date} – {readingTime} {content.shared.readingTime}
+            {post.createdAt} – {post.timeToRead} {content.shared.readingTime}
           </Overline>
 
-          <FrontMatterHeading level={1} sub={post.frontmatter.description}>
-            {post.frontmatter.title}
+          <FrontMatterHeading level={1} sub={post.description}>
+            {post.title}
           </FrontMatterHeading>
 
           {tags.map(i => <Tag key={i} to={`/search?query=${i}`}>{i}</Tag>)}

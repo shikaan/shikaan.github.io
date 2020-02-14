@@ -63,7 +63,7 @@ class TableOfContents extends Component {
         <ContentHeader>
           {content.tableOfContents.title}
         </ContentHeader>
-        <ContentSection dangerouslySetInnerHTML={{ __html: post.tableOfContents }}/>
+        <ContentSection dangerouslySetInnerHTML={{ __html: post.body.childMarkdownRemark.tableOfContents }}/>
       </Content>
     );
   }
