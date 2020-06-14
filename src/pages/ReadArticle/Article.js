@@ -8,7 +8,7 @@ const h2FontSize = (theme) => theme.typography.baseFontSize.multiply(1.75);
 const h3FontSize = (theme) => theme.typography.baseFontSize.multiply(1.5);
 
 const ArticleBody = styled.article(({theme}) => `
-  padding: ${theme.templateVariables.horizontalPadding}
+  padding: ${theme.templateVariables.horizontalPadding};
   
   p {
     font-family: ${theme.typography.secondaryFont.fontFamily};
@@ -37,7 +37,7 @@ const ArticleBody = styled.article(({theme}) => `
     line-height: ${h2FontSize(theme).multiply(1.5)};
     font-weight: 700;
     font-size: ${h2FontSize(theme)};
-    color: ${theme.color.dark600} 
+    color: ${theme.color.dark600};
   }
   
   h3, h4, h5 {
@@ -45,7 +45,7 @@ const ArticleBody = styled.article(({theme}) => `
     line-height: ${h3FontSize(theme).multiply(1.5)};
     font-size: ${h3FontSize(theme)};
     font-weight: 400;
-    color: ${theme.color.dark600} 
+    color: ${theme.color.dark600};
   }
   
   sup {

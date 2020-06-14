@@ -8,7 +8,7 @@ import Overline from "~components/Overline";
 import Tag from "~components/Tag";
 
 const Header = styled.header(({theme}) => `
-  padding: ${theme.templateVariables.verticalPadding} ${theme.templateVariables.horizontalPadding}
+  padding: ${theme.templateVariables.verticalPadding} ${theme.templateVariables.horizontalPadding};
 `);
 
 const FrontMatterHeading = styled(Heading)(({theme}) => `

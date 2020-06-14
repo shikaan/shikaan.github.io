@@ -84,7 +84,7 @@ class Card extends PureComponent {
       <Container>
         <Body context={context}>
         <ImageWrapper to={slug}>
-          <Image {...image} alt={title}/>
+          { image ? <Image {...image} alt={title}/> : null }
         </ImageWrapper>
         <Text>
           <ClickableArea to={slug}>

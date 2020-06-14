@@ -12,7 +12,7 @@ import Toaster from "~components/Toaster";
 
 const Section = styled.section(({ theme }) => `
   text-align: center;
-  padding: ${theme.templateVariables.horizontalPadding}
+  padding: ${theme.templateVariables.horizontalPadding};
 `);
 
 const NewsletterHeading = styled(Heading)(({ theme }) => `

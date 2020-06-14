@@ -9,7 +9,7 @@ import Heading from "~components/Heading";
 import {isLastIndex} from "~utils";
 
 const Section = styled.section(({theme}) => `
-  padding: ${theme.templateVariables.horizontalPadding}
+  padding: ${theme.templateVariables.horizontalPadding};
 `);
 
 const UnorderedList = styled.ul(({theme}) => `
