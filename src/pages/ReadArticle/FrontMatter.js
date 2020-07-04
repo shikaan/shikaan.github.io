@@ -1,6 +1,5 @@
 import React, {Component, Fragment} from "react";
 import styled from "styled-components";
-import {get} from "lodash";
 
 import Heading from "~components/Heading";
 import Image from "~components/Image";

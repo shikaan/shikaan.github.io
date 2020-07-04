@@ -9,7 +9,7 @@ export const iconFont = `
     src: url(${cdd}) format('woff');
     font-weight: normal;
     font-style: normal;
-}
+  }
   
   [class^="cdd-"], [class*=" cdd-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
@@ -25,7 +25,10 @@ export const iconFont = `
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
+
+  .cdd-caret:before {
+    content: "\\e906";
+  }
   .cdd-coffee:before {
     content: "\\e900";
   }
