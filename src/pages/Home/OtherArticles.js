@@ -32,7 +32,7 @@ class OtherArticles extends PureComponent {
                 <ListItem key={index}>
                   <Card
                     description={description}
-                    image={coverImage.childImageSharp}
+                    image={coverImage}
                     overline={overline}
                     slug={slug}
                     tags={tags.slice(0, 2)}
