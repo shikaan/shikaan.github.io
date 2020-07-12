@@ -5,7 +5,9 @@ import {ThemeProvider} from "styled-components";
 import theme, {GlobalStyle, Size} from "~theme";
 
 const GlobalBackground = createGlobalStyle`
-  background: ${theme.color.dark100};
+  body {
+    background: ${theme.color.dark100};
+  }
 `;
 
 const Main = styled.main(({theme}) => `
