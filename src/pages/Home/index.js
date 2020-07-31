@@ -67,7 +67,7 @@ export const pageQuery = graphql`
         timeToRead
     }
     otherArticles: allContentfulArticle (
-      limit: 3,
+      limit: 4,
       sort: {
         fields: [createdAt], order: DESC
       },
@@ -83,8 +83,8 @@ export const pageQuery = graphql`
                 tags
                 timeToRead
                 coverImage {
-                    fixed(width: 112, height: 112) {
-                        ...GatsbyContentfulFixed
+                    fluid {
+                        ...GatsbyContentfulFluid
                     }
                 }   
             }

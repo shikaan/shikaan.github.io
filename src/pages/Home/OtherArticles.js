@@ -1,20 +1,13 @@
 import React, {PureComponent} from "react";
 import styled from "styled-components";
 
-import Card from "~components/Card";
+import Card, {CONTEXT} from "~components/Card";
 import Divider from "~components/Divider";
-
-import {Size} from "~theme";
-import {isLastIndex} from "~utils";
+import {CardListItem, UnorderedCardList} from "~components/CardList";
+import {isTablet} from "~utils";
 
 const Section = styled.section(({theme}) => `
   padding: 0 ${theme.templateVariables.horizontalPadding};
-`);
-
-const ListItem = styled.li(() => `
-  min-width: ${new Size(40)};
-  max-width: 62%;
-  margin: auto;
 `);
 
 class OtherArticles extends PureComponent {
@@ -22,28 +15,29 @@ class OtherArticles extends PureComponent {
     const {otherArticles, content} = this.props;
     return (
       <Section>
-        <ul>
+        <UnorderedCardList>
           {
             otherArticles.map((article, index) => {
-              const {description, coverImage, slug, tags, title, timeToRead, createdAt} = article;
+              const {slug, coverImage, description, title, tags, timeToRead, createdAt} = article;
               const overline = `${createdAt} – ${timeToRead} ${content.shared.readingTime}`;
 
               return (
-                <ListItem key={index}>
+                <CardListItem key={index}>
                   <Card
                     description={description}
                     image={coverImage}
                     overline={overline}
                     slug={slug}
-                    tags={tags.slice(0, 2)}
+                    tags={tags.slice(0,2)}
                     title={title}
+                    context={isTablet() ? CONTEXT.LIST : CONTEXT.POLAROID}
                   />
-                  {!isLastIndex(otherArticles, index) && <Divider/>}
-                </ListItem>
+                  <Divider/>
+                </CardListItem>
               );
             })
           }
-        </ul>
+        </UnorderedCardList>
       </Section>
     );
   }

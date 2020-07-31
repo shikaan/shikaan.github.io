@@ -58,6 +58,10 @@ const CardHeading = styled(Heading)(() => `
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical; 
   overflow: hidden;
+  
+  & + small {
+    padding: ${padding} 0;
+  }
 `);
 
 export const CONTEXT = {
