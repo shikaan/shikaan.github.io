@@ -13,18 +13,27 @@ import GatsbyImage from "gatsby-image";
 
 const padding = new Size(2);
 
-const Container = styled.div`
+const Container = styled.div(({context}) => `
   padding: ${padding} 0;
-`;
-
-const Body = styled.div(({theme, context}) => `
-  display: grid;
-  grid-gap: ${theme.typography.baseFontSize};
-  grid-template-columns: ${context !== CONTEXT.FEATURED && "1fr 2fr"};
+  ${context === CONTEXT.POLAROID ? "height: 100%" : undefined};
+  ${context === CONTEXT.LIST ? `height: ${new Size(24)}` : undefined};
 `);
 
-const ImageWrapper = styled(Link)(() => `
+const Body = styled.div(({theme, context}) => `
+  height: 100%;
+  display: grid;
+  grid-gap: ${theme.typography.baseFontSize};
+  ${context === CONTEXT.LIST ? "grid-template-columns: 1fr 2fr" : undefined};
+  ${context === CONTEXT.POLAROID ? "grid-template-rows: 2fr .75fr" : undefined};
+`);
+
+const ImageLink = styled(Link)(() => `
   text-align: center;
+`);
+
+const ImageWrapper = styled(Image)(({context}) => `
+  ${context === CONTEXT.POLAROID ? `height: ${new Size(35)}` : undefined };
+  ${context === CONTEXT.LIST ? "height: 100%" : undefined };
 `);
 
 const Text = styled.div(() => `
@@ -45,11 +54,16 @@ const ClickableArea = styled(Link)(() => `
 `);
 
 const CardHeading = styled(Heading)(() => `
-  padding-bottom: ${padding};
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; 
+  overflow: hidden;
 `);
 
 export const CONTEXT = {
-  FEATURED: "featured"
+  FEATURED: "featured",
+  LIST: "list",
+  POLAROID: "polaroid"
 };
 
 class Card extends PureComponent {
@@ -81,12 +95,12 @@ class Card extends PureComponent {
     const {slug, image, overline, context, title} = this.props;
 
     return (
-      <Container>
+      <Container context={context}>
         <Body context={context}>
-        <ImageWrapper to={slug}>
-          { image ? <Image {...image} alt={title}/> : null }
-        </ImageWrapper>
-        <Text>
+        <ImageLink to={slug}>
+          { image ? <ImageWrapper {...image} alt={title} context={context} /> : null }
+        </ImageLink>
+        <Text context={context}>
           <ClickableArea to={slug}>
             <Overline>
               {overline}
@@ -104,7 +118,7 @@ class Card extends PureComponent {
 }
 
 
-Card.defaultProps = {tags: [], replaceOnTagNavigate: false};
+Card.defaultProps = {tags: [], replaceOnTagNavigate: false, context: CONTEXT.LIST};
 
 Card.propTypes = {
   slug: PropTypes.string,

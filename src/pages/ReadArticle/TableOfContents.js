@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Icon from "../../components/Icon";
+import Icon from "~components/Icon";
 
 const bodyTwoStyle = (theme) => `
   font-family: ${theme.typography.secondaryFont.fontFamily};
@@ -67,12 +67,10 @@ const ContentSection = styled.section(
 `
 );
 
-const Caret = styled(Icon)(
-  ({ closed }) => `
+const Caret = styled(Icon)(({ closed }) => `
   float: right;
   ${closed ? "" : "transform: rotate(180deg);"}
-`
-);
+`);
 
 const TableOfContents = ({ content, post }) => {
   const [closed, setClosed] = useState(false);

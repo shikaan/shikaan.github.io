@@ -1,9 +1,8 @@
 import React, {Fragment} from "react";
 import {ThemeProvider} from "styled-components";
-import isMobile from "is-mobile";
 
 import theme, {GlobalStyle, Size} from "~theme";
-import {getGlobalWithKey} from "~/utils";
+import {getGlobalWithKey, isMobile} from "~/utils";
 
 import Icon from "~components/Icon";
 import Link from "~components/Link";
@@ -12,6 +11,7 @@ import {en as content} from "/static/content/_shared";
 import {repository} from "../../../package";
 
 import {IconColumn, Header, Disclaimer, TitleColumn, Row, Logo} from "./Header";
+import {Footer} from "./Footer";
 import {Main} from "./Main";
 
 const templateVariables = {
@@ -93,6 +93,9 @@ class MainTemplate extends React.Component {
           <Main>
             {this.props.children}
           </Main>
+          <Footer>
+            {this.props.footer}
+          </Footer>
         </Fragment>
       </ThemeProvider>
     );

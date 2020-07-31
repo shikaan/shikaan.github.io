@@ -3,27 +3,44 @@ import styled from "styled-components";
 
 import {Size} from "~theme";
 
-import Card from "~components/Card";
+import Card, {CONTEXT} from "~components/Card";
 import Divider from "~components/Divider";
 import Heading from "~components/Heading";
-import {isLastIndex} from "~utils";
+import {isLastIndex, isTablet} from "~utils";
 
 const Section = styled.section(({theme}) => `
-  padding: ${theme.templateVariables.horizontalPadding};
-`);
-
-const UnorderedList = styled.ul(({theme}) => `
-  padding: ${theme.templateVariables.verticalPadding} 0;
-`);
-
-const ListItem = styled.li(() => `
-  min-width: ${new Size(40)};
-  max-width: 62%;
+  max-width: ${theme.breakpoint.sm};
   margin: auto;
 `);
 
+const UnorderedList = styled.ul(({theme}) => `
+  padding: ${theme.templateVariables.verticalPadding} ${theme.templateVariables.horizontalPadding};
+  display: grid;
+  grid-gap: ${new Size(2)};
+  
+
+  @media (min-width: ${theme.breakpoint.xs}) {
+    grid-template-columns: 1fr;
+  }
+  
+  @media (min-width: ${theme.breakpoint.md}) {
+    grid-template-columns: 1fr 1fr;
+  }
+`);
+
+const ListItem = styled.li(({theme}) => `
+  margin: auto;
+  height: 100%;
+  width: 100%;
+  
+  @media (min-width: ${theme.breakpoint.xs}) {
+    min-width: ${new Size(32)};
+  }
+`);
+
 const RelatedArticlesHeading = styled(Heading)(({theme}) => `
-  padding: 0 ${theme.typography.baseFontSize.multiply(0.5)}
+  padding: ${theme.typography.baseFontSize.multiply(1.5)} ${theme.typography.baseFontSize.multiply(.5)};
+  color: ${theme.color.dark500}
 `);
 
 class RelatedArticles extends Component {
@@ -40,8 +57,8 @@ class RelatedArticles extends Component {
         <UnorderedList>
           {
             articles.map(({node: article}, index) => {
-              const {slug, coverImage, description, title, tags, readingTime, createdAt} = article;
-              const overline = `${createdAt} – ${readingTime} ${content.shared.readingTime}`;
+              const {slug, coverImage, description, title, tags, body, updatedAt} = article;
+              const overline = `${updatedAt} – ${body.childMarkdownRemark?.timeToRead} ${content.shared.readingTime}`;
 
               return (
                 <ListItem key={index}>
@@ -52,6 +69,7 @@ class RelatedArticles extends Component {
                     slug={slug}
                     tags={tags.slice(0,2)}
                     title={title}
+                    context={isTablet() ? CONTEXT.LIST : CONTEXT.POLAROID}
                   />
                   {!isLastIndex(list, index) && <Divider/>}
                 </ListItem>

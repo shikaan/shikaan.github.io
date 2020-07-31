@@ -45,7 +45,7 @@ class ReadArticlePage extends React.Component {
     const articleImageUrl = get(article, "coverImage.fluid.originalImg", "");
 
     return (
-      <Template>
+      <Template footer={<RelatedArticles list={relatedArticles} fallbackList={fallbackRelatedArticles} content={content}/>}>
         <SEO
           image={`${siteUrl}${articleImageUrl}`}
           type={"article"}
@@ -64,8 +64,6 @@ class ReadArticlePage extends React.Component {
         <CallToActions post={article} content={content}/>
         <ReadArticleDivider/>
         <Newsletter content={content}/>
-        <ReadArticleDivider/>
-        <RelatedArticles list={relatedArticles} fallbackList={fallbackRelatedArticles} content={content}/>
       </Template>
     );
   }
@@ -131,7 +129,7 @@ export const pageQuery = graphql`
             }
         },
         fallbackRelatedArticles: allContentfulArticle (
-            limit: 3,
+            limit: 4,
             sort: {
                 fields: [createdAt], order: DESC
             },
@@ -143,7 +141,7 @@ export const pageQuery = graphql`
                 node {
                     slug,
                     title,
-                    updatedAt,
+                    updatedAt(formatString: "MMMM, DD YYYY"),
                     tags,
                     body {
                         childMarkdownRemark {
@@ -151,8 +149,8 @@ export const pageQuery = graphql`
                         }
                     }
                     coverImage {
-                        fixed(width: 112, height: 112) {
-                            ...GatsbyContentfulFixed
+                        fluid {
+                            ...GatsbyContentfulFluid
                         }
                     }
                 }
