@@ -1,6 +1,7 @@
 import {numberBreakpoint} from "~theme/variables";
+import {getGlobalWithKey} from "~/utils/get-global-with-key";
 
-export const getViewportWidth = () => window.innerWidth || document.documentElement.clientWidth;
+export const getViewportWidth = () => getGlobalWithKey("innerWidth") ?? getGlobalWithKey("document").documentElement.clientWidth;
 
 export const isMobile = () => {
   const viewportWidth = getViewportWidth();
