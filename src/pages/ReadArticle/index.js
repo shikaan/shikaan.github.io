@@ -100,7 +100,7 @@ export const pageQuery = graphql`
             }
         },
         relatedArticles: allContentfulArticle (
-            limit: 3,
+            limit: 4,
             sort: {
                 fields: [createdAt], order: DESC
             },
