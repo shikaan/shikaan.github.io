@@ -113,7 +113,7 @@ export const pageQuery = graphql`
                 node {
                     slug,
                     title,
-                    updatedAt,
+                    updatedAt(formatString: "MMMM, DD YYYY"),
                     tags,
                     body {
                         childMarkdownRemark {
@@ -121,8 +121,8 @@ export const pageQuery = graphql`
                         }
                     }
                     coverImage {
-                        fixed(width: 112, height: 112) {
-                            ...GatsbyContentfulFixed
+                        fluid {
+                            ...GatsbyContentfulFluid
                         }
                     }
                 }
