@@ -3,7 +3,7 @@ export const createArticle = (topics, title = "title") => {
     node: {
       slug: "slug",
       title,
-      createdAt: "June 14, 2020",
+      publishDate: "June 14, 2020",
       tags: topics ?? [
         "cache",
         "frontend",

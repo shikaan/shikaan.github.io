@@ -23,7 +23,7 @@ class FrontMatter extends Component {
         <Image fluid={post.coverImage.fluid} alt={post.title}/>
         <Header>
           <Overline>
-            {post.createdAt} – {post.timeToRead} {content.shared.readingTime}
+            {post.publishDate} – {post.timeToRead} {content.shared.readingTime}
           </Overline>
 
           <FrontMatterHeading level={1} sub={post.description}>

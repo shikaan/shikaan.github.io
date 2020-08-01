@@ -59,8 +59,8 @@ class Results extends Component {
       <ul>
         {
           searchResults.map(({node: article}, index) => {
-            const {slug, coverImage, description, title, tags, body, createdAt} = article;
-            const overline = `${createdAt} – ${body.childMarkdownRemark.timeToRead} ${content.shared.readingTime}`;
+            const {slug, coverImage, description, title, tags, body, publishDate} = article;
+            const overline = `${publishDate} – ${body.childMarkdownRemark.timeToRead} ${content.shared.readingTime}`;
 
             return (
               <li key={index}>

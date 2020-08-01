@@ -84,7 +84,7 @@ export const pageQuery = graphql`
             slug
             title
             description
-            createdAt(formatString: "MMMM, DD YYYY")
+            publishDate(formatString: "MMMM, DD YYYY")
             commentLink
             coverImage {
                 fluid {
@@ -102,7 +102,7 @@ export const pageQuery = graphql`
         relatedArticles: allContentfulArticle (
             limit: 4,
             sort: {
-                fields: [createdAt], order: DESC
+                fields: [publishDate], order: DESC
             },
             filter: {
                 slug: {ne: $slug}
@@ -113,7 +113,7 @@ export const pageQuery = graphql`
                 node {
                     slug,
                     title,
-                    updatedAt(formatString: "MMMM, DD YYYY"),
+                    publishDate(formatString: "MMMM, DD YYYY"),
                     tags,
                     body {
                         childMarkdownRemark {
@@ -131,7 +131,7 @@ export const pageQuery = graphql`
         fallbackRelatedArticles: allContentfulArticle (
             limit: 4,
             sort: {
-                fields: [createdAt], order: DESC
+                fields: [publishDate], order: DESC
             },
             filter: {
                 slug: {ne: $slug}
@@ -141,7 +141,7 @@ export const pageQuery = graphql`
                 node {
                     slug,
                     title,
-                    updatedAt(formatString: "MMMM, DD YYYY"),
+                    publishDate(formatString: "MMMM, DD YYYY"),
                     tags,
                     body {
                         childMarkdownRemark {

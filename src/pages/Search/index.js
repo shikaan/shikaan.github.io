@@ -139,14 +139,14 @@ export const pageQuery = graphql`
     posts: allContentfulArticle (
         limit: 1000,
         sort: {
-            fields: [createdAt], order: DESC
+            fields: [publishDate], order: DESC
         }
     ) {
         edges {
             node {
                 slug
                 title
-                createdAt(formatString: "MMMM DD, YYYY")
+                publishDate(formatString: "MMMM DD, YYYY")
                 tags
                 body {
                     childMarkdownRemark {

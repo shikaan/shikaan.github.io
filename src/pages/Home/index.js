@@ -56,7 +56,7 @@ export const pageQuery = graphql`
         slug
         title
         description
-        createdAt(formatString: "MMMM DD, YYYY")
+        publishDate(formatString: "MMMM DD, YYYY")
         commentLink
         tags
         coverImage {
@@ -69,7 +69,7 @@ export const pageQuery = graphql`
     otherArticles: allContentfulArticle (
       limit: 4,
       sort: {
-        fields: [createdAt], order: DESC
+        fields: [publishDate], order: DESC
       },
       filter: {
         id: {ne: $featuredArticleId}
@@ -79,7 +79,7 @@ export const pageQuery = graphql`
             node {
                 slug
                 title
-                createdAt(formatString: "MMMM DD, YYYY")
+                publishDate(formatString: "MMMM DD, YYYY")
                 tags
                 timeToRead
                 coverImage {

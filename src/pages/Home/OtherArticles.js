@@ -19,8 +19,8 @@ class OtherArticles extends PureComponent {
         <UnorderedCardList>
           {
             otherArticles.map((article, index) => {
-              const {slug, coverImage, description, title, tags, timeToRead, createdAt} = article;
-              const overline = `${createdAt} – ${timeToRead} ${content.shared.readingTime}`;
+              const {slug, coverImage, description, title, tags, timeToRead, publishDate} = article;
+              const overline = `${publishDate} – ${timeToRead} ${content.shared.readingTime}`;
 
               return (
                 <CardListItem key={index}>

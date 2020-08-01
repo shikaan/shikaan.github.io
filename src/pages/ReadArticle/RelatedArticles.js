@@ -32,8 +32,8 @@ class RelatedArticles extends Component {
         <UnorderedCardList>
           {
             articles.map(({node: article}, index) => {
-              const {slug, coverImage, description, title, tags, body, updatedAt} = article;
-              const overline = `${updatedAt} – ${body.childMarkdownRemark?.timeToRead} ${content.shared.readingTime}`;
+              const {slug, coverImage, description, title, tags, body, publishDate} = article;
+              const overline = `${publishDate} – ${body.childMarkdownRemark?.timeToRead} ${content.shared.readingTime}`;
 
               return (
                 <CardListItem key={index}>

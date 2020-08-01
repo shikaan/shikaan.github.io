@@ -13,9 +13,9 @@ class FeaturedArticle extends Component {
   render() {
     const {featuredArticle, content} = this.props;
 
-    const {description, coverImage, slug, tags, title, timeToRead, createdAt} = featuredArticle;
+    const {description, coverImage, slug, tags, title, timeToRead, publishDate} = featuredArticle;
 
-    const overline = `${createdAt} – ${timeToRead} ${content.shared.readingTime}`;
+    const overline = `${publishDate} – ${timeToRead} ${content.shared.readingTime}`;
 
     return (
       <Section>
