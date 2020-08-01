@@ -8,7 +8,6 @@ import themeMock from "~theme";
 
 import Link from "./Link";
 import {Link as GatsbyLink} from "gatsby";
-import {ThemeProvider} from "styled-components";
 
 describe("Link", () => {
   it("renders a button if onClick is set", () => {

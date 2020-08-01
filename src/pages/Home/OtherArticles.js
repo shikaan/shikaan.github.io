@@ -5,6 +5,7 @@ import Card, {CONTEXT} from "~components/Card";
 import Divider from "~components/Divider";
 import {CardListItem, UnorderedCardList} from "~components/CardList";
 import {isTablet} from "~utils";
+import {validateSlug} from "~/utils";
 
 const Section = styled.section(({theme}) => `
   padding: 0 ${theme.templateVariables.horizontalPadding};
@@ -27,7 +28,7 @@ class OtherArticles extends PureComponent {
                     description={description}
                     image={coverImage}
                     overline={overline}
-                    slug={slug}
+                    slug={validateSlug(slug)}
                     tags={tags.slice(0,2)}
                     title={title}
                     context={isTablet() ? CONTEXT.LIST : CONTEXT.POLAROID}

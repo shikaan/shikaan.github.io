@@ -12,6 +12,7 @@ import Tag from "~components/Tag";
 import Divider from "~components/Divider";
 
 import EmptyState from "./EmptyState";
+import {validateSlug} from "~/utils";
 
 const Section = styled.section(({theme}) => `
   padding: 0 ${theme.templateVariables.horizontalPadding};
@@ -67,7 +68,7 @@ class Results extends Component {
                   description={description}
                   image={coverImage}
                   overline={overline}
-                  slug={slug}
+                  slug={validateSlug(slug)}
                   tags={tags.slice(0, 2)}
                   title={title}
                   replaceOnTagNavigate

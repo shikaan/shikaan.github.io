@@ -32,8 +32,8 @@ const ImageLink = styled(Link)(() => `
 `);
 
 const ImageWrapper = styled(Image)(({context}) => css`
-  ${context === CONTEXT.POLAROID ? `height: ${new Size(35)}` : undefined };
-  ${context === CONTEXT.LIST ? "height: 100%" : undefined };
+  ${context === CONTEXT.POLAROID ? `height: ${new Size(35)}` : undefined};
+  ${context === CONTEXT.LIST ? "height: 100%" : undefined};
 `);
 
 const Text = styled.div(() => `
@@ -77,7 +77,7 @@ class Card extends PureComponent {
     return context === CONTEXT.FEATURED
       ? <CardHeading level={1} sub={description} children={title}/>
       : <CardHeading level={3} children={title}/>;
-  }
+  };
 
   renderTags = () => {
     const {tags, replaceOnTagNavigate} = this.props;
@@ -93,7 +93,7 @@ class Card extends PureComponent {
         }
       </Tags>
     );
-  }
+  };
 
   render() {
     const {slug, image, overline, context, title} = this.props;
@@ -101,20 +101,20 @@ class Card extends PureComponent {
     return (
       <Container context={context}>
         <Body context={context}>
-        <ImageLink to={slug}>
-          { image ? <ImageWrapper {...image} alt={title} context={context} /> : null }
-        </ImageLink>
-        <Text context={context}>
-          <ClickableArea to={slug}>
-            <Overline>
-              {overline}
-            </Overline>
+          <ImageLink to={slug}>
+            {image ? <ImageWrapper {...image} alt={title} context={context}/> : null}
+          </ImageLink>
+          <Text context={context}>
+            <ClickableArea to={slug}>
+              <Overline>
+                {overline}
+              </Overline>
 
-            {this.renderCardHeading()}
-          </ClickableArea>
+              {this.renderCardHeading()}
+            </ClickableArea>
 
-          {this.renderTags()}
-        </Text>
+            {this.renderTags()}
+          </Text>
         </Body>
       </Container>
     );

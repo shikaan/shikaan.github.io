@@ -6,6 +6,7 @@ import Divider from "~components/Divider";
 import Heading from "~components/Heading";
 import {CardListItem, UnorderedCardList} from "~components/CardList";
 import {isLastIndex, isTablet} from "~utils";
+import {validateSlug} from "~/utils";
 
 const Section = styled.section(({theme}) => `
   max-width: ${theme.breakpoint.sm};
@@ -40,7 +41,7 @@ class RelatedArticles extends Component {
                     description={description}
                     image={coverImage}
                     overline={overline}
-                    slug={slug}
+                    slug={validateSlug(slug)}
                     tags={tags.slice(0,2)}
                     title={title}
                     context={isTablet() ? CONTEXT.LIST : CONTEXT.POLAROID}
