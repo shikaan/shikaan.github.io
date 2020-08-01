@@ -41,7 +41,7 @@ class SearchPage extends Component {
     let topics = [];
 
     for (const {node: article} of articles) {
-      const topicsWithoutDuplicates = new Set([...topics, ...article.tags]);
+      const topicsWithoutDuplicates = new Set([...topics, ...(article.tags ?? [])]);
       topics = Array.from(topicsWithoutDuplicates);
 
       if (topics.length >= length) {
@@ -148,10 +148,14 @@ export const pageQuery = graphql`
                 title
                 createdAt(formatString: "MMMM DD, YYYY")
                 tags
-                timeToRead
+                body {
+                    childMarkdownRemark {
+                        timeToRead
+                    }
+                }
                 coverImage {
-                    fixed(width: 112, height: 112) {
-                        ...GatsbyContentfulFixed
+                    fluid {
+                        ...GatsbyContentfulFluid
                     }
                 }
             }

@@ -4,9 +4,14 @@ exports[`SearchPage renders correctly 1`] = `
 <SearchTemplate>
   <SEO
     description="Find articles by topic or title"
-    keywords={Array []}
+    keywords={
+      Array [
+        "search",
+      ]
+    }
     lang="en"
     meta={Array []}
+    slug="/search"
     title="Search"
   />
   <Header />
@@ -16,16 +21,26 @@ exports[`SearchPage renders correctly 1`] = `
       Object {
         "emptyState": Object {
           "cta": "Pick a trending topic",
-          "parapgraph": "Grab a coffee and try another keyword, or check one of our coolest topics 😎",
-          "subTitle": "There are no matches for your query 😭",
-          "title": "Aw snap!",
+          "paragraph": Array [
+            "Our best detectives could not find any result for your query...",
+            "Try again or check one of our coolest topics!",
+          ],
+          "title": "Aw snap! 😭",
         },
         "placeholder": "Start Typing",
         "seo": Object {
           "description": "Find articles by topic or title",
+          "keywords": Array [
+            "search",
+          ],
           "title": "Search",
         },
         "shared": Object {
+          "disclaimer": Object {
+            "actionLabel": "Contribute",
+            "dismissLabel": "Dismiss",
+            "text": "This blog is meant to target mobile devices, but contributions for a desktop version are welcomed",
+          },
           "readingTime": "min read",
         },
         "subTitle": "Trending Topics",
@@ -40,16 +55,26 @@ exports[`SearchPage renders correctly 1`] = `
       Object {
         "emptyState": Object {
           "cta": "Pick a trending topic",
-          "parapgraph": "Grab a coffee and try another keyword, or check one of our coolest topics 😎",
-          "subTitle": "There are no matches for your query 😭",
-          "title": "Aw snap!",
+          "paragraph": Array [
+            "Our best detectives could not find any result for your query...",
+            "Try again or check one of our coolest topics!",
+          ],
+          "title": "Aw snap! 😭",
         },
         "placeholder": "Start Typing",
         "seo": Object {
           "description": "Find articles by topic or title",
+          "keywords": Array [
+            "search",
+          ],
           "title": "Search",
         },
         "shared": Object {
+          "disclaimer": Object {
+            "actionLabel": "Contribute",
+            "dismissLabel": "Dismiss",
+            "text": "This blog is meant to target mobile devices, but contributions for a desktop version are welcomed",
+          },
           "readingTime": "min read",
         },
         "subTitle": "Trending Topics",

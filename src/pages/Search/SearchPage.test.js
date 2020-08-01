@@ -21,7 +21,7 @@ describe("SearchPage", () => {
   });
 
   describe("getSearchQuery", () => {
-    it.only("returns an empty string if no query string", () => {
+    it("returns an empty string if no query string", () => {
       const wrapper = mount(
         <SearchPage
           content={{}}
@@ -138,7 +138,7 @@ describe("SearchPage", () => {
           () => {
             setTimeout(() => {
               expect(instance.state.searchResults).toHaveLength(1);
-              expect(instance.state.searchResults[0]).toHaveProperty("node.frontmatter.title", "bar");
+              expect(instance.state.searchResults[0]).toHaveProperty("node.title", "bar");
 
               done();
             }, SearchPage.DEBOUNCE_INTERVAL * 2); // Wait for debounce to pass
@@ -169,7 +169,7 @@ describe("SearchPage", () => {
           () => {
             setTimeout(() => {
               expect(instance.state.searchResults).toHaveLength(1);
-              expect(instance.state.searchResults[0]).toHaveProperty("node.frontmatter.tags", ["bar"]);
+              expect(instance.state.searchResults[0]).toHaveProperty("node.tags", ["bar"]);
 
               done();
             }, SearchPage.DEBOUNCE_INTERVAL * 2); // Wait for debounce to pass
