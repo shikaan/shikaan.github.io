@@ -3,11 +3,12 @@ import {shallow, mount} from "enzyme";
 import "jest-styled-components";
 import {noop} from "lodash";
 
-import {getTagNameByHTMLString} from "/test/utils";
+import {getTagNameByHTMLString, mountWithTheme} from "/test/utils";
 import themeMock from "~theme";
 
 import Link from "./Link";
 import {Link as GatsbyLink} from "gatsby";
+import {ThemeProvider} from "styled-components";
 
 describe("Link", () => {
   it("renders a button if onClick is set", () => {
@@ -23,7 +24,7 @@ describe("Link", () => {
   });
 
   it("renders Gatsby Link else", () => {
-    const wrapper = mount(<Link theme={themeMock} to={"somewhere-else"}>link</Link>);
+    const wrapper = mountWithTheme(<Link to={"somewhere-else"}>link</Link>, themeMock);
 
     expect(wrapper.childAt(0).childAt(0).childAt(0).type()).toEqual(GatsbyLink);
   });

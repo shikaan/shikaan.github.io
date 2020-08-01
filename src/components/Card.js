@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 import {Size} from "~theme";
 
@@ -13,13 +13,13 @@ import GatsbyImage from "gatsby-image";
 
 const padding = new Size(2);
 
-const Container = styled.div(({context}) => `
+const Container = styled.div(({context}) => css`
   padding: ${padding} 0;
   ${context === CONTEXT.POLAROID ? "height: 100%" : undefined};
   ${context === CONTEXT.LIST ? `height: ${new Size(24)}` : undefined};
 `);
 
-const Body = styled.div(({theme, context}) => `
+const Body = styled.div(({theme, context}) => css`
   height: 100%;
   display: grid;
   grid-gap: ${theme.typography.baseFontSize};
@@ -31,7 +31,7 @@ const ImageLink = styled(Link)(() => `
   text-align: center;
 `);
 
-const ImageWrapper = styled(Image)(({context}) => `
+const ImageWrapper = styled(Image)(({context}) => css`
   ${context === CONTEXT.POLAROID ? `height: ${new Size(35)}` : undefined };
   ${context === CONTEXT.LIST ? "height: 100%" : undefined };
 `);
@@ -53,7 +53,7 @@ const ClickableArea = styled(Link)(() => `
   flex: 1
 `);
 
-const CardHeading = styled(Heading)(() => `
+const CardHeading = styled(Heading)(() => css`
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical; 
