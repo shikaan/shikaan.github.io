@@ -19,8 +19,8 @@ class HomePage extends Component {
 
     const _otherArticles = get(data, "otherArticles.edges", []);
     const otherArticles = _otherArticles.map(i => i.node); // FIXME: when we flatten queries
-    const featuredArticleContent = getSection(content.sections, "featured-article");
-    const otherArticlesContent = getSection(content.sections, "other-articles");
+    const featuredArticleContent = getSection(content.sections, "home.featured-article");
+    const otherArticlesContent = getSection(content.sections, "home.other-articles");
 
     return (
       <Template>
