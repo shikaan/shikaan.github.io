@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Icon from "~components/Icon";
+import {getMicrocopy} from "~/utils";
 
 const bodyTwoStyle = (theme) => `
   font-family: ${theme.typography.secondaryFont.fontFamily};
@@ -78,7 +79,7 @@ const TableOfContents = ({ content, post }) => {
   return (
     <Content>
       <ContentHeader onClick={() => setClosed(!closed)}>
-        {content.tableOfContents.title}
+        {content.title}
         <Caret closed={closed} icon="caret" />
       </ContentHeader>
       <ContentSection

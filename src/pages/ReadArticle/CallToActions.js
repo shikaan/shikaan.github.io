@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import styled from "styled-components";
 
 import {REPO_BASE_URL} from "~/constants";
-import {getGlobalWithKey} from "~/utils";
+import {getGlobalWithKey, getMicrocopy} from "~/utils";
 
 import Icon from "~components/Icon";
 import Link from "~components/Link";
@@ -68,11 +68,11 @@ class CallToActions extends Component {
 
     return (
       <Section>
-        <CTALink alt={content.callToActions.comment} href={post.commentLink}>
+        <CTALink alt={getMicrocopy(content.microcopy,"read-article.comment")} href={post.commentLink}>
           <Icon>comment</Icon>
         </CTALink>
 
-        <CTALink alt={content.callToActions.share} onClick={this.share}>
+        <CTALink alt={getMicrocopy(content.microcopy,"read-article.share")} onClick={this.share}>
           <Icon>share</Icon>
         </CTALink>
 

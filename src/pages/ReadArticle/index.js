@@ -17,11 +17,7 @@ import TableOfContents from "./TableOfContents";
 import Article from "./Article";
 import Newsletter from "./Newsletter";
 import RelatedArticles from "./RelatedArticles";
-
-const content = {
-  ...readArticleContent,
-  shared: sharedContent
-};
+import {getSection} from "~/utils";
 
 const ReadArticleDivider = styled(Divider)(({theme}) => `
   margin: 0 ${theme.templateVariables.horizontalPadding};
@@ -35,7 +31,7 @@ class ReadArticlePage extends React.Component {
       location = {}
     } = this.props;
 
-    const {article} = data;
+    const {article, content} = data;
 
     const relatedArticles = get(data, "relatedArticles.edges", []); // FIXME: when we flatten queries
     const fallbackRelatedArticles = get(data, "fallbackRelatedArticles.edges", []); // FIXME: when we flatten queries
@@ -44,8 +40,16 @@ class ReadArticlePage extends React.Component {
 
     const articleImageUrl = get(article, "coverImage.fluid.originalImg", "");
 
+    const footer = (
+      <RelatedArticles
+        list={relatedArticles}
+        fallbackList={fallbackRelatedArticles}
+        content={getSection(content.sections, "read-article.related-articles")}
+      />
+    );
+
     return (
-      <Template footer={<RelatedArticles list={relatedArticles} fallbackList={fallbackRelatedArticles} content={content}/>}>
+      <Template footer={footer}>
         <SEO
           image={`${siteUrl}${articleImageUrl}`}
           type={"article"}
@@ -56,14 +60,14 @@ class ReadArticlePage extends React.Component {
           slug={location.pathname}
         />
 
-        <FrontMatter post={article} tags={tags} content={content}/>
+        <FrontMatter post={article} tags={tags} content={{shared: sharedContent}}/>
         <ReadArticleDivider/>
-        <TableOfContents post={article} content={content}/>
+        <TableOfContents post={article} content={getSection(content.sections, "read-article.content")}/>
         <ReadArticleDivider/>
         <Article post={article}/>
-        <CallToActions post={article} content={content}/>
+        <CallToActions post={article} content={getSection(content.sections, "read-article.call-to-actions")}/>
         <ReadArticleDivider/>
-        <Newsletter content={content}/>
+        <Newsletter content={getSection(content.sections, "read-article.newsletter")}/>
       </Template>
     );
   }
@@ -79,6 +83,17 @@ export const pageQuery = graphql`
                 author
                 siteUrl
             }
+        }
+        content: contentfulPage(reference: { eq: "read-article" }) {
+          sections {
+            microcopy {
+              reference
+              value
+            }
+            reference
+            title
+            subtitle
+          }
         }
         article: contentfulArticle(slug: { eq: $slug }) {
             slug

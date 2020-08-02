@@ -6,7 +6,7 @@ import Divider from "~components/Divider";
 import Heading from "~components/Heading";
 import {CardListItem, UnorderedCardList} from "~components/CardList";
 import {isLastIndex, isTablet} from "~utils";
-import {validateSlug} from "~/utils";
+import {getMicrocopy, validateSlug} from "~/utils";
 
 const Section = styled.section(({theme}) => `
   max-width: ${theme.breakpoint.sm};
@@ -27,13 +27,13 @@ class RelatedArticles extends Component {
     return (
       <Section>
         <RelatedArticlesHeading level={2}>
-          {content.relatedArticles.title}
+          {content.title}
         </RelatedArticlesHeading>
         <UnorderedCardList>
           {
             articles.map(({node: article}, index) => {
               const {slug, coverImage, description, title, tags, body, publishDate} = article;
-              const overline = `${publishDate} – ${body.childMarkdownRemark?.timeToRead} ${content.shared.readingTime}`;
+              const overline = `${publishDate} – ${body.childMarkdownRemark?.timeToRead} ${getMicrocopy(content.microcopy, "shared.reading-time")}`;
 
               return (
                 <CardListItem key={index}>

@@ -4,7 +4,9 @@
  * @return {string}
  */
 export const getMicrocopy = (microcopy, key) => {
-  return microcopy.find(i => i.reference === key) ?? '';
+  const element = microcopy?.find(i => i.reference === key) ?? {};
+
+  return element.value ?? "";
 };
 
 /**
