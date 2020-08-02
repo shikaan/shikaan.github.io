@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import Card, {CONTEXT} from "~components/Card";
 import Divider from "~components/Divider";
-import {validateSlug} from "~/utils";
+import {getMicrocopy, validateSlug} from "~/utils";
 
 const Section = styled.section(({theme}) => `
   padding: 0 ${theme.templateVariables.verticalPadding};
@@ -14,8 +14,7 @@ class FeaturedArticle extends Component {
     const {featuredArticle, content} = this.props;
 
     const {description, coverImage, slug, tags, title, timeToRead, publishDate} = featuredArticle;
-
-    const overline = `${publishDate} – ${timeToRead} ${content.shared.readingTime}`;
+    const overline = `${publishDate} – ${timeToRead} ${getMicrocopy(content.microcopy, "shared.reading-time")}`;
 
     return (
       <Section>

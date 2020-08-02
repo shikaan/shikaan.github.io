@@ -10,32 +10,28 @@ import SEO from "~components/SEO";
 
 import FeaturedArticle from "./FeaturedArticle";
 import OtherArticles from "./OtherArticles";
-
-const content = {
-  ...homeContent,
-  shared: sharedContent
-};
+import {getSection} from "~/utils";
 
 class HomePage extends Component {
   render() {
     const {data = {}} = this.props;
-    const {featuredArticle, site} = data;
+    const {featuredArticle, site, content} = data;
 
     const _otherArticles = get(data, "otherArticles.edges", []);
     const otherArticles = _otherArticles.map(i => i.node); // FIXME: when we flatten queries
-
-    const description = get(site, "siteMetadata.description");
+    const featuredArticleContent = getSection(content.sections, "featured-article");
+    const otherArticlesContent = getSection(content.sections, "other-articles");
 
     return (
       <Template>
         <SEO lang={"en"}
-             title={content.title}
-             description={description}
+             title={site.title}
+             description={site.description}
              keywords={content.keywords}
              slug={"/home"}/>
 
-        <FeaturedArticle featuredArticle={featuredArticle} content={content}/>
-        <OtherArticles otherArticles={otherArticles} content={content}/>
+        <FeaturedArticle featuredArticle={featuredArticle} content={featuredArticleContent}/>
+        <OtherArticles otherArticles={otherArticles} content={otherArticlesContent}/>
       </Template>
     );
   }
@@ -44,12 +40,22 @@ class HomePage extends Component {
 export default HomePage;
 
 export const pageQuery = graphql`
-  
   query ($featuredArticleId: String!) {
     site {
       siteMetadata {
         title,
         description
+      }
+    }
+    content: contentfulPage(reference: { eq: "home" }) {
+      title
+      keywords
+      sections {
+        microcopy {
+          reference
+          value
+        }
+        reference
       }
     }
     featuredArticle: contentfulArticle(id: {eq: $featuredArticleId}) {

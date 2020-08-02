@@ -5,7 +5,7 @@ import Card, {CONTEXT} from "~components/Card";
 import Divider from "~components/Divider";
 import {CardListItem, UnorderedCardList} from "~components/CardList";
 import {isTablet} from "~utils";
-import {validateSlug} from "~/utils";
+import {getMicrocopy, validateSlug} from "~/utils";
 
 const Section = styled.section(({theme}) => `
   padding: 0 ${theme.templateVariables.horizontalPadding};
@@ -20,7 +20,7 @@ class OtherArticles extends PureComponent {
           {
             otherArticles.map((article, index) => {
               const {slug, coverImage, description, title, tags, timeToRead, publishDate} = article;
-              const overline = `${publishDate} – ${timeToRead} ${content.shared.readingTime}`;
+              const overline = `${publishDate} – ${timeToRead} ${getMicrocopy(content.microcopy, "shared.reading-time")}`;
 
               return (
                 <CardListItem key={index}>
