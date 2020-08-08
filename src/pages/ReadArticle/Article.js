@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import styled from "styled-components";
-import "prismjs/themes/prism-dark.css";
+import "prismjs/themes/prism-solarizedlight.css";
 
 const paragraphFontSize = (theme) => theme.typography.baseFontSize.multiply(1.125);
 const h1FontSize = (theme) => theme.typography.baseFontSize.multiply(2);
