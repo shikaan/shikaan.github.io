@@ -13,7 +13,7 @@ const Section = styled.section(({theme}) => `
   padding: 0 ${theme.templateVariables.horizontalPadding.multiply(2)};
   padding-bottom: ${theme.templateVariables.verticalPadding.multiply(2)};
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 `);
 
 const CTALink = styled(Link)(({theme}) => `

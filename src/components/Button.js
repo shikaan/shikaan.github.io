@@ -41,6 +41,7 @@ const StyledButton = styled.button(({theme, context}) => `
   font-weight: 700;
   padding: ${theme.typography.baseFontSize.multiply(0.5)} ${theme.typography.baseFontSize.multiply(1.5)};
   border-radius: 2px;
+  cursor: pointer;
 
   ${getColorFromContext(context, theme)}  
 `);
