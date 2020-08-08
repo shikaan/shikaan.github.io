@@ -49,7 +49,7 @@ class ReadArticlePage extends React.Component {
     );
 
     return (
-      <Template footer={footer}>
+      <Template footer={footer} content={getSection(content.sections, "shared.disclaimer")}>
         <SEO
           image={`${siteUrl}${articleImageUrl}`}
           type={"article"}

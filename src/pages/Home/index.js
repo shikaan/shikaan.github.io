@@ -18,9 +18,10 @@ class HomePage extends Component {
     const otherArticles = _otherArticles.map(i => i.node); // FIXME: when we flatten queries
     const featuredArticleContent = getSection(content.sections, "home.featured-article");
     const otherArticlesContent = getSection(content.sections, "home.other-articles");
+    const disclaimerContent = getSection(content.sections, "shared.disclaimer");
 
     return (
-      <Template>
+      <Template content={disclaimerContent}>
         <SEO lang={"en"}
              title={site.title}
              description={site.description}
