@@ -15,5 +15,5 @@ export const getMicrocopy = (microcopy, key) => {
  * @return {string}
  */
 export const getSection = (sections, key) => {
-  return sections.find(i => i.reference === key) ?? {reference: key};
+  return sections?.find(i => i.reference === key) ?? {reference: key};
 };

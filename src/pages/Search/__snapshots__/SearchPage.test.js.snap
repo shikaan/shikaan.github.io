@@ -3,47 +3,18 @@
 exports[`SearchPage renders correctly 1`] = `
 <SearchTemplate>
   <SEO
-    description="Find articles by topic or title"
-    keywords={
-      Array [
-        "search",
-      ]
-    }
+    keywords={Array []}
     lang="en"
     meta={Array []}
     slug="/search"
-    title="Search"
+    title=""
   />
   <Header />
   <SearchResults
     articles={Array []}
     content={
       Object {
-        "emptyState": Object {
-          "cta": "Pick a trending topic",
-          "paragraph": Array [
-            "Our best detectives could not find any result for your query...",
-            "Try again or check one of our coolest topics!",
-          ],
-          "title": "Aw snap! 😭",
-        },
-        "placeholder": "Start Typing",
-        "seo": Object {
-          "description": "Find articles by topic or title",
-          "keywords": Array [
-            "search",
-          ],
-          "title": "Search",
-        },
-        "shared": Object {
-          "disclaimer": Object {
-            "actionLabel": "Contribute",
-            "dismissLabel": "Dismiss",
-            "text": "This blog is meant to target mobile devices, but contributions for a desktop version are welcomed",
-          },
-          "readingTime": "min read",
-        },
-        "subTitle": "Trending Topics",
+        "reference": "search.main",
       }
     }
     performSearch={[Function]}
@@ -53,31 +24,12 @@ exports[`SearchPage renders correctly 1`] = `
   <Results
     content={
       Object {
-        "emptyState": Object {
-          "cta": "Pick a trending topic",
-          "paragraph": Array [
-            "Our best detectives could not find any result for your query...",
-            "Try again or check one of our coolest topics!",
-          ],
-          "title": "Aw snap! 😭",
+        "emptyContent": Object {
+          "reference": "search.empty",
         },
-        "placeholder": "Start Typing",
-        "seo": Object {
-          "description": "Find articles by topic or title",
-          "keywords": Array [
-            "search",
-          ],
-          "title": "Search",
+        "mainContent": Object {
+          "reference": "search.main",
         },
-        "shared": Object {
-          "disclaimer": Object {
-            "actionLabel": "Contribute",
-            "dismissLabel": "Dismiss",
-            "text": "This blog is meant to target mobile devices, but contributions for a desktop version are welcomed",
-          },
-          "readingTime": "min read",
-        },
-        "subTitle": "Trending Topics",
       }
     }
     searchResults={null}

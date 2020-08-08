@@ -96,15 +96,15 @@ class SearchPage extends Component {
       content
     } = this.state;
 
-    const mainContent = getSection(content.sections, "search.main");
-    const emptyContent = getSection(content.sections, "search.empty");
+    const mainContent = getSection(content?.sections, "search.main");
+    const emptyContent = getSection(content?.sections, "search.empty");
 
     return (
       <SearchTemplate>
         <SEO
           lang={"en"}
           title={content.title}
-          description={content.description.description}
+          description={content?.description?.description}
           keywords={content.keywords ?? []}
           slug={"/search"}
         />
