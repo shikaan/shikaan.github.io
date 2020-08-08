@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Icon from "~components/Icon";
-import {getMicrocopy} from "~/utils";
 
 const bodyTwoStyle = (theme) => `
   font-family: ${theme.typography.secondaryFont.fontFamily};

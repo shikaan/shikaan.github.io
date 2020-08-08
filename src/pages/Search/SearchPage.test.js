@@ -87,7 +87,9 @@ describe("SearchPage", () => {
             createArticle(["foo"], "foo")
           ]
         },
-        content: {}
+        content: {
+          title: ""
+        }
       };
 
       const wrapper = mount(
@@ -116,7 +118,9 @@ describe("SearchPage", () => {
             createArticle(["foo"], "baz")
           ]
         },
-        content: {}
+        content: {
+          title: ""
+        }
       };
 
       const wrapper = mount(
@@ -147,7 +151,9 @@ describe("SearchPage", () => {
             createArticle(["baz"], "foo")
           ]
         },
-        content: {}
+        content: {
+          title: ""
+        }
       };
 
       const wrapper = mount(
