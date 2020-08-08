@@ -3,8 +3,6 @@ import {graphql} from "gatsby";
 import styled from "styled-components";
 import {get} from "lodash";
 
-import {en as readArticleContent} from "/static/content/ReadArticle";
-import {en as sharedContent} from "/static/content/_shared";
 
 import Template from "~templates/Main";
 
@@ -60,7 +58,7 @@ class ReadArticlePage extends React.Component {
           slug={location.pathname}
         />
 
-        <FrontMatter post={article} tags={tags} content={{shared: sharedContent}}/>
+        <FrontMatter post={article} tags={tags} content={getSection(content.sections, "read-article.frontmatter")}/>
         <ReadArticleDivider/>
         <TableOfContents post={article} content={getSection(content.sections, "read-article.content")}/>
         <ReadArticleDivider/>

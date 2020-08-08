@@ -5,6 +5,7 @@ import Heading from "~components/Heading";
 import Image from "~components/Image";
 import Overline from "~components/Overline";
 import Tag from "~components/Tag";
+import {getMicrocopy} from "~/utils";
 
 const Header = styled.header(({theme}) => `
   padding: ${theme.templateVariables.verticalPadding} ${theme.templateVariables.horizontalPadding};
@@ -23,7 +24,7 @@ class FrontMatter extends Component {
         <Image fluid={post.coverImage.fluid} alt={post.title}/>
         <Header>
           <Overline>
-            {post.publishDate} – {post.timeToRead} {content.shared.readingTime}
+            {post.publishDate} – {post.timeToRead} {getMicrocopy(content.microcopy, "shared.reading-time")}
           </Overline>
 
           <FrontMatterHeading level={1} sub={post.description}>
