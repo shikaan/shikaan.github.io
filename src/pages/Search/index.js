@@ -1,15 +1,13 @@
 import React, {Component} from "react";
-import {graphql} from "gatsby";
-
 import {debounce, noop, get} from "lodash";
+import {graphql} from "gatsby";
 
 import SearchTemplate from "~templates/Search";
 import SEO from "~components/SEO";
+import {getSection} from "~/utils";
 
-import Header from "./Header";
 import Results from "./Results";
 import Input from "./Input";
-import {getSection} from "~/utils";
 
 class SearchPage extends Component {
   static DEBOUNCE_INTERVAL = 300
@@ -108,8 +106,6 @@ class SearchPage extends Component {
           keywords={content.keywords ?? []}
           slug={"/search"}
         />
-
-        <Header/>
 
         <Input
           content={mainContent}

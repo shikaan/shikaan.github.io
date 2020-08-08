@@ -4,6 +4,8 @@ import {ThemeProvider} from "styled-components";
 
 import theme, {GlobalStyle, Size} from "~theme";
 
+import Header from "./Header";
+
 const GlobalBackground = createGlobalStyle`
   body {
     background: ${theme.color.dark100};
@@ -28,6 +30,7 @@ class SearchTemplate extends Component {
         <Fragment>
           <GlobalStyle/>
           <GlobalBackground/>
+          <Header />
           <Main>
             {this.props.children}
           </Main>

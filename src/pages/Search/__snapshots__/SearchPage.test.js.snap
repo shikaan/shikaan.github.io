@@ -9,7 +9,6 @@ exports[`SearchPage renders correctly 1`] = `
     slug="/search"
     title=""
   />
-  <Header />
   <SearchResults
     articles={Array []}
     content={
