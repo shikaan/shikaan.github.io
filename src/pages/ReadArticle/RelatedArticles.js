@@ -5,7 +5,7 @@ import Card, {CONTEXT} from "~components/Card";
 import Divider from "~components/Divider";
 import Heading from "~components/Heading";
 import {CardListItem, UnorderedCardList} from "~components/CardList";
-import {isLastIndex, isTablet} from "~utils";
+import {isTablet} from "~utils";
 import {getMicrocopy, validateSlug} from "~/utils";
 
 const Section = styled.section(({theme}) => `
@@ -46,7 +46,7 @@ class RelatedArticles extends Component {
                     title={title}
                     context={isTablet() ? CONTEXT.LIST : CONTEXT.POLAROID}
                   />
-                  {!isLastIndex(list, index) && <Divider/>}
+                  <Divider/>
                 </CardListItem>
               );
             })
