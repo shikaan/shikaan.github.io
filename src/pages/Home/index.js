@@ -2,9 +2,6 @@ import React, {Component} from "react";
 import {get} from "lodash";
 import {graphql} from "gatsby";
 
-import {en as sharedContent} from "/static/content/_shared";
-import {en as homeContent} from "/static/content/Home";
-
 import Template from "~templates/Main";
 import SEO from "~components/SEO";
 

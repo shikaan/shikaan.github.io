@@ -3,17 +3,13 @@ import {graphql} from "gatsby";
 
 import {debounce, noop, get} from "lodash";
 
-import {en as searchContent} from "/static/content/Search";
-import {en as sharedContent} from "/static/content/_shared";
-
 import SearchTemplate from "~templates/Search";
 import SEO from "~components/SEO";
 
 import Header from "./Header";
 import Results from "./Results";
 import Input from "./Input";
-
-const content = {...searchContent, shared: sharedContent};
+import {getSection} from "~/utils";
 
 class SearchPage extends Component {
   static DEBOUNCE_INTERVAL = 300
@@ -22,7 +18,8 @@ class SearchPage extends Component {
     searchQuery: "",
     searchResults: null,
     trendingTopics: [],
-    articles: this.props.data.posts.edges
+    articles: this.props.data.posts.edges,
+    content: this.props.data.content
   };
 
   getSearchQuery = () => {
@@ -95,30 +92,34 @@ class SearchPage extends Component {
       articles,
       searchQuery,
       searchResults,
-      trendingTopics
+      trendingTopics,
+      content
     } = this.state;
+
+    const mainContent = getSection(content.sections, "search.main");
+    const emptyContent = getSection(content.sections, "search.empty");
 
     return (
       <SearchTemplate>
         <SEO
           lang={"en"}
-          title={content.seo.title}
-          description={content.seo.description}
-          keywords={content.seo.keywords}
+          title={content.title}
+          description={content.description.description}
+          keywords={content.keywords ?? []}
           slug={"/search"}
         />
 
         <Header/>
 
         <Input
-          content={content}
+          content={mainContent}
           performSearch={this.performSearch}
           articles={articles}
           setSearchQuery={this.setSearchQuery}
           searchQuery={searchQuery}/>
 
         <Results
-          content={content}
+          content={{mainContent, emptyContent}}
           searchResults={searchResults}
           trendingTopics={trendingTopics}
         />
@@ -134,6 +135,22 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+      }
+    }
+    content: contentfulPage(reference: { eq: "search" }) {
+      title
+      description {
+        description
+      }
+      keywords
+      sections {
+        title
+        subtitle
+        reference
+        microcopy {
+          reference
+          value
+        }
       }
     }
     posts: allContentfulArticle (

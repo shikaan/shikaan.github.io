@@ -12,7 +12,7 @@ import Tag from "~components/Tag";
 import Divider from "~components/Divider";
 
 import EmptyState from "./EmptyState";
-import {validateSlug} from "~/utils";
+import {getMicrocopy, validateSlug} from "~/utils";
 
 const Section = styled.section(({theme}) => `
   padding: 0 ${theme.templateVariables.horizontalPadding};
@@ -35,7 +35,7 @@ class Results extends Component {
     return (
       <Fragment>
         <Heading level={3} context={CONTEXT.DISPLAY}>
-          {content.subTitle}
+          {content.mainContent.subtitle}
         </Heading>
         <ul>
           {
@@ -54,13 +54,14 @@ class Results extends Component {
 
   renderResultList = () => {
     const {content, searchResults} = this.props;
+    const readingTime = getMicrocopy(content.mainContent.microcopy, "shared.reading-time");
 
     return (
       <ul>
         {
           searchResults.map(({node: article}, index) => {
             const {slug, coverImage, description, title, tags, body, publishDate} = article;
-            const overline = `${publishDate} – ${body.childMarkdownRemark.timeToRead} ${content.shared.readingTime}`;
+            const overline = `${publishDate} – ${body.childMarkdownRemark.timeToRead} ${readingTime}`;
 
             return (
               <li key={index}>
@@ -99,7 +100,7 @@ class Results extends Component {
         }
 
         {
-          !isFirstSearch && !hasResults && <EmptyState content={content} pickTrendingTopic={this.pickTrendingTopic}/>
+          !isFirstSearch && !hasResults && <EmptyState content={content.emptyContent} pickTrendingTopic={this.pickTrendingTopic}/>
         }
       </Section>
     );
