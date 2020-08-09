@@ -36,7 +36,14 @@ module.exports = {
               wrapperStyle: "margin-bottom: 1.0725rem"
             }
           },
-          "gatsby-remark-embed-gist",
+          {
+            resolve: "gatsby-remark-embed-gist",
+            options: {
+              gistDefaultCssInclude: true,
+              gistCssPreload: false,
+              gistCssUrlAddress: "https://github.githubassets.com/assets/gist-embed-b3b573358bfc66d89e1e95dbf8319c09.css"
+            }
+          },
           "gatsby-remark-prismjs",
           "gatsby-remark-copy-linked-files",
           "gatsby-remark-smartypants",
