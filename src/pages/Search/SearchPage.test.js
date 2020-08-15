@@ -12,7 +12,6 @@ describe("SearchPage", () => {
   it("renders correctly", () => {
     const wrapper = shallow(
       <SearchPage
-        content={{}}
         data={emptyData}
         location={createLocationWithQueryString("query=foo")}
       />);
@@ -21,10 +20,9 @@ describe("SearchPage", () => {
   });
 
   describe("getSearchQuery", () => {
-    it.only("returns an empty string if no query string", () => {
+    it("returns an empty string if no query string", () => {
       const wrapper = mount(
         <SearchPage
-          content={{}}
           data={emptyData}
           location={createLocationWithQueryString()}
         />);
@@ -35,7 +33,6 @@ describe("SearchPage", () => {
     it("returns an the query under `query`", () => {
       const wrapper = mount(
         <SearchPage
-          content={{}}
           data={emptyData}
           location={createLocationWithQueryString("query=foo")}
         />);
@@ -49,7 +46,6 @@ describe("SearchPage", () => {
     beforeAll(() => {
       const wrapper = mount(
         <SearchPage
-          content={{}}
           data={emptyData}
           location={createLocationWithQueryString("sdfg=sdfgsdf")}
         />);
@@ -84,19 +80,20 @@ describe("SearchPage", () => {
   });
 
   describe("performSearch", () => {
-
     it("sets state only if query is longer than 3", (done) => {
       const data = {
         posts: {
           "edges": [
             createArticle(["foo"], "foo")
           ]
+        },
+        content: {
+          title: ""
         }
       };
 
       const wrapper = mount(
         <SearchPage
-          content={{}}
           data={data}
           location={createLocationWithQueryString()}
         />);
@@ -120,12 +117,14 @@ describe("SearchPage", () => {
             createArticle(["foo"], "bar"),
             createArticle(["foo"], "baz")
           ]
+        },
+        content: {
+          title: ""
         }
       };
 
       const wrapper = mount(
         <SearchPage
-          content={{}}
           data={data}
           location={createLocationWithQueryString()}
         />);
@@ -138,7 +137,7 @@ describe("SearchPage", () => {
           () => {
             setTimeout(() => {
               expect(instance.state.searchResults).toHaveLength(1);
-              expect(instance.state.searchResults[0]).toHaveProperty("node.frontmatter.title", "bar");
+              expect(instance.state.searchResults[0]).toHaveProperty("node.title", "bar");
 
               done();
             }, SearchPage.DEBOUNCE_INTERVAL * 2); // Wait for debounce to pass
@@ -151,12 +150,14 @@ describe("SearchPage", () => {
             createArticle(["bar"], "foo"),
             createArticle(["baz"], "foo")
           ]
+        },
+        content: {
+          title: ""
         }
       };
 
       const wrapper = mount(
         <SearchPage
-          content={{}}
           data={data}
           location={createLocationWithQueryString()}
         />);
@@ -169,7 +170,7 @@ describe("SearchPage", () => {
           () => {
             setTimeout(() => {
               expect(instance.state.searchResults).toHaveLength(1);
-              expect(instance.state.searchResults[0]).toHaveProperty("node.frontmatter.tags", ["bar"]);
+              expect(instance.state.searchResults[0]).toHaveProperty("node.tags", ["bar"]);
 
               done();
             }, SearchPage.DEBOUNCE_INTERVAL * 2); // Wait for debounce to pass

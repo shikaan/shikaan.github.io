@@ -1,19 +1,18 @@
-import cdd from "../../../static/fonts/cdd.woff";
+import fswb from "../../../static/fonts/fswb.woff";
 
 // TODO: consider if adding woff2 is worth
 
-/* eslint-disable */
 export const iconFont = `
   @font-face {
-    font-family: 'cdd';
-    src: url(${cdd}) format('woff');
+    font-family: 'fswb';
+    src: url(${fswb}) format('woff');
     font-weight: normal;
     font-style: normal;
-}
+  }
   
-  [class^="cdd-"], [class*=" cdd-"] {
+  [class^="fswb-"], [class*=" fswb-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: 'cdd' !important;
+    font-family: 'fswb' !important;
     speak: none;
     font-style: normal;
     font-weight: normal;
@@ -25,24 +24,26 @@ export const iconFont = `
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
-  .cdd-coffee:before {
+
+  .fswb-caret:before {
+    content: "\\e906";
+  }
+  .fswb-coffee:before {
     content: "\\e900";
   }
-  .cdd-search:before {
+  .fswb-search:before {
     content: "\\e901";
   }
-  .cdd-close:before {
+  .fswb-close:before {
     content: "\\e902";
   }
-  .cdd-comment:before {
+  .fswb-comment:before {
     content: "\\e903";
   }
-  .cdd-share:before {
+  .fswb-share:before {
     content: "\\e904";
   }
-  .cdd-edit:before {
+  .fswb-edit:before {
     content: "\\e905";
   }
-`
-/* eslint-enable */
+`;

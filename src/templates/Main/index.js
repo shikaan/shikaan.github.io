@@ -1,17 +1,16 @@
 import React, {Fragment} from "react";
 import {ThemeProvider} from "styled-components";
-import isMobile from "is-mobile";
 
 import theme, {GlobalStyle, Size} from "~theme";
-import {getGlobalWithKey} from "~/utils";
+import {getGlobalWithKey, getMicrocopy, isMobile} from "~/utils";
 
 import Icon from "~components/Icon";
 import Link from "~components/Link";
 
-import {en as content} from "/static/content/_shared";
 import {repository} from "../../../package";
 
 import {IconColumn, Header, Disclaimer, TitleColumn, Row, Logo} from "./Header";
+import {Footer} from "./Footer";
 import {Main} from "./Main";
 
 const templateVariables = {
@@ -29,7 +28,8 @@ class MainTemplate extends React.Component {
   static DISCLAIMER_BANNER_STATUS_KEY = "disclaimerBannerStatus";
 
   state = {
-    [MainTemplate.DISCLAIMER_BANNER_STATUS_KEY]: MainTemplate.DISCLAIMER_BANNER_STATUS.CLOSED
+    [MainTemplate.DISCLAIMER_BANNER_STATUS_KEY]: MainTemplate.DISCLAIMER_BANNER_STATUS.CLOSED,
+    content: this.props.content // Should this maybe be a static query?
   }
 
   openContributeLink = () => {
@@ -61,6 +61,7 @@ class MainTemplate extends React.Component {
 
   render() {
     const disclaimerBannerStatus = this.state[MainTemplate.DISCLAIMER_BANNER_STATUS_KEY];
+    const { content } = this.state;
 
     return (
       <ThemeProvider theme={{...theme, templateVariables}}>
@@ -81,18 +82,23 @@ class MainTemplate extends React.Component {
             </Row>
           </Header>
 
-          <Disclaimer
-            visible={disclaimerBannerStatus === MainTemplate.DISCLAIMER_BANNER_STATUS.OPEN}
-            dismissLabel={content.disclaimer.dismissLabel}
-            onDismissed={() => this.dismissBanner()}
-            actionLabel={content.disclaimer.actionLabel}
-            onAction={() => this.openContributeLink()}>
-            {content.disclaimer.text}
-          </Disclaimer>
+          {
+            content && <Disclaimer
+              visible={disclaimerBannerStatus === MainTemplate.DISCLAIMER_BANNER_STATUS.OPEN}
+              dismissLabel={getMicrocopy(content?.microcopy, "shared.disclaimer-dismiss")}
+              onDismissed={() => this.dismissBanner()}
+              actionLabel={getMicrocopy(content?.microcopy, "shared.disclaimer-action")}
+              onAction={() => this.openContributeLink()}>
+              {getMicrocopy(content?.microcopy, "shared.disclaimer-message")}
+            </Disclaimer>
+          }
 
           <Main>
             {this.props.children}
           </Main>
+          <Footer>
+            {this.props.footer}
+          </Footer>
         </Fragment>
       </ThemeProvider>
     );
