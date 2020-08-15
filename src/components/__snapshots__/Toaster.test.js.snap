@@ -9,7 +9,7 @@ exports[`Toaster renders correctly 1`] = `
   }
 >
   <styled.div>
-    <Memo(styled.div) />
+    <Component />
   </styled.div>
 </Portal>
 `;

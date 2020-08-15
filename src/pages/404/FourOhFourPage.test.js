@@ -12,9 +12,6 @@ const createFourOhFourProps = (navigateStub = jest.fn(), slug = "/slug") => {
         fields: {
           slug
         }
-      },
-      content: {
-        title: ""
       }
     }
   };

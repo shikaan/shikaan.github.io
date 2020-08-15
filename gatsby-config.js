@@ -13,11 +13,11 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: "gatsby-source-contentful",
+      resolve: "gatsby-source-filesystem",
       options: {
-        spaceId: "rrd69nadniqd",
-        accessToken: "tmQevf07J1ayZnK_GCTlk_qBsRSP9PfAzAvuGzGN6kU",
-      },
+        path: `${__dirname}/content/blog`,
+        name: "blog"
+      }
     },
     {
       resolve: "gatsby-transformer-remark",
@@ -36,14 +36,7 @@ module.exports = {
               wrapperStyle: "margin-bottom: 1.0725rem"
             }
           },
-          {
-            resolve: "gatsby-remark-embed-gist",
-            options: {
-              gistDefaultCssInclude: true,
-              gistCssPreload: false,
-              gistCssUrlAddress: "https://github.githubassets.com/assets/gist-embed-b3b573358bfc66d89e1e95dbf8319c09.css"
-            }
-          },
+          "gatsby-remark-embed-gist",
           "gatsby-remark-prismjs",
           "gatsby-remark-copy-linked-files",
           "gatsby-remark-smartypants",

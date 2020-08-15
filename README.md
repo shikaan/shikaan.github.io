@@ -13,9 +13,11 @@ To be part of the community behind this blog you can do the following things:
 
 ### 📖 Content contribution
 
-> **Please Note**
-> Content contribution is currently on hold. 
-> This is namely due to the recent Contentful migration for which an Access Control still needs to be figured out. You can follow, vote and provide feedback on this matter - and you're very much encouraged to do so - [here](https://github.com/shikaan/full-stack-with-benefits/issues/31).
+All the articles of this blog are simple markdown files in the `content` folder. 
+
+Hence, you can contribute either editing one of those files or you can create a new folder with an `index.md` and take it from there.
+
+More details [here](.github/CONTENT.md)
 
 ### 💻 Technical Contribution
 

@@ -1,59 +1,65 @@
 import React, {Component} from "react";
 import styled from "styled-components";
 
-import Card, {CONTEXT} from "~components/Card";
+import {Size} from "~theme";
+
+import Card from "~components/Card";
 import Divider from "~components/Divider";
 import Heading from "~components/Heading";
-import {CardListItem, UnorderedCardList} from "~components/CardList";
-import {isTablet, getMicrocopy, validateSlug} from "~/utils";
-import {RELATED_ARTICLES_LIST_LENGTH} from "~/constants";
+import {isLastIndex} from "~utils";
 
 const Section = styled.section(({theme}) => `
-  max-width: ${theme.breakpoint.sm};
+  padding: ${theme.templateVariables.horizontalPadding}
+`);
+
+const UnorderedList = styled.ul(({theme}) => `
+  padding: ${theme.templateVariables.verticalPadding} 0;
+`);
+
+const ListItem = styled.li(() => `
+  min-width: ${new Size(40)};
+  max-width: 62%;
   margin: auto;
 `);
 
 const RelatedArticlesHeading = styled(Heading)(({theme}) => `
-  padding: ${theme.typography.baseFontSize.multiply(1.5)} ${theme.typography.baseFontSize.multiply(.5)};
-  color: ${theme.color.dark500}
+  padding: 0 ${theme.typography.baseFontSize.multiply(0.5)}
 `);
 
 class RelatedArticles extends Component {
   render() {
     const {content, list, fallbackList} = this.props;
 
-    const articles = list.length === RELATED_ARTICLES_LIST_LENGTH 
-      ? list 
-      : list.concat(fallbackList).slice(0, RELATED_ARTICLES_LIST_LENGTH);
+    const articles = list.length ? list : fallbackList;
 
     return (
       <Section>
         <RelatedArticlesHeading level={2}>
-          {content.title}
+          {content.relatedArticles.title}
         </RelatedArticlesHeading>
-        <UnorderedCardList>
+        <UnorderedList>
           {
             articles.map(({node: article}, index) => {
-              const {slug, coverImage, description, title, tags, body, publishDate} = article;
-              const overline = `${publishDate} – ${body.childMarkdownRemark?.timeToRead} ${getMicrocopy(content.microcopy, "shared.reading-time")}`;
+              const {fields, frontmatter} = article;
+              const readingTime = Math.ceil(fields.readingTime.minutes);
+              const overline = `${frontmatter.date} – ${readingTime} ${content.shared.readingTime}`;
 
               return (
-                <CardListItem key={index}>
+                <ListItem key={index}>
                   <Card
-                    description={description}
-                    image={coverImage}
+                    description={frontmatter.description}
+                    image={frontmatter.coverImage.childImageSharp}
                     overline={overline}
-                    slug={validateSlug(slug)}
-                    tags={tags.slice(0,2)}
-                    title={title}
-                    context={isTablet() ? CONTEXT.LIST : CONTEXT.POLAROID}
+                    slug={fields.slug}
+                    tags={frontmatter.tags.slice(0,2)}
+                    title={frontmatter.title}
                   />
-                  <Divider/>
-                </CardListItem>
+                  {!isLastIndex(list, index) && <Divider/>}
+                </ListItem>
               );
             })
           }
-        </UnorderedCardList>
+        </UnorderedList>
       </Section>
     );
   }

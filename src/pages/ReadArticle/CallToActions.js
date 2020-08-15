@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import styled from "styled-components";
 
 import {REPO_BASE_URL} from "~/constants";
-import {getGlobalWithKey, getMicrocopy} from "~/utils";
+import {getGlobalWithKey} from "~/utils";
 
 import Icon from "~components/Icon";
 import Link from "~components/Link";
@@ -13,12 +13,12 @@ const Section = styled.section(({theme}) => `
   padding: 0 ${theme.templateVariables.horizontalPadding.multiply(2)};
   padding-bottom: ${theme.templateVariables.verticalPadding.multiply(2)};
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 `);
 
 const CTALink = styled(Link)(({theme}) => `
   color: ${theme.color.dark600};
-  font-size: ${theme.typography.baseFontSize.multiply(1.75)};
+  font-size: ${theme.typography.baseFontSize.multiply(1.75)}
 `);
 
 class CallToActions extends Component {
@@ -44,7 +44,7 @@ class CallToActions extends Component {
       navigator.share({
         url: window.location.href,
         title: document.title,
-        text: post.title
+        text: post.frontmatter.title
       });
     }
   };
@@ -68,11 +68,15 @@ class CallToActions extends Component {
 
     return (
       <Section>
-        <CTALink alt={getMicrocopy(content.microcopy,"read-article.comment")} href={post.commentLink}>
+        <CTALink alt={content.callToActions.comment} href={post.frontmatter.commentLink}>
           <Icon>comment</Icon>
         </CTALink>
 
-        <CTALink alt={getMicrocopy(content.microcopy,"read-article.share")} onClick={this.share}>
+        <CTALink alt={content.callToActions.edit} href={CallToActions.buildEditUrl(post.fields.relativeFilePath)}>
+          <Icon>edit</Icon>
+        </CTALink>
+
+        <CTALink alt={content.callToActions.share} onClick={this.share}>
           <Icon>share</Icon>
         </CTALink>
 

@@ -36,11 +36,11 @@ const MenuTitle = styled.span(({theme}) => `
 `);
 
 const MenuItems = styled.ul`
-  flex: 1;
+  flex: 1
 `;
 
 const MenuItem = styled.li(({theme}) => `
-  list-style:none;
+  list-style:none
   padding: ${theme.typography.baseFontSize};
   
   & > * {

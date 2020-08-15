@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
-import Icon from "~components/Icon";
 
-const bodyTwoStyle = (theme) => `
-  font-family: ${theme.typography.secondaryFont.fontFamily};
-  font-weight: 400;
-  font-size: ${theme.typography.baseFontSize};
-`;
+const bodyTwoStyle = (theme) => (`
+  font-family: ${theme.typography.secondaryFont.fontFamily},
+  font-weight: 400,
+  font-size: ${theme.typography.baseFontSize}
+`);
 
 const Content = styled.nav`
   font-family: ${({ theme }) => theme.typography.secondaryFont.fontFamily};
@@ -16,25 +15,14 @@ const Content = styled.nav`
 const ContentHeader = styled.header`
   ${({ theme }) => bodyTwoStyle(theme)}
   font-weight: 700;
-  padding: ${({ theme }) =>
-    `${theme.templateVariables.verticalPadding} ${theme.templateVariables.horizontalPadding}`};
-  cursor: pointer;
+  padding: ${({ theme }) => theme.templateVariables.verticalPadding} 0;
 `;
 
-const ContentSection = styled.section(
-  ({ theme, closed }) => `
-
-  height: ${closed ? 0 : "auto"};
-  overflow: hidden;
-
-
-  padding: 0 ${theme.templateVariables.horizontalPadding} ${
-    closed ? 0 : theme.templateVariables.verticalPadding.multiply(2)
-  } ${theme.templateVariables.horizontalPadding};
-
+const ContentSection = styled.section(({theme}) =>`
+  padding-bottom: ${theme.templateVariables.verticalPadding.multiply(2)};
   
   & > ul {
-    padding: 0 ${theme.typography.baseFontSize.multiply(.5)};
+    padding: 0 ${theme.typography.baseFontSize.multiply(0.5)};
     list-style-position: inside;
      
     p {
@@ -46,9 +34,9 @@ const ContentSection = styled.section(
     }
     
     a {
-      ${bodyTwoStyle(theme)}
+      ${bodyTwoStyle(theme)};
       text-decoration: none;
-      padding: ${theme.templateVariables.verticalPadding.multiply(.5)} 0;
+      padding: ${theme.templateVariables.verticalPadding} 0;
       display: inline-block;
       width: calc(100% - ${theme.templateVariables.horizontalPadding});
     }
@@ -64,31 +52,21 @@ const ContentSection = styled.section(
       }
      }
   }
-`
-);
-
-const Caret = styled(Icon)(({ closed }) => `
-  float: right;
-  ${closed ? "" : "transform: rotate(180deg);"}
 `);
 
-const TableOfContents = ({ content, post }) => {
-  const [closed, setClosed] = useState(false);
+class TableOfContents extends Component {
+  render () {
+    const { content, post } = this.props;
 
-  return (
-    <Content>
-      <ContentHeader onClick={() => setClosed(!closed)}>
-        {content.title}
-        <Caret closed={closed} icon="caret" />
-      </ContentHeader>
-      <ContentSection
-        closed={closed}
-        dangerouslySetInnerHTML={{
-          __html: post.body.childMarkdownRemark.tableOfContents,
-        }}
-      />
-    </Content>
-  );
-};
+    return (
+      <Content>
+        <ContentHeader>
+          {content.tableOfContents.title}
+        </ContentHeader>
+        <ContentSection dangerouslySetInnerHTML={{ __html: post.tableOfContents }}/>
+      </Content>
+    );
+  }
+}
 
 export default TableOfContents;
