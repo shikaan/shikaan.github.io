@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import {get, sample} from "lodash";
+import {sample} from "lodash";
 
 import {isLastIndex} from "~utils";
 
@@ -12,6 +12,7 @@ import Tag from "~components/Tag";
 import Divider from "~components/Divider";
 
 import EmptyState from "./EmptyState";
+import {getMicrocopy, validateSlug} from "~/utils";
 
 const Section = styled.section(({theme}) => `
   padding: 0 ${theme.templateVariables.horizontalPadding};
@@ -34,7 +35,7 @@ class Results extends Component {
     return (
       <Fragment>
         <Heading level={3} context={CONTEXT.DISPLAY}>
-          {content.subTitle}
+          {content.mainContent.subtitle}
         </Heading>
         <ul>
           {
@@ -53,24 +54,24 @@ class Results extends Component {
 
   renderResultList = () => {
     const {content, searchResults} = this.props;
+    const readingTime = getMicrocopy(content.mainContent.microcopy, "shared.reading-time");
 
     return (
       <ul>
         {
           searchResults.map(({node: article}, index) => {
-            const {fields, frontmatter} = article;
-            const readingTime = Math.ceil(fields.readingTime.minutes);
-            const overline = `${frontmatter.date} – ${readingTime} ${content.shared.readingTime}`;
+            const {slug, coverImage, description, title, tags, body, publishDate} = article;
+            const overline = `${publishDate} – ${body.childMarkdownRemark.timeToRead} ${readingTime}`;
 
             return (
               <li key={index}>
                 <Card
-                  description={frontmatter.description}
-                  image={get(frontmatter, "coverImage.childImageSharp")}
+                  description={description}
+                  image={coverImage}
                   overline={overline}
-                  slug={fields.slug}
-                  tags={frontmatter.tags.slice(0, 2)}
-                  title={frontmatter.title}
+                  slug={validateSlug(slug)}
+                  tags={tags.slice(0, 2)}
+                  title={title}
                   replaceOnTagNavigate
                 />
                 {!isLastIndex(searchResults, index) && <Divider/>}
@@ -99,7 +100,7 @@ class Results extends Component {
         }
 
         {
-          !isFirstSearch && !hasResults && <EmptyState content={content} pickTrendingTopic={this.pickTrendingTopic}/>
+          !isFirstSearch && !hasResults && <EmptyState content={content.emptyContent} pickTrendingTopic={this.pickTrendingTopic}/>
         }
       </Section>
     );

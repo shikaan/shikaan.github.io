@@ -4,8 +4,12 @@ import {ThemeProvider} from "styled-components";
 
 import theme, {GlobalStyle, Size} from "~theme";
 
+import Header from "./Header";
+
 const GlobalBackground = createGlobalStyle`
-  background: ${theme.color.dark100};
+  body {
+    background: ${theme.color.dark100};
+  }
 `;
 
 const Main = styled.main(({theme}) => `
@@ -26,6 +30,7 @@ class SearchTemplate extends Component {
         <Fragment>
           <GlobalStyle/>
           <GlobalBackground/>
+          <Header />
           <Main>
             {this.props.children}
           </Main>

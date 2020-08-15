@@ -1,12 +1,13 @@
 import React from "react";
-import {shallow} from "enzyme";
 import "jest-styled-components";
 
 import Input from "./Input";
+import {shallowWithTheme} from "/test/utils";
+import themeMock from "~theme";
 
 describe("Input", () => {
   it("renders correctly", () => {
-    const wrapper = shallow(<Input/>);
+    const wrapper = shallowWithTheme(<Input />, themeMock);
 
     expect(wrapper).toMatchSnapshot();
   });
