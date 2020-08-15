@@ -1,13 +1,11 @@
 import { baseFontSize, baseLineHeight, secondaryFont } from "../typography";
 import { color } from "../colors";
 
-const baseBoxSizing = "border-box";
-
 export const document = `
   *,
   *::before,
   *::after {
-    box-sizing: ${baseBoxSizing};
+    box-sizing: border-box;
 
     &:focus {
       outline: none !important;

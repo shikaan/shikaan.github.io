@@ -8,11 +8,19 @@ import {createLocationWithQueryString} from "./__fixtures__/_create-location-wit
 
 import SearchPage from ".";
 
+const makeData = (articles) => ({
+  posts: {
+    "edges": articles
+  },
+  content: {
+    title: ""
+  }
+});
+
 describe("SearchPage", () => {
   it("renders correctly", () => {
     const wrapper = shallow(
       <SearchPage
-        content={{}}
         data={emptyData}
         location={createLocationWithQueryString("query=foo")}
       />);
@@ -21,10 +29,9 @@ describe("SearchPage", () => {
   });
 
   describe("getSearchQuery", () => {
-    it.only("returns an empty string if no query string", () => {
+    it("returns an empty string if no query string", () => {
       const wrapper = mount(
         <SearchPage
-          content={{}}
           data={emptyData}
           location={createLocationWithQueryString()}
         />);
@@ -35,7 +42,6 @@ describe("SearchPage", () => {
     it("returns an the query under `query`", () => {
       const wrapper = mount(
         <SearchPage
-          content={{}}
           data={emptyData}
           location={createLocationWithQueryString("query=foo")}
         />);
@@ -49,7 +55,6 @@ describe("SearchPage", () => {
     beforeAll(() => {
       const wrapper = mount(
         <SearchPage
-          content={{}}
           data={emptyData}
           location={createLocationWithQueryString("sdfg=sdfgsdf")}
         />);
@@ -84,19 +89,11 @@ describe("SearchPage", () => {
   });
 
   describe("performSearch", () => {
-
     it("sets state only if query is longer than 3", (done) => {
-      const data = {
-        posts: {
-          "edges": [
-            createArticle(["foo"], "foo")
-          ]
-        }
-      };
+      const data = makeData([createArticle(["foo"])]);
 
       const wrapper = mount(
         <SearchPage
-          content={{}}
           data={data}
           location={createLocationWithQueryString()}
         />);
@@ -114,18 +111,13 @@ describe("SearchPage", () => {
           });
     });
     it("returns articles if query is included in title", (done) => {
-      const data = {
-        posts: {
-          "edges": [
-            createArticle(["foo"], "bar"),
-            createArticle(["foo"], "baz")
-          ]
-        }
-      };
-
+      const data = makeData([
+        createArticle(["bar"], "bar"),
+        createArticle(["baz"], "baz"),
+      ]);
+      
       const wrapper = mount(
         <SearchPage
-          content={{}}
           data={data}
           location={createLocationWithQueryString()}
         />);
@@ -138,25 +130,20 @@ describe("SearchPage", () => {
           () => {
             setTimeout(() => {
               expect(instance.state.searchResults).toHaveLength(1);
-              expect(instance.state.searchResults[0]).toHaveProperty("node.frontmatter.title", "bar");
+              expect(instance.state.searchResults[0]).toHaveProperty("node.title", "bar");
 
               done();
             }, SearchPage.DEBOUNCE_INTERVAL * 2); // Wait for debounce to pass
           });
     });
     it("returns articles if query is included in topics", (done) => {
-      const data = {
-        posts: {
-          "edges": [
-            createArticle(["bar"], "foo"),
-            createArticle(["baz"], "foo")
-          ]
-        }
-      };
+      const data = makeData([
+        createArticle(["bar"], "foo"),
+        createArticle(["baz"], "foo"),
+      ]);
 
       const wrapper = mount(
         <SearchPage
-          content={{}}
           data={data}
           location={createLocationWithQueryString()}
         />);
@@ -169,7 +156,7 @@ describe("SearchPage", () => {
           () => {
             setTimeout(() => {
               expect(instance.state.searchResults).toHaveLength(1);
-              expect(instance.state.searchResults[0]).toHaveProperty("node.frontmatter.tags", ["bar"]);
+              expect(instance.state.searchResults[0]).toHaveProperty("node.tags", ["bar"]);
 
               done();
             }, SearchPage.DEBOUNCE_INTERVAL * 2); // Wait for debounce to pass

@@ -9,10 +9,11 @@ import Heading from "~components/Heading";
 import Form from "~components/Form";
 import Input from "~components/Input";
 import Toaster from "~components/Toaster";
+import {getMicrocopy} from "~/utils";
 
 const Section = styled.section(({ theme }) => `
   text-align: center;
-  padding: ${theme.templateVariables.horizontalPadding}
+  padding: ${theme.templateVariables.horizontalPadding};
 `);
 
 const NewsletterHeading = styled(Heading)(({ theme }) => `
@@ -88,13 +89,13 @@ class Newsletter extends Component {
     return (
       <Section>
         <Toaster visible={showSuccessToaster}>
-          {content.newsletter.successMessage}
+          {getMicrocopy(content.microcopy, "read-article.newsletter-success")}
         </Toaster>
         <Toaster visible={showErrorToaster}>
-          {content.newsletter.failMessage}
+          {getMicrocopy(content.microcopy, "read-article.newsletter-fail")}
         </Toaster>
-        <NewsletterHeading level={2} sub={content.newsletter.subTitle}>
-          {content.newsletter.title}
+        <NewsletterHeading level={2} sub={content.subtitle}>
+          {content.title}
         </NewsletterHeading>
         <NewsletterForm onSubmit={this.handleSubscribe}>
           <InputWrapper>
@@ -102,13 +103,13 @@ class Newsletter extends Component {
               ref={this.inputRef}
               type="email"
               required
-              placeholder={content.newsletter.inputPlaceholder}
+              placeholder={getMicrocopy(content.microcopy, "read-article.newsletter-placeholder")}
               value={email}
               onChange={this.handleEmailChange}/>
           </InputWrapper>
 
           <Button context="accent" type="submit">
-            {content.newsletter.actionLabel}
+            {getMicrocopy(content.microcopy, "read-article.newsletter-cta")}
           </Button>
         </NewsletterForm>
       </Section>

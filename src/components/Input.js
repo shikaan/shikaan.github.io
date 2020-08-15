@@ -15,7 +15,7 @@ const Input = styled.input(({ theme }) => `
   &::placeholder {
     font-size: ${theme.typography.baseFontSize};
     font-family: ${theme.typography.secondaryFont.fontFamily};
-    color: ${theme.color.dark500}
+    color: ${theme.color.dark500};
   }
 `);
 

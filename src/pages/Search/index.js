@@ -1,19 +1,13 @@
 import React, {Component} from "react";
-import {graphql} from "gatsby";
-
 import {debounce, noop, get} from "lodash";
-
-import {en as searchContent} from "/static/content/Search";
-import {en as sharedContent} from "/static/content/_shared";
+import {graphql} from "gatsby";
 
 import SearchTemplate from "~templates/Search";
 import SEO from "~components/SEO";
+import {getSection} from "~/utils";
 
-import Header from "./Header";
 import Results from "./Results";
 import Input from "./Input";
-
-const content = {...searchContent, shared: sharedContent};
 
 class SearchPage extends Component {
   static DEBOUNCE_INTERVAL = 300
@@ -22,7 +16,8 @@ class SearchPage extends Component {
     searchQuery: "",
     searchResults: null,
     trendingTopics: [],
-    articles: this.props.data.posts.edges
+    articles: this.props.data.posts.edges,
+    content: this.props.data.content
   };
 
   getSearchQuery = () => {
@@ -41,7 +36,7 @@ class SearchPage extends Component {
     let topics = [];
 
     for (const {node: article} of articles) {
-      const topicsWithoutDuplicates = new Set([...topics, ...article.frontmatter.tags]);
+      const topicsWithoutDuplicates = new Set([...topics, ...(article.tags ?? [])]);
       topics = Array.from(topicsWithoutDuplicates);
 
       if (topics.length >= length) {
@@ -58,8 +53,8 @@ class SearchPage extends Component {
     if (searchQuery.length > 2) {
       const newList = articles
         .filter(({node: article}) => {
-          const isInTitle = get(article, "frontmatter.title", "").toLowerCase().includes(searchQuery);
-          const isInTags = get(article, "frontmatter.tags", []).some(tag => tag.includes(searchQuery));
+          const isInTitle = (article.title || "").toLowerCase().includes(searchQuery);
+          const isInTags = (article.tags || []).some(tag => tag.includes(searchQuery));
 
           return isInTitle || isInTags;
         }).slice(0, 5);
@@ -95,30 +90,32 @@ class SearchPage extends Component {
       articles,
       searchQuery,
       searchResults,
-      trendingTopics
+      trendingTopics,
+      content
     } = this.state;
+
+    const mainContent = getSection(content?.sections, "search.main");
+    const emptyContent = getSection(content?.sections, "search.empty");
 
     return (
       <SearchTemplate>
         <SEO
           lang={"en"}
-          title={content.seo.title}
-          description={content.seo.description}
-          keywords={content.seo.keywords}
+          title={content.title}
+          description={content?.description?.description}
+          keywords={content.keywords ?? []}
           slug={"/search"}
         />
 
-        <Header/>
-
         <Input
-          content={content}
+          content={mainContent}
           performSearch={this.performSearch}
           articles={articles}
           setSearchQuery={this.setSearchQuery}
           searchQuery={searchQuery}/>
 
         <Results
-          content={content}
+          content={{mainContent, emptyContent}}
           searchResults={searchResults}
           trendingTopics={trendingTopics}
         />
@@ -136,42 +133,46 @@ export const pageQuery = graphql`
         title
       }
     }
-    posts: allMarkdownRemark(
-      limit: 1000, 
-      sort: {
-        fields: [frontmatter___date], order: DESC
-      }) {
-      edges {
-        node {
-          fields {
-            slug
-            readingTime {
-              minutes
-            }
-          }
-          frontmatter {
-            title
-            date(formatString: "MMMM DD, YYYY")
-            tags
-            coverImage {
-              childImageSharp {
-                fixed(width:112, height:112) {
-                  width
-                  height
-                  base64
-                  tracedSVG
-                  aspectRatio
-                  src
-                  srcSet
-                  srcWebp
-                  srcSetWebp
-                  originalName
-                }
-              }
-            }
-          }
+    content: contentfulPage(reference: { eq: "search" }) {
+      title
+      description {
+        description
+      }
+      keywords
+      sections {
+        title
+        subtitle
+        reference
+        microcopy {
+          reference
+          value
         }
       }
+    }
+    posts: allContentfulArticle (
+        limit: 1000,
+        sort: {
+            fields: [publishDate], order: DESC
+        }
+    ) {
+        edges {
+            node {
+                slug
+                title
+                publishDate(formatString: "MMMM DD, YYYY")
+                tags
+                body {
+                    childMarkdownRemark {
+                        timeToRead
+                    }
+                }
+                coverImage {
+                    fluid {
+                        ...GatsbyContentfulFluid
+                    }
+                }
+            }
+        }
     }
   }
 `;

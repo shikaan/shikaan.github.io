@@ -7,6 +7,15 @@ export const breakpoint = {
   mg: "1920px"
 };
 
+export const numberBreakpoint = {
+  xs: 480,
+  sm: 768,
+  md: 980,
+  lg: 1184,
+  xl: 1366,
+  mg: 1920
+};
+
 export const zIndexRank = {
   bottom: "-100",
   0: "0",

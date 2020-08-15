@@ -1,65 +1,59 @@
 import React, {Component} from "react";
 import styled from "styled-components";
 
-import {Size} from "~theme";
-
-import Card from "~components/Card";
+import Card, {CONTEXT} from "~components/Card";
 import Divider from "~components/Divider";
 import Heading from "~components/Heading";
-import {isLastIndex} from "~utils";
+import {CardListItem, UnorderedCardList} from "~components/CardList";
+import {isTablet, getMicrocopy, validateSlug} from "~/utils";
+import {RELATED_ARTICLES_LIST_LENGTH} from "~/constants";
 
 const Section = styled.section(({theme}) => `
-  padding: ${theme.templateVariables.horizontalPadding}
-`);
-
-const UnorderedList = styled.ul(({theme}) => `
-  padding: ${theme.templateVariables.verticalPadding} 0;
-`);
-
-const ListItem = styled.li(() => `
-  min-width: ${new Size(40)};
-  max-width: 62%;
+  max-width: ${theme.breakpoint.sm};
   margin: auto;
 `);
 
 const RelatedArticlesHeading = styled(Heading)(({theme}) => `
-  padding: 0 ${theme.typography.baseFontSize.multiply(0.5)}
+  padding: ${theme.typography.baseFontSize.multiply(1.5)} ${theme.typography.baseFontSize.multiply(.5)};
+  color: ${theme.color.dark500}
 `);
 
 class RelatedArticles extends Component {
   render() {
     const {content, list, fallbackList} = this.props;
 
-    const articles = list.length ? list : fallbackList;
+    const articles = list.length === RELATED_ARTICLES_LIST_LENGTH 
+      ? list 
+      : list.concat(fallbackList).slice(0, RELATED_ARTICLES_LIST_LENGTH);
 
     return (
       <Section>
         <RelatedArticlesHeading level={2}>
-          {content.relatedArticles.title}
+          {content.title}
         </RelatedArticlesHeading>
-        <UnorderedList>
+        <UnorderedCardList>
           {
             articles.map(({node: article}, index) => {
-              const {fields, frontmatter} = article;
-              const readingTime = Math.ceil(fields.readingTime.minutes);
-              const overline = `${frontmatter.date} – ${readingTime} ${content.shared.readingTime}`;
+              const {slug, coverImage, description, title, tags, body, publishDate} = article;
+              const overline = `${publishDate} – ${body.childMarkdownRemark?.timeToRead} ${getMicrocopy(content.microcopy, "shared.reading-time")}`;
 
               return (
-                <ListItem key={index}>
+                <CardListItem key={index}>
                   <Card
-                    description={frontmatter.description}
-                    image={frontmatter.coverImage.childImageSharp}
+                    description={description}
+                    image={coverImage}
                     overline={overline}
-                    slug={fields.slug}
-                    tags={frontmatter.tags.slice(0,2)}
-                    title={frontmatter.title}
+                    slug={validateSlug(slug)}
+                    tags={tags.slice(0,2)}
+                    title={title}
+                    context={isTablet() ? CONTEXT.LIST : CONTEXT.POLAROID}
                   />
-                  {!isLastIndex(list, index) && <Divider/>}
-                </ListItem>
+                  <Divider/>
+                </CardListItem>
               );
             })
           }
-        </UnorderedList>
+        </UnorderedCardList>
       </Section>
     );
   }
