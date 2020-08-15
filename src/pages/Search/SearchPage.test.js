@@ -8,6 +8,15 @@ import {createLocationWithQueryString} from "./__fixtures__/_create-location-wit
 
 import SearchPage from ".";
 
+const makeData = (articles) => ({
+  posts: {
+    "edges": articles
+  },
+  content: {
+    title: ""
+  }
+});
+
 describe("SearchPage", () => {
   it("renders correctly", () => {
     const wrapper = shallow(
@@ -81,16 +90,7 @@ describe("SearchPage", () => {
 
   describe("performSearch", () => {
     it("sets state only if query is longer than 3", (done) => {
-      const data = {
-        posts: {
-          "edges": [
-            createArticle(["foo"], "foo")
-          ]
-        },
-        content: {
-          title: ""
-        }
-      };
+      const data = makeData([createArticle(["foo"])]);
 
       const wrapper = mount(
         <SearchPage
@@ -111,18 +111,11 @@ describe("SearchPage", () => {
           });
     });
     it("returns articles if query is included in title", (done) => {
-      const data = {
-        posts: {
-          "edges": [
-            createArticle(["foo"], "bar"),
-            createArticle(["foo"], "baz")
-          ]
-        },
-        content: {
-          title: ""
-        }
-      };
-
+      const data = makeData([
+        createArticle(["bar"], "bar"),
+        createArticle(["baz"], "baz"),
+      ]);
+      
       const wrapper = mount(
         <SearchPage
           data={data}
@@ -144,17 +137,10 @@ describe("SearchPage", () => {
           });
     });
     it("returns articles if query is included in topics", (done) => {
-      const data = {
-        posts: {
-          "edges": [
-            createArticle(["bar"], "foo"),
-            createArticle(["baz"], "foo")
-          ]
-        },
-        content: {
-          title: ""
-        }
-      };
+      const data = makeData([
+        createArticle(["bar"], "foo"),
+        createArticle(["baz"], "foo"),
+      ]);
 
       const wrapper = mount(
         <SearchPage
