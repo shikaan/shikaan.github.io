@@ -31,7 +31,7 @@ const useKey = (key, callback) => {
     if (e.key === key) {
       callback(e);
     }
-  }, [callback]);
+  }, [callback, key]);
 
   useEffect(() => {
     document.addEventListener("keydown", wrappedCallback);
