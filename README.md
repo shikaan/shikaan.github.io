@@ -13,7 +13,7 @@ To be part of the community behind this blog you can do the following things:
 
 ### 📖 Content contribution
 
-> **Please Note**
+> ### Please Note
 >
 > Content contribution is currently on hold. 
 >
