@@ -1,6 +1,8 @@
 Full-Stack with Benefits
 ===
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2c362984240743f2b87b56159153e044)](https://app.codacy.com/manual/shikaan/full-stack-with-benefits?utm_source=github.com&utm_medium=referral&utm_content=shikaan/full-stack-with-benefits&utm_campaign=Badge_Grade_Settings)
+
 _Full-Stack with Benefits_ is a community driven blog about (not exclusively) Software Development, Technology and Science. 
 Feel free to widen the spectrum of topics, if you feel like (:
 
