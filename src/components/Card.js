@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import styled, {css} from "styled-components";
+import styled from "styled-components";
 
 import {Size} from "~theme";
 
@@ -13,27 +13,18 @@ import GatsbyImage from "gatsby-image";
 
 const padding = new Size(2);
 
-const Container = styled.div(({context}) => css`
+const Container = styled.div`
   padding: ${padding} 0;
-  ${context === CONTEXT.POLAROID ? "height: 100%" : undefined};
-  ${context === CONTEXT.LIST ? `height: ${new Size(24)}` : undefined};
-`);
+`;
 
-const Body = styled.div(({theme, context}) => css`
-  height: 100%;
+const Body = styled.div(({theme, context}) => `
   display: grid;
   grid-gap: ${theme.typography.baseFontSize};
-  ${context === CONTEXT.LIST ? "grid-template-columns: 1fr 2fr" : undefined};
-  ${context === CONTEXT.POLAROID ? "grid-template-rows: 2fr .75fr" : undefined};
+  grid-template-columns: ${context !== CONTEXT.FEATURED && "1fr 2fr"};
 `);
 
-const ImageLink = styled(Link)(() => `
+const ImageWrapper = styled(Link)(() => `
   text-align: center;
-`);
-
-const ImageWrapper = styled(Image)(({context}) => css`
-  ${context === CONTEXT.POLAROID ? `height: ${new Size(35)}` : undefined};
-  ${context === CONTEXT.LIST ? "height: 100%" : undefined};
 `);
 
 const Text = styled.div(() => `
@@ -53,21 +44,12 @@ const ClickableArea = styled(Link)(() => `
   flex: 1
 `);
 
-const CardHeading = styled(Heading)(() => css`
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical; 
-  overflow: hidden;
-  
-  & + small {
-    padding: ${padding} 0;
-  }
+const CardHeading = styled(Heading)(() => `
+  padding-bottom: ${padding};
 `);
 
 export const CONTEXT = {
-  FEATURED: "featured",
-  LIST: "list",
-  POLAROID: "polaroid"
+  FEATURED: "featured"
 };
 
 class Card extends PureComponent {
@@ -77,7 +59,7 @@ class Card extends PureComponent {
     return context === CONTEXT.FEATURED
       ? <CardHeading level={1} sub={description} children={title}/>
       : <CardHeading level={3} children={title}/>;
-  };
+  }
 
   renderTags = () => {
     const {tags, replaceOnTagNavigate} = this.props;
@@ -93,28 +75,28 @@ class Card extends PureComponent {
         }
       </Tags>
     );
-  };
+  }
 
   render() {
     const {slug, image, overline, context, title} = this.props;
 
     return (
-      <Container context={context}>
+      <Container>
         <Body context={context}>
-          <ImageLink to={slug}>
-            {image ? <ImageWrapper {...image} alt={title} context={context}/> : null}
-          </ImageLink>
-          <Text context={context}>
-            <ClickableArea to={slug}>
-              <Overline>
-                {overline}
-              </Overline>
+        <ImageWrapper to={slug}>
+          <Image {...image} alt={title}/>
+        </ImageWrapper>
+        <Text>
+          <ClickableArea to={slug}>
+            <Overline>
+              {overline}
+            </Overline>
 
-              {this.renderCardHeading()}
-            </ClickableArea>
+            {this.renderCardHeading()}
+          </ClickableArea>
 
-            {this.renderTags()}
-          </Text>
+          {this.renderTags()}
+        </Text>
         </Body>
       </Container>
     );
@@ -122,7 +104,7 @@ class Card extends PureComponent {
 }
 
 
-Card.defaultProps = {tags: [], replaceOnTagNavigate: false, context: CONTEXT.LIST};
+Card.defaultProps = {tags: [], replaceOnTagNavigate: false};
 
 Card.propTypes = {
   slug: PropTypes.string,

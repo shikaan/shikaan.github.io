@@ -2,34 +2,40 @@ import React, {Component} from "react";
 import {get} from "lodash";
 import {graphql} from "gatsby";
 
+import {en as sharedContent} from "/static/content/_shared";
+import {en as homeContent} from "/static/content/Home";
+
 import Template from "~templates/Main";
 import SEO from "~components/SEO";
 
 import FeaturedArticle from "./FeaturedArticle";
 import OtherArticles from "./OtherArticles";
-import {getSection} from "~/utils";
+
+const content = {
+  ...homeContent,
+  shared: sharedContent
+};
 
 class HomePage extends Component {
   render() {
     const {data = {}} = this.props;
-    const {featuredArticle, site, content} = data;
+    const {featuredArticle, site} = data;
 
     const _otherArticles = get(data, "otherArticles.edges", []);
     const otherArticles = _otherArticles.map(i => i.node); // FIXME: when we flatten queries
-    const featuredArticleContent = getSection(content.sections, "home.featured-article");
-    const otherArticlesContent = getSection(content.sections, "home.other-articles");
-    const disclaimerContent = getSection(content.sections, "shared.disclaimer");
+
+    const description = get(site, "siteMetadata.description");
 
     return (
-      <Template content={disclaimerContent}>
+      <Template>
         <SEO lang={"en"}
-             title={site.title}
-             description={site.description}
+             title={content.title}
+             description={description}
              keywords={content.keywords}
              slug={"/home"}/>
 
-        <FeaturedArticle featuredArticle={featuredArticle} content={featuredArticleContent}/>
-        <OtherArticles otherArticles={otherArticles} content={otherArticlesContent}/>
+        <FeaturedArticle featuredArticle={featuredArticle} content={content}/>
+        <OtherArticles otherArticles={otherArticles} content={content}/>
       </Template>
     );
   }
@@ -45,54 +51,58 @@ export const pageQuery = graphql`
         description
       }
     }
-    content: contentfulPage(reference: { eq: "home" }) {
-      title
-      keywords
-      sections {
-        microcopy {
-          reference
-          value
-        }
-        reference
-      }
-    }
-    featuredArticle: contentfulArticle(id: {eq: $featuredArticleId}) {
+    featuredArticle: markdownRemark(id: {eq: $featuredArticleId}) {
+      fields {
         slug
+        readingTime {
+          minutes
+        }
+      }
+      frontmatter {
         title
+        date(formatString: "MMMM DD, YYYY")
         description
-        publishDate(formatString: "MMMM DD, YYYY")
-        commentLink
         tags
         coverImage {
+          childImageSharp {
             fluid {
-                ...GatsbyContentfulFluid
+              ...GatsbyImageSharpFluid
             }
+          }
         }
-        timeToRead
+      }
     }
-    otherArticles: allContentfulArticle (
-      limit: 4,
+    otherArticles: allMarkdownRemark(
+      limit: 5, 
       sort: {
-        fields: [publishDate], order: DESC
+        fields: [frontmatter___date], order: DESC
       },
       filter: {
         id: {ne: $featuredArticleId}
       }
     ) {
-        edges {
-            node {
-                slug
-                title
-                publishDate(formatString: "MMMM DD, YYYY")
-                tags
-                timeToRead
-                coverImage {
-                    fluid {
-                        ...GatsbyContentfulFluid
-                    }
-                }   
+      edges {
+        node {
+          fields {
+            slug
+            readingTime {
+              minutes
             }
+          }
+          frontmatter {
+            title
+            date(formatString: "MMMM DD, YYYY")
+            tags
+            coverImage {
+              childImageSharp {
+                fixed(width:112, height:112) {
+                  ...GatsbyImageSharpFixed
+                }
+              }
+            }
+          }
         }
+      }
     }
   }
 `;

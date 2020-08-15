@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 import Input from "~components/Input";
-import {getMicrocopy} from "~/utils";
 
 const Section = styled.section(({ theme }) => `
   padding: ${theme.templateVariables.horizontalPadding};
@@ -33,14 +32,12 @@ class SearchResults extends Component {
   render () {
     const { content, searchQuery } = this.props;
 
-    const placeholder = getMicrocopy(content.microcopy, "search.placeholder");
-
     return (
       <Section>
         <InputWrapper>
           <StyledInput
             value={searchQuery}
-            placeholder={placeholder}
+            placeholder={content.placeholder}
             onChange={this.handleInputChange}/>
         </InputWrapper>
       </Section>

@@ -1,4 +1,5 @@
 const path = require("path");
+const {createFilePath} = require("gatsby-source-filesystem");
 
 // FIXME: this is a temporary hack, as it looks like there is no way to
 //  pass parameters to 404
@@ -14,13 +15,22 @@ const createArticlesPages = async ({graphql, actions}) => {
   const result = await graphql(
     `
       {
-        allContentfulArticle(sort: {fields: publishDate, order: DESC}, limit: 1000) {
+        allMarkdownRemark(
+          sort: { fields: [frontmatter___date], order: DESC }
+          limit: 1000
+        ) {
           edges {
             node {
               id
-              tags
-              slug
-              timeToRead
+              fields {
+                slug
+                readingTime {
+                  minutes
+                }
+              }
+              frontmatter {
+                tags
+              }
             }
           }
         }
@@ -33,16 +43,17 @@ const createArticlesPages = async ({graphql, actions}) => {
   }
 
   // Create articles pages
-  const posts = result.data.allContentfulArticle.edges;
+  const posts = result.data.allMarkdownRemark.edges;
 
   posts.forEach((post) => {
     actions.createPage({
-      path: post.node.slug,
+      path: post.node.fields.slug,
       component: readArticlePageComponent,
       context: {
-        slug: post.node.slug,
-        tags: post.node.tags,
-        readingTime: post.node.timeToRead
+        slug: post.node.fields.slug,
+        relativePath: post.node.fields.relativePath,
+        tags: post.node.frontmatter.tags,
+        readingTime: post.node.fields.readingTime
       }
     });
   });
@@ -92,11 +103,19 @@ exports.onCreateNode = ({node, actions, getNode}) => {
   const {createNodeField} = actions;
 
   if (node.internal.type === "MarkdownRemark") {
+    const slug = createFilePath({node, getNode});
+    const relativeFilePath = path.relative(__dirname, node.fileAbsolutePath);
 
     createNodeField({
       name: "slug",
       node,
-      value: getNode(getNode(node.parent).parent).slug
+      value: slug
+    });
+
+    createNodeField({
+      name: "relativeFilePath",
+      node,
+      value: relativeFilePath
     });
   }
 };
@@ -109,21 +128,4 @@ exports.onCreatePage = ({page, actions}) => {
       page.context.featuredArticleId = featuredArticleId;
     }
   }
-};
-
-exports.createResolvers = ({createResolvers}) => {
-  const resolvers = {
-    ContentfulArticle: {
-      timeToRead: {
-        type: "String",
-        resolve(source, args, context, info) {
-          const body = context.nodeModel.getNodeById({id: source.body___NODE});
-          const markdown = context.nodeModel.getNodeById({id: body.children[0]});
-
-          return Math.ceil(markdown.fields.readingTime.minutes);
-        },
-      },
-    },
-  };
-  createResolvers(resolvers);
 };

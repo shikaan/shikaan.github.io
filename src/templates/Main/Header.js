@@ -4,6 +4,7 @@ import LogoSVG from "/static/assets/logo.svg";
 
 import {Size} from "~theme";
 
+import Icon from "~components/Icon";
 import Banner from "~components/Banner";
 
 export const headerHeight = new Size(8);
@@ -23,9 +24,11 @@ export const Row = styled.div`
 `;
 
 export const Column = styled.div(({theme}) => `
-  line-height: ${headerHeight};
-  vertical-align: middle;
-  font-size: ${theme.typography.baseFontSize.multiply(1.125)};
+  ${Icon} {
+    line-height: ${headerHeight};
+    vertical-align: middle;
+    font-size: ${theme.typography.baseFontSize.multiply(1.125)};
+  }
 `);
 
 export const TitleColumn = styled(Column)`

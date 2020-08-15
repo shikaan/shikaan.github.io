@@ -1,13 +1,12 @@
 import React from "react";
+import {shallow} from "enzyme";
 import "jest-styled-components";
 
 import Divider from "./Divider.js";
-import themeMock from "~theme";
-import {shallowWithTheme} from "/test/utils";
 
 describe("Divider", () => {
   it("renders correctly", () => {
-    const wrapper = shallowWithTheme(<Divider/>, themeMock);
+    const wrapper = shallow(<Divider/>);
 
     expect(wrapper).toMatchSnapshot();
   });

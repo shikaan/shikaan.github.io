@@ -1,14 +1,20 @@
 import React, {PureComponent} from "react";
 import styled from "styled-components";
 
-import Card, {CONTEXT} from "~components/Card";
+import Card from "~components/Card";
 import Divider from "~components/Divider";
-import {CardListItem, UnorderedCardList} from "~components/CardList";
-import {isTablet} from "~utils";
-import {getMicrocopy, validateSlug} from "~/utils";
+
+import {Size} from "~theme";
+import {isLastIndex} from "~utils";
 
 const Section = styled.section(({theme}) => `
   padding: 0 ${theme.templateVariables.horizontalPadding};
+`);
+
+const ListItem = styled.li(() => `
+  min-width: ${new Size(40)};
+  max-width: 62%;
+  margin: auto;
 `);
 
 class OtherArticles extends PureComponent {
@@ -16,29 +22,29 @@ class OtherArticles extends PureComponent {
     const {otherArticles, content} = this.props;
     return (
       <Section>
-        <UnorderedCardList>
+        <ul>
           {
             otherArticles.map((article, index) => {
-              const {slug, coverImage, description, title, tags, timeToRead, publishDate} = article;
-              const overline = `${publishDate} – ${timeToRead} ${getMicrocopy(content.microcopy, "shared.reading-time")}`;
+              const {fields, frontmatter} = article;
+              const readingTime = Math.ceil(fields.readingTime.minutes);
+              const overline = `${frontmatter.date} – ${readingTime} ${content.shared.readingTime}`;
 
               return (
-                <CardListItem key={index}>
+                <ListItem key={index}>
                   <Card
-                    description={description}
-                    image={coverImage}
+                    description={frontmatter.description}
+                    image={frontmatter.coverImage.childImageSharp}
                     overline={overline}
-                    slug={validateSlug(slug)}
-                    tags={tags.slice(0,2)}
-                    title={title}
-                    context={isTablet() ? CONTEXT.LIST : CONTEXT.POLAROID}
+                    slug={fields.slug}
+                    tags={frontmatter.tags.slice(0, 2)}
+                    title={frontmatter.title}
                   />
-                  <Divider/>
-                </CardListItem>
+                  {!isLastIndex(otherArticles, index) && <Divider/>}
+                </ListItem>
               );
             })
           }
-        </UnorderedCardList>
+        </ul>
       </Section>
     );
   }

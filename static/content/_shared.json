@@ -1,0 +1,18 @@
+{
+  "en": {
+    "readingTime": "min read",
+    "disclaimer": {
+      "text": "This blog is meant to target mobile devices, but contributions for a desktop version are welcomed",
+      "actionLabel": "Contribute",
+      "dismissLabel": "Dismiss"
+    }
+  },
+  "it": {
+    "readingTime": "minuti",
+    "disclaimer": {
+      "text": "This blog is meant to target mobile devices, but contributions for a desktop version are welcomed",
+      "actionLabel": "Contribute",
+      "dismissLabel": "Dismiss"
+    }
+  }
+}

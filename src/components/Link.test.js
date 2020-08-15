@@ -3,7 +3,7 @@ import {shallow, mount} from "enzyme";
 import "jest-styled-components";
 import {noop} from "lodash";
 
-import {getTagNameByHTMLString, mountWithTheme} from "/test/utils";
+import {getTagNameByHTMLString} from "/test/utils";
 import themeMock from "~theme";
 
 import Link from "./Link";
@@ -23,7 +23,7 @@ describe("Link", () => {
   });
 
   it("renders Gatsby Link else", () => {
-    const wrapper = mountWithTheme(<Link to={"somewhere-else"}>link</Link>, themeMock);
+    const wrapper = mount(<Link theme={themeMock} to={"somewhere-else"}>link</Link>);
 
     expect(wrapper.childAt(0).childAt(0).childAt(0).type()).toEqual(GatsbyLink);
   });

@@ -7,7 +7,7 @@ import themeMock from "~theme";
 import Card, {CONTEXT} from "./Card.js";
 
 const fixtures = {
-  mockCardContent: {
+  mockCardContet: {
     slug: "slug",
     image: {
       fixed: {
@@ -25,41 +25,15 @@ const fixtures = {
     description: "description",
     overline: "overline",
     replaceOnTagNavigate: false,
-    tags: ["test", "test-too"]
+    tags: ["test", "test-too"],
+    context: CONTEXT.FEATURED
   }
 };
 
 describe("Card", () => {
-  describe("with context polaroid", () => {
-    it("renders correctly", () => {
-      const wrapper = mountWithTheme(<Card {...fixtures.mockCardContent} context={CONTEXT.POLAROID} />, themeMock);
+  it("renders correctly", () => {
+    const wrapper = mountWithTheme(<Card {...fixtures.mockCardContet}/>, themeMock);
 
-      expect(wrapper).toMatchSnapshot();
-    });
-  });
-
-  describe("with context list", () => {
-    it("renders correctly", () => {
-      const wrapper = mountWithTheme(<Card {...fixtures.mockCardContent} context={CONTEXT.LIST} />, themeMock);
-
-      expect(wrapper).toMatchSnapshot();
-    });
-  });
-
-  describe("with context featured", () => {
-    it("renders correctly", () => {
-      const wrapper = mountWithTheme(<Card {...fixtures.mockCardContent} context={CONTEXT.FEATURED} />, themeMock);
-
-      expect(wrapper).toMatchSnapshot();
-    });
-  });
-
-  describe("with no context", () => {
-    it("renders correctly and defaults to list", () => {
-      const wrapper = mountWithTheme(<Card {...fixtures.mockCardContent} />, themeMock);
-
-      expect(wrapper.props().children.props.context).toEqual(CONTEXT.LIST);
-      expect(wrapper).toMatchSnapshot();
-    });
+    expect(wrapper).toMatchSnapshot();
   });
 });

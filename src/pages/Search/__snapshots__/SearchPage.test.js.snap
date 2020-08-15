@@ -3,17 +3,32 @@
 exports[`SearchPage renders correctly 1`] = `
 <SearchTemplate>
   <SEO
+    description="Find articles by topic or title"
     keywords={Array []}
     lang="en"
     meta={Array []}
-    slug="/search"
-    title=""
+    title="Search"
   />
+  <Header />
   <SearchResults
     articles={Array []}
     content={
       Object {
-        "reference": "search.main",
+        "emptyState": Object {
+          "cta": "Pick a trending topic",
+          "parapgraph": "Grab a coffee and try another keyword, or check one of our coolest topics 😎",
+          "subTitle": "There are no matches for your query 😭",
+          "title": "Aw snap!",
+        },
+        "placeholder": "Start Typing",
+        "seo": Object {
+          "description": "Find articles by topic or title",
+          "title": "Search",
+        },
+        "shared": Object {
+          "readingTime": "min read",
+        },
+        "subTitle": "Trending Topics",
       }
     }
     performSearch={[Function]}
@@ -23,12 +38,21 @@ exports[`SearchPage renders correctly 1`] = `
   <Results
     content={
       Object {
-        "emptyContent": Object {
-          "reference": "search.empty",
+        "emptyState": Object {
+          "cta": "Pick a trending topic",
+          "parapgraph": "Grab a coffee and try another keyword, or check one of our coolest topics 😎",
+          "subTitle": "There are no matches for your query 😭",
+          "title": "Aw snap!",
         },
-        "mainContent": Object {
-          "reference": "search.main",
+        "placeholder": "Start Typing",
+        "seo": Object {
+          "description": "Find articles by topic or title",
+          "title": "Search",
         },
+        "shared": Object {
+          "readingTime": "min read",
+        },
+        "subTitle": "Trending Topics",
       }
     }
     searchResults={null}

@@ -1,0 +1,44 @@
+{
+  "en": {
+    "tableOfContents": {
+      "title": "Content"
+    },
+    "callToActions": {
+      "comment": "Comment on Twitter",
+      "edit": "Edit on Github",
+      "share": "Share"
+    },
+    "newsletter": {
+      "title": "Enjoying?",
+      "subTitle": "Get notified about new articles!",
+      "inputPlaceholder": "Your email here",
+      "actionLabel": "Subscribe",
+      "successMessage": "All good!",
+      "failMessage": "Error! Try again in a few moments"
+    },
+    "relatedArticles": {
+      "title": "Related Articles"
+    }
+  },
+  "it": {
+    "tableOfContents": {
+      "title": "Indice"
+    },
+    "callToActions": {
+      "comment": "Commenta su Twitter",
+      "edit": "Modifica su Github",
+      "share": "Condividi"
+    },
+    "newsLetter": {
+      "title": "Enjoying? (it)",
+      "subTitle": "Ricevi aggiornamenti sui prossimi articoli!",
+      "inputPlaceholder": "Inserisci email",
+      "actionLabel": "Iscriviti",
+      "successMessage": "A posto! Ora sei iscritto alla newsletter",
+      "failMessage": "Errore! Riprova tra poco"
+    },
+    "relatedArticles": {
+      "title": "Articoli Correlati"
+    }
+  }
+}

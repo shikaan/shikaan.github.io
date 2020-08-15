@@ -5,7 +5,6 @@ import EmptyStateSVG from "/static/assets/empty-state.svg";
 
 import Heading, {CONTEXT} from "~components/Heading";
 import Button from "~components/Button";
-import {getMicrocopy} from "~/utils";
 
 const EmptyStateHeading = styled(Heading)(({theme}) => `
   font-size: ${theme.typography.baseFontSize.multiply(2)};
@@ -42,21 +41,17 @@ class EmptyState extends Component {
   render() {
     const {content, pickTrendingTopic} = this.props;
 
-    const message1 = getMicrocopy(content.microcopy, "search.empty-message-1");
-    const message2 = getMicrocopy(content.microcopy, "search.empty-message-2");
-    const cta = getMicrocopy(content.microcopy, "search.empty-cta");
-
     return (
       <EmptyStateWrapper>
-        <EmptyStateHeading level={3} context={CONTEXT.DISPLAY} sub={message1}>
-          {content.title}
+        <EmptyStateHeading level={3} context={CONTEXT.DISPLAY} sub={content.emptyState.paragraph[0]}>
+          {content.emptyState.title}
         </EmptyStateHeading>
         <EmptyStateImage/>
         <EmptyStateParagraph>
-          {message2}
+          {content.emptyState.paragraph[1]}
         </EmptyStateParagraph>
         <EmptyStateButton context="accent" onClick={() => pickTrendingTopic()}>
-          {cta}
+          {content.emptyState.cta}
         </EmptyStateButton>
       </EmptyStateWrapper>
     );

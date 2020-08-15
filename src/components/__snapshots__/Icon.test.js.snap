@@ -2,6 +2,6 @@
 
 exports[`Icon renders correctly 1`] = `
 <styled.i
-  className="fswb-icon"
+  className="cdd-icon"
 />
 `;
