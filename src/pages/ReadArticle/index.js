@@ -3,11 +3,12 @@ import {graphql} from "gatsby";
 import styled from "styled-components";
 import {get} from "lodash";
 
-
 import Template from "~templates/Main";
 
 import Divider from "~components/Divider";
 import SEO from "~components/SEO";
+
+import {getSection} from "~/utils";
 
 import CallToActions from "./CallToActions";
 import FrontMatter from "./FrontMatter";
@@ -15,7 +16,6 @@ import TableOfContents from "./TableOfContents";
 import Article from "./Article";
 import Newsletter from "./Newsletter";
 import RelatedArticles from "./RelatedArticles";
-import {getSection} from "~/utils";
 
 const ReadArticleDivider = styled(Divider)(({theme}) => `
   margin: 0 ${theme.templateVariables.horizontalPadding};

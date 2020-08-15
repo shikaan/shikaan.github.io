@@ -5,8 +5,8 @@ import Card, {CONTEXT} from "~components/Card";
 import Divider from "~components/Divider";
 import Heading from "~components/Heading";
 import {CardListItem, UnorderedCardList} from "~components/CardList";
-import {isTablet} from "~utils";
-import {getMicrocopy, validateSlug} from "~/utils";
+import {isTablet, getMicrocopy, validateSlug} from "~/utils";
+import {RELATED_ARTICLES_LIST_LENGTH} from "~/constants";
 
 const Section = styled.section(({theme}) => `
   max-width: ${theme.breakpoint.sm};
@@ -22,7 +22,9 @@ class RelatedArticles extends Component {
   render() {
     const {content, list, fallbackList} = this.props;
 
-    const articles = list.length ? list : fallbackList;
+    const articles = list.length === RELATED_ARTICLES_LIST_LENGTH 
+      ? list 
+      : list.concat(fallbackList).slice(0, RELATED_ARTICLES_LIST_LENGTH);
 
     return (
       <Section>
