@@ -1,5 +1,5 @@
 import {numberBreakpoint} from "~theme/variables";
-import {getGlobal} from "~/utils/get-global-with-key";
+import {getGlobal} from "~/utils";
 
 export const getViewportWidth = () => {
   const global = getGlobal();
