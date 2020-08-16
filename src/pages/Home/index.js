@@ -23,8 +23,8 @@ class HomePage extends Component {
     return (
       <Template content={disclaimerContent}>
         <SEO lang={"en"}
-             title={site.title}
-             description={site.description}
+             title={site.siteMetadata.title}
+             description={site.siteMetadata.description}
              keywords={content.keywords}
              slug={"/home"}/>
 
