@@ -58,12 +58,12 @@ class ReadArticlePage extends React.Component {
           slug={location.pathname}
         />
 
-        <FrontMatter post={article} tags={tags} content={getSection(content.sections, "read-article.frontmatter")}/>
+        <FrontMatter article={article} tags={tags} content={getSection(content.sections, "read-article.frontmatter")}/>
         <ReadArticleDivider/>
-        <TableOfContents post={article} content={getSection(content.sections, "read-article.content")}/>
+        <TableOfContents article={article} content={getSection(content.sections, "read-article.content")}/>
         <ReadArticleDivider/>
-        <Article post={article}/>
-        <CallToActions post={article} content={getSection(content.sections, "read-article.call-to-actions")}/>
+        <Article article={article}/>
+        <CallToActions article={article} content={getSection(content.sections, "read-article.call-to-actions")}/>
         <ReadArticleDivider/>
         <Newsletter content={getSection(content.sections, "read-article.newsletter")}/>
       </Template>

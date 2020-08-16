@@ -33,22 +33,22 @@ const createArticlesPages = async ({graphql, actions}) => {
   }
 
   // Create articles pages
-  const posts = result.data.allContentfulArticle.edges;
+  const articles = result.data.allContentfulArticle.edges;
 
-  posts.forEach((post) => {
+  articles.forEach((article) => {
     actions.createPage({
-      path: post.node.slug,
+      path: article.node.slug,
       component: readArticlePageComponent,
       context: {
-        slug: post.node.slug,
-        tags: post.node.tags,
-        readingTime: post.node.timeToRead
+        slug: article.node.slug,
+        tags: article.node.tags,
+        readingTime: article.node.timeToRead
       }
     });
   });
 
   return {
-    featuredArticleId: posts[0].node.id
+    featuredArticleId: articles[0].node.id
   };
 };
 

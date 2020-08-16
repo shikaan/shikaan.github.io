@@ -17,18 +17,18 @@ const FrontMatterHeading = styled(Heading)(({theme}) => `
 
 class FrontMatter extends Component {
   render() {
-    const {content, post, tags} = this.props;
+    const {content, article, tags} = this.props;
 
     return (
       <Fragment>
-        <Image fluid={post.coverImage.fluid} alt={post.title}/>
+        <Image fluid={article.coverImage.fluid} alt={article.title}/>
         <Header>
           <Overline>
-            {post.publishDate} – {post.timeToRead} {getMicrocopy(content.microcopy, "shared.reading-time")}
+            {article.publishDate} – {article.timeToRead} {getMicrocopy(content.microcopy, "shared.reading-time")}
           </Overline>
 
-          <FrontMatterHeading level={1} sub={post.description}>
-            {post.title}
+          <FrontMatterHeading level={1} sub={article.description}>
+            {article.title}
           </FrontMatterHeading>
 
           {tags.map(i => <Tag key={i} to={`/search?query=${i}`}>{i}</Tag>)}
