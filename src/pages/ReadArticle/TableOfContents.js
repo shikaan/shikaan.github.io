@@ -72,7 +72,7 @@ const Caret = styled(Icon)(({ closed }) => `
   ${closed ? "" : "transform: rotate(180deg);"}
 `);
 
-const TableOfContents = ({ content, post }) => {
+const TableOfContents = ({ content, article }) => {
   const [closed, setClosed] = useState(false);
 
   return (
@@ -84,7 +84,7 @@ const TableOfContents = ({ content, post }) => {
       <ContentSection
         closed={closed}
         dangerouslySetInnerHTML={{
-          __html: post.body.childMarkdownRemark.tableOfContents,
+          __html: article.body.childMarkdownRemark.tableOfContents,
         }}
       />
     </Content>

@@ -36,7 +36,7 @@ class CallToActions extends Component {
   }
 
   share = () => {
-    const {post} = this.props;
+    const {article} = this.props;
 
     if (CallToActions.useFallbackShare()) {
       this.openFallbackShare();
@@ -44,7 +44,7 @@ class CallToActions extends Component {
       navigator.share({
         url: window.location.href,
         title: document.title,
-        text: post.title
+        text: article.title
       });
     }
   };
@@ -64,11 +64,11 @@ class CallToActions extends Component {
   };
 
   render() {
-    const {content, post} = this.props;
+    const {content, article} = this.props;
 
     return (
       <Section>
-        <CTALink alt={getMicrocopy(content.microcopy,"read-article.comment")} href={post.commentLink}>
+        <CTALink alt={getMicrocopy(content.microcopy,"read-article.comment")} href={article.commentLink}>
           <Icon>comment</Icon>
         </CTALink>
 

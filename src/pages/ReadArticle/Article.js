@@ -136,10 +136,10 @@ const ArticleBody = styled.article(({theme}) => `
 
 class Article extends Component {
   render() {
-    const {post} = this.props;
+    const {article} = this.props;
 
     return (
-      <ArticleBody dangerouslySetInnerHTML={{__html: post.body.childMarkdownRemark.html}}/>
+      <ArticleBody dangerouslySetInnerHTML={{__html: article.body.childMarkdownRemark.html}}/>
     );
   }
 }
