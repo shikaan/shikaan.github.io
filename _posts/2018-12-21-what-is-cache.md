@@ -2,8 +2,7 @@
 title: What is Cache?
 tags: ["cache", "frontend", "backend", "node", "javascript"]
 description: A gentle introduction to caching and cache techniques
-coverImage: "cover.jpg"
-date: "2018-12-21T00:00:00.000Z"
+date: "2018-12-21"
 commentLink: "https://twitter.com/spagmanuel/status/1118950042172309504"
 ---
 
@@ -205,6 +204,8 @@ As you might have noticed I am trying to keep this shorter and easier than usual
 As always, if you have any feedback (the thing is too simplified, you miss my memes, I suck at naming things), please drop a comment and make this better together :D
 
 Until next time!
+
+---
 
 [^1]: Pretty much anywhere else in Italy people eat meat for Christmas. I am from a messed up place where eating a giant eel should symbolize victory of Good against the Evil in the shape of a snake...
 

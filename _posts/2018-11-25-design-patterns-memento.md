@@ -2,8 +2,7 @@
 title: Memento - Design Patterns in Web Development
 description: Second episode about Behavioral Pattern Memento 
 tags: ["javascript", "typescript", "react", "design-patterns"]
-coverImage: "cover.jpg"
-date: "2018-11-25T00:00:00.000Z"
+date: "2018-11-25"
 commentLink: "https://twitter.com/spagmanuel/status/1118952047460716544"
 ---
 # Introduction
@@ -203,6 +202,8 @@ Well, things start to become a bit more exciting as we start adding knowledge an
 If you have any sort of feedback ("Don't tell me how to code. You're not my real mom!"), opinion ("You code like shit, but your memes are awesome"), comment ("Yeah, okay, Behavioral Patterns are cool, what's next?"), please drop a message or a comment and let's make this series better together.
 
 Until next time!
+
+---
 
 [^1]: If you're unsure about what a behavioral pattern is, take a look [here](/design-patterns-command)
 

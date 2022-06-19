@@ -2,8 +2,7 @@
 title: Design Patterns in Web Development
 description: Why and how to use Design Patterns in Web Development
 tags: ["javascript", "python", "architecture", "design-patterns"]
-coverImage: "cover.jpg"
-date: "2018-11-04T00:00:00.000Z"
+date: "2018-11-04"
 commentLink: "https://twitter.com/spagmanuel/status/1118952314965037056"
 ---
 

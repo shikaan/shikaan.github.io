@@ -2,8 +2,7 @@
 title: What is Cache? (Part II)
 tags: ["cache", "frontend", "backend", "python"]
 description: 
-coverImage: "cover.jpg"
-date: "2018-12-25T00:00:00.000Z"
+date: "2018-12-25"
 commentLink: "https://twitter.com/spagmanuel/status/1118949358127525889"
 ---
 
@@ -165,6 +164,8 @@ First thing, thanks for feedback on previous article! Apparently naming wasn't s
 Please continue with feedbacks ❤
 
 Until next time!
+
+---
 
 [^1]: It's worth mentioning that users usually tolerate writing latency way better than reading latency. Unfortunately I can't remember where I got this data from, so I cannot show real metrics of this. Take this with a grain of salt.
 

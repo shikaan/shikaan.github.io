@@ -2,8 +2,7 @@
 title: HTTP Caching fundamentals
 tags: ["cache", "frontend", "backend", "webdev"]
 description: A walk-through of cache standards for browsers and servers
-coverImage: "cover.jpg"
-date: "2019-01-06T00:00:00.000Z"
+date: "2019-01-06"
 commentLink: "https://twitter.com/spagmanuel/status/1118948844925063169"
 ---
 
@@ -214,6 +213,8 @@ This is the end of this Christmas streak, but maybe not the end of this caching 
 As always, if you have any feedback (e.g., why did you stop with memes? why are you so obsessed with caching? how could you complete a whole episode without mentioning food?) feel free to reach out.
 
 Until next time!
+
+---
 
 [^1]: We still have Server Side Rendered applications, but _usually_ the backend layer responsible of rendering the client is still not taking care of other parts of business logic, making the whole thing still split to a certain extent.
 

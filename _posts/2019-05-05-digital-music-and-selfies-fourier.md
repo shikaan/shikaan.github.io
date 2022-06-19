@@ -2,14 +2,11 @@
 title: "Digital music and selfies: the legacy of Jean-Baptiste Joseph Fourier"
 description: How Harmonic Analysis powers social networks, streaming channels and our every day life
 tags: ["tech", "music", "mathematics"]
-coverImage: "cover.jpg"
-date: "2019-05-05T00:00:00.000Z"
+date: "2019-05-05"
 commentLink: "https://twitter.com/spagmanuel/status/1125065612668080133"
 ---
 
 Jean-Baptiste Joseph Fourier is one of the most known mathematical personalities in history and with a good reason: he’s the father of Harmonic Analysis also known as Fourier Analysis. We are about to learn how this is the reason why we can stream music, share images and even have echo-cancelling headphones or perform sound searches.
-
-> Photo by [Tim Marshall](https://unsplash.com/photos/yEOCA6oiVqg?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/search/photos/wave?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
 # A bit of history
 
@@ -88,6 +85,8 @@ For images the things get a bit trickier because in that case we have to speak a
 Every time you will see your younger sister’s bathroom selfies on Instagram or you listen to a Ed Sheeran song on Spotify, now you know who to blame. Do you think that in hindsight Fourier would have spread this knowledge?
 
 Until next time!
+
+---
 
 [^1]: It was not his fault though: at that time we did not have a clear definition of integral nor of function. It was in fact impossible to prove Fourier’s Theorem from a modern perspective.
 
