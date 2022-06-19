@@ -1,5 +1,8 @@
 entries:
   - title: me
+    entries:
+      - title: github
+          url: http://github.com/shikaan/
     
 
   - title: posts
