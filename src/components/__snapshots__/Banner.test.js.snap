@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Banner renders correctly 1`] = `
-<styled.div>
-  <styled.span />
-</styled.div>
-`;

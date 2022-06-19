@@ -7,28 +7,34 @@ This means that you can contribute either adding and amending existing content o
 
 More information here:
 
-  * [Technical Documentation](./TECH.md)
-  * [Content Documentation](./CONTENT.md)
+* [Technical Documentation](./TECH.md)
+* [Content Documentation](./CONTENT.md)
 
 ## Getting in touch
 
 If you have questions, enquiries or you just feel like sharing your point of view about one of the topics reach the community out via one of the following
 
-  * [Twitter](https://twitter.com/spagmanuel) 
-  * [Dev.to](https://dev.to/shikaan) 
-  * [Email](mailto:spagnolo.manu@gmail.com)
+* [Twitter](https://twitter.com/spagmanuel) 
+* [Dev.to](https://dev.to/shikaan) 
+* [Email](mailto:spagnolo.manu@gmail.com)
 
 > **Note:**
 >
 > Yes, at the moment the community is just me. Hopefully this will grow over time :D
 
-## I have found a bug
+## I have found a bug!
 
 If you find something off with the application, feel free to contribute by filing an issue, if it isn't already part of [the list](https://github.com/shikaan/full-stack-with-benefits/issues).
 
 [Issue templates]() will help you compile a detailed description of what is the problem and what is the desired outcome. This will help the community to organize and prioritize the issues, giving a good overview of the problem to whomever wants to contribute.
 
 If you wish to contribute also with code, feel free to [read the documentation]() and [submit a pull request](https://github.com/shikaan/full-stack-with-benefits/pull/new/master).
+
+## I have found an error in an article!
+
+You can help with that too! File an issue with the `content` tag, but not before checking whether it has already been reported in [the list](https://github.com/shikaan/full-stack-with-benefits/issues).
+
+Ideally issues regarding content should be opened only if the reason for change is to be discussed. For small changes (e.g. like typos, formatting issues...) you can [submit a pull request](https://github.com/shikaan/full-stack-with-benefits/pull/new/master) right away, without creating an issue.
 
 ## Submit a pull request
 
