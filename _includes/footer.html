@@ -8,24 +8,9 @@
   <div style="min-width: 120px;">
     <a href="/feed.xml">newsletter</a>
   </div>
-</footer>
 
-<template>
-  <div style="min-width: 120px;">
-    <a href="#">share</a>
+  <div class="share" style="min-width: 120px;">
+    <a
+      href="javascript:navigator.share?.({ title: '{{page.title}}', text: '{{page.description}}', link: location.href })??window.open('{{page.commentLink}}')">share</a>
   </div>
-</template>
-
-<script>
-  if (navigator.share) {
-    const footer = document.querySelector('footer');
-    const t = document.querySelector('template');
-    const n = t.content.cloneNode(true);
-
-    t.addEventListener('click', () => {
-      navigator.share({ title: '{{page.title}}', text: '{{page.description}}', link: location.href });
-    })
-    
-    footer.appendChild(n);
-  }
-</script>
+</footer>
