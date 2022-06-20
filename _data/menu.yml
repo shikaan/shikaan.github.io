@@ -1,5 +1,5 @@
 entries:
-  - title: me
+  - title: links
     entries:
       - title: twitter
         url: https://twitter.com/spagmanuel
@@ -9,7 +9,7 @@ entries:
         url: https://linkedin.com/in/manuelspagnolo
   - title: posts
     post_list:
-      limit: 5
+      limit: 4
       show_more: true
       show_more_text: See archive...
       show_more_url: archive.html
