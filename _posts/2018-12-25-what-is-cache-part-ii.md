@@ -1,6 +1,6 @@
 ---
 title: What is Cache? (Part II)
-tags: ["cache", "frontend", "backend", "python"]
+categories: ["cache", "frontend", "backend", "python"]
 description: 
 date: "2018-12-25"
 commentLink: "https://twitter.com/spagmanuel/status/1118949358127525889"

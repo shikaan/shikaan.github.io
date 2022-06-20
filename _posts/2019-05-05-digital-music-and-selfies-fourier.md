@@ -1,7 +1,7 @@
 ---
 title: "Digital music and selfies: the legacy of Jean-Baptiste Joseph Fourier"
 description: How Harmonic Analysis powers social networks, streaming channels and our every day life
-tags: ["tech", "music", "mathematics"]
+categories: ["tech", "music", "mathematics"]
 date: "2019-05-05"
 commentLink: "https://twitter.com/spagmanuel/status/1125065612668080133"
 ---

@@ -1,0 +1,30 @@
+<hr data-content=" connect ">
+
+<footer style="display: flex; text-align: center; justify-content: space-around;">
+  <div style="min-width: 120px;">
+    <a href="{{page.commentLink}}">comments</a>
+  </div>
+
+  <div style="min-width: 120px;">
+    <a href="/feed.xml">newsletter</a>
+  </div>
+</footer>
+
+<template>
+  <div style="min-width: 120px;">
+    <a href="#">share</a>
+  </div>
+</template>
+
+<script>
+  const footer = document.querySelector('footer');
+  const t = document.querySelector('template');
+
+  if (window.navigator.share && navigator.canShare()) {
+    const n = t.content.cloneNode(true);
+    t.addEventListener('click', () => {
+      navigator.share({ title: '{{page.title}}', text: '{{page.description}}', link: location.href });
+    })
+    footer.appendChild(t);
+  }
+</script>

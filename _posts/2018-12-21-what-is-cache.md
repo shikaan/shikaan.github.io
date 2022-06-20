@@ -1,6 +1,6 @@
 ---
 title: What is Cache?
-tags: ["cache", "frontend", "backend", "node", "javascript"]
+categories: ["cache", "frontend", "backend", "node", "javascript"]
 description: A gentle introduction to caching and cache techniques
 date: "2018-12-21"
 commentLink: "https://twitter.com/spagmanuel/status/1118950042172309504"

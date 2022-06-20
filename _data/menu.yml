@@ -1,7 +1,17 @@
 entries:
-  - title: posts
+  - title: where
+    entries:
+      - title: twitter
+        url: https://twitter.com/spagmanuel
+      - title: github
+        url: https://github.com/shikaan
+      - title: linkedin
+        url: https://linkedin.com/in/manuelspagnolo
+  - title: what
     post_list:
       limit: 5
       show_more: true
       show_more_text: See archive...
       show_more_url: archive.html
+  - title: subscribe
+    url: feed.xml

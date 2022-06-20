@@ -1,6 +1,6 @@
 ---
 title: HTTP Caching fundamentals
-tags: ["cache", "frontend", "backend", "webdev"]
+categories: ["cache", "frontend", "backend", "webdev"]
 description: A walk-through of cache standards for browsers and servers
 date: "2019-01-06"
 commentLink: "https://twitter.com/spagmanuel/status/1118948844925063169"
