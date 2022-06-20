@@ -17,7 +17,7 @@
 </template>
 
 <script>
-  if (window.navigator.share && navigator.canShare()) {
+  if (window.navigator.share) {
     const footer = document.querySelector('footer');
     const t = document.querySelector('template');
     const n = t.content.cloneNode(true);
