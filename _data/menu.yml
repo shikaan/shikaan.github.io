@@ -1,5 +1,5 @@
 entries:
-  - title: where
+  - title: me
     entries:
       - title: twitter
         url: https://twitter.com/spagmanuel
@@ -7,11 +7,11 @@ entries:
         url: https://github.com/shikaan
       - title: linkedin
         url: https://linkedin.com/in/manuelspagnolo
-  - title: what
+  - title: posts
     post_list:
       limit: 5
       show_more: true
       show_more_text: See archive...
       show_more_url: archive.html
-  - title: subscribe
+  - title: future posts (RSS)
     url: feed.xml
