@@ -1,4 +1,4 @@
-<hr data-content=" connect ">
+<hr>
 
 <footer style="display: flex; text-align: center; justify-content: space-around;">
   <div style="min-width: 120px;">
@@ -17,14 +17,15 @@
 </template>
 
 <script>
-  const footer = document.querySelector('footer');
-  const t = document.querySelector('template');
-
   if (window.navigator.share && navigator.canShare()) {
+    const footer = document.querySelector('footer');
+    const t = document.querySelector('template');
     const n = t.content.cloneNode(true);
+
     t.addEventListener('click', () => {
       navigator.share({ title: '{{page.title}}', text: '{{page.description}}', link: location.href });
     })
-    footer.appendChild(t);
+    
+    footer.appendChild(n);
   }
 </script>
