@@ -1,26 +1,25 @@
-<div class="code-editor-wrapper">
-  <iframe id="frame" frameBorder="0"
-    src="https://onecompiler.com/embed/assembly/?listenToEvents=true&codeChangeEvent=true"
-    scrolling="no"></iframe>
+<div class="code-editor-wrapper" id="editor-{{ include.exercise }}">
+  <iframe hidden src="https://onecompiler.com/embed/assembly/?listenToEvents=true&codeChangeEvent=true"></iframe>
 
   <div class="input-wrapper">
     <header>
-      <label for="input">{{ include.exercise }}</label>
-      <button id="run">Run</button>
+      <label for="input-{{ include.exercise }}">{{ include.exercise }}</label>
+      <button class="run">Run</button>
     </header>
-    <textarea id="input"></textarea>
+    <textarea id="input-{{ include.exercise }}" class="input"></textarea>
   </div>
   <pre id="output-{{ include.exercise }}" class="output">The output of your execution will appear here</pre>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2/ace.min.js" integrity="sha512-xylzfb6LZn1im1ge493MNv0fISAU4QkshbKz/jVh6MJFAlZ6T1NRDJa0ZKb7ECuhSTO7fVy8wkXkT95/f4R4nA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2/mode-assembly_x86.min.js" integrity="sha512-lVnwdFgTY05Nw5And2DnKCRZFJad8PWC1jYq0Zjgkqv6Bnkam90YwLFJcarv5NPiCCTKXjc+b08sOGFKAPMHjw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
-    const $frame = document.getElementById('frame');
-    const $run = document.getElementById('run');
-    const $output = document.getElementById('output-{{ include.exercise }}');
-    const $input = document.getElementById('input');
+    const $root = document.getElementById('editor-{{ include.exercise }}');
+    const $frame = $root.querySelector('iframe');
+    const $run = $root.querySelector('.run');
+    const $output = $root.querySelector('.output');
+    const $input = $root.querySelector('.input');
 
-    const a = ace.edit($input, {
+    const editor = ace.edit($input, {
       mode: "ace/mode/assembly_x86",
       fontSize: "16px",
       theme: "ace/theme/one_light",
@@ -29,7 +28,7 @@
     fetch(`https://raw.githubusercontent.com/shikaan/x86-64-asm-intro/main/{{ include.exercise }}`)
       .then(response => response.text())
       .then(data => {
-        a.setValue(data, -1);
+        editor.setValue(data, -1);
         $frame.contentWindow.postMessage({
           eventType: 'populateCode',
           language: 'assembly',
@@ -42,14 +41,14 @@
         }, "*");
       });
 
-    a.on('change', (e) => {
+    editor.on('change', (e) => {
       $frame.contentWindow.postMessage({
           eventType: 'populateCode',
           language: 'assembly',
           files: [
             {
               "name": "{{ include.exercise }}",
-              "content": a.getValue()
+              "content": editor.getValue()
             }
           ]
         }, "*");
