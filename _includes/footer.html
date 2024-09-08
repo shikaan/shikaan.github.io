@@ -1,16 +1,30 @@
-<hr>
+<!-- <footer class="site-footer h-card">
+  <data class="u-url" href="{{ "/" | relative_url }}"></data>
 
-<footer style="display: flex; text-align: center; justify-content: space-around;">
-  <div style="min-width: 120px;">
-    <a href="{{page.commentLink}}">comments</a>
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div>
+        <a href="{{ page.commentLink }}">comments</a>
+      </div>
+    
+      <div>
+        <a href="/feed.xml">rss</a>
+      </div>
+    
+      <div class="share">
+        <a href="javascript:navigator.share?.({ title: '{{page.title}}', text: '{{page.description}}', link: location.href }) ?? window.open('{{ page.commentLink }}')">share</a>
+      </div>
+    </div>
+
   </div>
 
-  <div style="min-width: 120px;">
-    <a href="/feed.xml">rss</a>
-  </div>
+</footer> -->
 
-  <div class="share" style="min-width: 120px;">
-    <a
-      href="javascript:navigator.share?.({ title: '{{page.title}}', text: '{{page.description}}', link: location.href })??window.open('{{page.commentLink}}')">share</a>
+<footer class="site-footer h-card">
+  <div class="wrapper">
+    <p>
+      Subscribe via <a href="{{ "/feed.xml" | relative_url }}">RSS Feed</a>
+    </p>
   </div>
 </footer>

@@ -1,14 +1,7 @@
----
-layout: default
----
-<header>
-  <h1>{{ site.title }}</h1>
+Hi 👋
   
-  <p>
-    Hi all 👋<br>
-    My name is Manuel. I mostly code, make music or games, and sometimes happen to write about it. <br>
-    I am based in <b>Berlin</b> and working at <a href="https://www.contentful.com/"><i>Contentful</i></a>.
-  </p>
-</header>
+I am Manuel, also known as _shikaan_.
 
-{%-include menu_item.html collection=site.data.menu.entries-%}
+These days, I mostly code, play music, make videogames, and sometimes happen to write about it here. I am based in **Berlin, Germany** and currently working at [Contentful](https://www.contentful.com/).
+
+You can also find me on [Github](https://github.com/shikaan) and [LinkedIn](https://linkedin.com/in/manuelspagnolo).

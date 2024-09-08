@@ -165,6 +165,8 @@ Please continue with feedbacks ❤
 
 Until next time!
 
+{% include post-footer.html %}
+
 ---
 
 [^1]: It's worth mentioning that users usually tolerate writing latency way better than reading latency. Unfortunately I can't remember where I got this data from, so I cannot show real metrics of this. Take this with a grain of salt.

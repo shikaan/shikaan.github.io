@@ -39,13 +39,13 @@ By the end of this guide, you will be able to navigate assembly code, know where
 
 Let's get started!
 
-# 1. Hello world
+## 1. Hello world
 
 Unsurprisingly, our first program will be a "Hello World".
 
 Before jumping into the code though, we need to briefly introduce the language we'll be using. At the end of this section, we will be able to write and run our first assembly program.
 
-## x86-64 assembly
+### x86-64 assembly
 
 First things first, assembly is not a language.
 
@@ -61,7 +61,7 @@ Assembly is all about working close to the hardware. Optimizimg for portability 
 
 The snippets we will be written for Linux, and they should run fine on Window's WSL as well. The general concepts and practices are nonetheless valid regardless of your OS of choice.
 
-## Anatomy of an instruction
+### Anatomy of an instruction
 
 Instructions are the way we tell the CPU what to do. They look something like this:
 
@@ -86,7 +86,7 @@ Fear not, there is no need to memorize all the possible instructions now. Whenev
 
 The [Intel Software Developer Manuals (SDM)](https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html) will be our instruction reference in the next chapters. Keep it handy!
 
-## Storing data: Registers
+### Storing data: Registers
 
 You can think of registers as storage space baked right into the CPU itself. They are small and incredibly fast to access.
 
@@ -124,7 +124,7 @@ General-purpose means that they can store anything, in principle. In practice, w
 
 The only non general-purpose register we will be concerned with is `rip`, the _instruction pointer_ register. It holds the address of the next instruction to execute and therefore modifying `rip` allows programs to jump to arbitrary instructions in the code.
 
-## Our first assembly file
+### Our first assembly file
 
 Assembly files typically have an `.s` or `.asm` extension and they are split in three sections:
 * **data**: where we define constants and initialized variables;
@@ -167,7 +167,7 @@ _start:
   ; instructions here
 ```
 
-## At last, "Hello World"
+### At last, "Hello World"
 
 Finally, we have all the tools to build software in assembly. Very Nice! 🔷
 
@@ -189,13 +189,15 @@ Let's look at the code to see how all of this plays together.
 
 {% include asm.html exercise="42rjtx5gv" %}
 
-## Conclusion
+### Conclusion
 
 We have an hello world! 
 
 In this first article we learned some basic assembly concepts, we cut our teeth on its syntax, and we even wrote some working software. 
 
 We now know how to communicate with the operative system and we are ready to produce more interesting programs in the next article.
+
+{% include post-footer.html %}
 
 ---
 

@@ -100,3 +100,5 @@ So nowadays, we're still somewhat classifying design patterns based on their cla
 
 This was a brief and hopefully not-so-boring general introduction to Design Patterns. Next articles will be more practical, less wordy and maybe with the same amount of memes. 
 Let me know if you are interested in the topic, as I really need motivation to continue writing :D
+
+{% include post-footer.html %}

@@ -205,6 +205,8 @@ As always, if you have any feedback (the thing is too simplified, you miss my me
 
 Until next time!
 
+{% include post-footer.html %}
+
 ---
 
 [^1]: Pretty much anywhere else in Italy people eat meat for Christmas. I am from a messed up place where eating a giant eel should symbolize victory of Good against the Evil in the shape of a snake...

@@ -203,6 +203,8 @@ Well, this has been massive. Hopefully you got to read at least half of what I h
 
 Until next time!
 
+{% include post-footer.html %}
+
 ---
 
 [^1]: This kind of patterns actually modified the _behavior_ (in common English sense) of customers and cooks. Hopefully this will be enough to fix forever in your mind what a _behavioral_ pattern is.

@@ -214,6 +214,8 @@ As always, if you have any feedback (e.g., why did you stop with memes? why are 
 
 Until next time!
 
+{% include post-footer.html %}
+
 ---
 
 [^1]: We still have Server Side Rendered applications, but _usually_ the backend layer responsible of rendering the client is still not taking care of other parts of business logic, making the whole thing still split to a certain extent.

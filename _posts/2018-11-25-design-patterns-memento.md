@@ -203,6 +203,8 @@ If you have any sort of feedback ("Don't tell me how to code. You're not my real
 
 Until next time!
 
+{% include post-footer.html %}
+
 ---
 
 [^1]: If you're unsure about what a behavioral pattern is, take a look [here](/design-patterns-command)

@@ -2,8 +2,5 @@
 
 source "https://rubygems.org"
 
-# gem "rails"
-
-gem "webrick", "~> 1.7"
-
-gem "github-pages", "~> 226", group: :jekyll_plugins
+gem "minima"
+gem "github-pages", "~> 232", group: :jekyll_plugins
