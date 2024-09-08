@@ -76,7 +76,7 @@ They represent the smallest unit of assembly language and are mostly composed of
 
 In our example, the mnemonic is `mov`, which stands for _move_, and the operands are `rax` and `rbx`. This instruction in plain English would read: move the content of `rbx` in `rax`.
 
-> **Note: _Registers_**
+> **Note**
 >
 > `rax` and `rbx` are registers and we will introduce them in the next paragraph. In the meantime, you can imagine them as variables holding a value.
 
@@ -142,7 +142,7 @@ section .text
   ; code here
 ```
 
-> **Note: _Comments_**
+> **Note**
 >
 > The semicolon `;` is the comment character: whatever comes after it will not be executed.
 
@@ -184,14 +184,14 @@ Let's look at the code to see how all of this plays together.
 
 > **Coding along**
 >
-> Throughtout this series we use [an inline editor](https://onecompiler.com/) so that you can edit and run the examples as we go.
-> All the code snippets in this guide are commented to explain what's going on step by step. Make sure you read the comments carefully!
+> Throughtout this series, we'll use an embedded editor to tinker with the code and run the examples as we go.
+> All the snippets are commented to explain what's going on step by step. Make sure you read the comments carefully!
 
-{% include asm.html exercise="42rjtx5gv" %}
+{% include asm.html exercise="01-hello.asm" %}
 
 ### Conclusion
 
-We have an hello world! 
+We have a hello world! 
 
 In this first article we learned some basic assembly concepts, we cut our teeth on its syntax, and we even wrote some working software. 
 

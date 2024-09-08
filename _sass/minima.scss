@@ -75,6 +75,7 @@ hr {
 }
 
 a {
+  color: $text-color;
   text-decoration: underline;
 }
 
@@ -91,15 +92,80 @@ a {
   .link-wrapper {
     min-width: 120px;
     text-align: center;
-    
-    &.share {
-      display: none;
-    }
   }
 }
 
-@include media-query($on-palm) {
-  .post-footer .link-wrapper.share {
-    display: unset;
+@media screen and (prefers-color-scheme: dark) {
+  html {
+      filter: invert(0.85) hue-rotate(260deg);
+  }
+}
+
+.code-editor-wrapper{
+  #frame {
+    display: none;
+  }
+
+  .input-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: $spacing-unit/4;
+
+      label {
+        font-family: monospace;
+        height: $spacing-unit;
+        padding-left: $spacing-unit/2;
+      }
+    }
+
+    pre {
+      font-family: monospace;
+      border-width: 0;
+      min-height: $spacing-unit*10;
+      margin-bottom: 0;
+    }
+
+    button {
+      appearance: unset;
+      background: $text-color;
+      padding: $spacing-unit/3 $spacing-unit;
+      border: 0;
+      color: $background-color;
+      font-size: $base-font-size;
+      font-family: system-ui, sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+
+      &:active {
+        background: lighten($text-color, 20%);
+      }
+    }
+  }
+
+  .output {
+    display: block;
+    height: $spacing-unit*5;
+    overflow: auto;
+    background-color: $grey-color-light;
+    padding: $spacing-unit/2;
+    font-style: italic;
+  }
+}
+
+/**
+ * Blockquotes
+ */
+ blockquote {
+  color: $grey-color;
+  border-left: 4px solid $grey-color-light;
+  padding-left: $spacing-unit / 2;
+
+  > :last-child {
+    margin-bottom: 0;
   }
 }
