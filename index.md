@@ -6,7 +6,7 @@ layout: default
   
   <p>
     Hi all 👋<br>
-    My name is Manuel. I mostly code, cook, or make music and sometimes happen to write about it. <br>
+    My name is Manuel. I mostly code, make music or games, and sometimes happen to write about it. <br>
     I am based in <b>Berlin</b> and working at <a href="https://www.contentful.com/"><i>Contentful</i></a>.
   </p>
 </header>
