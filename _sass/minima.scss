@@ -169,3 +169,16 @@ blockquote {
     margin-bottom: 0;
   }
 }
+
+@include media-query($on-palm) {
+  // responsive table
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+
+    th {
+      white-space: nowrap;
+    }
+  }
+}
