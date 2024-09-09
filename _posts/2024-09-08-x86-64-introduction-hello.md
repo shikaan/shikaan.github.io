@@ -54,7 +54,7 @@ In this guide, we will use _x86-64 assembly_ which can be assembled and executed
 
 For historical reasons, there are two "flavors" of the x64-64 assembly syntax: one called _Intel_ and the other is called _AT&T_[^1]. 
 
-In this guide we will stick to the _Intel_ dialect because it's used by the [Intel Software Developer Manuals (SDM)](https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html), the source of truth when on what the CPU _really_ does when fed an instruction.
+In this guide we will stick to the _Intel_ dialect because it's used by the [Intel Software Developer Manuals (SDM)](https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html), the source of truth on what the CPU _really_ does when fed an instruction.
 
 Assembly is all about working close to the hardware. Optimizimg for portability of the code examples across operative systems and architactures would obfuscate the content of this introduction.
 
@@ -89,9 +89,9 @@ The [Intel Software Developer Manuals (SDM)](https://www.intel.com/content/www/u
 
 You can think of registers as storage space baked right into the CPU itself. They are small and incredibly fast to access.
 
-The most common registers are the so-called _general-purpose_ registers. In x86-64 they are sixteen in total and they are 64 bits wide. 
+The most common registers are the so-called _general purpose_ registers. In x86-64 they are sixteen in total, and they are 64 bits wide. 
 
-One can access the whole register or just a subset by using different names. For example, using `rax` (as in the code above) would address all the 64 bits in the `rax` register. With `al` you can access the lower byte of the same register.
+One can access the whole register or a subset by using different names. For example, using `rax` (as in the code above) would address all the 64 bits in the `rax` register. With `al`, you can access the lower byte of the same register.
 
 | Register | Higher byte | Lower byte | Lower 2 bytes¹ |	Lower 4 bytes² |
 |:---      |:---         |:---        |:---            |:---             |
@@ -119,9 +119,9 @@ One can access the whole register or just a subset by using different names. For
 ²: 4 bytes are sometimed called double-words or dwords (hence the d suffix)
 </sup>
 
-General-purpose means that they can store anything, in principle. In practice, we'll see that some registers have special meanings, some instructions only use certain registers, and some conventions dictate who is expected to write where.
+General purpose means that they can store anything in principle. In practice, we'll see that some registers have special meanings, some instructions only use certain registers, and some conventions dictate who is expected to write where.
 
-The only non general-purpose register we will be concerned with is `rip`, the _instruction pointer_ register. It holds the address of the next instruction to execute and therefore modifying `rip` allows programs to jump to arbitrary instructions in the code.
+The only non-general-purpose register we will be concerned with is `rip` the _instruction pointer_ register. It holds the address of the next instruction to execute, and therefore, modifying `rip` allows programs to jump to arbitrary instructions in the code.
 
 ### Our first assembly file
 
@@ -145,13 +145,13 @@ section .text
 >
 > The semicolon `;` is the comment character: whatever comes after it will not be executed.
 
-Assembly programs run as you would expect: they start with the first instruction and sequentially execute one intruction after the other, from top to bottom. To create control flow such as conditionals and loops we make our programs 'jump' to specific instructions. We will look at jumps more in detail in the next sections.  
+Assembly programs run as you would expect. They start with the first instruction and sequentially execute one instruction after the other, from top to bottom. To create control flow, such as conditionals and loops, we make our programs 'jump' to specific instructions. We will look at jumps in detail in the next sections.  
 
 Just as you'd use a `main` function in many high-level languages, assembly requires us to specify an entry point for our program. We do this using the `global` declaration, which points to a _label_.
 
-Labels are assembly's way of giving human-readable names to specific instructions. They serve two purposes: making our code more understandable and allowing us to reference these instructions elsewhere in our program. You can declare a label by writing it followed by a colon, like this: `label:`. When you want to reference a label (for example, in a jump instruction), you use it without the colon: `label`.
+Labels are the assembly's way of giving human-readable names to specific instructions. They serve two purposes: making our code more understandable and allowing us to reference these instructions elsewhere in our program. You can declare a label by writing it followed by a colon, like this: `label:`. When you want to reference a label (for example, in a jump instruction), use it without the colon: `label`.
 
-Typically, `global` references a `_start` label which is declared immediately after it. That is where our program will start executing.
+Typically, `global` references a `_start` label declared immediately after it. That is where our program will start executing.
 
 ```x86asm
 section .data
@@ -170,31 +170,29 @@ _start:
 
 Finally, we have all the tools to build software in assembly. Very Nice! 🔷
 
-Our program will make use of two system calls, `sys_write`, to print characters in a terminal, and `exit`, to terminate the process with a given status code.
+Our program will use two system calls: `sys_write` to print characters in a terminal and `exit` to terminate the process with a given status code.
 
 Using syscalls goes like this:
 - select the syscall to invoke by moving its identifier in `rax`
 - pass arguments to the syscall by populating appropriate registers
 - use the `syscall` instruction to fire the call
 
-The only other instruction we will use is `mov`, which we have seen in the instruction paragraph. It works pretty much like an assignment (the `=` operator) in many high level languages: it moves the content of the second operand into the first operand.
+The only other instruction we will use is `mov` which we have seen in the instruction paragraph. It works pretty much like an assignment (the `=` operator) in many high-level languages: it moves the content of the second operand into the first operand.
 
-Let's look at the code to see how all of this plays together. 
+Let's look at the code to see how this plays together. 
 
 > **Coding along**
 >
-> Throughtout this series, we'll use an embedded editor to tinker with the code and run the examples as we go.
+> Throughout this series, we'll use an embedded editor to tinker with the code and run the examples as we go.
 > All the snippets are commented to explain what's going on step by step. Make sure you read the comments carefully!
 
 {% include asm.html exercise="01-hello.asm" %}
 
 ### Conclusion
 
-We have a hello world! 
+We have a "hello world"! 
 
-In this first article we learned some basic assembly concepts, we cut our teeth on its syntax, and we even wrote some working software. 
-
-We now know how to communicate with the operative system and we are ready to produce more interesting programs in the next article.
+In this first article, we learned some basic assembly concepts, we cut our teeth on its syntax, and we even wrote some working software. Moreover, we explored how to communicate with the operative system and are ready to produce more interesting programs in the next article.
 
 {% include post-footer.html %}
 
