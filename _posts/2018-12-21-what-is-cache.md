@@ -3,7 +3,6 @@ title: What is Cache?
 categories: ["cache", "frontend", "backend", "node", "javascript"]
 description: A gentle introduction to caching and cache techniques
 date: "2018-12-21"
-commentLink: "https://twitter.com/spagmanuel/status/1118950042172309504"
 ---
 
 Getting resources or performing complicated operations is usually both slow and expensive. The ability to store results of cumbersome operations to prevent them to happen again is called caching, which is the topic of this article.
@@ -204,6 +203,8 @@ As you might have noticed I am trying to keep this shorter and easier than usual
 As always, if you have any feedback (the thing is too simplified, you miss my memes, I suck at naming things), please drop a comment and make this better together :D
 
 Until next time!
+
+{% include post-footer.html %}
 
 ---
 

@@ -1,0 +1,184 @@
+@charset "utf-8";
+
+@font-face {
+  font-family: 'Merriweather';
+  src: url("Merriweather-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Merriweather';
+  src: url("Merriweather-Black.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+// Define defaults for each variable.
+
+$base-font-family: Merriweather, serif !default;
+$base-font-size: 16px !default;
+$base-font-weight: 400 !default;
+$small-font-size: $base-font-size * 0.875 !default;
+$base-line-height: 1.6 !default;
+
+$spacing-unit: 30px !default;
+
+$text-color: #111 !default;
+$background-color: #fdfdfd !default;
+$brand-color: #111 !default;
+
+$grey-color: #828282 !default;
+$grey-color-light: lighten($grey-color, 40%) !default;
+$grey-color-dark: darken($grey-color, 25%) !default;
+
+$table-text-align: left !default;
+
+// Width of the content area
+$content-width: 800px !default;
+
+$on-palm: 600px !default;
+$on-laptop: 800px !default;
+
+@mixin media-query($device) {
+  @media screen and (max-width: $device) {
+    @content;
+  }
+}
+
+@mixin relative-font-size($ratio) {
+  font-size: $base-font-size * $ratio;
+}
+
+// Import partials.
+@import "minima/base",
+"minima/layout",
+"minima/syntax-highlighting"
+;
+
+// Overrides
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+}
+
+figure {
+  text-align: center;
+
+  &>img {
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+  }
+}
+
+hr {
+  margin: $spacing-unit 0;
+}
+
+a {
+  color: $text-color;
+  text-decoration: underline;
+}
+
+.header {
+  text-align: center;
+  padding-top: $spacing-unit/2;
+}
+
+.post-footer {
+  display: flex;
+  justify-content: space-around;
+  padding-top: $spacing-unit;
+
+  .link-wrapper {
+    min-width: 120px;
+    text-align: center;
+  }
+}
+
+@media screen and (prefers-color-scheme: dark) {
+  html {
+    filter: invert(0.85) hue-rotate(260deg);
+  }
+}
+
+.code-editor-wrapper {
+  .input-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: $spacing-unit/4;
+
+      label {
+        font-family: monospace;
+        height: $spacing-unit;
+        padding-left: $spacing-unit/2;
+      }
+    }
+
+    pre {
+      font-family: monospace;
+      border-width: 0;
+      min-height: $spacing-unit*10;
+      margin-bottom: 0;
+    }
+
+    button {
+      appearance: unset;
+      background: $text-color;
+      padding: $spacing-unit/3 $spacing-unit;
+      border: 0;
+      color: $background-color;
+      font-size: $base-font-size;
+      font-family: system-ui, sans-serif;
+      font-weight: bold;
+      cursor: pointer;
+
+      &:active {
+        background: lighten($text-color, 20%);
+      }
+    }
+  }
+
+  .output {
+    display: block;
+    height: $spacing-unit*5;
+    overflow: auto;
+    background-color: $grey-color-light;
+    padding: $spacing-unit/2;
+    font-style: italic;
+  }
+}
+
+blockquote {
+  color: $grey-color;
+  border-left: 4px solid $grey-color-light;
+  padding-left: $spacing-unit / 2;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+@include media-query($on-palm) {
+  // responsive table
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+
+    th {
+      white-space: nowrap;
+    }
+  }
+}

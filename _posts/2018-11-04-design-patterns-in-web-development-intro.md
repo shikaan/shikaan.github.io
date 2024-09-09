@@ -3,7 +3,6 @@ title: Design Patterns in Web Development
 description: Why and how to use Design Patterns in Web Development
 categories: ["javascript", "python", "architecture", "design-patterns"]
 date: "2018-11-04"
-commentLink: "https://twitter.com/spagmanuel/status/1118952314965037056"
 ---
 
 # Introduction
@@ -100,3 +99,5 @@ So nowadays, we're still somewhat classifying design patterns based on their cla
 
 This was a brief and hopefully not-so-boring general introduction to Design Patterns. Next articles will be more practical, less wordy and maybe with the same amount of memes. 
 Let me know if you are interested in the topic, as I really need motivation to continue writing :D
+
+{% include post-footer.html %}

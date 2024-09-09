@@ -1,0 +1,10 @@
+{% assign image_url = include.image_url %}
+{% assign alt_text = include.alt %}
+{% assign description = include.description %}
+
+<figure>
+  <img src="{{ image_url }}" alt="{{ alt_text }}">
+  {% if description %}
+    <figcaption>{{ description }}</figcaption>
+  {% endif %}
+</figure>

@@ -3,7 +3,6 @@ title: "Digital music and selfies: the legacy of Jean-Baptiste Joseph Fourier"
 description: How Harmonic Analysis powers social networks, streaming channels and our every day life
 categories: ["tech", "music", "mathematics"]
 date: "2019-05-05"
-commentLink: "https://twitter.com/spagmanuel/status/1125065612668080133"
 ---
 
 Jean-Baptiste Joseph Fourier is one of the most known mathematical personalities in history and with a good reason: he’s the father of Harmonic Analysis also known as Fourier Analysis. We are about to learn how this is the reason why we can stream music, share images and even have echo-cancelling headphones or perform sound searches.
@@ -40,13 +39,13 @@ The whole idea behind Fourier’s work was to rewrite “any given function”[^
 
 Therefore, in Fourier terms all signals can be written like
 
-![Simple Fourier sum](https://cdn-images-1.medium.com/max/2000/1*pNKPspbq0ngKYdVEHfqw-A.png)
+{% include picture.html image_url="https://cdn-images-1.medium.com/max/2000/1*pNKPspbq0ngKYdVEHfqw-A.png" alt="Simple Fourier sum" %}
 
 where a coefficients can be thought as the average of the function we want to represent on a given interval. Such interval is called *period* and happens to be the period of the oscillations.
 
 The key idea behind decomposition in oscillations is the following: the more you want to be precise the further you have to go in summing oscillations. Thence, the way to increase precision is to sum infinite chunks. Infinite sums in mathematics are called *series* and this is the shape of the *Fourier Series* for a given function:
 
-![Fourier Series](https://cdn-images-1.medium.com/max/2000/1*s6zncXijCbappCNWWrsnAw.png)
+{% include picture.html image_url="https://cdn-images-1.medium.com/max/2000/1*s6zncXijCbappCNWWrsnAw.png" alt="Fourier Series' formula" %}
 
 One detail we omitted was that the above works for periodic signals. What happens when the signal is not already periodic? Luckily, the above still holds true to a certain extent and the generalization falls under the name of *Fourier Transform.* We’re not going to dig deeper on this.
 
@@ -54,7 +53,7 @@ One detail we omitted was that the above works for periodic signals. What happen
 
 A simple way to picture this is thinking about what happens with music. Let’s say, for the sake of the argument, that each note emitted by a piano can be represented as a sinusoidal wave[^3]. When you play a chord — namely more notes and once — you are producing a wave which is formed by summing all those waves.
 
-![Top wave (the chord wave) is the sum of bottom notes waves (the notes waves)](https://cdn-images-1.medium.com/max/2000/1*4dfCuldZ1t-GKvg5SekpWw.png)*Top wave (the chord wave) is the sum of bottom notes waves (the notes waves)*
+{% include picture.html image_url="https://cdn-images-1.medium.com/max/2000/1*4dfCuldZ1t-GKvg5SekpWw.png" description="Top wave (the chord wave) is the sum of bottom notes waves (the notes waves)" alt="Top wave (the chord wave) is the sum of bottom notes waves (the notes waves)" %}
 
 What you get then is a complex signal which is ultimately given by the sum of elementary signals. The peak of the chord wave (the yellow one) happens when all the three node waves are at their peak, whereas none of the bottoms of the chord wave are as low in comparison: this is due to the fact that there is no moment when the three of them are at their bottom concurrently.
 
@@ -85,6 +84,8 @@ For images the things get a bit trickier because in that case we have to speak a
 Every time you will see your younger sister’s bathroom selfies on Instagram or you listen to a Ed Sheeran song on Spotify, now you know who to blame. Do you think that in hindsight Fourier would have spread this knowledge?
 
 Until next time!
+
+{% include post-footer.html %}
 
 ---
 

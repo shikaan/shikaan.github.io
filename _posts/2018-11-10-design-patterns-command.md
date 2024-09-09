@@ -3,7 +3,6 @@ title: Command - Design Patterns in Web Development
 description: First episode about Behavioral Patterns and Command 
 categories: ["javascript", "python", "architecture", "design-patterns"]
 date: "2018-11-10"
-commentLink: "https://twitter.com/spagmanuel/status/1118952202243117062"
 ---
  
 # Introduction
@@ -202,6 +201,8 @@ The code for this is of course available in [the repo](https://github.com/shikaa
 Well, this has been massive. Hopefully you got to read at least half of what I have written :D As always, if you have any feedback about how to make this series better, please let me know. 
 
 Until next time!
+
+{% include post-footer.html %}
 
 ---
 

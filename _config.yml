@@ -1,14 +1,13 @@
 title: shikaan
 author: Manuel Spagnolo
-description: Manuel Spagnolo's (aka, shikaan) personal blog. Few opinions, all mine.
+description: Manuel Spagnolo's personal blog.
 
 favicon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📝</text></svg>"
 goat_counter: shikaan
 
-remote_theme: riggraz/no-style-please
+theme: minima
 
-theme_config:
-  back_home_text: "< Home"
+minima:
   date_format: "%Y-%m-%d"
 
 plugins:

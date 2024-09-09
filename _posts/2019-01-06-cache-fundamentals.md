@@ -3,7 +3,6 @@ title: HTTP Caching fundamentals
 categories: ["cache", "frontend", "backend", "webdev"]
 description: A walk-through of cache standards for browsers and servers
 date: "2019-01-06"
-commentLink: "https://twitter.com/spagmanuel/status/1118948844925063169"
 ---
 
 Clients and servers need to agree on certain rules in order to provide the performance benefits of caching techinques. These standards are usually already embedded in system we are working with (browsers, frameworks...), hence understanding what they are and how they work allows to pick the approach which better fits our needs case by case. The idea here is to have a go-to place where you can get an understanding or just dust off those concepts every time you have to deal with caching again.
@@ -213,6 +212,8 @@ This is the end of this Christmas streak, but maybe not the end of this caching 
 As always, if you have any feedback (e.g., why did you stop with memes? why are you so obsessed with caching? how could you complete a whole episode without mentioning food?) feel free to reach out.
 
 Until next time!
+
+{% include post-footer.html %}
 
 ---
 
