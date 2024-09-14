@@ -8,7 +8,7 @@ date: "2024-09-08"
 Coming from JavaScript, Rust, C, or any other high-level language, looking at assembly snippets can be confusing or even scary.
 
 Let's take the following snippet:
-```x86asm
+```nasm
 section .data
   msg db "Hello, World!"
 
@@ -64,7 +64,7 @@ The snippets we will be written for Linux, and they should run fine on Window's 
 
 Instructions are the way we tell the CPU what to do. They look something like this:
 
-```x86asm
+```nasm
 mov rax, rbx
 ```
 
@@ -130,7 +130,7 @@ Assembly files typically have an `.s` or `.asm` extension and they are split in 
 * **bss**: where we define non-initialized variables;
 * **text**: where we will type our code, this is the only mandatory section of the file.
 
-```x86asm
+```nasm
 section .data
   ; constants here
 
@@ -153,7 +153,7 @@ Labels are the assembly's way of giving human-readable names to specific instruc
 
 Typically, `global` references a `_start` label declared immediately after it. That is where our program will start executing.
 
-```x86asm
+```nasm
 section .data
   ; constants here
 
@@ -183,7 +183,8 @@ Let's look at the code to see how this plays together.
 
 > **Coding along**
 >
-> Throughout this series, we'll use an embedded editor to tinker with the code and run the examples as we go.
+> Throughout this series, we'll use an embedded editor to tinker with the code and run the examples as we go. The same content can be found in the sibling repository [shikaan/x86-64-asm-intro](https://github.com/shikaan/x86-64-asm-intro) if you want to run locally.
+>
 > All the snippets are commented to explain what's going on step by step. Make sure you read the comments carefully!
 
 {% include asm.html exercise="01-hello.asm" %}
