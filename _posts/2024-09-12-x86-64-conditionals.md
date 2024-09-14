@@ -16,7 +16,7 @@ The sequence of instructions the CPU decodes and executes is called _instruction
 The currently executed instruction is the one whose address is the value in the `rip` register, which is why we call it the _instruction pointer_ register.
 
 In pseudo-code, the execution of a program would read something like this
-```c
+```javascript
 while (!exited) {
   // Fetch the instruction at `registers.rip`
   instruction = instruction_stream[registers.rip]
@@ -26,12 +26,13 @@ while (!exited) {
   // Assign the new address to `rip` to fetch
   // a new instruction on next iteration.
   registers.rip = next_pointer
+  // ...handle hardware and other side effects...
 }
 ```
 
-Most of the time, the execution is linear: `next_pointer` is merely the address of the instruction in the following line of code. Some instructions, however, will yield a `next_pointer` pointing to code located elsewhere. These instructions are called _Control Transfer Instructions_ (CTIs). 
+Most of the time, the execution is linear: instructions are executed one after the other in the order they are coded, top to bottom. Some instructions, however, can break this convention and are called _Control Transfer Instructions_ (CTIs). 
 
-The CTIs we will focus on are categorized as _conditional_ and _unconditional_, and they make control flow possible in assembly. Software interrupts are the other type of CTI; we won't explicitly touch them here[^2] since they are tightly intertwined with operative systems beyond the scope of this series.
+The CTIs we will focus on are categorized as _conditional_ and _unconditional_, and they make control flow possible in assembly by allowing execution of nonconsecutive instructions. Software interrupts are the other type of CTI; we won't explicitly touch them here[^2] since they are tightly intertwined with operative systems beyond the scope of this series.
 
 The first CTI we will explore is `jmp` (jump).
 
@@ -47,13 +48,7 @@ Where the operand represents the destination instruction.
 
 Usually, the destination is a label, and in plain English, the instruction above reads: "Continue the execution from the instruction whose label is `label`."
 
-Under the hood, the label gets translated into a numeric address in the instruction stream which will then be assigned to the `rip`. In fact, raw numerical addresses and relative offsets are all valid destinations.
-
-///
-If you really want, you can in fact use numbers
-Compilers, assemblers, and sometimes disassemblers use numbers. Humans, generally, prefer having readable labels to parse the code.
-///
-
+Under the hood, the label gets translated into a numeric address in the instruction stream which will then be assigned to the `rip`. In fact, raw numeric addresses and relative offsets are all valid destinations and, for example, the preferred way compilers generate code.
 
 The attentive readers will have noticed that the jump we just described does not depend on any condition: if the program reaches that line, it'll jump. This makes this instruction _unconditional_.
 
