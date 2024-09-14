@@ -7,6 +7,9 @@ goat_counter: shikaan
 
 theme: minima
 
+markdown: kramdown
+highlighter: rouge
+
 minima:
   date_format: "%Y-%m-%d"
 

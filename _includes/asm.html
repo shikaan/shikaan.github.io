@@ -22,20 +22,20 @@
     const editor = ace.edit($input, {
       mode: "ace/mode/assembly_x86",
       fontSize: "16px",
-      theme: "ace/theme/one_light",
+      theme: "ace/theme/github_light_default",
     });
 
     fetch(`https://raw.githubusercontent.com/shikaan/x86-64-asm-intro/main/{{ include.exercise }}`)
       .then(response => response.text())
       .then(data => {
-        editor.setValue(data, -1);
+        const code = editor.setValue(data, -1);
         $frame.contentWindow.postMessage({
           eventType: 'populateCode',
           language: 'assembly',
           files: [
             {
               "name": "{{ include.exercise }}",
-              "content": data
+              "content": code
             }
           ]
         }, "*");
