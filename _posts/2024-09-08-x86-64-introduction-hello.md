@@ -1,6 +1,6 @@
 ---
-title: "A friendly introduction to assembly for high-level programmers"
-description: A friendly introduction to assembly for high-level programmers
+title: "A friendly introduction to assembly for high-level programmers — Hello"
+description: A friendly introduction to assembly for high-level programmers — Hello
 categories: ["assembly", "x86", "guide"]
 date: "2024-09-08"
 ---
@@ -38,7 +38,7 @@ By the end of this guide, you will be able to navigate assembly code, know where
 
 Let's get started!
 
-## 1. Hello world
+## Hello world
 
 Unsurprisingly, our first program will be a "Hello World".
 
