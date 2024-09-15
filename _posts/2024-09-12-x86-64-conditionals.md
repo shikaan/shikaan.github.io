@@ -46,9 +46,11 @@ jmp label
 ```
 Where the operand represents the destination instruction.
 
-Usually, the destination is a label, and in plain English, the instruction above reads: "Continue the execution from the instruction whose label is `label`."
+Almost always, the destination is a label, and in plain English, the instruction above reads: "Continue the execution from the instruction whose label is `label`."
 
-Under the hood, the label gets translated into a numeric address in the instruction stream which will then be assigned to the `rip`. In fact, raw numeric addresses and relative offsets are all valid destinations and, for example, the preferred way compilers generate code.
+The assembler, the software that turns assembly into machine code, translates the labels into a numeric address of the instruction stream and, on execution,  it will be assigned to `rip` as described above.
+
+In fact, numeric addresses and relative offsets to `rip` are all valid destinations, but they are usually more in vogue among machines than humans. For example, compilers with optimization flags or disassemblers tend to prefer using numeric addressing than labels.
 
 The attentive readers will have noticed that the jump we just described does not depend on any condition: if the program reaches that line, it'll jump. This makes this instruction _unconditional_.
 
