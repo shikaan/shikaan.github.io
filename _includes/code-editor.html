@@ -1,0 +1,161 @@
+<template id="code-editor">
+  <style>
+    .input-wrapper {
+      display: flex;
+      flex-direction: column;
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+
+        label {
+          font-family: monospace;
+          height: 30px;
+          padding-left: 15px;
+        }
+      }
+
+      pre {
+        font-family: monospace;
+        border-width: 0;
+        min-height: 300px;
+        margin: 0;
+      }
+
+      button {
+        appearance: unset;
+        background: #111;
+        padding: 10px 30px;
+        border: 0;
+        color: #fdfdfd;
+        font-size: 16px;
+        font-family: system-ui, sans-serif;
+        font-weight: bold;
+        cursor: pointer;
+
+        &:active {
+          background: #222;
+        }
+      }
+    }
+
+    .output {
+      display: block;
+      height: 90px;
+      overflow: auto;
+      background-color: #e8e8e8;
+      padding: 15px;
+      font-style: italic;
+      margin: 0 0 15px 0;
+    }
+
+    [hidden] {
+      display: none;
+    }
+  </style>
+  <iframe hidden src="https://onecompiler.com/embed/assembly/?listenToEvents=true&codeChangeEvent=true"></iframe>
+  <div class="input-wrapper">
+    <header>
+      <label id="label" for="input"></label>
+      <button class="run">Run</button>
+    </header>
+    <textarea id="input" class="input">
+      Loading...
+    </textarea>
+  </div>
+  <pre id="output" class="output">Loading...</pre>
+</template>
+
+<script type="module">
+  import 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2/ace.min.js';
+  import 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2/mode-assembly_x86.min.js';
+  ace.config.set('basePath', 'https://cdnjs.cloudflare.com/ajax/libs/ace/1.36.2');
+
+  customElements.define('code-editor', class extends HTMLElement {
+    constructor() {
+      super();
+      this.attachShadow({ mode: 'open' });
+      this.shadowRoot.appendChild(document.getElementById('code-editor').content.cloneNode(true));
+    }
+
+    connectedCallback() {
+      const $frame = this.shadowRoot.querySelector('iframe');
+      const $run = this.shadowRoot.querySelector('.run');
+      const $output = this.shadowRoot.querySelector('.output');
+      const $input = this.shadowRoot.querySelector('.input');
+      const $label = this.shadowRoot.querySelector('#label');
+
+      const exercise = this.attributes.exercise.value;
+      const editor = ace.edit($input, {
+        mode: "ace/mode/assembly_x86",
+        fontSize: "16px",
+        theme: "ace/theme/github_light_default",
+      });
+
+      editor.renderer.attachToShadowRoot();
+      $label.innerHTML = exercise;
+
+      $frame.onload = () => {
+        fetch(`https://raw.githubusercontent.com/shikaan/x86-64-asm-intro/main/${exercise}`)
+          .then(response => response.text())
+          .then(data => {
+            $output.innerHTML = 'Your output will appear here';
+            const code = editor.setValue(data, -1);
+            $frame.contentWindow.postMessage({
+              eventType: 'populateCode',
+              language: 'assembly',
+              files: [
+                {
+                  "name": exercise,
+                  "content": code
+                }
+              ]
+            }, "*");
+  
+            editor.on('change', (e) => {
+              $frame.contentWindow.postMessage({
+                eventType: 'populateCode',
+                language: 'assembly',
+                files: [
+                  {
+                    "name": exercise,
+                    "content": editor.getValue()
+                  }
+                ]
+              }, "*");
+            })
+  
+            $run.addEventListener('click', () => {
+              $frame.contentWindow.postMessage({
+                eventType: 'triggerRun'
+              }, "*");
+            });
+  
+            window.addEventListener('message', (e) => {
+              if (!e.data) return;
+              // iframe is posting on the parent window, so we need to check if the message
+              // is coming from this element
+              if (e.data.files[0].name !== exercise) return;
+  
+              switch (e.data.action) {
+                case 'runComplete':
+                  $input.disabled = false;
+                  $run.disabled = false;
+                  $output.innerHTML = e.data.result.stdout ?? e.data.result.output;
+                  break;
+                case 'runStart':
+                  $input.disabled = true;
+                  $run.disabled = true;
+                  $output.innerHTML = 'Running...';
+                  break;
+                default:
+                  break;
+              }
+            }, { capture: true });
+          });
+      }
+    }
+  });
+</script>

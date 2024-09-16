@@ -3,13 +3,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {%- seo -%}
-  <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
   {%- feed_meta -%}
+  
+  <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
   <link rel="icon" type="image/x-icon" href="{{ site.favicon }}">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-light.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/x86asm.min.js"></script>
   {% if jekyll.environment == "production" %}
   <script data-goatcounter="https://{{ site.goat_counter }}.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
   {% endif %}

@@ -37,7 +37,7 @@ In software development the whole thing works pretty much the same way. The main
 
 As for all the things which are too good to be true, this has to be either not so good or not so true.
 
-The good news is that this is true 😀 The bad news is, though, that your decision-making process cannot **completely** be replaced by _The Wisdom of the Ancients_.
+The good news is that this is true. The bad news is, though, that your decision-making process cannot **completely** be replaced by _The Wisdom of the Ancients_.
 
 ![Francis Bacon](https://i.pinimg.com/originals/72/5d/29/725d29ab0d189c2220a8c398af687871.jpg)
 

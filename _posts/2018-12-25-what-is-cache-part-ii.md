@@ -160,8 +160,6 @@ Well, this closes active caching part.
 
 First thing, thanks for feedback on previous article! Apparently naming wasn't so clear, so I updated it a bit here. I took the opportunity to revisit diagrams as well so that they won't make you eyes bleed. Not that much at least.
 
-Please continue with feedbacks ❤
-
 Until next time!
 
 {% include post-footer.html %}
