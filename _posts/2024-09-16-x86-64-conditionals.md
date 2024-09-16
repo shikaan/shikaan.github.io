@@ -2,7 +2,7 @@
 title: "A friendly introduction to assembly for high-level programmers — Conditionals"
 description: "A friendly introduction to assembly for high-level programmers — Conditionals"
 categories: ["assembly", "x86", "guide"]
-date: "2024-09-15"
+date: "2024-09-16"
 ---
 
 [In the previous article]({% post_url 2024-09-08-x86-64-introduction-hello %}), we learned about the basics of the assembly's syntax and managed to create a program with just two instructions. Quite impressive!
@@ -30,7 +30,7 @@ while (!exited) {
 }
 ```
 
-Most of the time, the execution is linear: instructions are executed one after the other in the order they are coded, top to bottom. Some instructions, however, can break this convention and are called _Control Transfer Instructions_ (CTIs). 
+Most of the time, the execution is linear: instructions are executed one after the other in the order they are coded. Top to bottom. Some instructions, however, can break this convention and are called _Control Transfer Instructions_ (CTIs). 
 
 The CTIs we will focus on are categorized as _conditional_ and _unconditional_, and they make control flow possible in assembly by allowing execution of nonconsecutive instructions. Software interrupts are the other type of CTI; we won't explicitly touch them here[^2] since they are tightly intertwined with operative systems beyond the scope of this series.
 
@@ -56,7 +56,7 @@ The attentive readers will have noticed that the jump we just described does not
 
 Let's see an example in action. 
 
-We will use [the same hello world example of the first lesson]({% post_url 2024-09-08-x86-64-introduction-hello %}). We will make it more human-readable by introducing jumps to break the code into smaller chunks. En passant, we will introduce numeric constants to remove magic numbers from our code and make it more legible.
+We will use [the same hello world example from the first lesson]({% post_url 2024-09-08-x86-64-introduction-hello %}). We will make it more human-readable by introducing jumps to break the code into smaller chunks. En passant, we will introduce numeric constants to remove magic numbers from our code.
 
 <code-editor exercise="02-hello-with-jumps.asm"></code-editor>
 
