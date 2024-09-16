@@ -58,7 +58,7 @@ Let's see an example in action.
 
 We will use [the same hello world example of the first lesson]({% post_url 2024-09-08-x86-64-introduction-hello %}). We will make it more human-readable by introducing jumps to break the code into smaller chunks. En passant, we will introduce numeric constants to remove magic numbers from our code and make it more legible.
 
-{% include asm.html exercise="02-hello-with-jumps.asm" %}
+<code-editor exercise="02-hello-with-jumps.asm"></code-editor>
 
 ## Conditional Jumps
 
@@ -148,7 +148,18 @@ This assembly code first compares the values in the rax and rbx registers using 
 
 Let's look at another example. Enough hello world. This time around we build a serious software that performs an addition and checks if the result is what we expect. Very serious.
 
-{% include asm.html exercise="02-sum.asm" %}
+<code-editor exercise="02-sum.asm"></code-editor>
+
+
+## Conclusion
+
+We made it, friends! We've explored the fundamental building blocks of control flow in assembly language. 
+
+We've learned about Control Transfer Instructions (CTIs), focusing on unconditional and conditional jumps. We've seen how the instruction pointer (`rip`) guides program execution and how jumps manipulate this flow. We've delved into the `eflags` register and its crucial role in comparisons, understanding how flags like the zero flag (ZF) and sign flag (SF) inform conditional operations. Finally, combining the `cmp` instruction with jumps, we've constructed the assembly equivalent of high-level language conditionals. 
+
+While jumps enable basic control flow, they can make code hard to follow. In our next article, we'll introduce the equivalent of functions: a way to execute code from elsewhere while maintaining a linear flow. You'll see how this approach mirrors procedural code in high-level languages, making assembly more intuitive and organized.
+
+{% include post-footer.html %}
 
 ---
 
@@ -161,3 +172,5 @@ Let's look at another example. Enough hello world. This time around we build a s
 [^4]: Once again, the complete list can be found in the [Intel Software Developer Manuals (SDM)](https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html). The section to look for is "EFLAGS Register".
 
 [^5]: Note how checking for equality and checking for zero is essentially the same thing.
+
+{% include code-editor.html %}

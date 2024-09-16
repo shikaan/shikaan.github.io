@@ -187,16 +187,18 @@ Let's look at the code to see how this plays together.
 >
 > All the snippets are commented to explain what's going on step by step. Make sure you read the comments carefully!
 
-{% include asm.html exercise="01-hello.asm" %}
+<code-editor exercise="01-hello.asm"></code-editor>
 
 ### Conclusion
 
 We have a "hello world"! 
 
-In this first article, we learned some basic assembly concepts, we cut our teeth on its syntax, and we even wrote some working software. Moreover, we explored how to communicate with the operative system and are ready to produce more interesting programs in the next article.
+In this first article, we learned some basic assembly concepts, we cut our teeth on its syntax, and we even wrote some working software. Moreover, we explored how to communicate with the operative system and are ready to produce more interesting programs [in the next article]({% post_url 2024-09-16-x86-64-conditionals %}).
 
 {% include post-footer.html %}
 
 ---
 
 [^1]: You can read up on the differences between Intel and AT&T syntax [here](https://imada.sdu.dk/u/kslarsen/dm546/Material/IntelnATT.htm). If it's your absolute first time with assembly, it might be a little too early to make sense of it. Feel free to come back to this link in a couple of lessons.
+
+{% include code-editor.html %}
