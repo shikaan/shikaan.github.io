@@ -1,4 +1,4 @@
-Hi 👋
+Hi
   
 I am Manuel, also known as _shikaan_.
 

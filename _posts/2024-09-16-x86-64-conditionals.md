@@ -124,7 +124,7 @@ With this understanding, the meaning of conditional jumps should become clear:
 
 ## At last, conditionals
 
-We are now, finally, ready to write conditionals in assembly. Joy! 🛡️
+We are now, finally, ready to write conditionals in assembly. Joy!
 
 Consider this simple pseudo-code:
 ```

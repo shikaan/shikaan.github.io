@@ -223,4 +223,4 @@ Until next time!
 
 [^3]: We'll dig a bit deeper on how browsers actually understand when to request fresh data or not in the [HTTP Headers section](#http-headers)
 
-[^4]: I am not letting you down ❤ [Here](https://developers.google.com/web/fundamentals/primers/service-workers/)'s a very good introduction by Google on the matter. 
+[^4]: I am not letting you down: [here](https://developers.google.com/web/fundamentals/primers/service-workers/)'s a very good introduction by Google on the matter. 

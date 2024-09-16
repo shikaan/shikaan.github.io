@@ -168,7 +168,7 @@ _start:
 
 ### At last, "Hello World"
 
-Finally, we have all the tools to build software in assembly. Very Nice! 🔷
+Finally, we have all the tools to build software in assembly. Very Nice!
 
 Our program will use two system calls: `sys_write` to print characters in a terminal and `exit` to terminate the process with a given status code.
 
