@@ -3,6 +3,7 @@ title: "A friendly introduction to assembly for high-level programmers — Hello
 description: A friendly introduction to assembly for high-level programmers — Hello
 categories: ["assembly", "x86", "guide"]
 date: "2024-09-08"
+commentLink: "https://news.ycombinator.com/item?id=41571971"
 ---
 
 Coming from JavaScript, Rust, C, or any other high-level language, looking at assembly snippets can be confusing or even scary.
