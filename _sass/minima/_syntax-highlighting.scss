@@ -1,9 +1,11 @@
 .highlighter-rouge {
+  @extend %vertical-rhythm;
   overflow: auto;
   background-color: #f6f8fa;
   
   .highlight {
-    @extend %vertical-rhythm;
+    margin: 0;
+    padding: $spacing-unit/6 $spacing-unit/3;
   }
 }
 
