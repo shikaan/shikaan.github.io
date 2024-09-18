@@ -8,12 +8,16 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
 
         label {
           font-family: monospace;
           height: 30px;
           padding-left: 15px;
+          white-space: nowrap;
+          overflow: hidden; 
+          text-overflow: ellipsis;
+          width: calc(100% - 90px - 30px); 
         }
       }
 
@@ -34,6 +38,7 @@
         font-family: system-ui, sans-serif;
         font-weight: bold;
         cursor: pointer;
+        width: 90px;
 
         &:active {
           background: #222;
@@ -49,10 +54,6 @@
       padding: 15px;
       font-style: italic;
       margin: 0 0 15px 0;
-    }
-
-    [hidden] {
-      display: none;
     }
   </style>
   <iframe hidden src="https://onecompiler.com/embed/assembly/?listenToEvents=true&codeChangeEvent=true"></iframe>
@@ -93,7 +94,7 @@
         fontSize: "16px",
         theme: "ace/theme/github_light_default",
       });
-
+      editor.renderer.setShowGutter(false);
       editor.renderer.attachToShadowRoot();
       $label.innerHTML = exercise;
 
@@ -101,7 +102,7 @@
         fetch(`https://raw.githubusercontent.com/shikaan/x86-64-asm-intro/main/${exercise}`)
           .then(response => response.text())
           .then(data => {
-            $output.innerHTML = 'Your output will appear here';
+            $output.innerHTML = 'Output will appear here';
             const code = editor.setValue(data, -1);
             $frame.contentWindow.postMessage({
               eventType: 'populateCode',
