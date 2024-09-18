@@ -1,0 +1,12 @@
+{% assign posts = site.posts | where:"series",include.name | reverse %}
+
+<div class="series">
+  <h4>{{ include.name }}</h4>
+  <ol>
+    {% for item in posts %}
+      <li>
+        <a href="{{ item.url }}">{{ item.title | replace: include.name, '' | replace: '—', '' }}</a>
+      </li>
+    {% endfor %}
+  </ol>
+</div>

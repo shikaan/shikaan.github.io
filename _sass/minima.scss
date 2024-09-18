@@ -130,3 +130,11 @@ blockquote {
     }
   }
 }
+
+.series {
+  border: 1px solid $text-color;
+  padding: $spacing-unit;
+  margin: $spacing-unit $spacing-unit*3;
+
+  ol { margin-bottom: 0; }
+}
