@@ -74,7 +74,7 @@ They represent the smallest unit of assembly language and are mostly composed of
 * **mnemonic**: a shortened word or sentence that specifies the operation to be performed
 * **operands**: a list of 0-3 items representing what's affected by the operation
 
-In our example, the mnemonic is `mov`, which stands for _move_, and the operands are `rax` and `rbx`. This instruction in plain English would read: move the content of `rbx` in `rax`.
+In our example, the mnemonic is `mov`, which stands for _move_, and the operands are `rax` and `rbx`. This instruction in plain English would read: move the content of `rbx` to `rax`.
 
 > **Note**
 >
@@ -122,21 +122,17 @@ One can access the whole register or a subset by using different names. For exam
 
 General purpose means that they can store anything in principle. In practice, we'll see that some registers have special meanings, some instructions only use certain registers, and some conventions dictate who is expected to write where.
 
-The only non-general-purpose register we will be concerned with is `rip` the _instruction pointer_ register. It holds the address of the next instruction to execute, and therefore, modifying `rip` allows programs to jump to arbitrary instructions in the code.
+The only non-general-purpose register we will look at today is `rip` the _instruction pointer_ register. It holds the address of the next instruction to execute, and therefore, modifying `rip` allows programs to jump to arbitrary instructions in the code.
 
 ### Our first assembly file
 
-Assembly files typically have an `.s` or `.asm` extension and they are split in three sections:
+Assembly files typically have an `.s` or `.asm` extension and they are split in sections. We will mostly be concerned with two sections:
 * **data**: where we define constants and initialized variables;
-* **bss**: where we define non-initialized variables;
 * **text**: where we will type our code, this is the only mandatory section of the file.
 
 ```nasm
 section .data
-  ; constants here
-
-section .bss
-  ; variables here
+  ; data here
 
 section .text
   ; code here
@@ -156,10 +152,7 @@ Typically, `global` references a `_start` label declared immediately after it. T
 
 ```nasm
 section .data
-  ; constants here
-
-section .bss
-  ; variables here
+  ; data here
 
 section .text
   global _start
