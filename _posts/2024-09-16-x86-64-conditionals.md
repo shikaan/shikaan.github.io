@@ -11,9 +11,9 @@ We will spend this lesson learning more instructions and use this knowledge to t
 
 ## Control Transfer Instructions
 
-The sequence of instructions the CPU decodes and executes is called _instruction stream_. You can picture it as an array whose indices are the _addresses_ of the instructions[^1].
+Remember those old movies where computers were fed with long tapes of instructions? Well, modern CPUs work in a surprisingly similar way: they go through instructions one by one, from start to finish. We call this sequence of instructions the _instruction stream_, and the unique position of each instruction in this stream is called an _address_, much like an index in an array[^1].
 
-The currently executed instruction is the one whose address is the value in the `rip` register, which is why we call it the _instruction pointer_ register.
+With this picture in mind, let's revisit the `rip` register (the _instruction pointer_) that we introduced in the previous article. As the program runs, the CPU uses the value in `rip` to fetch and execute instructions from the stream. It's always "pointing" to the next instruction to be executed, hence its name.
 
 In pseudo-code, the execution of a program would read something like this
 ```javascript
@@ -30,9 +30,9 @@ while (!exited) {
 }
 ```
 
-Most of the time, the execution is linear: instructions are executed one after the other in the order they are coded. Top to bottom. Some instructions, however, can break this convention and are called _Control Transfer Instructions_ (CTIs). 
+Most of the time, the execution is linear: instructions are executed one after the other, in the order they are coded. Some instructions, however, can break this convention and are called _Control Transfer Instructions_ (CTIs). 
 
-The CTIs we will focus on are categorized as _conditional_ and _unconditional_, and they make control flow possible in assembly by allowing execution of nonconsecutive instructions. Software interrupts are the other type of CTI; we won't explicitly touch them here[^2] since they are tightly intertwined with operative systems beyond the scope of this series.
+CTIs come in three flavors: _conditional_, _unconditional_, and _software interrupts_. We'll focus on the first two, as they are the foundation of control flow in assembly, allowing the execution of non-consecutive instructions. Software interrupts, while interesting, are closely intertwined with operating systems and beyond the scope of this series[^2]. 
 
 The first CTI we will explore is `jmp` (jump).
 
@@ -44,11 +44,11 @@ Syntactically, a jump looks like this
 ```nasm
 jmp label
 ```
-Where the operand represents the destination instruction.
+where the operand represents the destination instruction.
 
 Almost always, the destination is a label, and in plain English, the instruction above reads: "Continue the execution from the instruction whose label is `label`."
 
-The assembler, the software that turns assembly into machine code, translates the labels into a numeric address of the instruction stream and, on execution,  it will be assigned to `rip` as described above.
+The assembler, the software that turns assembly into machine code, translates the labels into a numeric address of the instruction stream and, on execution, it will be assigned to `rip` as described above.
 
 In fact, numeric addresses and relative offsets to `rip` are all valid destinations, but they are usually more in vogue among machines than humans. For example, compilers with optimization flags or disassemblers prefer using numeric addressing rather than labels.
 
@@ -66,9 +66,8 @@ As you might have guessed, we will implement conditional control flow using _con
 
 Coming from high-level languages, you might be used to versatile conditional statements like `if`, `unless`, or `when`. Assembly takes a different approach. Instead of a few all-purpose conditionals, it provides a large number of specialized instructions for specific checks.
 
-Fortunately, these instructions follow logical naming conventions that make them easier to remember. 
+Fortunately, these instructions follow logical naming conventions that make them easier to remember. Let's check an example out.
 
-Let's check an example out:
 ```nasm
 jne label
 ```
@@ -90,7 +89,7 @@ Here's a few more examples:
 * `jge label`: "jump if greater than or equal"
 * `jnz label`: "jump if not zero"
 
-These instructions do exactly what their names suggest: if the condition is met, the program jumps to the destination label. If not, it simply continues to the next line. Just like with unconditional jumps, these destinations can also be specified numerically.
+These instructions do exactly what their names suggest: if the condition is met, the program jumps to the destination label. If not, it simply continues to the next line. Just like with unconditional jumps, the destinations can also be specified numerically.
 
 Now, you might be wondering: "Equal to what?" "Greater than what?" "Zero compared to what?" 
 
