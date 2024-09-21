@@ -117,10 +117,10 @@ One can access the whole register or a subset by using different names. For exam
 | r15      |             | r15b       | r15w           | r15d            |
 
 <sup>
-¹: 2 bytes are sometimes called words (hence the w suffix)
+¹: 2 bytes are sometimes called words (hence the _w_ suffix)
 </sup><br>
 <sup>
-²: 4 bytes are sometimed called double-words or dwords (hence the d suffix)
+²: 4 bytes are sometimes called double-words or dwords (hence the _d_ suffix)
 </sup>
 
 General purpose means that they can store anything in principle. In practice, we'll see that some registers have special meanings, some instructions only use certain registers, and some conventions dictate who is expected to write where.

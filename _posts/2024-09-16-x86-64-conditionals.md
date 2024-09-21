@@ -12,14 +12,12 @@ We will spend this lesson learning more instructions and use this knowledge to t
 
 {% assign series_name = page.series %} {% include collection.html name=series_name %}
 
-## Control Transfer Instructions
+## Control Transfer Instructions 
 
-The sequence of instructions the CPU decodes and executes is called _instruction stream_. You can picture it as an array whose indices are the _addresses_ of the instructions[^1].
+Remember those old movies where computers were fed with long tapes of instructions? As surprising as it sounds, today's lightning-fast CPUs still fundamentally work by executing instructions coming from a sequence of bytes in memory. We call this sequence the _instruction stream_, and the unique position of each instruction an _address_. As we saw in the previous article, the address of the instruction currently being executed is stored in the `rip` register, which is why we call it the _instruction pointer_.
 
-The currently executed instruction is the one whose address is the value in the `rip` register, which is why we call it the _instruction pointer_ register.
-
-In pseudo-code, the execution of a program would read something like this
-```javascript
+Imagining the instruction stream as an array whose indices are the addresses[^1], the execution of a program in pseudo-code would read something like this:
+```
 while (!exited) {
   // Fetch the instruction at `registers.rip`
   instruction = instruction_stream[registers.rip]
@@ -27,19 +25,19 @@ while (!exited) {
   // address of the next instruction.
   next_pointer = instruction.execute()
   // Assign the new address to `rip` to fetch
-  // a new instruction on next iteration.
+  // a new instruction on the next iteration.
   registers.rip = next_pointer
   // Handle side effects (we won't look into this)
 }
 ```
 
-Most of the time, the execution is linear: instructions are executed one after the other in the order they are coded. Top to bottom. Some instructions, however, can break this convention and are called _Control Transfer Instructions_ (CTIs). 
+Most of the time, the execution is linear: instructions are executed one after the other, in the order they are coded. Some instructions, however, can break this convention and are called _Control Transfer Instructions_ (CTIs). 
 
-The CTIs we will focus on are categorized as _conditional_ and _unconditional_, and they make control flow possible in assembly by allowing execution of nonconsecutive instructions. Software interrupts are the other type of CTI; we won't explicitly touch them here[^2] since they are tightly intertwined with operative systems beyond the scope of this series.
+CTIs come in three flavors: _conditional_, _unconditional_, and _software interrupts_. We'll focus on the first two, as they are the foundation of control flow in assembly, allowing the execution of non-consecutive instructions. Software interrupts, while interesting, are closely intertwined with operating systems and beyond the scope of this series[^2]. 
 
 The first CTI we will explore is `jmp` (jump).
 
-## Unconditional jumps
+### Unconditional jumps
 
 Jumps allow executing code at an arbitrary position in the instruction stream. All they need to do is update the `rip` and, on the next cycle, the CPU will pick up the instruction at the new address.
 
@@ -47,11 +45,11 @@ Syntactically, a jump looks like this
 ```nasm
 jmp label
 ```
-Where the operand represents the destination instruction.
+where the operand represents the destination instruction.
 
 Almost always, the destination is a label, and in plain English, the instruction above reads: "Continue the execution from the instruction whose label is `label`."
 
-The assembler, the software that turns assembly into machine code, translates the labels into a numeric address of the instruction stream and, on execution,  it will be assigned to `rip` as described above.
+The assembler, the software that turns assembly into machine code, translates the labels into a numeric address of the instruction stream and, on execution, it will be assigned to `rip` as described above.
 
 In fact, numeric addresses and relative offsets to `rip` are all valid destinations, but they are usually more in vogue among machines than humans. For example, compilers with optimization flags or disassemblers prefer using numeric addressing rather than labels.
 
@@ -63,15 +61,14 @@ We will use [the same hello world example from the first lesson]({% post_url 202
 
 <code-editor exercise="02-hello-with-jumps.asm"></code-editor>
 
-## Conditional Jumps
+### Conditional Jumps
 
 As you might have guessed, we will implement conditional control flow using _conditional_ CTIs and in particular _conditional jumps_. Don't worry – we've already laid the groundwork with jumps, and conditional jumps are just an extension of the same concept.
 
 Coming from high-level languages, you might be used to versatile conditional statements like `if`, `unless`, or `when`. Assembly takes a different approach. Instead of a few all-purpose conditionals, it provides a large number of specialized instructions for specific checks.
 
-Fortunately, these instructions follow logical naming conventions that make them easier to remember. 
+Fortunately, these instructions follow logical naming conventions that make them easier to remember. Let's check an example out.
 
-Let's check an example out:
 ```nasm
 jne label
 ```
@@ -90,10 +87,10 @@ The following table provides mappings to navigate the most common conditional ju
 
 Here's a few more examples:
 * `je label`: "jump if equal"
-* `jge label`: "jump if greater than or equal"
 * `jnz label`: "jump if not zero"
+* `jg label`: "jump if greater than"
 
-These instructions do exactly what their names suggest: if the condition is met, the program jumps to the destination label. If not, it simply continues to the next line. Just like with unconditional jumps, these destinations can also be specified numerically.
+These instructions do exactly what their names suggest: if the condition is met, the program jumps to the destination label. If not, it simply continues to the next line. Just like with unconditional jumps, the destinations can also be specified numerically.
 
 Now, you might be wondering: "Equal to what?" "Greater than what?" "Zero compared to what?" 
 
@@ -101,11 +98,11 @@ Let us answer these questions diving into the mechanics behind comparisons in as
 
 ## Flags
 
-The `eflags` is a 32-bit register that stores various flags. Unlike general-purpose registers, `eflags` is read bit by bit, with each position representing a specific flag. You can think of these flags as a set of boolean values built right into the CPU. When a bit is 1, the corresponding flag is `true`, and when it's 0, the flag is `false`.
+The `eflags` is a 32-bit register[^4] that stores various flags. Unlike general-purpose registers, `eflags` is read bit by bit, with each position representing a specific flag. You can think of these flags as a set of boolean values built right into the CPU. When a bit is 1, the corresponding flag is `true`, and when it's 0, the flag is `false`.
 
 {% include picture.html image_url="https://github.com/user-attachments/assets/5fde252c-7af9-4591-91db-d9b238fd712e" alt="EFLAGS layout" %}
 
-Flags serve multiple purposes[^4], but for our discussion, they're used to provide context after an operation. For instance, if an addition results in zero, the overflow flag (OF) can tell us whether this is due to an actual zero result or an overflow. They are relevant to us, since flags are how assembly stores the results of comparisons.
+Flags serve multiple purposes[^5], but for our discussion, they're used to provide context after an operation. For instance, if an addition results in zero, the _overflow flag_ (OF) can tell us whether this is due to an actual zero result or an overflow. They are relevant to us, since flags are how assembly stores the results of comparisons.
 
 In this section we will only look at the following flags:
 * the _zero flag_ (ZF), set to 1 when an operation results in zero;
@@ -116,14 +113,19 @@ The `cmp` (compare) instruction is one common way of performing comparisons:
 cmp rax, rbx
 ```
 This instruction subtracts the second operand from the first without storing the result. Instead, it sets flags based on the comparison. For example:
-* If the operands are equal, the zero flag (ZF) is set to 1.
+* If the operands are equal, the zero flag (ZF) is set to 1;
 * If the first operand is greater than the second, the sign flag (SF) is set to 0.
 
 With this understanding, the meaning of conditional jumps should become clear:
-
 * "jump if equal" (`je`) translates to "jump if ZF=1"
-* "jump if greater than or equal" (`jge`) means "jump if SF=0 or ZF=1"
-* "jump if not zero" (`jnz`) translates to "jump if ZF=0"[^5]
+* "jump if not zero" (`jnz`) translates to "jump if ZF=0" (equivalent to `jne`)
+* "jump if greater than" (`jg`) means "jump if SF=0 or ZF=0"
+
+> **Overflows**
+>
+> So far, we’ve ignored overflows in the `cmp` checks for simplicity. However, they can occur and you can account for them by comparing the _overflow flag_ (OF) with SF. For example, the overflow-adjusted version of `jg` becomes: "jump if SF=OF and ZF=0." In other words, when there's an overflow, the meaning of SF is flipped.
+>
+> Why does this happen? Imagine you're working with numbers in the range [-16, 15]. When you compare 15 and -15, you calculate `-15 - 15 = -30`, which is equivalent to `2` in our base system. Normally, this would set _SF=1_ (because `2 > 0`), but logically, we know that 15 is greater than -15, meaning _SF should be 0_. Flipping the SF flag when there's an overflow resolves this contradiction.
 
 ## At last, conditionals
 
@@ -166,14 +168,14 @@ While jumps enable basic control flow, they can make code hard to follow. In our
 
 ---
 
-[^1]: This mental model is not entirely made up. Emulators, software emulating systems on other hardware, usually represent instruction streams as arrays. If you are interested in emulation, [CHIP-8](https://en.wikipedia.org/wiki/CHIP-8) is a great place to start and [this a good guide](https://austinmorlan.com/posts/chip8_emulator/) to get your hands dirty.
+[^1]: This mental model is not entirely made up: emulators usually represent instruction streams as arrays, for example. If you are interested in emulation, [CHIP-8](https://en.wikipedia.org/wiki/CHIP-8) is a great place to start and [this a good guide](https://austinmorlan.com/posts/chip8_emulator/) to get your hands dirty.
 
 [^2]: I say _explicitly_ because, for example, the `syscall` instruction may issue an interrupt. The cooperation between operative systems and user programs makes for a fascinating world in its own right and discussing it here would do it no justice. If you are curious, you can consult any operative systems book. Personal recommendation, [OSTEP](https://pages.cs.wisc.edu/~remzi/OSTEP/) and in particular [this chapter](https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-mechanisms.pdf).
 
 [^3]: For a complete overview refer to the [Intel Software Developer Manuals (SDM)](https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html), in the "Jump if Condition is Met" section.
 
-[^4]: Once again, the complete list can be found in the [Intel Software Developer Manuals (SDM)](https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html). The section to look for is "EFLAGS Register".
+[^4]: The prefix _e_ in **eflags** stands for _extended_. It comes from the transition from 16-bit to 32-bit registers, where the latter were considered extensions of the former. This naming convention also applies to general-purpose registers: as we saw, `eax` is the 32-bit subset of `rax`, and its name comes from being the 32-bit extension of `ax`.
 
-[^5]: Note how checking for equality and checking for zero is essentially the same thing.
+[^5]: Once again, the complete list can be found in the [Intel Software Developer Manuals (SDM)](https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html). The section to look for is "EFLAGS Register".
 
 {% include code-editor.html %}
