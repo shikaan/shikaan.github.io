@@ -11,11 +11,11 @@ We will spend this lesson learning more instructions and use this knowledge to t
 
 ## Control Transfer Instructions 
 
-Remember those old movies where computers were fed with long tapes of instructions? As surprising as it sounds, today's lightning-fast CPUs still fundamentally work by executing instructions coming from a sequence of bytes in memory. We call this sequence the _instruction stream_, and the unique position of each instruction an _address_. As we saw in the previous article, the address of the instruction currently being executed is stored in the `rip` register, which is why we call it the _instruction pointer_.
+Remember those old movies where computers were fed with long tapes of instructions? Surprisingly, today's lightning-fast CPUs still work similarly, but executing instructions coming from a sequence of bytes in memory. We call this sequence the _instruction stream_, and the unique position of each instruction an _address_. As we saw in the previous article, the address of the instruction currently being executed is stored in the `rip` register, which is why we call it the _instruction pointer_.
 
 Imagining the instruction stream as an array whose indices are the addresses[^1], the execution of a program in pseudo-code would read something like this:
 ```
-while (!exited) {
+while not exited
   // Fetch the instruction at `registers.rip`
   instruction = instruction_stream[registers.rip]
   // Execute the instruction and return the
@@ -25,7 +25,6 @@ while (!exited) {
   // a new instruction on the next iteration.
   registers.rip = next_pointer
   // Handle side effects (we won't look into this)
-}
 ```
 
 Most of the time, the execution is linear: instructions are executed one after the other, in the order they are coded. Some instructions, however, can break this convention and are called _Control Transfer Instructions_ (CTIs). 
@@ -116,13 +115,7 @@ This instruction subtracts the second operand from the first without storing the
 With this understanding, the meaning of conditional jumps should become clear:
 * "jump if equal" (`je`) translates to "jump if ZF=1"
 * "jump if not zero" (`jnz`) translates to "jump if ZF=0" (equivalent to `jne`)
-* "jump if greater than" (`jg`) means "jump if SF=0 or ZF=0"
-
-> **Overflows**
->
-> So far, we’ve ignored overflows in the `cmp` checks for simplicity. However, they can occur and you can account for them by comparing the _overflow flag_ (OF) with SF. For example, the overflow-adjusted version of `jg` becomes: "jump if SF=OF and ZF=0." In other words, when there's an overflow, the meaning of SF is flipped.
->
-> Why does this happen? Imagine you're working with numbers in the range [-16, 15]. When you compare 15 and -15, you calculate `-15 - 15 = -30`, which is equivalent to `2` in our base system. Normally, this would set _SF=1_ (because `2 > 0`), but logically, we know that 15 is greater than -15, meaning _SF should be 0_. Flipping the SF flag when there's an overflow resolves this contradiction.
+* "jump if greater than" (`jg`) means "jump if SF=0 or ZF=0"[^6]
 
 ## At last, conditionals
 
@@ -171,8 +164,10 @@ While jumps enable basic control flow, they can make code hard to follow. In our
 
 [^3]: For a complete overview refer to the [Intel Software Developer Manuals (SDM)](https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html), in the "Jump if Condition is Met" section.
 
-[^4]: The prefix _e_ in **eflags** stands for _extended_. It comes from the transition from 16-bit to 32-bit registers, where the latter were considered extensions of the former. This naming convention also applies to general-purpose registers: as we saw, `eax` is the 32-bit subset of `rax`, and its name comes from being the 32-bit extension of `ax`.
+[^4]: The prefix _e_ in _eflags_ stands for _extended_. It comes from the transition from 16-bit to 32-bit registers, where the latter were considered extensions of the former.
 
 [^5]: Once again, the complete list can be found in the [Intel Software Developer Manuals (SDM)](https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html). The section to look for is "EFLAGS Register".
+
+[^6]: For simplicity's sake, we ignored `cmp` overflows. You can account for them by using – you guessed it – the _overflow flag_ (OF). For example, the overflow-adjusted version of `jg` is "jump if SF=OF and ZF=0." Don't sweat if it's not clear: it's not crucial for this introduction, and we will likely touch on that later.
 
 {% include code-editor.html %}
