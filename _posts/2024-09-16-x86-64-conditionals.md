@@ -155,7 +155,7 @@ We made it, friends! We've explored the fundamental building blocks of control f
 
 We've learned about Control Transfer Instructions (CTIs), focusing on unconditional and conditional jumps. We've seen how the instruction pointer (`rip`) guides program execution and how jumps manipulate this flow. We've delved into the `eflags` register and its crucial role in comparisons, understanding how flags like the zero flag (ZF) and sign flag (SF) inform conditional operations. Finally, combining the `cmp` instruction with jumps, we've constructed the assembly equivalent of high-level language conditionals. 
 
-While jumps enable basic control flow, they can make code hard to follow. In our next article, we'll introduce the equivalent of functions: a way to execute code from elsewhere while maintaining a linear flow. You'll see how this approach mirrors procedural code in high-level languages, making assembly more intuitive and organized.
+While jumps enable basic control flow, they can make code hard to follow. [In our next article]({% post_url 2024-09-26-x86-64-functions %}), we'll introduce the equivalent of functions: a way to execute code from elsewhere while maintaining a linear flow. You'll see how this approach mirrors procedural code in high-level languages, making assembly more intuitive and organized.
 
 {% include post-footer.html %}
 
