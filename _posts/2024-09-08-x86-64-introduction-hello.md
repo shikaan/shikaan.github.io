@@ -1,9 +1,10 @@
 ---
 title: "A friendly introduction to assembly for high-level programmers — Hello"
-description: A friendly introduction to assembly for high-level programmers — Hello
+description: "A friendly introduction to assembly for high-level programmers — Hello"
 categories: ["assembly", "x86", "guide"]
 date: "2024-09-08"
 commentLink: "https://news.ycombinator.com/item?id=41571971"
+series: "A friendly introduction to assembly for high-level programmers"
 ---
 
 Coming from JavaScript, Rust, C, or any other high-level language, looking at assembly snippets can be confusing or even scary.
@@ -38,6 +39,8 @@ This little introduction is meant to introduce you, somebody with programming ex
 By the end of this guide, you will be able to navigate assembly code, know where to look for information, and even write some simple programs all by yourself.
 
 Let's get started!
+
+{% assign series_name = page.series %} {% include collection.html name=series_name %}
 
 ## Hello world
 

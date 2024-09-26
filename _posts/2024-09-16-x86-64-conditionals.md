@@ -3,11 +3,14 @@ title: "A friendly introduction to assembly for high-level programmers — Condi
 description: "A friendly introduction to assembly for high-level programmers — Conditionals"
 categories: ["assembly", "x86", "guide"]
 date: "2024-09-16"
+series: A friendly introduction to assembly for high-level programmers
 ---
 
 [In the previous article]({% post_url 2024-09-08-x86-64-introduction-hello %}), we learned about the basics of the assembly's syntax and managed to create a program with just two instructions. Quite impressive!
 
 We will spend this lesson learning more instructions and use this knowledge to translate the first high-level construct into assembly: conditionals.
+
+{% assign series_name = page.series %} {% include collection.html name=series_name %}
 
 ## Control Transfer Instructions 
 
