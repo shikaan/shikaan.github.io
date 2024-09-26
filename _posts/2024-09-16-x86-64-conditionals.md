@@ -3,6 +3,7 @@ title: "A friendly introduction to assembly for high-level programmers — Condi
 description: "A friendly introduction to assembly for high-level programmers — Conditionals"
 categories: ["assembly", "x86", "guide"]
 date: "2024-09-16"
+commentLink: "https://news.ycombinator.com/item?id=41663149"
 series: A friendly introduction to assembly for high-level programmers
 ---
 
