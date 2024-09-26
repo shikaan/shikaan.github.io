@@ -138,3 +138,9 @@ blockquote {
 
   ol { margin-bottom: 0; }
 }
+
+@include media-query($on-palm) {
+  .series {
+    margin: $spacing-unit;
+  }
+}
