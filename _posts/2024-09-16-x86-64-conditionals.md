@@ -164,7 +164,7 @@ While jumps enable basic control flow, they can make code hard to follow. [In ou
 
 [^1]: This mental model is not entirely made up: emulators usually represent instruction streams as arrays, for example. If you are interested in emulation, [CHIP-8](https://en.wikipedia.org/wiki/CHIP-8) is a great place to start and [this a good guide](https://austinmorlan.com/posts/chip8_emulator/) to get your hands dirty.
 
-[^2]: I say _explicitly_ because, for example, the `syscall` instruction may issue an interrupt. The cooperation between operative systems and user programs makes for a fascinating world in its own right and discussing it here would do it no justice. If you are curious, you can consult any operative systems book. Personal recommendation, [OSTEP](https://pages.cs.wisc.edu/~remzi/OSTEP/) and in particular [this chapter](https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-mechanisms.pdf).
+[^2]: I say _explicitly_ because, for example, the `syscall` instruction may issue an interrupt. The cooperation between operating systems and user programs makes for a fascinating world in its own right and discussing it here would do it no justice. If you are curious, you can consult any operative systems book. Personal recommendation, [OSTEP](https://pages.cs.wisc.edu/~remzi/OSTEP/) and in particular [this chapter](https://pages.cs.wisc.edu/~remzi/OSTEP/cpu-mechanisms.pdf).
 
 [^3]: For a complete overview refer to the [Intel Software Developer Manuals (SDM)](https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html), in the "Jump if Condition is Met" section.
 
